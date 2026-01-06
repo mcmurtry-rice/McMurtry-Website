@@ -40,7 +40,7 @@ const PCardManagement = () => (
                     <p><strong>How it works:</strong></p>
                     <ol>
                         <li>Fill out the Spring 2026 McExpenses Form and select "Check Out P-Card."</li>
-                        <strong>👉 <a className='pcard-link' href="https://forms.gle/VFfxS6a5ud1TLpsAA" target="_blank" rel="noopener noreferrer">Spring 2026 McExpenses Form</a></strong>
+                        <strong>👉 <a className='pcard-link' href="https://docs.google.com/forms/d/e/1FAIpQLScAaMPGQ4CU2LQauBLf7mYsqlTP7tu6zuYGPNX1lAABECF1bA/viewform?usp=header" target="_blank" rel="noopener noreferrer">Spring 2026 McExpenses Form</a></strong>
                         <li>Await approval from the P-Card owner.</li>
                         <li>Once approved, you will receive a lockbox code via text.</li>
                         <li>Retrieve the P-Card from the lockbox.</li>
@@ -65,7 +65,7 @@ const PCardManagement = () => (
                     <p><strong>Steps:</strong></p>
                     <ol>
                         <li>Return the P-Card to the lockbox immediately after use.</li>
-                        <strong>👉 <a className='pcard-link' href="https://forms.gle/VFfxS6a5ud1TLpsAA" target="_blank" rel="noopener noreferrer">Spring 2026 McExpenses Form</a></strong>
+                        <strong>👉 <a className='pcard-link' href="https://docs.google.com/forms/d/e/1FAIpQLScAaMPGQ4CU2LQauBLf7mYsqlTP7tu6zuYGPNX1lAABECF1bA/viewform?usp=header" target="_blank" rel="noopener noreferrer">Spring 2026 McExpenses Form</a></strong>
                         <li>Fill out the Spring 2026 McExpenses Form and select "Return P-Card."</li>
                         <li>Upload:
                             <ul>
@@ -89,7 +89,7 @@ const PCardManagement = () => (
                     <p><strong>Steps:</strong></p>
                     <ol>
                         <li>Fill out the Spring 2026 McExpenses Form and select "Make an Online Purchase."</li>
-                        <strong>👉 <a className='pcard-link' href="https://forms.gle/VFfxS6a5ud1TLpsAA" target="_blank" rel="noopener noreferrer">Spring 2026 McExpenses Form</a></strong>
+                        <strong>👉 <a className='pcard-link' href="https://docs.google.com/forms/d/e/1FAIpQLScAaMPGQ4CU2LQauBLf7mYsqlTP7tu6zuYGPNX1lAABECF1bA/viewform?usp=header" target="_blank" rel="noopener noreferrer">Spring 2026 McExpenses Form</a></strong>
                         <li>Provide:
                             <ul>
                                 <li>Direct product link(s)</li>
