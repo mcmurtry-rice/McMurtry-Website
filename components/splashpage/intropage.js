@@ -66,6 +66,11 @@ const Intro = () => (
                     <p>Student/Academic Resources Spreadsheet</p>
                 </Box>
             </a>
+            <a href={"/resources/pcardmanagement"}>
+                <Box className="pcard-requests-banner">
+                    <p>P-Card Requests & Purchases</p>
+                </Box>
+            </a>
         </div>
         
         <div className='donate-button-container'>

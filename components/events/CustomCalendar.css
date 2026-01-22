@@ -319,14 +319,15 @@
     width: 100%;
 }
 
-.event-popup-time img,
-.event-popup-location img,
-.event-popup-description img {
+.event-popup-time svg,
+.event-popup-location svg,
+.event-popup-description svg {
     flex-shrink: 0;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
     margin-top: 2px;
     width: 18px;
     height: 18px;
+    color: var(--white);
 }
 
 .event-popup-time > div {
@@ -385,8 +386,9 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.event-popup-link img {
+.event-popup-link svg {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    color: var(--white);
 }
 
 /* Mobile Bottom Sheet Style */

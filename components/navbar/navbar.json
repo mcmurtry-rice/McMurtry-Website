@@ -60,19 +60,6 @@
       ]
     },
     {
-      "name": "Events",
-      "subheaders": [
-        {
-          "name": "Budget Sheet",
-          "to": "https://docs.google.com/spreadsheets/d/1imNFy7cyadxieh7JPcPRvMzB-LgMHozNkRzUX_Lwp1A/edit?usp=sharing"
-        },
-        {
-          "name": "Expense Form",
-          "to": "https://docs.google.com/forms/d/e/1FAIpQLSd4M9RPpgO0XhHrSFvcexGYXwu11w0F5LntvUEljN3AQI_Klg/viewform?usp=sf_link"
-        }
-      ]
-    },
-    {
       "name": "People",
       "subheaders": [
         {
@@ -129,6 +116,10 @@
           "to": "/resources/roomreservations"
         },
         {
+          "name": "P-Card Requests & Purchases",
+          "to": "/resources/pcardmanagement"
+        },
+        {
           "name": "Financial Inclusivity",
           "to": "/about/financialinclusivity"
         },
@@ -151,6 +142,10 @@
         {
           "name": "McFUNd Requests",
           "to": "/resources/initiativerequests"
+        },
+        {
+          "name": "Budget Sheet",
+          "to": "https://docs.google.com/spreadsheets/d/1imNFy7cyadxieh7JPcPRvMzB-LgMHozNkRzUX_Lwp1A/edit?usp=sharing"
         },
         {
           "name": "Feedback Form",

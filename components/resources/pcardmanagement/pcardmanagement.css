@@ -1,0 +1,23 @@
+/* P-Card Management Page - Uses shared styles from roomreservations.css */
+
+.pcard-management-page {
+    min-height: 100vh;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+/* Alert styling for warnings */
+.pcard-alert {
+    background: rgba(255, 107, 53, 0.15);
+    border: 1px solid rgba(255, 107, 53, 0.4);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    color: #FF6B35 !important;
+    margin-top: var(--space-lg);
+}
+
+/* Calendar container - uses shared .event-calendar-container styles from CustomCalendar.css */
