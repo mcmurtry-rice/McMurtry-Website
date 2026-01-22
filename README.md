@@ -1,4 +1,4 @@
-![](https://github.com/mcmurtrycollege/McMurtry-Website/blob/master/static/YurtTrees.svg)
+![](https://github.com/mcmurtry-rice/McMurtry-Website/blob/master/static/YurtTrees.svg)
 
 # McMurtry Website
 The official McMurtry College website
@@ -30,4 +30,4 @@ will push the changes to the website.
 ### Contributors
 
 - Nicholas Meisburger ([nmeisburger0](https://github.com/nmeisburger0))
-- Antony Saleh - as610@rice.edu
+- Antony Saleh ([antonysa23-meet](https://github.com/antonysa23-meet))
