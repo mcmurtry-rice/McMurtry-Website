@@ -37,16 +37,16 @@ const carouselImages = [
         description: 'The heart of our college community'
     },
     {
-        name: "McExpenses",
-        icon: "hand-coin",
-        to: "/resources/pcardmanagement",
-        absolute: ""
+        src: '../../static/burt_deedee.jpg',
+        alt: 'Burt and Deedee McMurtry',
+        caption: 'Our Namesakes',
+        description: 'Burt and Deedee McMurtry - Rice Class of 1956'
     },
     {
-        name: "Financial Inclusivity",
-        icon: "hand-heart",
-        to: "/about/financialinclusivity",
-        absolute: ""
+        src: '../../static/mcm10/yurt.jpg',
+        alt: 'The Yurt',
+        caption: 'The Yurt',
+        description: 'Our beloved commons space'
     },
 ];
 
@@ -125,14 +125,30 @@ const Intro = () => (
                 ></iframe>
             </div>
             <div className='map-directions-container'>
-                <a 
-                    href="https://www.google.com/maps/dir/?api=1&destination=29.7204139,-95.3977558&destination_place_id=ChIJO3ubx34MQIYRTzQzdE24dHY" 
-                    target="_blank" 
+                <a
+                    href="https://www.google.com/maps/dir/?api=1&destination=29.7204139,-95.3977558&destination_place_id=ChIJO3ubx34MQIYRTzQzdE24dHY"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="map-directions-btn"
                 >
                     <span className="directions-icon">📍</span>
                     Get Directions
+                </a>
+            </div>
+        </Box>
+
+        {/* Website Feedback */}
+        <Box className='feedback-section' width={[1, 0.9, 0.8, 0.7]} ml='auto' mr='auto' mb={[20, 50]}>
+            <h2 className='section-title'>Website Feedback</h2>
+            <p style={{ textAlign: 'center', marginBottom: '20px' }}>Help us improve! Share your anonymous feedback about the website.</p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <a
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSdN7uZJtRFAJT02hlecbyg55haxiWUQnXGvuNYScGnM683HCg/viewform"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="map-directions-btn"
+                >
+                    Give Us Feedback
                 </a>
             </div>
         </Box>
