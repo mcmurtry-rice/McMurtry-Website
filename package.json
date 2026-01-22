@@ -7,17 +7,17 @@
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider next -H 0.0.0.0",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build",
     "export": "cross-env NODE_OPTIONS=--openssl-legacy-provider next export",
-    "deploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build && cross-env NODE_OPTIONS=--openssl-legacy-provider next export -o docs && cd docs && touch CNAME && echo mcmurtry.rice.edu >> CNAME && touch .nojekyll && cd .. && git add ."
+    "deploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build && cross-env NODE_OPTIONS=--openssl-legacy-provider next export -o docs && cd docs && echo mcmurtry.rice.edu > CNAME && touch .nojekyll && cd .. && git add ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcmurtrycollege/McMurtry-Website.git"
+    "url": "git+https://github.com/mcmurtry-rice/McMurtry-Website.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mcmurtrycollege/McMurtry-Website/issues"
+    "url": "https://github.com/mcmurtry-rice/McMurtry-Website/issues"
   },
   "homepage": "https://mcmurtry.rice.edu",
   "dependencies": {
