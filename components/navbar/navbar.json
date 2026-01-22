@@ -1,33 +1,61 @@
 {
   "navbar_headers": [
     {
-      "name": "O-Week",
-      "subheaders": [
-        {
-          "name": "O-Week",
-          "to": "/oweek"
-        }
-      ]
-    },
-    {
       "name": "About",
       "subheaders": [
         {
-          "name": "About",
-          "to": "/about"
+          "name": "Home",
+          "to": "/"
+        },
+        {
+          "name": "Calendar",
+          "to": "/about/calendar"
+        },
+        {
+          "name": "Financial Inclusivity",
+          "to": "/about/financialinclusivity"
         }
       ]
     },
     {
-      "name": "Events",
+      "name": "Room Reservations",
+      "to": "/resources/roomreservations",
+      "subheaders": []
+    },
+    {
+      "name": "O-Week",
       "subheaders": [
         {
-          "name": "Calendar",
-          "to": "/events/calendar"
+          "name": "O-Week Home",
+          "to": "/oweek"
         },
         {
-          "name": "Budget/Expenses",
-          "to": "/events/budget"
+          "name": "About the Theme",
+          "to": "/oweek/theme"
+        },
+        {
+          "name": "Meet the Coords",
+          "to": "/oweek/coords"
+        },
+        {
+          "name": "O-Week Groups",
+          "to": "/oweek/oweekgroups"
+        },
+        {
+          "name": "Tour of McMurtry",
+          "to": "/oweek/mcmtour"
+        },
+        {
+          "name": "Your Room",
+          "to": "/oweek/yourroom"
+        },
+        {
+          "name": "O-Week Book",
+          "to": "/oweek/oweekbook"
+        },
+        {
+          "name": "Contact Info",
+          "to": "/oweek/oweekcontact"
         }
       ]
     },
@@ -114,6 +142,10 @@
         {
           "name": "McFUNd Requests",
           "to": "/resources/initiativerequests"
+        },
+        {
+          "name": "Budget Sheet",
+          "to": "https://docs.google.com/spreadsheets/d/1imNFy7cyadxieh7JPcPRvMzB-LgMHozNkRzUX_Lwp1A/edit?usp=sharing"
         },
         {
           "name": "Feedback Form",

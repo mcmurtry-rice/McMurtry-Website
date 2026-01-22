@@ -3,22 +3,14 @@ import { Box, Flex, Image } from 'rebass';
 import './contactcards.css';
 
 const Card = props => (
-    < Box className='position-card' width={props.width} >
-        <div className="contact-card-content" style={{ height: props.height }}>
-            {
-                props.photo !== undefined ? (
-                    <Image src={props.photo} alt='photo' />
-                ) : (
-                        null
-                    )
-            }
-            {
-                props.position !== undefined ? (
-                    <h2 className="position">{props.position}</h2>
-                ) : (
-                        null
-                    )
-            }
+    <Box className='position-card' width={props.width}>
+        <div className="contact-card-content" style={{ minHeight: props.minHeight }}>
+            {props.photo !== undefined && (
+                <Image src={props.photo} alt={`${props.name}'s photo`} />
+            )}
+            {props.position !== undefined && (
+                <h2 className="position">{props.position}</h2>
+            )}
             <h2 className="name">{props.name}</h2>
             {
                 props.phone !== undefined ? (
@@ -73,7 +65,7 @@ const Card = props => (
                     )
             }
         </div>
-    </Box >
+    </Box>
 )
 
 const Cards = props => (
@@ -81,9 +73,21 @@ const Cards = props => (
         <Flex flexWrap='wrap' flexDirection='row' justifyContent='center'>
             {
                 props.content.map(({ photo, position, name, year, email, phone, major, subjects, room, pre_prof_path }) => (
-                    <Card height={props.height} width={props.width} key={name} photo={photo} position={position}
-                        name={name} year={year} email={email} phone={phone} major={major} subjects={subjects} room={room}
-                        pre_prof_path={pre_prof_path} />
+                    <Card 
+                        width={props.width}
+                        minHeight={props.minHeight}
+                        key={`${name}-${position || ''}`} 
+                        photo={photo} 
+                        position={position}
+                        name={name} 
+                        year={year} 
+                        email={email} 
+                        phone={phone} 
+                        major={major} 
+                        subjects={subjects} 
+                        room={room}
+                        pre_prof_path={pre_prof_path} 
+                    />
                 ))
             }
         </Flex>

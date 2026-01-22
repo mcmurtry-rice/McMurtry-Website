@@ -9,55 +9,28 @@ class Navbar extends React.Component {
         super(props);
         this.state = {
             hidden: true,
-            subheader: null
+            expandedCategories: []
         }
         this.toggleNavbar = this.toggleNavbar.bind(this);
-        this.showSubheader = this.showSubheader.bind(this);
-        this.closeSubheader = this.closeSubheader.bind(this);
+        this.toggleCategory = this.toggleCategory.bind(this);
     }
 
     toggleNavbar() {
         this.setState({ hidden: !this.state.hidden })
     }
 
-    showSubheader(index) {
-        this.setState({ subheader: index })
-    }
-
-    closeSubheader() {
-        this.setState({ subheader: null })
+    toggleCategory(index) {
+        const { expandedCategories } = this.state;
+        if (expandedCategories.includes(index)) {
+            this.setState({ expandedCategories: expandedCategories.filter(i => i !== index) });
+        } else {
+            this.setState({ expandedCategories: [...expandedCategories, index] });
+        }
     }
 
     render() {
-        let mainHeaders = []
-        let menus = []
         let hidden = this.state.hidden ? { left: '100%' } : { left: 0 }
-        for (let i = 0; i < navbar_headers.length; i++) {
-            mainHeaders.push(
-                <div className='main-header' key={navbar_headers[i].name}>
-                    <a onClick={() => this.showSubheader(i)}>{navbar_headers[i].name}</a>
-                </div>
-            )
-            menus.push(
-                <div className={(this.state.subheader === i) ? ('subheader-display') : ('subheader-hidden')} key={`${navbar_headers[i].name}-menu`}>
-                    <div className='mobile-navbar__container'>
-                        <div onClick={this.closeSubheader} className='subheader-back'>
-                            <p>← Back</p>
-                        </div>
-                        {
-                            navbar_headers[i].subheaders.map(({ name, to }) => (
-                                <Link href={to} key={name}>
-                                    <div className='subheader-item'>
-                                        {name}
-                                   </div>
-                                </Link>
-                            ))
-                        }
-                    </div>
-                </div>
-            )
-        }
-
+        
         return (
             <div>
                 <div className='fixed-mobile-header'>
@@ -76,7 +49,6 @@ class Navbar extends React.Component {
                         <img className='close-navbar' src="/static/icons/x.svg" alt="X" onClick={this.toggleNavbar} />
                         {mainHeaders}
                     </div>
-                    {menus}
                 </div>
             </div>
         )
