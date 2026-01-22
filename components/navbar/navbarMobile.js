@@ -29,8 +29,31 @@ class Navbar extends React.Component {
     }
 
     render() {
+        let mainHeaders = []
+        let menus = []
         let hidden = this.state.hidden ? { left: '100%' } : { left: 0 }
-        
+        const { expandedCategories } = this.state;
+
+        for (let i = 0; i < navbar_headers.length; i++) {
+            const isExpanded = expandedCategories.includes(i);
+            mainHeaders.push(
+                <div className='main-header' key={navbar_headers[i].name}>
+                    <a onClick={() => this.toggleCategory(i)}>{navbar_headers[i].name}</a>
+                    <div className={isExpanded ? 'subheader-display' : 'subheader-hidden'}>
+                        {
+                            navbar_headers[i].subheaders.map(({ name, to }) => (
+                                <Link href={to} key={name}>
+                                    <div className='subheader-item'>
+                                        {name}
+                                    </div>
+                                </Link>
+                            ))
+                        }
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <div>
                 <div className='fixed-mobile-header'>
