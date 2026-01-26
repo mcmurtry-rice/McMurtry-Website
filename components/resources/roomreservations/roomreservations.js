@@ -69,7 +69,7 @@ const RoomReservations = () => (
         </div>
         
         <Box width={[1, 1, 0.9, 0.85]} ml='auto' mr='auto' mb={[10, 20]} mt={[0, 0]} className='event-calendar-container'>
-            <CustomCalendar />
+            <CustomCalendar calendarId="2357af8ea321219e69f5f08fe7bd16bf6663c3a5a5f54a9a1f5052972ed93726@group.calendar.google.com" />
         </Box>
         <div className='center-div'>
             <Box className='room-category'><p>Having trouble seeing the calendar? Uncheck "Prevent cross-site tracking" in your browser settings or visit <a href = "https://calendar.google.com/calendar/u/1?cid=MjM1N2FmOGVhMzIxMjE5ZTY5ZjVmMDhmZTdiZDE2YmY2NjYzYzNhNWE1ZjU0YTlhMWY1MDUyOTcyZWQ5MzcyNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t">this link.</a></p></Box>
