@@ -19,7 +19,7 @@ const Footer = () => (
         <p className='footer-item'>Phone: (713) 348-4583 · Fax: (713) 348-3135</p>
         <p className='footer-item'>Email: mcmurtry@rice.edu</p>
         <p></p>
-        <p className='footer-item'>Copyright © McMurtry College, 2019</p>
+        <p className='footer-item'>Copyright © McMurtry College, 2026</p>
     </div>
 )
 

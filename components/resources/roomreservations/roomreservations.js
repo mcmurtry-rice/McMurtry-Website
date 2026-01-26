@@ -8,7 +8,7 @@ import CustomCalendar from '../../events/CustomCalendar';
 const RoomReservations = () => (
     <div className='room-reservations-page'>
                 <div className='oweek-hero'>
-            <h1 className='oweek-main-title'>Room reservation</h1>
+            <h1 className='oweek-main-title'>Room Reservation</h1>
         </div>        <div className='center-div'>
             <Box width={[0.9, 0.7]} className='room-category'>
                 <h2 className='category-subheader'>Category 1 Reservations</h2>

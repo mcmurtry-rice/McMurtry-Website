@@ -28,7 +28,7 @@ const Contact = () => {
 
             {/* Mailing Address Section */}
             <Box className='about-text' width={[0.9, 0.85, 0.8, 0.75]} ml='auto' mr='auto' mb={[3, 3]} mt={[0, 0]}>
-                <h2 className='section-title'>📮 Your McMurtry Mailing Address</h2>
+                <h2 className='section-title'>Your McMurtry Mailing Address</h2>
                 <div className='contact-card'>
                     <div className='contact-address-box'>
                         <p className='contact-address-line'><strong>(Your name here)</strong></p>
@@ -37,14 +37,14 @@ const Contact = () => {
                         <p className='contact-address-line'>Houston, TX 77005</p>
                     </div>
                     <div className='contact-note'>
-                        <p><strong>⚠️ Important:</strong> You can only mail or ship things to arrive <strong>after August 14th</strong>. Our space is limited and not secure, so please bring important items with you. There will be plenty of time to purchase other personal items during and after O-Week.</p>
+                        <p><strong>Important:</strong> You can only mail or ship things to arrive <strong>after August 14th</strong>. Our space is limited and not secure, so please bring important items with you. There will be plenty of time to purchase other personal items during and after O-Week.</p>
                     </div>
                 </div>
             </Box>
 
             {/* O-Week Coordinators Section */}
             <Box className='about-text' width={[0.9, 0.85, 0.8, 0.75]} ml='auto' mr='auto' mb={[3, 3]}>
-                <h2 className='section-title'>🎓 O-Week Coordinators</h2>
+                <h2 className='section-title'>O-Week Coordinators</h2>
                 <div className='contact-card' style={{ marginBottom: '1.5rem' }}>
                     <p className='contact-label'>General Email</p>
                     <a href='mailto:mcmurtryoweek@gmail.com' className='contact-email-link'>mcmurtryoweek@gmail.com</a>
@@ -70,7 +70,7 @@ const Contact = () => {
 
             {/* College Leadership Section */}
             <Box className='about-text' width={[0.9, 0.85, 0.8, 0.75]} ml='auto' mr='auto' mb={[4, 5]}>
-                <h2 className='section-title'>👥 College Leadership</h2>
+                <h2 className='section-title'>College Leadership</h2>
                 
                 <div className='contact-person-card' style={{ marginBottom: '1.5rem' }}>
                     <div className='contact-role-badge'>College President</div>
