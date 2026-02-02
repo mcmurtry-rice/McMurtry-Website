@@ -19,7 +19,6 @@ const FinancialInclusivity = () => (
             
             <h2 className='fin-inc-section-title'>Guidelines</h2>
             <ul>
-                <li>Provide Beer Bike shirts free of cost.</li>
                 <li>Establish the Magister's Fund so students (when in need) can opt into extra funding. This fund is intended to cover ground we may miss with blanket subsidization, to offer extra support to students in difficult circumstances, and to avoid limiting students to social events that the college has deemed essential.</li>
             </ul>
         </Box>
