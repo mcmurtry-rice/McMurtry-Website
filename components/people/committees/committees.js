@@ -8,10 +8,121 @@ export default class Committees extends React.Component {
         super(props);
         this.state = {
             division: 0,
-            committee: 0
+            committee: 0,
+            membersData: {},
+            isLoading: true
         };
         this.changeDivision = this.changeDivision.bind(this);
         this.changeCommittee = this.changeCommittee.bind(this);
+    }
+
+    async componentDidMount() {
+        try {
+            const members = await this.fetchMembersData();
+            this.setState({ membersData: members, isLoading: false });
+        } catch (error) {
+            console.warn('Failed to fetch members:', error);
+            this.setState({ isLoading: false });
+        }
+    }
+
+    async fetchMembersData() {
+        // Use the published spreadsheet URL for faster updates
+        const publishedId = '2PACX-1vQVucTQycbkgZLV37wpbxOVXTTv0rUPdNjeX42jIveWxBUOfXb6RNXAefylw3IESa8hcYOVucPPLAJz';
+        const gid = '1832339805'; // Committees sheet
+        const cacheBuster = Date.now();
+        const url = `https://docs.google.com/spreadsheets/d/e/${publishedId}/pub?gid=${gid}&single=true&output=csv&_=${cacheBuster}`;
+
+        const response = await fetch(url);
+        const text = await response.text();
+
+        return this.transformCSVData(text);
+    }
+
+    transformCSVData(csvText) {
+        // Parse CSV
+        const lines = csvText.split('\n').map(line => {
+            // Simple CSV parsing (handles basic cases)
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                if (char === '"') {
+                    inQuotes = !inQuotes;
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current.trim());
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            result.push(current.trim());
+            return result;
+        });
+
+        // Map sheet committee names to JSON committee names
+        const committeeNameMapping = {
+            'Alumni and Family': 'Alumni',
+            'Murtch': 'Murtchandise',
+            'MIS': 'McMurtry Innovation Space (MIS)',
+            'Website and App': 'Website',
+            'Externals Socials': 'External Socials',
+            'Internals Socials': 'Internal Socials',
+            'Charity': 'Charity and Philanthropy'
+        };
+
+        // Row 2 (index 1) has committee names
+        const committeeRow = lines[1] || [];
+        const committees = {};
+
+        // Parse committee names, tracking which columns have emails
+        // Structure: CommitteeName, Email, CommitteeName, Email, ...
+        for (let col = 0; col < committeeRow.length; col++) {
+            const name = committeeRow[col];
+            if (name && name !== 'Email') {
+                // Remove emoji from name for matching
+                let cleanName = name.replace(/[^\w\s()]/g, '').trim();
+                if (committeeNameMapping[cleanName]) {
+                    cleanName = committeeNameMapping[cleanName];
+                }
+                // Check if next column is an Email column (either labeled "Email" or empty)
+                const nextCol = committeeRow[col + 1];
+                const hasEmailColumn = nextCol === 'Email' || nextCol === '' || nextCol === undefined;
+                committees[col] = { name: cleanName, heads: [], members: [], emailCol: hasEmailColumn ? col + 1 : null };
+            }
+        }
+
+        // Parse members from row 3+ (index 2+)
+        for (let rowIdx = 2; rowIdx < lines.length; rowIdx++) {
+            const row = lines[rowIdx];
+            for (const [colStr, committee] of Object.entries(committees)) {
+                const col = parseInt(colStr);
+                const memberName = row[col];
+                if (memberName) {
+                    // Get email from adjacent Email column if it exists
+                    const email = committee.emailCol !== null ? (row[committee.emailCol] || '') : '';
+
+                    // Check if name ends with asterisk (head)
+                    if (memberName.trim().endsWith('*')) {
+                        const cleanName = memberName.trim().replace(/\*$/, '').trim();
+                        committee.heads.push({ name: cleanName, email: email.trim() });
+                    } else {
+                        committee.members.push({ name: memberName.trim(), email: email.trim() });
+                    }
+                }
+            }
+        }
+
+        // Return as { committeeName: { heads: [...], members: [...] } }
+        const result = {};
+        for (const committee of Object.values(committees)) {
+            result[committee.name] = {
+                heads: committee.heads,
+                members: committee.members
+            };
+        }
+        return result;
     }
 
     changeDivision(index) {
@@ -75,14 +186,48 @@ export default class Committees extends React.Component {
                         </Box>
                         <div dangerouslySetInnerHTML={{ __html: committee_divisions[this.state.division].committees[this.state.committee].description }}></div>
                     </Box>
-                    {
-                        (committee_divisions[this.state.division].committees[this.state.committee].heads.length > 0)
-                            ? <h2 className='committee-subtitle'>Committee Heads</h2>
-                            : null
-                    }
-                    <Cards content={committee_divisions[this.state.division].committees[this.state.committee].heads} minHeight="110px" width={240} />
+                    {this.renderHeadsAndMembers()}
                 </div>
             </div>
         )
+    }
+
+    renderHeadsAndMembers() {
+        const currentCommittee = committee_divisions[this.state.division].committees[this.state.committee];
+        const sheetData = this.state.membersData[currentCommittee.name];
+
+        // Get heads: prefer live data from sheet, fall back to static JSON
+        const liveHeads = sheetData?.heads || [];
+        const staticHeads = currentCommittee.heads || [];
+        const heads = liveHeads.length > 0 ? liveHeads : staticHeads;
+
+        // Get members from sheet
+        const members = sheetData?.members || [];
+
+        if (this.state.isLoading) {
+            return (
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p className="loading-text">Loading...</p>
+                </div>
+            );
+        }
+
+        return (
+            <>
+                {heads.length > 0 && (
+                    <>
+                        <h2 className='committee-subtitle'>Committee Heads</h2>
+                        <Cards content={heads} minHeight="110px" width={240} />
+                    </>
+                )}
+                {members.length > 0 && (
+                    <>
+                        <h2 className='committee-subtitle'>Committee Members</h2>
+                        <Cards content={members} minHeight="110px" width={240} />
+                    </>
+                )}
+            </>
+        );
     }
 }

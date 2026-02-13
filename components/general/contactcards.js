@@ -20,7 +20,7 @@ const Card = props => (
                     )
             }
             {
-                props.email !== undefined ? (
+                props.email ? (
                     <a href={`mailto:${props.email}`} className='link'>
                         <h3 className="contact-email"><img src="/static/icons/email.svg" alt="Email: " />{' '}{props.email}</h3>
                     </a>
@@ -51,7 +51,7 @@ const Card = props => (
                     )
             }
             {
-                props.room !== undefined ? (
+                props.room ? (
                     <h2 className='room'>Room: {props.room}</h2>
                 ) : (
                         null
