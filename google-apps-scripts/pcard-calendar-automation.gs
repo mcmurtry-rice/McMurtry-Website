@@ -29,7 +29,8 @@ const CALENDAR_ID = 'bdd18a12e18cb6dc90287fb25f54978e20a6c6b9881d8b9300a196ecf12
 const CALENDAR_FORM_FIELDS = {
   GROUP: 'What group is making the purchase?',
   ACTION_TYPE: 'Which of the following are you here to do?',
-  PCARD_HOLDER: "Whose P-Card are you requesting? Check card availability here (NOTE: <— can be link to the calendar with the responses from the question up here ^). Ensure the card you want is actually available at the desired date & time.\n\nThe emails correspond to: Lilly Smith (Treasurer 1), Teresa Morgado (Treasurer 2), Berny Guerra Artur (President), and Carlos Cruz (Prime Minister).",
+  PCARD_HOLDER: "Whose P-Card are you requesting? Check card availability here; do not request a card that's already checked out.\n\nThe emails correspond to: Lilly Smith (Treasurer 1), Teresa Morgado (Treasurer 2), Berny Guerra Arthur (President), and Carlos Cruz (Prime Minister).",
+
   PICKUP_DATE: 'What date and time do you hope to retrieve the P-Card? Do not request a date more than one week in advance.',
   EVENT: 'What event is your purchase for? Attach the event flyer here. (A screenshot of Gmail or GroupMe announcement will suffice.)',
   VENDOR: 'Where are you making the purchase? (It needs to be a tax-exempt location.)',
@@ -45,7 +46,7 @@ const CALENDAR_PCARD_HOLDERS = {
 };
 
 // Default checkout duration in hours (if no return time specified)
-const DEFAULT_CHECKOUT_DURATION = 24;
+const DEFAULT_CHECKOUT_DURATION = 12;
 
 // ========== MAIN FUNCTION ==========
 
@@ -122,7 +123,7 @@ function createPCardCheckoutEvent(responses, studentEmail) {
     const returnDate = new Date(pickupDate.getTime() + (DEFAULT_CHECKOUT_DURATION * 60 * 60 * 1000));
 
     // Create event title
-    const eventTitle = `[${pcardHolder.split('(')[0].trim()}] - ${group}`;
+    const eventTitle = `${group} took ${pcardHolder.split('(')[0].trim()}'s P-card`;
 
     // Create event description
     const description = `P-CARD CHECKOUT
@@ -193,10 +194,10 @@ function updatePCardReturnEvent(responses, studentEmail) {
     }
 
     const now = new Date();
-    const oneHourLater = new Date(now.getTime() + (DEFAULT_CHECKOUT_DURATION * 60 * 60 * 1000));
+    const oneHourLater = new Date(now.getTime() + (60 * 60 * 1000));
 
     // Create event title matching the checkout format
-    const eventTitle = `${group} returned [${pcardHolder.split('(')[0].trim()}]'s P-card`;
+    const eventTitle = `${group} returned ${pcardHolder.split('(')[0].trim()}'s P-card`;
 
     // Create event description
     const description = `P-CARD RETURN

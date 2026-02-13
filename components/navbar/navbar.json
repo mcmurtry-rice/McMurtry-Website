@@ -120,6 +120,10 @@
           "to": "/resources/pcardmanagement"
         },
         {
+          "name": "McItems Check Out",
+          "to": "/resources/mcitemscheckout"
+        },
+        {
           "name": "Financial Inclusivity",
           "to": "/about/financialinclusivity"
         },

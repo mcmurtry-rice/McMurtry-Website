@@ -37,6 +37,7 @@ import '../components/resources/feedbackform/feedbackform.css';
 import '../components/resources/initiativerequest/initiativerequest.css';
 import '../components/resources/mcmurtryresources/mcmresources.css';
 import '../components/resources/mis/mis.css';
+import '../components/resources/mcitemscheckout/mcitemscheckout.css';
 import '../components/resources/roomreservations/roomreservations.css';
 import '../components/resources/workorder/workorder.css';
 
