@@ -24,3 +24,7 @@ yarn-error.log*
 
 # deployment readme
 DEPLOY.md
+
+# siteimprove fetcher: never commit credentials or issue snapshots
+siteimprove/.env
+siteimprove/data/
