@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Flex } from "rebass";
 import Link from 'next/link';
 import './diversityResources.css';
-import resources from './diversityResources.json';
+import resources from '../../../data/resources/diversityResources.json';
 
 const DiversityResources = () => {
     const [pdfZoom, setPdfZoom] = useState(95);

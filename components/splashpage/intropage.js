@@ -1,14 +1,21 @@
 import React from 'react';
-import { Box, Image } from 'rebass';
-import ImageCarousel from '../general/ImageCarousel';
-// import Banner from '../10/banner/banner';
+import Link from 'next/link';
 import './intropage.css';
-import '../about/about/about.css';
 
 const aboutContent = [
-    "McMurtry College is the 10th residential college to grace the Rice University campus. A LEED Gold certified building located on the northeastern edge of campus, it sits at the optimal location for those seeking the shortest path between their dorms and some of the most popular locations on campus, such as the academic quad (home to many buildings in which students will most likely have classes), Duncan Hall (for all things engineering), and the West Servery (the best place to eat at Rice).",
-    "McMurtry first opened its doors in the fall of 2009. The first generation of Murts numbered in the low seventies so Rice administration recruited some Will Rice College students to fill the remaining space. McMurtry survived the 'colonization' and the two groups have learned to coexist peacefully as sister colleges...until Beer Bike 2019.",
-    "The college also boasts many fantastic amenities like a campfire pit in the middle of the quad, a wide roof with a lovely city view and a kitchen on every level. We affectionately call our commons the 'Yurt.' Other facilities include Burt's Teahouse and Deedee's Lounge on 5th floor, an off-campus student lounge, and the game room, music room, TV room, gym, and the McMurtry Innovation Space (MIS) on the 1st floor, with a plethora of study rooms throughout the college."
+    "A LEED Gold certified building located on the northeastern edge of campus, McMurtry sits at the optimal location for those seeking the shortest path between their dorms and some of the most popular locations on campus, such as the academic quad (home to many buildings in which students will most likely have classes), Duncan Hall (for all things engineering), and the West Servery (the best place to eat at Rice).",
+    "The college also boasts many fantastic amenities like a campfire pit in the middle of the quad, a wide roof with a lovely city view and a kitchen on every level. We affectionately call our commons the \"Yurt.\" Other facilities include:",
+    null,
+    "McMurtry first opened its doors in the fall of 2009. The first generation of Murts numbered in the low seventies so Rice administration recruited some Will Rice College students to fill the remaining space. McMurtry survived the \"colonization\" and the two groups have learned to coexist peacefully as sister colleges...until Beer Bike 2019."
+];
+
+const aboutAmenities = [
+    "Burt's Teahouse and Deedee's Lounge on 5th floor",
+    "the game room",
+    "music room",
+    "TV room",
+    "gym",
+    "the McMurtry Innovation Space (MIS) on the 1st floor, with a plethora of study rooms throughout the college."
 ];
 
 const burtDeedeeContent = [
@@ -17,142 +24,116 @@ const burtDeedeeContent = [
     "The McMurtrys have a long history of support to Rice. They have established two endowed professorships and two endowed scholarships. The McMurtrys have also given to the Rice Annual Fund, the Class of 1956 Scholarship Fund and Anne and Charles Duncan Hall, where McMurtry Auditorium is named in their honor, in addition to many other areas of the campus."
 ];
 
-const carouselImages = [
-    {
-        src: '../../static/oweek/building.jpg',
-        alt: 'McMurtry College Building',
-        caption: 'Your Home at Rice',
-        description: 'Welcome to McMurtry College - where community thrives'
-    },
+const heroPills = [
+    { label: 'O-Week', href: '/oweek' },
+    { label: 'College', href: '/about' },
+    { label: 'Calendar', href: '/about/calendar' },
+    { label: 'The McMurtry Show', href: '/events' },
+    { label: 'Events', href: '/events/artevents' }
+];
+
+const tripleStrip = [
     {
         src: '../../static/mcm_cohorts.jpg',
-        alt: 'O-Week Welcome',
-        caption: 'O-Week Traditions',
-        description: 'Creating lifelong memories and friendships'
+        caption: 'Rich traditions'
     },
     {
         src: '../../static/mcm_commons.jpg',
-        alt: 'McMurtry Commons',
-        caption: 'McMurtry Commons',
-        description: 'The heart of our college community'
-    },
-    {
-        src: '../../static/burt_deedee.jpg',
-        alt: 'Burt and Deedee McMurtry',
-        caption: 'Our Namesakes',
-        description: 'Burt and Deedee McMurtry - Rice Class of 1956'
+        caption: 'McMurtry Commons'
     },
     {
         src: '../../static/mcm10/yurt.jpg',
-        alt: 'The Yurt',
-        caption: 'The Yurt',
-        description: 'Our beloved commons space'
-    },
+        caption: 'The amazing 5th views'
+    }
 ];
 
 const Intro = () => (
     <div className='intro-page'>
-        {/* <Banner /> */}
-        <h1 className='welcome-title'>Welcome to McMurtry!</h1>
-        <div className='yurt-graphic'>
-            <Image width = {[ .95, .8 ]} src='/static/YurtTrees.svg'/>
-        </div>
-        
-        {/* Professional Image Carousel */}
-        <ImageCarousel images={carouselImages} autoplay={true} />
-        
-        <div className='banner-container'>
-            <a href={"https://goo.gl/forms/KEyPplLhclljdSOm2"} target="_blank" rel="noopener noreferrer">
-                <Box className="accessibility-fund-banner">
-                    <p>McMurtry Magisters' Accessibility Fund</p>
-                </Box>
-            </a>
-            <a href={"https://docs.google.com/spreadsheets/d/14kvozYUheCTkH-QqxSWfO8OMQrILdgr7cW3wF2ePQJs/edit#gid=1352693617"} target="_blank" rel="noopener noreferrer">
-                <Box className="student-resources-banner" >
-                    <p>Student/Academic Resources Spreadsheet</p>
-                </Box>
-            </a>
-            <a href={"/resources/pcardmanagement"}>
-                <Box className="pcard-requests-banner">
-                    <p>P-Card Requests & Purchases</p>
-                </Box>
-            </a>
-        </div>
-        
-        <div className='donate-button-container'>
-            <a href={"https://riceconnect.rice.edu/donation/support-mcmurtry-college"} target="_blank" rel="noopener noreferrer">
-                <Box className="donate-banner">
-                    <p>
-                        <span className="donate-heart-left">♥</span>
-                        Donate to McMurtry College
-                        <span className="donate-heart-right">♥</span>
+        {/* HERO */}
+        <section className='hero'>
+            <div className='hero-image-wrap'>
+                <img src='../../static/oweek/building.jpg' alt='McMurtry College building' className='hero-image' />
+                <div className='hero-overlay' />
+            </div>
+            <div className='hero-content'>
+                <h1 className='hero-title'>
+                    <span className='hero-title-word'>McMurtry</span>
+                    <img src='../../static/logo.svg' alt='' className='hero-crest' />
+                    <span className='hero-title-word'>College</span>
+                </h1>
+                <div className='hero-pills'>
+                    {heroPills.map((pill) => (
+                        <Link href={pill.href} key={pill.label}>
+                            <a className='hero-pill'>{pill.label}</a>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* YURT ILLUSTRATION */}
+        <section className='yurt-band'>
+            <img src='/static/YurtTrees.svg' alt='' className='yurt-image' />
+        </section>
+
+        {/* TRIPLE PHOTO STRIP */}
+        <section className='triple-strip'>
+            {tripleStrip.map((item) => (
+                <figure className='triple-card' key={item.caption}>
+                    <div className='triple-image-wrap'>
+                        <img src={item.src} alt={item.caption} className='triple-image' />
+                    </div>
+                    <figcaption className='triple-caption'>{item.caption}</figcaption>
+                </figure>
+            ))}
+        </section>
+
+        {/* ABOUT MCMURTRY */}
+        <section className='about-section'>
+            <div className='about-grid'>
+                <div className='about-left'>
+                    <h2 className='about-heading'>About McMurtry</h2>
+                    <div className='about-collage'>
+                        <img src='../../static/mcm_commons.jpg' alt='' className='about-collage-img about-collage-img-1' />
+                        <img src='../../static/oweek/building.jpg' alt='' className='about-collage-img about-collage-img-2' />
+                        <img src='../../static/mcm10/yurt.jpg' alt='' className='about-collage-img about-collage-img-3' />
+                    </div>
+                </div>
+                <div className='about-right'>
+                    <p className='about-lede'>
+                        McMurtry College is the 10th residential college to grace the Rice University campus.
                     </p>
-                </Box>
-            </a>
-        </div>
-        
-        {/* About McMurtry Section */}
-        <Box className='about-text' width={[1, 0.9, 0.8, 0.7]} ml='auto' mr='auto' mb={[10, 10]} mt={[20, 50]}>
-            <h2 className='section-title'>About McMurtry</h2>
-            <Image src='../../static/mcm_commons.jpg' alt='' width={280} className='float-left-img' style={{ float: 'left', marginRight: '30px', marginBottom: '20px' }} />
-            {aboutContent.map((line, index) => (
-                <p key={index}>{line}</p>
-            ))}
-        </Box>
-
-        {/* Burt and Deedee Section */}
-        <Box className='about-text' width={[1, 0.9, 0.8, 0.7]} ml='auto' mr='auto' mb={[20, 50]}>
-            <h2 className='section-title'>Burt and Deedee McMurtry</h2>
-            <Image src='../../static/burt_deedee.jpg' alt='' width={260} className='float-right-img' style={{ float: 'right', marginLeft: '30px', marginBottom: '20px' }} />
-            {burtDeedeeContent.map((line, index) => (
-                <p key={index}>{line}</p>
-            ))}
-        </Box>
-
-        {/* Location Map */}
-        <Box className='map-section' width={[1, 0.9, 0.8, 0.7]} ml='auto' mr='auto' mb={[20, 50]}>
-            <h2 className='section-title'>Find Us at Rice</h2>
-            <div className='map-container'>
-                <iframe
-                    src="https://maps.google.com/maps?q=29.7204139,-95.3977558&t=k&z=17&ie=UTF8&iwloc=&output=embed"
-                    width="100%"
-                    height="450"
-                    style={{ border: 0, borderRadius: '16px' }}
-                    allowFullScreen=""
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    title="McMurtry College Location"
-                ></iframe>
+                    {aboutContent.map((para, idx) => {
+                        if (para === null) {
+                            return (
+                                <ul className='about-amenities' key='amenities'>
+                                    {aboutAmenities.map((a, i) => (
+                                        <li key={i}>{a}</li>
+                                    ))}
+                                </ul>
+                            );
+                        }
+                        return <p className='about-para' key={idx}>{para}</p>;
+                    })}
+                </div>
             </div>
-            <div className='map-directions-container'>
-                <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=29.7204139,-95.3977558&destination_place_id=ChIJO3ubx34MQIYRTzQzdE24dHY"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="map-directions-btn"
-                >
-                    <span className="directions-icon">📍</span>
-                    Get Directions
-                </a>
-            </div>
-        </Box>
+        </section>
 
-        {/* Website Feedback */}
-        <Box className='feedback-section' width={[1, 0.9, 0.8, 0.7]} ml='auto' mr='auto' mb={[20, 50]}>
-            <h2 className='section-title'>Website Feedback</h2>
-            <p style={{ textAlign: 'center', marginBottom: '20px' }}>Help us improve! Share your anonymous feedback about the website.</p>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <a
-                    href="https://docs.google.com/forms/d/e/1FAIpQLSdN7uZJtRFAJT02hlecbyg55haxiWUQnXGvuNYScGnM683HCg/viewform"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="map-directions-btn"
-                >
-                    Give Us Feedback
-                </a>
+        {/* BURT & DEEDEE */}
+        <section className='burt-section'>
+            <div className='burt-grid'>
+                <div className='burt-left'>
+                    {burtDeedeeContent.map((para, idx) => (
+                        <p className='burt-para' key={idx}>{para}</p>
+                    ))}
+                </div>
+                <div className='burt-right'>
+                    <h2 className='burt-heading'>Burt &amp; Deedee McMurtry</h2>
+                    <img src='../../static/burt_deedee.jpg' alt='Burt and Deedee McMurtry' className='burt-image' />
+                </div>
             </div>
-        </Box>
+        </section>
     </div>
-)
+);
 
 export default Intro;

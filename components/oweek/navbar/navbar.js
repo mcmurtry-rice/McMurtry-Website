@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link'
 import { Box, Image } from 'rebass';
 import './navbar.css';
-import { navbar_links } from './navbar.json';
+import { navbar_links } from '../../../data/navigation/oweek-navbar.json';
 
 
 class Navbar extends React.Component {

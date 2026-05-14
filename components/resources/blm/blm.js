@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "rebass";
 import Title from "../../general/title";
 import "./blm.css";
-import statement from "./blm.json";
+import statement from "../../../data/resources/blm.json";
 
 const BlackLivesMatter = () => {
   return (

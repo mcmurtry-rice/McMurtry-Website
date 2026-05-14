@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Image } from 'rebass';
-import { associates } from './associates.json';
+import { associates } from '../../../data/people/associates.json';
 
 const AssociateModal = ({ associate, onClose }) => {
     if (!associate) return null;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Box } from 'rebass';
 import Cards from '../../general/contactcards';
 import './wellbeing.css';
-import { head_RHAs, RHAs } from './wellbeing.json';
+import { head_RHAs, RHAs } from '../../../data/people/wellbeing.json';
 
 const ResidentHealthAdvisors = () => {
     // Process data to handle empty photos

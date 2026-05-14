@@ -6,8 +6,8 @@ import FAQs from '../faqs/faqs';
 import { Box, Image } from 'rebass';
 import './homepage.css';
 import Events from '../event/events';
-import { events } from '../event/events.json';
-import { mcscottish } from '../event/mcscottish.json';
+import { events } from '../../../data/mcm10/events.json';
+import { mcscottish } from '../../../data/mcm10/mcscottish.json';
 
 class MCM10 extends React.Component {
     constructor(props) {

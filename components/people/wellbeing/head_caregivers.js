@@ -2,7 +2,7 @@ import React from "react";
 import { Box } from "rebass";
 import ContactCards from "../../general/contactcards";
 import "./wellbeing.css";
-import { head_caregivers } from "./wellbeing.json";
+import { head_caregivers } from "../../../data/people/wellbeing.json";
 
 const HeadCaregivers = () => (
   <div className="wellbeing-page">

@@ -1,69 +1,105 @@
 .footer-container {
     width: 100%;
+    background: #3d2a5e;
+    color: #ffffff;
+    padding: 56px 48px 40px;
+    margin-top: 0;
+    position: relative;
+}
+
+.footer-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 48px;
+}
+
+.footer-brand {
+    flex: 0 0 auto;
+}
+
+.footer-wordmark {
+    font-family: 'Playfair Display', 'DM Serif Display', Georgia, serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 3rem;
+    line-height: 1.05;
+    color: #ffffff;
+    margin: 0;
+    background: none;
+    -webkit-text-fill-color: #ffffff;
+}
+
+.footer-wordmark span {
+    display: block;
+}
+
+.footer-contact {
+    flex: 1 1 auto;
+    text-align: right;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    background: linear-gradient(180deg, var(--gray-900) 0%, var(--dark) 100%);
-    color: var(--white);
-    padding: 30px 40px 20px;
-    margin-top: 40px;
-    position: relative;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.footer-container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--gradient-primary);
-}
-
-.footer-crest {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.footer-crest p {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1.1rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: 0;
-}
-
-.footer-item {
-    margin: 4px 12px;
-    text-align: center;
+    gap: 4px;
+    color: #e9e3f5;
+    font-family: 'Work Sans', sans-serif;
     font-size: 0.85rem;
-    color: var(--gray-300);
-    transition: all 0.3s ease;
+    line-height: 1.55;
+    margin-top: 12px;
 }
 
-.footer-item:hover {
-    color: var(--purple-300);
-    transform: translateY(-2px);
+.footer-line {
+    margin: 0;
+    color: #e9e3f5;
+    font-size: 0.85rem;
 }
 
-@media screen and (max-width: 850px) {
+.footer-email {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 150ms ease;
+}
+
+.footer-email:hover {
+    color: #ffd6a3;
+}
+
+.footer-copyright {
+    margin: 16px 0 0 0;
+    color: #b8a8d0;
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+}
+
+@media (max-width: 850px) {
     .footer-container {
-        padding: 24px 20px 16px;
-        gap: 8px;
+        padding: 36px 24px 28px;
     }
-    
-    .footer-crest p {
-        font-size: 1rem;
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
     }
-    
-    .footer-item {
-        margin: 3px 8px;
+
+    .footer-wordmark {
+        font-size: 2.25rem;
+    }
+
+    .footer-contact {
+        text-align: left;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-wordmark {
+        font-size: 1.875rem;
+    }
+
+    .footer-line {
         font-size: 0.8rem;
     }
 }

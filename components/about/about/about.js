@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Image } from 'rebass';
 import Title from '../../general/title';
 import './about.css';
-import { about, burtDeeDee } from './about.json';
+import { about, burtDeeDee } from '../../../data/about/about.json';
 
 const About = () => (
     <div className='about-page'>

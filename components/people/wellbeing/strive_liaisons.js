@@ -3,7 +3,7 @@ import { Box } from 'rebass';
 import Title from '../../general/title';
 import ContactCards from '../../general/contactcards';
 import './wellbeing.css';
-import { strive_liaisons } from './wellbeing.json';
+import { strive_liaisons } from '../../../data/people/wellbeing.json';
 
 const StriveLiaisons = () => (
     <div className='wellbeing-page'>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Image, Flex } from 'rebass';
-import { smr } from './smr.json';
+import { smr } from '../../../data/people/smr.json';
 import './smr.css';
 
 const SMR = () => (

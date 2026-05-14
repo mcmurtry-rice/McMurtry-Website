@@ -171,13 +171,39 @@ body::before {
 }
 
 .page-with-staggered-menu {
-    padding-top: 140px;
+    padding-top: 72px;
+}
+
+.page-light.page-with-staggered-menu {
+    padding-top: 0;
 }
 
 @media (max-width: 1024px) {
     .page-with-staggered-menu {
-        padding-top: 90px;
+        padding-top: 60px;
     }
+    .page-light.page-with-staggered-menu {
+        padding-top: 0;
+    }
+}
+
+/* Home page overrides the body's gradient background + animated overlay
+   so the white sections render cleanly. Pages that want the dark gradient
+   still get it by default. */
+.page-light {
+    background: #ffffff;
+    color: #2c2440;
+    position: relative;
+    z-index: 1;
+}
+
+.page-light p {
+    color: inherit;
+}
+
+/* Suppress the body::before radial pattern beneath light pages. */
+body:has(.page-light)::before {
+    display: none;
 }
 
 /* Selection */

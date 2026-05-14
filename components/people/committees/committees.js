@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Flex, Image } from 'rebass';
 import Cards from '../../general/contactcards';
-import { committee_divisions } from './committees.json';
+import { committee_divisions } from '../../../data/people/committees.json';
 import { fetchSheetCSV, parseCSV, sheetGid } from '../../../lib/googleSheets';
 
 export default class Committees extends React.Component {

@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import './navbarMobile.css';
 import { Box, Image } from 'rebass';
-import { navbar_headers } from './navbar.json'
+import { navbar_headers } from '../../data/navigation/main-navbar.json'
 
 class Navbar extends React.Component {
     constructor(props) {

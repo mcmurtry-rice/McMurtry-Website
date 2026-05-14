@@ -6,7 +6,7 @@ import Intro from '../components/splashpage/intropage'
 import '../components/general/page.css'
 
 const Home = () => (
-    <div className='page page-with-staggered-menu'>
+    <div className='page page-with-staggered-menu page-light'>
         <Header />
         <StaggeredMenu />
         {/* <Banner /> */}

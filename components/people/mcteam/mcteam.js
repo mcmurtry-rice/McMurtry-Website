@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex, Image } from 'rebass';
-import { mcteam_positions } from './mcteam.json';
+import { mcteam_positions } from '../../../data/people/mcteam.json';
 
 export default class McTeam extends React.Component {
     constructor(props) {

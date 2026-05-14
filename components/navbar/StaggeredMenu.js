@@ -1,9 +1,12 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 import { gsap } from 'gsap';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import './StaggeredMenu.css';
-import { navbar_headers } from './navbar.json';
+import { navbar_headers } from '../../data/navigation/main-navbar.json';
 
 export const StaggeredMenu = () => {
   const router = useRouter();
@@ -34,7 +37,7 @@ export const StaggeredMenu = () => {
     });
   });
 
-  useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const panel = panelRef.current;
       const preContainer = preLayersRef.current;

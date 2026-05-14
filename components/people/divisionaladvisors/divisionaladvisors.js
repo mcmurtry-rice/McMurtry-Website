@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Flex } from 'rebass';
-import { advisors } from './divisionaladvisors.json';
+import { advisors } from '../../../data/people/divisionaladvisors.json';
 import Title from '../../general/title';
 import './divisionaladvisors.css';
 

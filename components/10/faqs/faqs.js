@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Box } from 'rebass';
-import { faqs } from './faqs.json';
+import { faqs } from '../../../data/mcm10/faqs.json';
 import './faqs.css';
 
 const Faq = props => (

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { Box, Flex, Image } from 'rebass';
 import './Sponsor.css';
-import { ourSponsors } from './sponsors.json';
+import { ourSponsors } from '../../../data/mcm10/sponsors.json';
 
 const tiers = [
     {

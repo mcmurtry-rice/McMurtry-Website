@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Flex } from 'rebass';
 import Cards from '../../general/contactcards';
 import './mis.css';
-import { content, hours, leadership, personnel } from './mis.json';
+import { content, hours, leadership, personnel } from '../../../data/resources/mis.json';
 
 const MISLinks = [
     {

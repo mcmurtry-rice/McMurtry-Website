@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Box, Image } from 'rebass';
-import { navbar_headers } from './navbar.json';
+import { navbar_headers } from '../../data/navigation/main-navbar.json';
 import './NavbarDesktop.css';
 
 class NavbarDesktop extends React.Component {
