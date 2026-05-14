@@ -1,6 +1,7 @@
 import React from 'react';
 import { Box } from 'rebass';
 import Cards from '../../general/contactcards';
+import { fetchSheetCSV, parseCSV, sheetGid } from '../../../lib/googleSheets';
 
 class McMinistry extends React.Component {
     constructor(props) {
@@ -30,38 +31,12 @@ class McMinistry extends React.Component {
     }
 
     async fetchMinistryData() {
-        const publishedId = '2PACX-1vQVucTQycbkgZLV37wpbxOVXTTv0rUPdNjeX42jIveWxBUOfXb6RNXAefylw3IESa8hcYOVucPPLAJz';
-        const gid = '405858748'; // McMinistry sheet
-        const cacheBuster = Date.now();
-
-        const url = `https://docs.google.com/spreadsheets/d/e/${publishedId}/pub?gid=${gid}&single=true&output=csv&_=${cacheBuster}`;
-
-        const response = await fetch(url);
-        const text = await response.text();
-
-        return this.transformCSVData(text);
+        const csv = await fetchSheetCSV(sheetGid('mcministry'));
+        return this.transformCSVData(csv);
     }
 
     transformCSVData(csvText) {
-        // Parse CSV
-        const lines = csvText.split('\n').map(line => {
-            const result = [];
-            let current = '';
-            let inQuotes = false;
-            for (let i = 0; i < line.length; i++) {
-                const char = line[i];
-                if (char === '"') {
-                    inQuotes = !inQuotes;
-                } else if (char === ',' && !inQuotes) {
-                    result.push(current.trim());
-                    current = '';
-                } else {
-                    current += char;
-                }
-            }
-            result.push(current.trim());
-            return result;
-        });
+        const lines = parseCSV(csvText);
 
         const executive_council = [];
         const peoples_council = [];

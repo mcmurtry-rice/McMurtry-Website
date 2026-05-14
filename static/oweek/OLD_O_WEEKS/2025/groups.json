@@ -1,0 +1,52 @@
+{
+  "oweek_groups": [
+    {
+      "name": "The Realism Housewives",
+      "image": "images/groups/therealismhousewivesgroup.jpeg"
+    },
+    {
+      "name": "The Brushlorette: One Lucky Murt",
+      "image": "images/groups/BrushloretteGroup.jpg"
+    },
+    {
+      "name": "The Murtropolitan Museum Of Art (McMET)",
+      "image": "images/groups/Murtropolitan.jpg"
+    },
+    {
+      "name": "Bohemian Tapestry - I See A Little Silhouetto Of A Murt",
+      "image": "images/groups/BohemianTapestrygroup.png"
+    },
+    {
+      "name": "Guardians Of The Gallery",
+      "image": "images/groups/guardiansofthegallery.png"
+    },
+    {
+      "name": "Candy Brush",
+      "image": "images/groups/candybrush.png"
+    },
+    {
+      "name": "Pendrick Lamar: Etch Don't Kill My Vibe",
+      "image": "images/groups/pendricklamar.JPG"
+    },
+    {
+      "name": "Kahlo Me By Your Name",
+      "image": "images/groups/kahlo.png"
+    },
+    {
+      "name": "MoMA Mia! Here We Gogh Again",
+      "image": "images/groups/MoMAGroup.jpeg"
+    },
+    {
+      "name": "Total Drawma Island",
+      "image": "images/groups/totaldrawmaisland.jpg"
+    },
+    {
+      "name": "Tyler the McCreator: Call Me If Hue Get Lost",
+      "image": "images/groups/callmeifhuegetlostgroupsmiley.jpg"
+    },
+    {
+      "name": "The PiCostco Guys - We Bring The Hue",
+      "image": "images/groups/picostcoguys.png"
+    }
+  ]
+}

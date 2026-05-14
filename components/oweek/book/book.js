@@ -1,6 +1,7 @@
 import { Box } from 'rebass';
 import { useState, useEffect } from 'react';
 import '../oweek.css';
+import { oweekPdfPath, oweekPdfDownloadName } from '../../../lib/oweek';
 
 const Book = () => {
     const [pdfZoom, setPdfZoom] = useState(95);
@@ -29,10 +30,10 @@ const Book = () => {
 
             <Box width={[1, 0.9, 0.8, 0.7]} ml='auto' mr='auto' mb={[10, 10]} mt={[0, 0]}>
                 <div className='oweek-book-buttons'>
-                    <a href='../../../static/oweek/oweekbook-2025.pdf' download='McMurtry-OWeek-Book-2025.pdf' className='oweek-book-button'>
+                    <a href={oweekPdfPath} download={oweekPdfDownloadName} className='oweek-book-button'>
                         <span>Download O-Week Book</span>
                     </a>
-                    <button onClick={() => window.open('../../../static/oweek/oweekbook-2025.pdf', '_blank').print()} className='oweek-book-button'>
+                    <button onClick={() => window.open(oweekPdfPath, '_blank').print()} className='oweek-book-button'>
                         <span>Print O-Week Book</span>
                     </button>
                 </div>
@@ -40,7 +41,7 @@ const Book = () => {
 
             <Box width={[1, 1, 0.9, 0.8]} ml='auto' mr='auto' mb={[20, 50]} mt={[10, 20]} px={[0, 0, 'auto', 'auto']} className='oweek-book-container'>
                 <div className='oweek-book-embed'>
-                    <embed src={`../../../static/oweek/oweekbook-2025.pdf#zoom=${pdfZoom}&toolbar=0&navpanes=0&scrollbar=1`} type="application/pdf" />
+                    <embed src={`${oweekPdfPath}#zoom=${pdfZoom}&toolbar=0&navpanes=0&scrollbar=1`} type="application/pdf" />
                 </div>
             </Box>
         </div>

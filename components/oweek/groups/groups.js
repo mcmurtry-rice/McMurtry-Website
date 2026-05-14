@@ -4,7 +4,7 @@ import { Element } from 'react-scroll';
 import { Box, Image } from 'rebass';
 import '../oweek.css';
 import './groups.css';
-import { oweek_groups } from './groups.json';
+import { oweekGroups, oweekImage } from '../../../lib/oweek';
 
 class GoTop extends React.Component {
     constructor(props) {
@@ -97,32 +97,28 @@ const Groups = () => (
                     <h2 className='section-title'>Find Your O-Week Group!</h2>
                 </Box>
             </Element>
-            
+
             <div className='oweek-groups-links'>
-                {
-                    oweek_groups.map(({ name }) => (
-                        <Scroll.Link to={name} smooth={true} duration={400} key={name}>
-                            <div className='oweek-group-link'>
-                                {name}
-                            </div>
-                        </Scroll.Link>
-                    ))
-                }
+                {oweekGroups.map(({ name }) => (
+                    <Scroll.Link to={name} smooth={true} duration={400} key={name}>
+                        <div className='oweek-group-link'>
+                            {name}
+                        </div>
+                    </Scroll.Link>
+                ))}
             </div>
         </div>
         <div className='oweek-groups'>
-            {
-                oweek_groups.map(({ name, image }) => (
-                    <Element name={name} key={name}>
-                        <div className='oweek-group'>
-                            <h2 className='oweek-title'>{name}</h2>
-                            <Box width={0.7} ml='auto' mr='auto' style={{ marginTop: '1%', marginBottom: '3%' }}>
-                                <Image src={image} alt='Error Loading Image' />
-                            </Box>
-                        </div>
-                    </Element>
-                ))
-            }
+            {oweekGroups.map(({ name, image }) => (
+                <Element name={name} key={name}>
+                    <div className='oweek-group'>
+                        <h2 className='oweek-title'>{name}</h2>
+                        <Box width={0.7} ml='auto' mr='auto' style={{ marginTop: '1%', marginBottom: '3%' }}>
+                            <Image src={oweekImage(image)} alt='Error Loading Image' />
+                        </Box>
+                    </div>
+                </Element>
+            ))}
         </div>
         <GoTop />
     </div>
