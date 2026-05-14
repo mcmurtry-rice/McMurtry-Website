@@ -20,7 +20,7 @@ const Coords = () => (
                             <Image src={oweekImage(image)} alt='Error Loading Image' />
                         )}
                     </Box>
-                    <h3>{name}</h3>
+                    <p className='oweek-bio-name'>{name}</p>
                     <p>{pronouns}</p>
                     <p>{year}</p>
                     <p>{major}</p>

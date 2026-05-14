@@ -19,11 +19,9 @@ const SMR = () => (
                 {/* Content Section */}
                 <Box width={[1, 0.6]} p={4} className='smr-info'>
                     <h2 className='smr-name'>{smr[0].name}</h2>
-                    <a href={`mailto:${smr[0].email}`} style={{ textDecoration: 'none' }}>
-                        <h4 className='smr-email'>
-                            <img src="../../static/icons/email.svg" alt="Email" />
-                            {smr[0].email}
-                        </h4>
+                    <a href={`mailto:${smr[0].email}`} className='smr-email' style={{ textDecoration: 'none' }}>
+                        <img src="../../static/icons/email.svg" alt="" />
+                        {smr[0].email}
                     </a>
                     <div className='smr-bio'>
                         {smr[0].body}

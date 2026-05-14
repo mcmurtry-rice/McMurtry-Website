@@ -70,7 +70,7 @@ const McmInnovationSpace = () => {
                             <div className='mis-action-icon'>
                                 <img src={icon} alt='' />
                             </div>
-                            <h3 className='mis-action-title'>{text}</h3>
+                            <span className='mis-action-title'>{text}</span>
                             {text.includes("Email") && (
                                 <span className='mis-action-subtitle'>mcminnovationspace@gmail.com</span>
                             )}

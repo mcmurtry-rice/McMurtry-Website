@@ -12,7 +12,7 @@ const FinancialInclusivity = () => (
             <h2 className='fin-inc-section-title'>Our Commitment</h2>
             <p>McMurtry College has committed to making financial accessibility an utmost priority and to be a leader in the socioeconomic inclusivity initiative at Rice.</p>
             
-            <p>After holding discussions at several town halls, with the magisters, and at cabinet meetings, McMurtry is implementing an initiative (starting in Spring 2017) to address socioeconomic inequality with regards to social life at our college. With the expectation that this proposal will be continuously improved based on tracking certain metrics, below is a summary of the current plan:</p>
+            <p>After holding discussions at several town halls, with the Magisters, and at cabinet meetings, McMurtry is implementing an initiative (starting in Spring 2017) to address socioeconomic inequality with regards to social life at our college. With the expectation that this proposal will be continuously improved based on tracking certain metrics, below is a summary of the current plan:</p>
             
             <h2 className='fin-inc-section-title'>Our Mission</h2>
             <p>To create a residential college experience in which events and Murtchandise are accessible to all students regardless of socioeconomic status.</p>

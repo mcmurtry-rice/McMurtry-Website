@@ -115,7 +115,7 @@ const Associates = () => {
                             )}
                         </div>
                         <div className="profile-content">
-                            <h3 className="profile-name">{associate.name}</h3>
+                            <p className="profile-name">{associate.name}</p>
                             <p className="profile-career">{associate.career}</p>
                             <span className="view-profile-btn">View Profile &rarr;</span>
                         </div>

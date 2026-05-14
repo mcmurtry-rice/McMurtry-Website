@@ -256,10 +256,10 @@ export const StaggeredMenu = () => {
         {/* Top section with logo */}
         <div className="staggered-menu-header-top">
           <Link href="/">
-            <div className="sm-logo" aria-label="Logo">
+            <div className="sm-logo">
               <img
                 src="../../static/logo.svg"
-                alt="McMurtry College"
+                alt=""
                 className="sm-logo-img"
                 draggable={false}
               />
@@ -364,7 +364,7 @@ export const StaggeredMenu = () => {
                   onClick={() => toggleCategory(category)}
                   aria-expanded={isExpanded}
                 >
-                  <h3 className="sm-category-title">{category}</h3>
+                  <span className="sm-category-title">{category}</span>
                   <span className={`sm-category-arrow ${isExpanded ? 'expanded' : ''}`}>›</span>
                 </button>
                 {isExpanded && (

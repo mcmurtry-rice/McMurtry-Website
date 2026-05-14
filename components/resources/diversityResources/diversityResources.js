@@ -72,7 +72,7 @@ const DiversityResources = () => {
                         {section.links.map(resource => (
                             <a href={resource.link} className="dr-link-card" key={resource.descr} target="_blank" rel="noopener noreferrer">
                                 <div className="dr-card-icon">
-                                    <img src="/static/icons/link.svg" alt="" onError={(e) => {e.target.src='/static/icons/file.svg'}} />
+                                    <img src="/static/icons/file.svg" alt="" />
                                 </div>
                                 <p className="dr-link-text">{resource.descr}</p>
                             </a>
