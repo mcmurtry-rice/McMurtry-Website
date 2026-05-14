@@ -42,9 +42,9 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(180deg,
-        rgba(61, 42, 94, 0.55) 0%,
-        rgba(61, 42, 94, 0.35) 45%,
-        rgba(61, 42, 94, 0.75) 100%);
+        rgba(61, 42, 94, 0.78) 0%,
+        rgba(61, 42, 94, 0.55) 40%,
+        rgba(61, 42, 94, 0.85) 100%);
 }
 
 .hero-content {
@@ -173,9 +173,46 @@
 /* ---------------- ABOUT MCMURTRY ---------------- */
 
 .about-section {
+    position: relative;
     max-width: 1240px;
     margin: 80px auto 0;
-    padding: 0 48px;
+    padding: 80px 48px 0;
+    overflow: visible;
+}
+
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80px;
+    width: 480px;
+    height: 200px;
+    background: #4a3470;
+    border-radius: 60% 50% 55% 45% / 70% 60% 40% 30%;
+    transform: rotate(-6deg);
+    z-index: 0;
+    opacity: 0.95;
+}
+
+.about-section::after {
+    content: '';
+    position: absolute;
+    top: 320px;
+    right: -120px;
+    width: 200px;
+    height: 200px;
+    background: rgba(74, 52, 112, 0.06);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.about-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+.about-section .about-heading {
+    color: #ffffff;
 }
 
 .about-grid {
@@ -281,9 +318,46 @@
 /* ---------------- BURT & DEEDEE ---------------- */
 
 .burt-section {
+    position: relative;
     max-width: 1240px;
     margin: 80px auto 96px;
-    padding: 0 48px;
+    padding: 80px 48px 0;
+    overflow: visible;
+}
+
+.burt-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -80px;
+    width: 480px;
+    height: 200px;
+    background: #4a3470;
+    border-radius: 55% 60% 45% 55% / 60% 70% 30% 40%;
+    transform: rotate(6deg);
+    z-index: 0;
+    opacity: 0.95;
+}
+
+.burt-section::after {
+    content: '';
+    position: absolute;
+    top: 320px;
+    left: -120px;
+    width: 200px;
+    height: 200px;
+    background: rgba(74, 52, 112, 0.06);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.burt-section > * {
+    position: relative;
+    z-index: 1;
+}
+
+.burt-section .burt-heading {
+    color: #ffffff;
 }
 
 .burt-grid {
@@ -316,10 +390,11 @@
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
     font-weight: 500;
-    font-size: 3rem;
+    font-size: 2.4rem;
     color: #4a3470;
     margin: 0;
-    line-height: 1.05;
+    line-height: 1.1;
+    white-space: nowrap;
 }
 
 .burt-image {
