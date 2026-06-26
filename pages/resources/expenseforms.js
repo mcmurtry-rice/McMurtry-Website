@@ -1,17 +1,17 @@
 import Header from '../../components/general/header';
-import StaggeredMenu from '../../components/navbar/StaggeredMenu';
+import SiteNavbar from '../../components/general/siteNavbar';
 
-import Footer from '../../components/general/footer/footer';
+import SiteFooter from '../../components/general/siteFooter';
 import ExpenseForms from '../../components/resources/expenseforms/expenseforms';
 import '../../components/general/page.css'
 
 const ExpenseFormsPage = () => (
     <div className='page page-with-staggered-menu'>
         <Header />
-        <StaggeredMenu />
+        <SiteNavbar />
         
         <ExpenseForms />
-        <Footer />
+        <SiteFooter />
     </div>
 )
 

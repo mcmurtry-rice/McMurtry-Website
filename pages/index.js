@@ -1,18 +1,19 @@
 import Header from '../components/general/header';
-import StaggeredMenu from '../components/navbar/StaggeredMenu';
-// import Banner from '../components/10/banner/banner';
-import Footer from '../components/general/footer/footer';
-import Intro from '../components/splashpage/intropage'
-import '../components/general/page.css'
+import Intro from '../components/splashpage/intropage';
+import '../components/general/page.css';
 
+/*
+ * Home page — pixel-accurate Figma implementation (node 193:2).
+ * The Figma design includes its own top navbar and footer; we do NOT
+ * mount the project-wide <StaggeredMenu /> or <Footer /> here so the
+ * page can render its own chrome end-to-end. Every other route still
+ * uses StaggeredMenu + Footer.
+ */
 const Home = () => (
-    <div className='page page-with-staggered-menu page-light'>
+    <div className='page page-light'>
         <Header />
-        <StaggeredMenu />
-        {/* <Banner /> */}
         <Intro />
-        <Footer />
     </div>
-)
+);
 
 export default Home;

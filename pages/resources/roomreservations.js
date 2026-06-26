@@ -1,16 +1,16 @@
 import Header from '../../components/general/header';
-import StaggeredMenu from '../../components/navbar/StaggeredMenu';
-import Footer from '../../components/general/footer/footer';
+import SiteNavbar from '../../components/general/siteNavbar';
+import SiteFooter from '../../components/general/siteFooter';
 import RoomReservations from '../../components/resources/roomreservations/roomreservations';
-import '../../components/general/page.css'
+import '../../components/general/page.css';
 
 const RoomReservationsPage = () => (
-    <div className='page page-with-staggered-menu'>
+    <div className='page page-light'>
         <Header />
-        <StaggeredMenu />
+        <SiteNavbar />
         <RoomReservations />
-        <Footer />
+        <SiteFooter />
     </div>
-)
+);
 
 export default RoomReservationsPage;

@@ -1069,3 +1069,643 @@
         padding: 0 !important;
     }
 }
+
+/* ============================================================
+ * HOME-PAGE SKIN OVERRIDE (Room Reservations only)
+ *
+ * Reuse the home-page typography + color tokens (--mc-*) on this page.
+ * Only changes fonts, sizes, colors, and the box look of CTAs/cards —
+ * layout / positioning / page structure stays exactly as before.
+ * Scoped under .room-reservations-page so we don't touch other pages
+ * that share the same legacy class names.
+ * ============================================================ */
+
+.room-reservations-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+}
+
+/* ----- Hero heading ----- */
+.room-reservations-page .oweek-hero {
+    background: var(--mc-paper);
+    text-align: center;
+    padding: 80px 24px 48px;
+    box-shadow: none;
+}
+
+.room-reservations-page .oweek-hero::before {
+    display: none;
+}
+
+.room-reservations-page .oweek-main-title {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    color: var(--mc-purple-700);
+    text-shadow: none;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background-clip: initial;
+    letter-spacing: 0;
+}
+
+/* ----- "Have a Question?" mid-page section title ----- */
+.room-reservations-page .section-title {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--mc-purple-700);
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background-clip: initial;
+    text-shadow: none;
+    letter-spacing: 0;
+    padding: 40px 16px 16px;
+    margin-bottom: 20px;
+}
+
+/* ----- Subheader on each section (Category 1 / Category 2) ----- */
+.room-reservations-page .category-subheader {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 3.4vw, 2.6rem);
+    line-height: 1.1;
+    color: var(--mc-purple-700);
+    text-shadow: none;
+    background: none;
+    -webkit-background-clip: initial;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background-clip: initial;
+    margin: 0 0 16px;
+    letter-spacing: 0;
+}
+
+/* ----- Card container (each .room-category Box) ----- */
+.room-reservations-page .room-category {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    border: 1px solid rgba(74, 52, 112, 0.12);
+    border-radius: 18px;
+    padding: 32px 36px;
+    box-shadow: 0 18px 48px -16px rgba(74, 52, 112, 0.25);
+}
+
+/* ----- Body text inside the cards ----- */
+.room-reservations-page .room-category,
+.room-reservations-page .room-category p,
+.room-reservations-page .room-category li,
+.room-reservations-page .room-category strong,
+.room-reservations-page .room-category u {
+    font-family: var(--mc-font-body);
+    color: var(--mc-ink) !important;
+    background: none !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    line-height: 1.7;
+}
+
+.room-reservations-page .room-category p {
+    font-size: 1rem;
+    margin: 0 0 14px;
+}
+
+.room-reservations-page .room-category strong {
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    font-weight: 700;
+}
+
+.room-reservations-page .room-category ul {
+    margin: 0 0 16px 22px;
+    padding: 0;
+}
+
+.room-reservations-page .room-category ul ul {
+    margin-top: 6px;
+}
+
+.room-reservations-page .room-category li {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.room-reservations-page .room-category a {
+    color: var(--mc-purple-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 160ms ease;
+}
+
+.room-reservations-page .room-category a:hover,
+.room-reservations-page .room-category a:focus-visible {
+    color: var(--mc-purple-500);
+}
+
+/* ----- Reservation Form CTA banner ----- */
+.room-reservations-page .banner-container {
+    display: flex;
+    justify-content: center;
+    margin: 18px 0;
+}
+
+.room-reservations-page .accessibility-fund-banner {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 30px;
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    border-radius: 999px;
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: 0.98rem;
+    line-height: 1;
+    box-shadow: 0 10px 24px rgba(74, 52, 112, 0.30);
+    transition: background 220ms ease, transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 220ms ease;
+}
+
+.room-reservations-page .accessibility-fund-banner p {
+    margin: 0 !important;
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    font-family: var(--mc-font-body) !important;
+    font-weight: 600;
+}
+
+.room-reservations-page .banner-container a {
+    text-decoration: none;
+}
+
+.room-reservations-page .banner-container a:hover .accessibility-fund-banner,
+.room-reservations-page .banner-container a:focus-visible .accessibility-fund-banner {
+    background: var(--mc-purple-500);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(74, 52, 112, 0.40);
+}
+
+/* ----- Email card in "Have a Question?" section ----- */
+.room-reservations-page .reservation-email-link {
+    margin: 0 auto;
+    padding: 18px 24px;
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-radius: 18px;
+    box-shadow: 0 18px 48px -16px rgba(74, 52, 112, 0.25);
+}
+
+.room-reservations-page .reservation-link {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+    line-height: 1.2;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none;
+    text-shadow: none;
+    margin: 0;
+    transition: color 200ms ease;
+}
+
+.room-reservations-page .reservation-email-link a:hover .reservation-link,
+.room-reservations-page .reservation-email-link a:focus-visible .reservation-link {
+    color: var(--mc-purple-500) !important;
+    -webkit-text-fill-color: var(--mc-purple-500);
+}
+
+/* ----- Calendar wrapper / note ----- */
+.room-reservations-page .event-calendar-container {
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.12);
+    border-radius: 18px;
+    padding: 16px;
+    box-shadow: 0 18px 48px -16px rgba(74, 52, 112, 0.28);
+}
+
+.room-reservations-page .center-div + .center-div .room-category {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    padding: 12px 24px;
+}
+
+.room-reservations-page .center-div + .center-div .room-category p {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(20, 12, 38, 0.6) !important;
+    -webkit-text-fill-color: rgba(20, 12, 38, 0.6);
+}
+
+@media (max-width: 640px) {
+    .room-reservations-page .oweek-hero {
+        padding: 56px 16px 32px;
+    }
+    .room-reservations-page .room-category {
+        padding: 22px 18px;
+        border-radius: 14px;
+    }
+    .room-reservations-page .accessibility-fund-banner {
+        padding: 12px 22px;
+        font-size: 0.92rem;
+    }
+}
+
+/* ============================================================
+ * PURPLE BLOB title + body — Category sections
+ *
+ * Layout matches the Figma reference: a large purple organic blob
+ * holding only the section title, with the body text laid out beside
+ * it. Sections alternate sides — Category 1 has the blob on the
+ * left, Category 2 on the right.
+ * ============================================================ */
+
+.room-reservations-page .rr-section {
+    position: relative;
+    width: 100%;
+    margin: 120px 0;
+    padding: 0 clamp(24px, 6vw, 96px);
+    display: grid;
+    grid-template-columns: minmax(320px, 1fr) 1.4fr;
+    gap: clamp(32px, 6vw, 96px);
+    align-items: start;
+}
+
+/* events.css uses a negative top margin to tuck the calendar under the
+ * events-page hero. On this page there's no hero above it, so the
+ * pull-up overlaps the email card. Reset and add breathing room. */
+.room-reservations-page .ev-calendar-wrap {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/* ============================================================
+ * "Questions?" contact line — sits directly below the Add to Calendar
+ * button inside the CTA row, on its own line.
+ * ============================================================ */
+.room-reservations-page .ev-cta-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+}
+
+.room-reservations-page .rr-contact-line {
+    font-family: var(--mc-font-body);
+    font-size: 0.92rem;
+    color: rgba(20, 12, 38, 0.6);
+    margin: 0;
+    text-align: center;
+}
+
+.room-reservations-page .rr-contact-line a {
+    color: var(--mc-purple-700);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 160ms ease;
+}
+
+.room-reservations-page .rr-contact-line a:hover,
+.room-reservations-page .rr-contact-line a:focus-visible {
+    color: var(--mc-purple-500);
+}
+
+/* Flip the hero swoosh from top-left (events page default) to top-right
+ * on this page only. Horizontally mirror the SVG so the curve still
+ * sweeps inward toward the heading. */
+.room-reservations-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+/* Position the small ellipse below the lede text, nudged left of center. */
+.room-reservations-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+    z-index: 3;
+}
+
+/* Hero needs to sit above the section below it so the ellipse (which
+ * extends past the hero's bottom edge via bottom: -20px) renders on top
+ * of the room cards instead of being hidden behind them. The hero has
+ * isolation:isolate from events.css, so we have to lift the hero itself
+ * in the parent stacking context — z-indexing the ellipse alone isn't
+ * enough. */
+.room-reservations-page .ev-hero {
+    position: relative;
+    z-index: 5;
+    overflow: visible;
+}
+
+.room-reservations-page .rr-section-right {
+    grid-template-columns: 1.4fr minmax(320px, 1fr);
+}
+
+.room-reservations-page .rr-section-right .rr-blob {
+    grid-column: 2;
+}
+
+.room-reservations-page .rr-section-right .rr-section-body {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.room-reservations-page .rr-blob {
+    position: sticky;
+    top: 32px;
+    background: var(--mc-purple-500);
+    color: var(--mc-paper);
+    padding: 64px 48px;
+    box-shadow: 0 24px 60px -20px rgba(74, 52, 112, 0.45);
+    /* Organic blob shape: irregular border-radius corners */
+    border-radius: 62% 38% 56% 44% / 48% 60% 40% 52%;
+    text-align: center;
+    aspect-ratio: 1 / 0.78;
+    width: 100%;
+    max-width: 480px;
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-reservations-page .rr-section-right .rr-blob {
+    /* Mirror the blob so the asymmetry leans the other way */
+    border-radius: 38% 62% 44% 56% / 60% 48% 52% 40%;
+}
+
+.room-reservations-page .rr-blob-title {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.1;
+    color: var(--mc-paper);
+    margin: 0 0 12px;
+    letter-spacing: 0;
+}
+
+.room-reservations-page .rr-blob-subtitle {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    margin: 0;
+    line-height: 1.4;
+    max-width: 80%;
+}
+
+/* ----- Body text beside the blob ----- */
+.room-reservations-page .rr-section-body,
+.room-reservations-page .rr-section-body p,
+.room-reservations-page .rr-section-body li,
+.room-reservations-page .rr-section-body strong,
+.room-reservations-page .rr-section-body u {
+    font-family: var(--mc-font-body);
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    background: none !important;
+    line-height: 1.7;
+}
+
+.room-reservations-page .rr-section-body p {
+    font-size: 1rem;
+    margin: 0 0 14px;
+}
+
+.room-reservations-page .rr-section-body strong {
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    font-weight: 700;
+}
+
+.room-reservations-page .rr-section-body ul {
+    margin: 0 0 16px 22px;
+    padding: 0;
+}
+
+.room-reservations-page .rr-section-body ul ul {
+    margin-top: 6px;
+}
+
+.room-reservations-page .rr-section-body li {
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.room-reservations-page .rr-section-body li::marker {
+    color: var(--mc-purple-500);
+}
+
+.room-reservations-page .rr-section-body a {
+    color: var(--mc-purple-700);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: color 160ms ease;
+}
+
+.room-reservations-page .rr-section-body a:hover,
+.room-reservations-page .rr-section-body a:focus-visible {
+    color: var(--mc-purple-500);
+}
+
+@media (max-width: 768px) {
+    .room-reservations-page .rr-section,
+    .room-reservations-page .rr-section-right {
+        grid-template-columns: 1fr;
+        margin: 48px auto;
+        gap: 28px;
+    }
+    .room-reservations-page .rr-section-right .rr-blob,
+    .room-reservations-page .rr-section-right .rr-section-body {
+        grid-column: 1;
+    }
+    .room-reservations-page .rr-section-right .rr-section-body {
+        grid-row: auto;
+    }
+    .room-reservations-page .rr-blob {
+        padding: 48px 32px;
+        max-width: 100%;
+        aspect-ratio: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .room-reservations-page .rr-blob {
+        padding: 40px 24px;
+    }
+    .room-reservations-page .rr-blob-subtitle {
+        max-width: 90%;
+    }
+}
+
+/* ----- Room cards (replaces nested <ul> of rooms) ----- */
+.room-reservations-page .rr-room-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+    margin: 0 0 28px;
+}
+
+.room-reservations-page .rr-room-grid-2 {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.room-reservations-page .rr-room-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 18px;
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.18);
+    border-left: 3px solid var(--mc-purple-500);
+    border-radius: 12px;
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.room-reservations-page .rr-room-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px -12px rgba(74, 52, 112, 0.35);
+    border-color: var(--mc-purple-500);
+}
+
+.room-reservations-page .rr-room-name {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--mc-purple-700);
+    line-height: 1.3;
+}
+
+.room-reservations-page .rr-room-loc {
+    font-family: var(--mc-font-body);
+    font-size: 0.85rem;
+    color: rgba(20, 12, 38, 0.65);
+    line-height: 1.4;
+}
+
+/* ----- Callout (rule / approval note) ----- */
+.room-reservations-page .rr-callout {
+    position: relative;
+    background: rgba(139, 111, 199, 0.10);
+    border-left: 4px solid var(--mc-purple-500);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 0 0 28px;
+}
+
+.room-reservations-page .rr-callout-label {
+    display: inline-block;
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+    background: rgba(139, 111, 199, 0.18);
+    padding: 4px 10px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+}
+
+.room-reservations-page .rr-callout p {
+    margin: 0;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    line-height: 1.6;
+    font-size: 0.98rem;
+}
+
+/* ----- Lede sentence above CTA ----- */
+.room-reservations-page .rr-lede {
+    font-size: 1.05rem !important;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    margin: 0 0 18px !important;
+}
+
+/* ----- Big CTA button ----- */
+.room-reservations-page .rr-cta-row {
+    margin: 0 0 32px;
+}
+
+.room-reservations-page .rr-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--mc-purple-700);
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: 1.02rem;
+    border-radius: 999px;
+    text-decoration: none !important;
+    box-shadow: 0 12px 28px -8px rgba(74, 52, 112, 0.45);
+    transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                background 200ms ease, box-shadow 200ms ease;
+}
+
+.room-reservations-page .rr-cta:hover,
+.room-reservations-page .rr-cta:focus-visible {
+    background: var(--mc-purple-500);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 36px -10px rgba(74, 52, 112, 0.55);
+}
+
+.room-reservations-page .rr-cta-arrow {
+    font-size: 1.15em;
+    transition: transform 200ms ease;
+}
+
+.room-reservations-page .rr-cta:hover .rr-cta-arrow {
+    transform: translateX(4px);
+}
+
+/* ----- "After you submit" notes block ----- */
+.room-reservations-page .rr-notes {
+    border-top: 1px solid rgba(74, 52, 112, 0.15);
+    padding-top: 20px;
+    margin-top: 8px;
+}
+
+.room-reservations-page .rr-notes h3 {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(20, 12, 38, 0.55);
+    margin: 0 0 12px;
+}
+
+.room-reservations-page .rr-notes ul {
+    margin: 0 0 0 20px;
+    padding: 0;
+}
+
+.room-reservations-page .rr-notes li {
+    font-size: 0.95rem !important;
+    line-height: 1.55;
+    margin-bottom: 18px;
+    color: rgba(20, 12, 38, 0.78) !important;
+    -webkit-text-fill-color: rgba(20, 12, 38, 0.78);
+}
+
+.room-reservations-page .rr-notes li:last-child {
+    margin-bottom: 0;
+}
+
+.room-reservations-page .rr-notes li::marker {
+    color: var(--mc-purple-500);
+}

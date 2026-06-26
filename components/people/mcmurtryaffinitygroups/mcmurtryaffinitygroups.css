@@ -1,173 +1,73 @@
+/* ============================================================
+ * Affinity Groups page — Figma theme.
+ * ============================================================ */
+
 .mcmurtry-affinity-groups-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
     min-height: 100vh;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
+    padding-bottom: clamp(40px, 6vw, 80px);
 }
 
-.affinity-hero {
-    text-align: center;
-    padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
-    margin: 0 auto;
-    max-width: 100%;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
+.mcmurtry-affinity-groups-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.mcmurtry-affinity-groups-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+    z-index: 3;
+}
+
+.mcmurtry-affinity-groups-page .ev-hero {
     position: relative;
+    z-index: 5;
     overflow: visible;
-    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
-.affinity-hero::before {
-    display: none;
-}
-
-.affinity-main-title {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--white);
-    margin-bottom: var(--space-md);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #ffffff 0%, #b8a3d9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: titleEntry 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes titleEntry {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-        filter: blur(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-@keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.mcmurtry-affinity-groups-page p {
-    color: var(--white);
-    line-height: var(--leading-relaxed);
-    font-size: var(--font-base);
-    margin-bottom: var(--space-md);
-}
-
-.affinity-group-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
+.mcmurtry-affinity-groups-page .affinity-description {
+    margin: 0 auto clamp(32px, 4.5vw, 56px) !important;
+    padding: 0 clamp(16px, 4vw, 48px) !important;
     text-align: center;
-    font-weight: 700;
-    padding: var(--space-md);
-    color: var(--white);
-    background: linear-gradient(135deg, #ffffff 0%, #b8a3d9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: var(--space-lg);
-    margin-top: var(--space-xl);
 }
 
-/* Intro Text Box styling */
-.mcmurtry-affinity-groups-page > div:nth-child(2) {
-    padding: var(--space-xl);
-    background: transparent;
-    border-radius: var(--radius-2xl);
-    box-shadow: none;
-    border: none;
-    transition: all var(--transition-base);
+.mcmurtry-affinity-groups-page .affinity-description p {
+    font-family: var(--mc-font-body) !important;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    background: none !important;
+    text-shadow: none !important;
+    margin: 0 0 14px !important;
+    padding: 0 !important;
+    border: none !important;
 }
 
-.mcmurtry-affinity-groups-page > div:nth-child(2):hover {
-    transform: translateY(-2px);
+.mcmurtry-affinity-groups-page .affinity-description p:last-child {
+    margin-bottom: 0 !important;
 }
 
-@media (max-width: 768px) {
-    .affinity-hero {
-        padding: var(--space-sm) var(--space-md) var(--space-xs);
-    }
-
-    .affinity-main-title {
-        padding: 8px var(--space-sm);
-        line-height: 1.15;
-        margin-bottom: var(--space-xs);
-        font-size: 2rem !important;
-    }
-
-    .mcmurtry-affinity-groups-page > div:nth-child(2) {
-        padding: var(--space-md);
-    }
+.mcmurtry-affinity-groups-page .affinity-section {
+    margin: clamp(28px, 4vw, 48px) 0;
 }
 
-@media (max-width: 480px) {
-    .affinity-main-title {
-        font-size: 1.5rem !important;
-    }
-}
-
-/* Loading State */
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-xl) var(--space-md);
-    gap: var(--space-md);
-}
-
-.loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(139, 111, 199, 0.3);
-    border-top-color: rgba(139, 111, 199, 0.9);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.loading-text {
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 1rem;
-    opacity: 0.8;
-}
-
-/* Content Animations */
-.fade-in {
-    animation: fadeInContent 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-@keyframes fadeInContent {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.mcmurtry-affinity-groups-page .division-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 0 clamp(20px, 3vw, 32px) !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
 }

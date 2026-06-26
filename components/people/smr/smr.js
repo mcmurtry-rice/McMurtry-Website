@@ -1,35 +1,62 @@
 import React from 'react';
-import { Box, Image, Flex } from 'rebass';
-import { smr } from '../../../data/people/smr.json';
+import { useSupabaseTable } from '../../../lib/useSupabaseTable';
 import './smr.css';
+import '../../events/events/events.css';
 
-const SMR = () => (
-    <div className='smr-page'>
-        <div className='smr-hero'>
-            <h1 className='smr-main-title'>Student Maintenance Rep</h1>
-        </div>
-        
-        <Box width={[0.9, 0.8]} mx='auto' className='smr-container'>
-            <Flex flexWrap='wrap' alignItems='center' justifyContent='center'>
-                {/* Image Section */}
-                <Box width={[1, 0.4]} p={3} className='smr-image-container'>
-                    <Image src={smr[0].image} alt={smr[0].name} className='smr-image' />
-                </Box>
-                
-                {/* Content Section */}
-                <Box width={[1, 0.6]} p={4} className='smr-info'>
-                    <h2 className='smr-name'>{smr[0].name}</h2>
-                    <a href={`mailto:${smr[0].email}`} className='smr-email' style={{ textDecoration: 'none' }}>
-                        <img src="../../static/icons/email.svg" alt="" />
-                        {smr[0].email}
-                    </a>
-                    <div className='smr-bio'>
-                        {smr[0].body}
+const SMR = () => {
+    const { rows: smr, isLoading } = useSupabaseTable('smr');
+
+    const person = smr[0];
+
+    return (
+        <div className='smr-page'>
+            <header className='ev-hero'>
+                <img
+                    src='/static/figma-about-swoosh.svg'
+                    alt=''
+                    className='ev-hero-swoosh'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-large.svg'
+                    alt=''
+                    className='ev-hero-ellipse-large'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-small.svg'
+                    alt=''
+                    className='ev-hero-ellipse-small'
+                    aria-hidden='true'
+                />
+
+                <h1 className='ev-hero-heading'>Student Maintenance Rep</h1>
+            </header>
+
+            {isLoading || !person ? (
+                <div className='loading-container'>
+                    <div className='loading-spinner'></div>
+                    <p className='loading-text'>Loading...</p>
+                </div>
+            ) : (
+                <section className='smr-detail'>
+                    <div className='smr-portrait'>
+                        <img src={person.image} alt={person.name} className='smr-portrait-image' />
                     </div>
-                </Box>
-            </Flex>
-        </Box>
-    </div>
-)
+                    <div className='smr-info'>
+                        <span className='smr-role'>Student Maintenance Rep</span>
+                        <h2 className='smr-name'>{person.name}</h2>
+                        {person.email ? (
+                            <a href={`mailto:${person.email}`} className='smr-email'>
+                                {person.email}
+                            </a>
+                        ) : null}
+                        <p className='smr-bio'>{person.body}</p>
+                    </div>
+                </section>
+            )}
+        </div>
+    );
+};
 
 export default SMR;

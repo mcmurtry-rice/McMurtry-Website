@@ -38,19 +38,54 @@ const ExternalLinkIcon = () => (
     </svg>
 );
 
+/* The FullCalendar grid is wrapped in React.memo so it does NOT re-render
+ * when the parent component changes selectedEvent state. Without this, every
+ * popup open/close would trigger FullCalendar to refetch from Google Calendar
+ * and the events would flicker out and back. */
+const CalendarGrid = React.memo(function CalendarGrid({
+    initialView,
+    calendarId,
+    onEventClick
+}) {
+    if (!initialView) return null;
+    return (
+        <FullCalendar
+            plugins={[dayGridPlugin, googleCalendarPlugin, interactionPlugin]}
+            initialView={initialView}
+            googleCalendarApiKey="AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs"
+            events={{ googleCalendarId: calendarId }}
+            headerToolbar={{
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,dayGridWeek'
+            }}
+            buttonText={{ today: 'Today', month: 'Month', week: 'Week' }}
+            height="auto"
+            eventDisplay="block"
+            displayEventTime={true}
+            eventTimeFormat={{
+                hour: 'numeric',
+                minute: '2-digit',
+                meridiem: 'short'
+            }}
+            eventClick={onEventClick}
+        />
+    );
+});
+
 const CustomCalendar = ({ calendarId = 'mcmsecretary@gmail.com' }) => {
     const [selectedEvent, setSelectedEvent] = useState(null);
+    const [popupClosing, setPopupClosing] = useState(false);
     const [initialView, setInitialView] = useState(null);
 
     useEffect(() => {
-        // Check if the device is mobile
         const isMobile = window.innerWidth <= 768;
         setInitialView(isMobile ? 'dayGridWeek' : 'dayGridMonth');
     }, []);
 
-    const handleEventClick = (info) => {
+    // Stable callback so the memoized CalendarGrid never sees a new prop
+    const handleEventClick = React.useCallback((info) => {
         info.jsEvent.preventDefault();
-        
         setSelectedEvent({
             title: info.event.title,
             start: info.event.start,
@@ -59,10 +94,18 @@ const CustomCalendar = ({ calendarId = 'mcmsecretary@gmail.com' }) => {
             location: info.event.extendedProps.location || '',
             url: info.event.url
         });
-    };
+        setPopupClosing(false);
+    }, []);
 
+    /* Two-stage close: flip `popupClosing` so CSS runs the exit animation,
+     * then actually unmount after the animation duration. */
     const closePopup = () => {
-        setSelectedEvent(null);
+        if (!selectedEvent || popupClosing) return;
+        setPopupClosing(true);
+        setTimeout(() => {
+            setSelectedEvent(null);
+            setPopupClosing(false);
+        }, 220);
     };
 
     const formatDate = (date) => {
@@ -78,67 +121,101 @@ const CustomCalendar = ({ calendarId = 'mcmsecretary@gmail.com' }) => {
         }).format(date);
     };
 
+    const formatDayLabel = (date) =>
+        date
+            ? new Intl.DateTimeFormat('en-US', {
+                  weekday: 'long',
+                  month: 'long',
+                  day: 'numeric'
+              }).format(date)
+            : '';
+
+    const formatTime = (date) =>
+        date
+            ? new Intl.DateTimeFormat('en-US', {
+                  hour: 'numeric',
+                  minute: '2-digit',
+                  hour12: true
+              }).format(date)
+            : '';
+
+    const sameDay = (a, b) =>
+        a && b &&
+        a.getFullYear() === b.getFullYear() &&
+        a.getMonth() === b.getMonth() &&
+        a.getDate() === b.getDate();
+
     return (
         <div className="custom-calendar-wrapper">
-            {initialView && (
-                <FullCalendar
-                    plugins={[dayGridPlugin, googleCalendarPlugin, interactionPlugin]}
-                    initialView={initialView}
-                    googleCalendarApiKey="AIzaSyBNlYH01_9Hc5S1J9vuFmu2nUqBZJNAXxs"
-                    events={{
-                        googleCalendarId: calendarId
-                    }}
-                    headerToolbar={{
-                        left: 'prev,next today',
-                        center: 'title',
-                        right: 'dayGridMonth,dayGridWeek'
-                    }}
-                    buttonText={{
-                        today: 'Today',
-                        month: 'Month',
-                        week: 'Week'
-                    }}
-                    height="auto"
-                    eventDisplay="block"
-                    displayEventTime={true}
-                    eventTimeFormat={{
-                        hour: 'numeric',
-                        minute: '2-digit',
-                        meridiem: 'short'
-                    }}
-                    eventClick={handleEventClick}
-                />
-            )}
-            
-            {selectedEvent && (
-                <div className="event-popup-overlay" onClick={closePopup}>
-                    <div className="event-popup" onClick={(e) => e.stopPropagation()}>
-                        <button className="event-popup-close" onClick={closePopup}>×</button>
-                        
-                        <h3 className="event-popup-title">{selectedEvent.title}</h3>
-                        
-                        <div className="event-popup-details">
-                            <div className="event-popup-time">
-                                <ClockIcon />
-                                <div>
-                                    <p><strong>Start:</strong> {formatDate(selectedEvent.start)}</p>
-                                    {selectedEvent.end && (
-                                        <p><strong>End:</strong> {formatDate(selectedEvent.end)}</p>
-                                    )}
-                                </div>
-                            </div>
+            <CalendarGrid
+                initialView={initialView}
+                calendarId={calendarId}
+                onEventClick={handleEventClick}
+            />
 
+            {selectedEvent && (
+                <div
+                    className={
+                        'event-popup-overlay' +
+                        (popupClosing ? ' event-popup-overlay-closing' : '')
+                    }
+                    onClick={closePopup}
+                >
+                    <div
+                        className={
+                            'event-popup' +
+                            (popupClosing ? ' event-popup-closing' : '')
+                        }
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button
+                            type="button"
+                            className="event-popup-close"
+                            onClick={closePopup}
+                            aria-label="Close event details"
+                        >
+                            ×
+                        </button>
+
+                        <header className="event-popup-header">
+                            <p className="event-popup-eyebrow">
+                                {formatDayLabel(selectedEvent.start)}
+                            </p>
+                            <h3 className="event-popup-title">{selectedEvent.title}</h3>
+                            <p className="event-popup-time-range">
+                                {formatTime(selectedEvent.start)}
+                                {selectedEvent.end && (
+                                    <React.Fragment>
+                                        {' '}
+                                        <span className="event-popup-time-sep">→</span>{' '}
+                                        {sameDay(selectedEvent.start, selectedEvent.end)
+                                            ? formatTime(selectedEvent.end)
+                                            : formatDate(selectedEvent.end)}
+                                    </React.Fragment>
+                                )}
+                            </p>
+                        </header>
+
+                        <div className="event-popup-body">
                             {selectedEvent.location && (
-                                <div className="event-popup-location">
-                                    <LocationIcon />
-                                    <p>{selectedEvent.location}</p>
+                                <div className="event-popup-row">
+                                    <span className="event-popup-row-icon" aria-hidden="true">
+                                        <LocationIcon />
+                                    </span>
+                                    <span className="event-popup-row-text">
+                                        {selectedEvent.location}
+                                    </span>
                                 </div>
                             )}
 
                             {selectedEvent.description && (
-                                <div className="event-popup-description">
-                                    <DescriptionIcon />
-                                    <p>{selectedEvent.description}</p>
+                                <div className="event-popup-row">
+                                    <span className="event-popup-row-icon" aria-hidden="true">
+                                        <DescriptionIcon />
+                                    </span>
+                                    <span className="event-popup-row-text">
+                                        {selectedEvent.description}
+                                    </span>
                                 </div>
                             )}
 
@@ -151,6 +228,7 @@ const CustomCalendar = ({ calendarId = 'mcmsecretary@gmail.com' }) => {
                                 >
                                     <ExternalLinkIcon />
                                     View in Google Calendar
+                                    <span aria-hidden="true" className="event-popup-link-arrow">›</span>
                                 </a>
                             )}
                         </div>

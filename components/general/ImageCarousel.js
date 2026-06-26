@@ -78,8 +78,12 @@ const ImageCarousel = ({ images, autoplay = true }) => {
           {images.map((image, index) => (
             <div
               key={index}
-              className={`carousel-slide ${index === currentIndex ? 'active' : ''} ${
-                index < currentIndex ? 'prev' : 'next'
+              className={`carousel-slide ${
+                index === currentIndex
+                  ? 'active'
+                  : index < currentIndex
+                  ? 'prev'
+                  : 'next'
               }`}
             >
               <img 

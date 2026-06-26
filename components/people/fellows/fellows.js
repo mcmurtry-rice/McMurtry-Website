@@ -1,158 +1,92 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from 'rebass';
 import ContactCards from '../../general/contactcards';
-import { fetchSheetCSV, parseCSV, sheetGid } from '../../../lib/googleSheets';
+import { useSupabaseTable, distinctInOrder } from '../../../lib/useSupabaseTable';
+import './fellows.css';
+import '../../events/events/events.css';
 
-class AcademicFellows extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeTab: 'Head Academic Fellows',
-            headFellows: [],
-            fellows: [],
-            isLoading: true
-        };
-    }
+const FELLOWS_DESCRIPTION =
+    'Fellows are upperclassmen who were selected based on proven academic achievement ' +
+    'and demonstrated willingness to help fellow students. As part of their charge, ' +
+    'Fellows provide free academic assistance on a regular basis through advertised ' +
+    'review sessions, "office hours" in the college commons, and individual tutoring ' +
+    'by request.';
 
-    async componentDidMount() {
-        try {
-            const data = await this.fetchFellowsData();
-            this.setState({
-                headFellows: data.headFellows,
-                fellows: data.fellows,
-                isLoading: false
-            });
-        } catch (error) {
-            console.warn('Failed to fetch Fellows data:', error);
-            this.setState({ isLoading: false });
-        }
-    }
+const AcademicFellows = () => {
+    const { rows, isLoading } = useSupabaseTable('academic_fellows');
+    const [activeTab, setActiveTab] = useState(null);
 
-    async fetchFellowsData() {
-        const csv = await fetchSheetCSV(sheetGid('fellows'));
-        return this.transformCSVData(csv);
-    }
+    const tabNames = distinctInOrder(rows, 'tab');
+    const effectiveTab = activeTab && tabNames.includes(activeTab)
+        ? activeTab
+        : (tabNames[0] || null);
 
-    transformCSVData(csvText) {
-        const lines = parseCSV(csvText);
+    const activeData = rows
+        .filter(r => r.tab === effectiveTab)
+        .map(({ name, email, major, subjects, pre_prof_path }) => {
+            // Strip null fields so optional columns collapse cleanly.
+            const out = { name };
+            if (email)         out.email = email;
+            if (major)         out.major = major;
+            if (subjects)      out.subjects = subjects;
+            if (pre_prof_path) out.pre_prof_path = pre_prof_path;
+            return out;
+        });
 
-        // Find Academic Fellows column by looking at header row
-        // Sheet structure: PAAs sections first, then Academic Fellows section
-        // Academic Fellows: Name (with * for heads), Email, Major, Course, Track
-        const headerRow = lines[0] || [];
+    return (
+        <div className='fellows-page'>
+            <header className='ev-hero'>
+                <img
+                    src='/static/figma-about-swoosh.svg'
+                    alt=''
+                    className='ev-hero-swoosh'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-large.svg'
+                    alt=''
+                    className='ev-hero-ellipse-large'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-small.svg'
+                    alt=''
+                    className='ev-hero-ellipse-small'
+                    aria-hidden='true'
+                />
 
-        let fellowsStartCol = -1;
+                <h1 className='ev-hero-heading'>Academic Fellows</h1>
+            </header>
 
-        // Find column index for Academic Fellows
-        for (let i = 0; i < headerRow.length; i++) {
-            const header = (headerRow[i] || '').toLowerCase().trim();
-            if (header.includes('academic fellow') || header.includes('fellows')) {
-                fellowsStartCol = i;
-                break;
-            }
-        }
+            <Box width={[1, 0.8, 0.7]} ml='auto' mr='auto' className='fellows-description'>
+                {FELLOWS_DESCRIPTION}
+            </Box>
 
-        const headFellows = [];
-        const fellows = [];
-
-        // Parse data rows (starting from row 1, after header)
-        for (let rowIdx = 1; rowIdx < lines.length; rowIdx++) {
-            const row = lines[rowIdx];
-
-            if (fellowsStartCol >= 0) {
-                let name = (row[fellowsStartCol] || '').trim();
-                if (name) {
-                    // Skip header row values (Name, Email, Major, Course, Track)
-                    const nameLower = name.toLowerCase();
-                    if (nameLower === 'name' || nameLower === 'email' || nameLower === 'major' ||
-                        nameLower === 'course' || nameLower === 'track') {
-                        continue;
-                    }
-
-                    const isHead = name.includes('*');
-                    // Remove asterisk from name for display
-                    name = name.replace(/\*/g, '').trim();
-
-                    const email = (row[fellowsStartCol + 1] || '').trim();
-                    const major = (row[fellowsStartCol + 2] || '').trim();
-                    const subjects = (row[fellowsStartCol + 3] || '').trim();
-                    const pre_prof_path = (row[fellowsStartCol + 4] || '').trim();
-
-                    // Skip if values are just header labels
-                    const emailClean = email.toLowerCase() === 'email' ? '' : email;
-                    const majorClean = major.toLowerCase() === 'major' ? '' : major;
-                    const subjectsClean = subjects.toLowerCase() === 'course' ? '' : subjects;
-                    const trackClean = pre_prof_path.toLowerCase() === 'track' ? '' : pre_prof_path;
-
-                    // Build person object, only including fields that have data
-                    const person = { name };
-                    if (emailClean) person.email = emailClean;
-                    if (majorClean) person.major = majorClean;
-                    if (subjectsClean) person.subjects = subjectsClean;
-                    if (trackClean) person.pre_prof_path = trackClean;
-
-                    if (isHead) {
-                        headFellows.push(person);
-                    } else {
-                        fellows.push(person);
-                    }
-                }
-            }
-        }
-
-        return { headFellows, fellows };
-    }
-
-    render() {
-        const { activeTab, headFellows, fellows, isLoading } = this.state;
-
-        const tabs = [
-            { id: 'Head Academic Fellows', data: headFellows },
-            { id: 'Academic Fellows', data: fellows }
-        ];
-
-        const activeData = tabs.find(t => t.id === activeTab)?.data || [];
-
-        return (
-            <div className='fellows-page'>
-                <div className='fellows-hero'>
-                    <h1 className='fellows-main-title'>Academic Fellows</h1>
-                </div>
-
-                <Box width={[1, 0.8, 0.7]} ml='auto' mr='auto' className='fellows-description'>
-                    Fellows are upperclassmen who were selected based on proven academic achievement and demonstrated willingness to help fellow students. As part of their charge, Fellows provide free academic assistance on a regular basis through advertised review sessions, "office hours" in the college commons, and individual tutoring by request.
-                </Box>
-
-                <div className='fellows-tabs'>
-                    {tabs.map(tab => (
-                        <button
-                            key={tab.id}
-                            className={`fellows-tab ${activeTab === tab.id ? 'active' : ''}`}
-                            onClick={() => this.setState({ activeTab: tab.id })}
-                        >
-                            {tab.id}
-                        </button>
-                    ))}
-                </div>
-
-                {isLoading ? (
-                    <div className="loading-container">
-                        <div className="loading-spinner"></div>
-                        <p className="loading-text">Loading...</p>
-                    </div>
-                ) : (
-                    <div className='fade-in' key={activeTab}>
-                        <Box width={[0.8, 0.5]} className='subtitle' ml='auto' mr='auto'>
-                            <h2>{activeTab}</h2>
-                        </Box>
-                        <div style={{ marginTop: '2%' }}>
-                            <ContactCards content={activeData} width={280} minHeight="230px" />
-                        </div>
-                    </div>
-                )}
+            <div className='fellows-tabs'>
+                {tabNames.map(name => (
+                    <button
+                        key={name}
+                        className={`fellows-tab ${effectiveTab === name ? 'active' : ''}`}
+                        onClick={() => setActiveTab(name)}
+                    >
+                        {name}
+                    </button>
+                ))}
             </div>
-        );
-    }
-}
+
+            {isLoading ? (
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p className="loading-text">Loading...</p>
+                </div>
+            ) : effectiveTab ? (
+                <div className='fade-in' key={effectiveTab}>
+                    <h2 className='division-title'>{effectiveTab}</h2>
+                    <ContactCards content={activeData} />
+                </div>
+            ) : null}
+        </div>
+    );
+};
 
 export default AcademicFellows;

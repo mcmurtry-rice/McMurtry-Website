@@ -1,205 +1,72 @@
-import React from 'react';
-import { Box } from 'rebass';
+import React, { useState } from 'react';
 import Cards from '../../general/contactcards';
-import { fetchSheetCSV, parseCSV, sheetGid } from '../../../lib/googleSheets';
+import { useSupabaseTable, distinctInOrder } from '../../../lib/useSupabaseTable';
+import './mcministry.css';
+import '../../events/events/events.css';
 
-class McMinistry extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeTab: 'Executive Council',
-            executive_council: [],
-            mccabinet: [],
-            peoples_council: [],
-            isLoading: true
-        };
-    }
+const McMinistry = () => {
+    const { rows, isLoading } = useSupabaseTable('mcministry');
+    const [activeTab, setActiveTab] = useState(null);
 
-    async componentDidMount() {
-        try {
-            const data = await this.fetchMinistryData();
-            this.setState({
-                executive_council: data.executive_council,
-                mccabinet: data.mccabinet,
-                peoples_council: data.peoples_council,
-                isLoading: false
-            });
-        } catch (error) {
-            console.warn('Failed to fetch ministry data:', error);
-            this.setState({ isLoading: false });
-        }
-    }
+    const tabNames = distinctInOrder(rows, 'tab');
+    const effectiveTab = activeTab && tabNames.includes(activeTab)
+        ? activeTab
+        : (tabNames[0] || null);
 
-    async fetchMinistryData() {
-        const csv = await fetchSheetCSV(sheetGid('mcministry'));
-        return this.transformCSVData(csv);
-    }
+    const activeData = rows
+        .filter(r => r.tab === effectiveTab)
+        .map(({ position, name, email, year }) => ({ position, name, email, year }));
 
-    transformCSVData(csvText) {
-        const lines = parseCSV(csvText);
+    return (
+        <div className='mcministry-page'>
+            <header className='ev-hero'>
+                <img
+                    src='/static/figma-about-swoosh.svg'
+                    alt=''
+                    className='ev-hero-swoosh'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-large.svg'
+                    alt=''
+                    className='ev-hero-ellipse-large'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-small.svg'
+                    alt=''
+                    className='ev-hero-ellipse-small'
+                    aria-hidden='true'
+                />
 
-        const executive_council = [];
-        const peoples_council = [];
+                <h1 className='ev-hero-heading'>McMinistry</h1>
+            </header>
 
-        // Sheet structure:
-        // Row 1: "Executive Council (EC)🌟" header | empty cols | "People's Council (PC)" header
-        // Row 2: Position headers - each position followed by Email, Year columns
-        // Row 3+: Data - multiple rows can have names under each position
-
-        // Get the header row (row 2, index 1) to find position names
-        const headerRow = lines[1] || [];
-
-        // Find section boundaries in row 1
-        const row1 = lines[0] || [];
-        let mcCabinetHeaderCol = -1;
-        let pcHeaderCol = -1;
-
-        for (let i = 0; i < row1.length; i++) {
-            if (row1[i] && row1[i].includes("McCabinet")) {
-                mcCabinetHeaderCol = i;
-            }
-            if (row1[i] && row1[i].includes("People's Council")) {
-                pcHeaderCol = i;
-            }
-        }
-
-        // Find the actual start of PC positions in row 2 (first position after McCabinet's columns)
-        // McCabinet has: Parliamentarian (col 25), Email (26), Year (27), then empty col (28)
-        // PC positions start at col 29
-        // We need to find the first non-empty, non-Email, non-Year column after McCabinet
-        let pcActualStartCol = pcHeaderCol; // fallback to header position
-        if (mcCabinetHeaderCol !== -1) {
-            // Start looking after McCabinet header + 3 (position + email + year)
-            for (let col = mcCabinetHeaderCol + 3; col < headerRow.length; col++) {
-                const header = headerRow[col];
-                if (header && header !== 'Email' && header !== 'Year') {
-                    pcActualStartCol = col;
-                    break;
-                }
-            }
-        }
-
-        // Find all position columns (columns that are not "Email" or "Year" and have a value)
-        const ecPositions = []; // { col: number, name: string }
-        const mcCabinetPositions = [];
-        const pcPositions = [];
-
-        for (let col = 0; col < headerRow.length; col++) {
-            const header = headerRow[col];
-            if (header && header !== 'Email' && header !== 'Year') {
-                const positionInfo = { col, name: header.replace(/\s*\([^)]*\)\s*/g, '').trim() };
-
-                // Determine which section this column belongs to
-                // PC: from pcActualStartCol onwards
-                // McCabinet: from mcCabinetHeaderCol up to pcActualStartCol
-                // EC: before mcCabinetHeaderCol
-                if (col >= pcActualStartCol) {
-                    pcPositions.push(positionInfo);
-                } else if (mcCabinetHeaderCol !== -1 && col >= mcCabinetHeaderCol) {
-                    mcCabinetPositions.push(positionInfo);
-                } else {
-                    ecPositions.push(positionInfo);
-                }
-            }
-        }
-
-        // Parse EC positions
-        for (const pos of ecPositions) {
-            for (let rowIdx = 2; rowIdx < lines.length; rowIdx++) {
-                const row = lines[rowIdx];
-                const name = (row[pos.col] || '').trim();
-                if (name) {
-                    executive_council.push({
-                        position: pos.name,
-                        name: name,
-                        email: (row[pos.col + 1] || '').trim(),
-                        year: (row[pos.col + 2] || '').trim()
-                    });
-                }
-            }
-        }
-
-        // Parse McCabinet positions
-        const mccabinet = [];
-        for (const pos of mcCabinetPositions) {
-            for (let rowIdx = 2; rowIdx < lines.length; rowIdx++) {
-                const row = lines[rowIdx];
-                const name = (row[pos.col] || '').trim();
-                if (name) {
-                    mccabinet.push({
-                        position: pos.name,
-                        name: name,
-                        email: (row[pos.col + 1] || '').trim(),
-                        year: (row[pos.col + 2] || '').trim()
-                    });
-                }
-            }
-        }
-
-        // Parse PC positions
-        for (const pos of pcPositions) {
-            for (let rowIdx = 2; rowIdx < lines.length; rowIdx++) {
-                const row = lines[rowIdx];
-                const name = (row[pos.col] || '').trim();
-                if (name) {
-                    peoples_council.push({
-                        position: pos.name,
-                        name: name,
-                        email: (row[pos.col + 1] || '').trim(),
-                        year: (row[pos.col + 2] || '').trim()
-                    });
-                }
-            }
-        }
-
-        return { executive_council, mccabinet, peoples_council };
-    }
-
-    render() {
-        const { activeTab, executive_council, mccabinet, peoples_council, isLoading } = this.state;
-
-        const tabs = [
-            { id: 'Executive Council', data: executive_council },
-            { id: 'McCabinet', data: mccabinet },
-            { id: "People's Council", data: peoples_council }
-        ];
-
-        const activeData = tabs.find(t => t.id === activeTab)?.data || [];
-
-        return (
-            <div className='mcministry-page'>
-                <div className='mcministry-hero'>
-                    <h1 className='mcministry-main-title'>McMinistry</h1>
-                </div>
-
-                <div className='mcministry-tabs'>
-                    {tabs.map(tab => (
-                        <button
-                            key={tab.id}
-                            className={`ministry-tab ${activeTab === tab.id ? 'active' : ''}`}
-                            onClick={() => this.setState({ activeTab: tab.id })}
-                        >
-                            {tab.id}
-                        </button>
-                    ))}
-                </div>
-
-                {isLoading ? (
-                    <div className="loading-container">
-                        <div className="loading-spinner"></div>
-                        <p className="loading-text">Loading...</p>
-                    </div>
-                ) : (
-                    <div className='fade-in' key={activeTab}>
-                        <Box width={[330]} ml='auto' mr='auto'>
-                            <h2 className='division-title'>{activeTab}</h2>
-                        </Box>
-                        <Cards content={activeData} width={[270]} />
-                    </div>
-                )}
+            <div className='mcministry-tabs'>
+                {tabNames.map(name => (
+                    <button
+                        key={name}
+                        className={`ministry-tab ${effectiveTab === name ? 'active' : ''}`}
+                        onClick={() => setActiveTab(name)}
+                    >
+                        {name}
+                    </button>
+                ))}
             </div>
-        );
-    }
-}
+
+            {isLoading ? (
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p className="loading-text">Loading...</p>
+                </div>
+            ) : effectiveTab ? (
+                <div className='fade-in' key={effectiveTab}>
+                    <h2 className='division-title'>{effectiveTab}</h2>
+                    <Cards content={activeData} />
+                </div>
+            ) : null}
+        </div>
+    );
+};
 
 export default McMinistry;

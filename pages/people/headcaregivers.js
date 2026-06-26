@@ -1,16 +1,16 @@
 import Header from "../../components/general/header";
-import StaggeredMenu from "../../components/navbar/StaggeredMenu";
-import Footer from "../../components/general/footer/footer";
+import SiteNavbar from '../../components/general/siteNavbar';
+import SiteFooter from '../../components/general/siteFooter';
 import HeadCaregivers from "../../components/people/wellbeing/head_caregivers";
 import "../../components/general/page.css";
 
 const StriveLiaisonsPage = () => (
-  <div className='page page-with-staggered-menu'>
+  <div className='page page-light page-with-staggered-menu'>
     <Header />
-    <StaggeredMenu />
+    <SiteNavbar />
     
     <HeadCaregivers />
-    <Footer />
+    <SiteFooter />
   </div>
 );
 

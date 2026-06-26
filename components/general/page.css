@@ -1,6 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Instrument+Sans:wdth,wght@75..100,400;75..100,500;75..100,600;75..100,700&family=Instrument+Serif:ital@0;1&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600;1,700&family=Work+Sans:wght@300;400;500;600;700&display=swap');
+
+@supports not (--x: tan(atan2(1px, 1px))) {
+    :root { --s: 1; }
+}
 
 :root {
+    /* ============================================================
+     * Figma home-page tokens (node 193:2 of McM-Website-Design)
+     * Used only by the Figma-spec home page. Existing colors below
+     * remain untouched so other pages keep working.
+     * ============================================================ */
+    --mc-purple-700:    #540B72;
+    --mc-purple-500:    #6A4C76;
+    --mc-lavender-400:  #A07CB4;
+    --mc-paper:         #FFFFFF;
+    --mc-paper-warm:    #E8E8E8;
+    --mc-ink:           #000000;
+    --mc-overlay-lilac: rgba(169, 116, 198, 0.6);
+    --mc-overlay-ink:   rgba(8, 1, 11, 0.6);
+
+    --mc-font-display:  'Instrument Serif', 'Playfair Display', Georgia, serif;
+    --mc-font-nav:      'Instrument Sans', 'Work Sans', system-ui, sans-serif;
+    --mc-font-body:     'DM Sans', system-ui, sans-serif;
+
+    --mc-fs-hero:        107.907px;
+    --mc-fs-h2:          60px;
+    --mc-fs-caption-xl:  40px;
+    --mc-fs-body:        16px;
+    --mc-fs-body-bold:   22px;
+    --mc-fs-cap-sm:      14px;
+    --mc-lh-body:        26px;
+    --mc-lh-tight:       1.389;
+
+    /* Site-wide fluid scale factor: 1 design pixel = (100vw / 1728) actual px.
+     * Used by .mc-navbar, .mc-footer, and the home page sections. Defined at
+     * :root so every page that renders the shared navbar/footer gets fluid
+     * scaling without needing the .intro-figma wrapper. */
+    --s: tan(atan2(100vw, 1728px));
+
+    /* ============================================================
+     * Existing legacy palette (kept untouched)
+     * ============================================================ */
     /* Primary Colors - Vibrant McMurtry Palette */
     --purple-900: #4a3a6b;
     --purple-700: #6b5197;

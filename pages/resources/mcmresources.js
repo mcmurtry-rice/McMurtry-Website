@@ -1,17 +1,17 @@
 import Header from '../../components/general/header';
-import StaggeredMenu from '../../components/navbar/StaggeredMenu';
+import SiteNavbar from '../../components/general/siteNavbar';
 
-import Footer from '../../components/general/footer/footer';
+import SiteFooter from '../../components/general/siteFooter';
 import McmResources from '../../components/resources/mcmurtryresources/mcmresources';
 import '../../components/general/page.css'
 
 const McmResourcesPage = () => (
     <div className='page page-with-staggered-menu'>
         <Header />
-        <StaggeredMenu />
+        <SiteNavbar />
         
         <McmResources />
-        <Footer />
+        <SiteFooter />
     </div>
 )
 

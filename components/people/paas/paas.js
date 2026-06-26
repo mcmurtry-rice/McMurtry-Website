@@ -1,139 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from 'rebass';
 import ContactCards from '../../general/contactcards';
-import { fetchSheetCSV, parseCSV, sheetGid } from '../../../lib/googleSheets';
+import { useSupabaseTable, distinctInOrder } from '../../../lib/useSupabaseTable';
+import './paas.css';
+import '../../events/events/events.css';
 
-class PAAs extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeTab: 'Head PAAs',
-            head_paas: [],
-            o_week_paas: [],
-            year_long_paas: [],
-            isLoading: true
-        };
-    }
+const PAAS_DESCRIPTION =
+    'PAAs provide peer advice to fellow students about a wide range of academically-related ' +
+    'topics. With personal experience as a Rice student and training from the Office of ' +
+    'Academic Advising, PAAs offer accurate advice regarding specific courses, co-curricular ' +
+    'opportunities, academic rules and procedures, and a wide range of other topics.';
 
-    async componentDidMount() {
-        try {
-            const data = await this.fetchPAAsData();
-            this.setState({
-                head_paas: data.head_paas,
-                o_week_paas: data.o_week_paas,
-                year_long_paas: data.year_long_paas,
-                isLoading: false
-            });
-        } catch (error) {
-            console.warn('Failed to fetch PAAs data:', error);
-            this.setState({ isLoading: false });
-        }
-    }
+const PAAs = () => {
+    const { rows, isLoading } = useSupabaseTable('paas');
+    const [activeTab, setActiveTab] = useState(null);
 
-    async fetchPAAsData() {
-        const csv = await fetchSheetCSV(sheetGid('paas'));
-        return this.transformCSVData(csv);
-    }
+    const tabNames = distinctInOrder(rows, 'tab');
+    const effectiveTab = activeTab && tabNames.includes(activeTab)
+        ? activeTab
+        : (tabNames[0] || null);
 
-    transformCSVData(csvText) {
-        const lines = parseCSV(csvText);
+    const activeData = rows
+        .filter(r => r.tab === effectiveTab)
+        .map(({ name, major, minor, pre_prof_path, email, year }) =>
+            ({ name, major, minor, pre_prof_path, email, year }));
 
-        const head_paas = [];
-        const o_week_paas = [];
-        const year_long_paas = [];
+    return (
+        <div className='paas-page'>
+            <header className='ev-hero'>
+                <img
+                    src='/static/figma-about-swoosh.svg'
+                    alt=''
+                    className='ev-hero-swoosh'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-large.svg'
+                    alt=''
+                    className='ev-hero-ellipse-large'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-small.svg'
+                    alt=''
+                    className='ev-hero-ellipse-small'
+                    aria-hidden='true'
+                />
 
-        for (let rowIdx = 1; rowIdx < lines.length; rowIdx++) {
-            const row = lines[rowIdx];
+                <h1 className='ev-hero-heading'>Peer Academic Advisors</h1>
+            </header>
 
-            const headName = (row[0] || '').trim();
-            if (headName) {
-                head_paas.push({
-                    name: headName,
-                    major: (row[1] || '').trim(),
-                    minor: (row[2] || '').trim(),
-                    pre_prof_path: (row[3] || '').trim(),
-                    email: (row[4] || '').trim(),
-                    year: (row[5] || '').trim()
-                });
-            }
+            <Box width={[1, 0.8, 0.7]} ml='auto' mr='auto' className='paas-description'>
+                {PAAS_DESCRIPTION}
+            </Box>
 
-            const oweekName = (row[6] || '').trim();
-            if (oweekName) {
-                o_week_paas.push({
-                    name: oweekName,
-                    major: (row[7] || '').trim(),
-                    minor: (row[8] || '').trim(),
-                    pre_prof_path: (row[9] || '').trim(),
-                    email: (row[10] || '').trim(),
-                    year: (row[11] || '').trim()
-                });
-            }
-
-            const yearLongName = (row[12] || '').trim();
-            if (yearLongName) {
-                year_long_paas.push({
-                    name: yearLongName,
-                    major: (row[13] || '').trim(),
-                    minor: (row[14] || '').trim(),
-                    pre_prof_path: (row[15] || '').trim(),
-                    email: (row[16] || '').trim(),
-                    year: (row[17] || '').trim()
-                });
-            }
-        }
-
-        return { head_paas, o_week_paas, year_long_paas };
-    }
-
-    render() {
-        const { activeTab, head_paas, o_week_paas, year_long_paas, isLoading } = this.state;
-
-        const tabs = [
-            { id: 'Head PAAs', data: head_paas },
-            { id: 'O-Week PAAs', data: o_week_paas },
-            { id: 'Year Long PAAs', data: year_long_paas }
-        ];
-
-        const activeData = tabs.find(t => t.id === activeTab)?.data || [];
-
-        return (
-            <div className='paas-page'>
-                <div className='paas-hero'>
-                    <h1 className='paas-main-title'>Peer Academic Advisors</h1>
-                </div>
-
-                <Box width={[1, 0.8, 0.7]} ml='auto' mr='auto' className='paas-description'>
-                    PAAs provide peer advice to fellow students about a wide range of academically-related topics. With personal experience as a Rice student and training from the Office of Academic Advising, PAAs offer accurate advice regarding specific courses, co-curricular opportunities, academic rules and procedures, and a wide range of other topics.
-                </Box>
-
-                <div className='paas-tabs'>
-                    {tabs.map(tab => (
-                        <button
-                            key={tab.id}
-                            className={`paas-tab ${activeTab === tab.id ? 'active' : ''}`}
-                            onClick={() => this.setState({ activeTab: tab.id })}
-                        >
-                            {tab.id}
-                        </button>
-                    ))}
-                </div>
-
-                {isLoading ? (
-                    <div className="loading-container">
-                        <div className="loading-spinner"></div>
-                        <p className="loading-text">Loading...</p>
-                    </div>
-                ) : (
-                    <div className='fade-in' key={activeTab}>
-                        <Box width={320} ml='auto' mr='auto'>
-                            <h1 className='paas-title'>{activeTab}</h1>
-                        </Box>
-                        <ContactCards content={activeData} width={activeTab === 'Year Long PAAs' ? 300 : 280} minHeight="180px" />
-                    </div>
-                )}
+            <div className='paas-tabs'>
+                {tabNames.map(name => (
+                    <button
+                        key={name}
+                        className={`paas-tab ${effectiveTab === name ? 'active' : ''}`}
+                        onClick={() => setActiveTab(name)}
+                    >
+                        {name}
+                    </button>
+                ))}
             </div>
-        );
-    }
-}
+
+            {isLoading ? (
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p className="loading-text">Loading...</p>
+                </div>
+            ) : effectiveTab ? (
+                <div className='fade-in' key={effectiveTab}>
+                    <h2 className='division-title'>{effectiveTab}</h2>
+                    <ContactCards content={activeData} />
+                </div>
+            ) : null}
+        </div>
+    );
+};
 
 export default PAAs;

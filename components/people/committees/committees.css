@@ -1,352 +1,229 @@
+/* ============================================================
+ * Committees page — Figma theme (matches McMinistry / Events).
+ *
+ * Layout: top-level pill tabs for divisions, secondary "chip" row
+ * for committees within the active division, then a detail card
+ * with image + HTML description + heads + members.
+ * ============================================================ */
+
 .committee-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
     min-height: 100vh;
-    position: relative;
-    padding: 0;
-    margin: 0;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 100vw;
+    padding-bottom: clamp(40px, 6vw, 80px);
 }
 
-/* Hero Section */
-.committee-hero {
-    text-align: center;
-    padding: var(--space-3xl) var(--space-xl) var(--space-2xl);
-    margin: 0 auto;
-    max-width: 100%;
-    background: transparent;
-    border-radius: 0;
-    box-shadow: none;
+.committee-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.committee-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+    z-index: 3;
+}
+
+.committee-page .ev-hero {
     position: relative;
+    z-index: 5;
     overflow: visible;
-    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
-.committee-hero::before {
-    display: none;
-}
-
-.committee-main-title {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    color: var(--white);
-    margin-bottom: var(--space-md);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(135deg, #ffffff 0%, #b8a3d9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: titleEntry 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes titleEntry {
-    from {
-        opacity: 0;
-        transform: translateY(40px);
-        filter: blur(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        filter: blur(0);
-    }
-}
-
-@keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Updated Tabs/Keys Styling - Matching McTeam */
-.inactive-division, .active-division {
-    border: none;
-    text-align: center;
-    color: var(--white);
-    transition: all var(--transition-base);
-    cursor: pointer;
-    background: rgba(139, 111, 199, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: var(--radius-lg);
-    box-shadow: 0 4px 15px rgba(139, 111, 199, 0.2);
-    border: 2px solid rgba(139, 111, 199, 0.3);
-    position: relative;
-    overflow: hidden;
-    padding: var(--space-sm);
-    margin: 0.5rem;
-    width: 180px; /* Fixed width for evenness */
-    height: 100px; /* Fixed height for evenness */
+/* ----- Division pill row ----- */
+.cm-tabs {
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     justify-content: center;
-    flex-direction: column;
+    gap: 12px;
+    padding: 0 clamp(16px, 4vw, 48px);
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-.inactive-division::before, .active-division::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #FFD700, #FFE44D);
-    transform: scaleX(0);
-    transition: transform var(--transition-base);
+.cm-tabs-division {
+    margin-bottom: 18px;
 }
 
-.active-division {
-    color: var(--white);
-    font-weight: 700;
-    background: rgba(139, 111, 199, 0.4);
-    box-shadow: 0 8px 25px rgba(139, 111, 199, 0.4);
-    transform: translateY(-4px);
-    border-color: rgba(139, 111, 199, 0.5);
-}
-
-.active-division::before {
-    transform: scaleX(1);
-}
-
-.inactive-division {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.inactive-division:hover {
-    color: var(--white);
-    transform: translateY(-2px);
-    background: rgba(139, 111, 199, 0.3);
-    box-shadow: 0 6px 20px rgba(139, 111, 199, 0.3);
-    border-color: rgba(139, 111, 199, 0.4);
-}
-
-.inactive-division:hover::before {
-    transform: scaleX(0.5);
-}
-
-.division-key, .committee-key {
-    margin: 0;
-    width: 100%;
-}
-
-/* Committee Sub-tabs */
-.inactive-committee, .active-committee {
-    border: none;
-    text-align: center;
-    color: var(--white);
-    transition: all var(--transition-base);
-    cursor: pointer;
-    background: rgba(139, 111, 199, 0.15);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    border-radius: var(--radius-md);
-    box-shadow: 0 2px 10px rgba(139, 111, 199, 0.15);
-    border: 1px solid rgba(139, 111, 199, 0.2);
-    padding: 0 12px;
-    margin: 0.3rem;
-    font-family: 'DM Sans', sans-serif;
-    width: 140px; /* Fixed width */
-    height: 80px; /* Fixed height */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    line-height: 1.2;
-}
-
-.inactive-committee {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.active-committee {
-    color: var(--white);
-    background: rgba(139, 111, 199, 0.3);
+.cm-tab {
+    appearance: none;
+    border: 1.5px solid rgba(74, 52, 112, 0.20);
+    background: var(--mc-paper);
+    color: var(--mc-purple-700);
+    font-family: var(--mc-font-body);
     font-weight: 600;
-    border-color: rgba(139, 111, 199, 0.4);
-    box-shadow: 0 4px 15px rgba(139, 111, 199, 0.3);
+    font-size: 0.95rem;
+    padding: 10px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 180ms ease,
+                color 180ms ease,
+                border-color 180ms ease,
+                transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 180ms ease;
 }
 
-.inactive-committee:hover {
-    color: var(--white);
-    background: rgba(139, 111, 199, 0.25);
-    border-color: rgba(139, 111, 199, 0.3);
+.cm-tab:hover,
+.cm-tab:focus-visible {
+    border-color: var(--mc-purple-500);
+    color: var(--mc-purple-500);
     transform: translateY(-1px);
 }
 
-.division-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    text-align: center;
-    font-weight: 700;
-    padding: var(--space-md);
-    color: var(--white);
-    background: linear-gradient(135deg, #ffffff 0%, #b8a3d9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: var(--space-xl);
-    margin-top: var(--space-lg);
+.cm-tab-active {
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    border-color: var(--mc-purple-700);
+    box-shadow: 0 10px 24px -8px rgba(74, 52, 112, 0.45);
 }
 
-.committee-subtitle {
-    text-align: center;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    color: var(--white);
-    background: linear-gradient(135deg, #ffffff 0%, #b8a3d9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin: var(--space-lg) 0;
+.cm-tab-active:hover,
+.cm-tab-active:focus-visible {
+    background: var(--mc-purple-500);
+    color: var(--mc-paper);
+    border-color: var(--mc-purple-500);
 }
 
-.committee-description {
-    margin-top: var(--space-xl);
-    padding: var(--space-xl);
+/* ----- Committee chip row (smaller, ghost) ----- */
+.cm-tabs-committee {
+    gap: 8px;
+    margin-bottom: clamp(28px, 4vw, 48px);
+}
+
+.cm-chip {
+    appearance: none;
+    border: 1px solid rgba(74, 52, 112, 0.18);
     background: transparent;
-    border-radius: var(--radius-2xl); /* increased radius */
-    box-shadow: none;
-    border: none;
-    color: var(--white);
-    line-height: var(--leading-relaxed);
-    transition: all var(--transition-base);
+    color: var(--mc-purple-700);
+    font-family: var(--mc-font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 150ms ease,
+                color 150ms ease,
+                border-color 150ms ease;
+}
+
+.cm-chip:hover,
+.cm-chip:focus-visible {
+    background: rgba(139, 111, 199, 0.10);
+    color: var(--mc-purple-500);
+}
+
+.cm-chip-active {
+    background: var(--mc-purple-500);
+    color: var(--mc-paper);
+    border-color: var(--mc-purple-500);
+}
+
+.cm-chip-active:hover,
+.cm-chip-active:focus-visible {
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    border-color: var(--mc-purple-700);
+}
+
+/* ----- Detail section ----- */
+.cm-detail {
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 64px);
+}
+
+.committee-page .division-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
     text-align: center;
+    margin: 0 0 clamp(20px, 3vw, 32px) !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
 }
 
-.committee-description:hover {
-    transform: translateY(-2px);
+.cm-image-wrap {
+    width: min(560px, 100%);
+    margin: 0 auto clamp(20px, 3vw, 32px);
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(74, 52, 112, 0.18);
+    box-shadow: 0 24px 48px -20px rgba(74, 52, 112, 0.30);
 }
 
-.committee-description p {
-    color: var(--white);
+.cm-image {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-/* Images in description */
-.committee-description img {
-    border-radius: var(--radius-lg);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: var(--space-lg);
-}
-
-@media screen and (max-width: 899px) {
-    .division-title {
-        margin-top: 40px;
-    }
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .committee-hero {
-        padding: var(--space-sm) var(--space-md) var(--space-xs);
-    }
-
-    .committee-main-title {
-        padding: 8px var(--space-sm);
-        line-height: 1.15;
-        margin-bottom: var(--space-xs);
-        font-size: 2rem !important;
-    }
-    
-    .division-title {
-        font-size: 1.5rem;
-    }
-    
-    .committee-description {
-        padding: var(--space-md);
-    }
-
-    /* Mobile specific for tabs */
-    .inactive-division, .active-division {
-        width: 120px; /* Consistent width */
-        height: 80px; /* Consistent height */
-        padding: 8px;
-        font-size: 0.8rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .inactive-committee, .active-committee {
-        width: 100px; /* Consistent width */
-        height: 70px; /* Consistent height */
-        padding: 0 5px;
-        font-size: 0.75rem; /* Slightly smaller font to fit text */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        line-height: 1.1;
-    }
-}
-
-@media (max-width: 480px) {
-    .committee-main-title {
-        font-size: 1.5rem !important;
-    }
-
-    /* Even smaller for very small screens */
-    .inactive-division, .active-division {
-        width: 110px;
-        height: 70px;
-        font-size: 0.75rem;
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    .inactive-committee, .active-committee {
-        width: 90px;
-        height: 60px;
-        font-size: 0.7rem;
-        padding: 4px 2px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-}
-
-/* Loading State */
-.loading-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-xl) var(--space-md);
-    gap: var(--space-md);
-}
-
-.loading-spinner {
-    width: 40px;
-    height: 40px;
-    border: 3px solid rgba(139, 111, 199, 0.3);
-    border-top-color: rgba(139, 111, 199, 0.9);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.loading-text {
-    color: var(--white);
-    font-family: 'DM Sans', sans-serif;
+.cm-description {
+    font-family: var(--mc-font-body);
     font-size: 1rem;
-    opacity: 0.8;
+    line-height: 1.75;
+    color: var(--mc-ink);
+    margin: 0 0 clamp(28px, 4vw, 48px);
+    text-align: justify;
+    hyphens: auto;
+}
+
+.cm-description p {
+    font-family: var(--mc-font-body) !important;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    background: none !important;
+    text-shadow: none !important;
+    padding: 0 !important;
+    border: none !important;
+    margin: 0 0 14px !important;
+    line-height: 1.75 !important;
+    font-size: 1rem !important;
+}
+
+.cm-description br {
+    line-height: 0.5;
+}
+
+.cm-subtitle {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.3rem, 2.4vw, 1.9rem) !important;
+    line-height: 1.2 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-align: center;
+    margin: clamp(20px, 3vw, 36px) 0 16px !important;
+    padding: 0 !important;
+}
+
+.fade-in {
+    animation: cm-fade 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes cm-fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 640px) {
+    .cm-tab {
+        padding: 8px 16px;
+        font-size: 0.88rem;
+    }
+    .cm-chip {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
 }

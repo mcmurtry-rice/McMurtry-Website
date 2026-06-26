@@ -1,122 +1,91 @@
-import React from "react";
-import { Box } from "rebass";
+import React, { useState } from "react";
 import Cards from "../../general/contactcards";
-import { fetchSheetCSV, parseCSV, sheetGid } from '../../../lib/googleSheets';
+import { useSupabaseTable, distinctInOrder } from '../../../lib/useSupabaseTable';
+import './court.css';
+import '../../events/events/events.css';
 
-class Court extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeTab: 'Chief Justices',
-      justices: [],
-      isLoading: true
-    };
-  }
+// McCourt uses `position` to drive its tabs ("Chief Justice" / "Associate
+// Justice"), unlike McMinistry/PAAs which use a separate `tab` column.
+// Pluralise for the tab label so the UI reads "Chief Justices".
+const pluralise = (label) => {
+    if (!label) return label;
+    if (/[sx]$/i.test(label)) return label + 'es';
+    return label + 's';
+};
 
-  async componentDidMount() {
-    try {
-      const justices = await this.fetchCourtData();
-      this.setState({ justices, isLoading: false });
-    } catch (error) {
-      console.warn('Failed to fetch court data:', error);
-      this.setState({ isLoading: false });
-    }
-  }
+const Court = () => {
+    const { rows, isLoading } = useSupabaseTable('mccourt');
+    const [activeTab, setActiveTab] = useState(null);
 
-  async fetchCourtData() {
-    const csv = await fetchSheetCSV(sheetGid('court'));
-    return this.transformCSVData(csv);
-  }
+    const positions = distinctInOrder(rows, 'position');
+    const tabNames = positions.map(pluralise);
 
-  transformCSVData(csvText) {
-    const lines = parseCSV(csvText);
+    const effectiveTab = activeTab && tabNames.includes(activeTab)
+        ? activeTab
+        : (tabNames[0] || null);
+    const effectivePosition = effectiveTab
+        ? positions[tabNames.indexOf(effectiveTab)]
+        : null;
 
-    const justices = [];
-
-    // Sheet structure:
-    // Row 1: McMurtry Court header
-    // Row 2: Chief Justice (CJ) | Email | Room | Phone | Associate Justices (AJs) | Email | Room
-    // Row 3+: Data
-
-    // Parse Chief Justices (column A=0, B=1 email, C=2 room, D=3 phone)
-    for (let rowIdx = 2; rowIdx < lines.length; rowIdx++) {
-      const row = lines[rowIdx];
-      const name = row[0];
-      if (name) {
-        justices.push({
-          position: 'Chief Justice',
-          name: name.trim(),
-          email: (row[1] || '').trim(),
-          room: (row[2] || '').trim(),
-          phone: (row[3] || '').trim()
+    const activeData = rows
+        .filter(r => r.position === effectivePosition)
+        .map(({ position, name, email, room, phone }) => {
+            // Chief Justices get phone; Associates don't.
+            return position === 'Chief Justice'
+                ? { position, name, email, room, phone }
+                : { position, name, email, room };
         });
-      }
-    }
-
-    // Parse Associate Justices (column E=4, F=5 email, G=6 room)
-    for (let rowIdx = 2; rowIdx < lines.length; rowIdx++) {
-      const row = lines[rowIdx];
-      const name = row[4];
-      if (name) {
-        justices.push({
-          position: 'Associate Justice',
-          name: name.trim(),
-          email: (row[5] || '').trim(),
-          room: (row[6] || '').trim()
-        });
-      }
-    }
-
-    return justices;
-  }
-
-  render() {
-    const { activeTab, justices, isLoading } = this.state;
-
-    const chiefs = justices.filter((justice) => justice.position === "Chief Justice");
-    const associates = justices.filter((justice) => justice.position === "Associate Justice");
-
-    const tabs = [
-      { id: 'Chief Justices', data: chiefs },
-      { id: 'Associate Justices', data: associates }
-    ];
-
-    const activeData = tabs.find(t => t.id === activeTab)?.data || [];
 
     return (
-      <div className="court-page">
-        <div className='court-hero'>
-          <h1 className='court-main-title'>McCourt</h1>
-        </div>
+        <div className="court-page">
+            <header className='ev-hero'>
+                <img
+                    src='/static/figma-about-swoosh.svg'
+                    alt=''
+                    className='ev-hero-swoosh'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-large.svg'
+                    alt=''
+                    className='ev-hero-ellipse-large'
+                    aria-hidden='true'
+                />
+                <img
+                    src='/static/figma-ellipse-small.svg'
+                    alt=''
+                    className='ev-hero-ellipse-small'
+                    aria-hidden='true'
+                />
 
-        <div className='court-tabs'>
-          {tabs.map(tab => (
-            <button
-              key={tab.id}
-              className={`court-tab ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => this.setState({ activeTab: tab.id })}
-            >
-              {tab.id}
-            </button>
-          ))}
-        </div>
+                <h1 className='ev-hero-heading'>McCourt</h1>
+            </header>
 
-        {isLoading ? (
-          <div className="loading-container">
-            <div className="loading-spinner"></div>
-            <p className="loading-text">Loading...</p>
-          </div>
-        ) : (
-          <div className='fade-in' key={activeTab}>
-            <Box width={[330]} ml="auto" mr="auto">
-              <h2 className="division-title">{activeTab}</h2>
-            </Box>
-            <Cards content={activeData} width={[270]} minHeight="160px" />
-          </div>
-        )}
-      </div>
+            <div className='court-tabs'>
+                {tabNames.map(name => (
+                    <button
+                        key={name}
+                        className={`court-tab ${effectiveTab === name ? 'active' : ''}`}
+                        onClick={() => setActiveTab(name)}
+                    >
+                        {name}
+                    </button>
+                ))}
+            </div>
+
+            {isLoading ? (
+                <div className="loading-container">
+                    <div className="loading-spinner"></div>
+                    <p className="loading-text">Loading...</p>
+                </div>
+            ) : effectiveTab ? (
+                <div className='fade-in' key={effectiveTab}>
+                    <h2 className='division-title'>{effectiveTab}</h2>
+                    <Cards content={activeData} />
+                </div>
+            ) : null}
+        </div>
     );
-  }
-}
+};
 
 export default Court;

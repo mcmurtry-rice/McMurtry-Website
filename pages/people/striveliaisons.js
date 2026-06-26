@@ -1,17 +1,17 @@
 import Header from '../../components/general/header';
-import StaggeredMenu from '../../components/navbar/StaggeredMenu';
+import SiteNavbar from '../../components/general/siteNavbar';
 
-import Footer from '../../components/general/footer/footer';
+import SiteFooter from '../../components/general/siteFooter';
 import StriveLiaisons from '../../components/people/wellbeing/strive_liaisons';
 import '../../components/general/page.css'
 
 const StriveLiaisonsPage = () => (
     <div className='page page-with-staggered-menu'>
         <Header />
-        <StaggeredMenu />
+        <SiteNavbar />
         
         <StriveLiaisons />
-        <Footer />
+        <SiteFooter />
     </div>
 )
 

@@ -1,16 +1,16 @@
 import Header from "../../components/general/header";
-import Footer from "../../components/general/footer/footer";
-import StaggeredMenu from "../../components/navbar/StaggeredMenu";
+import SiteFooter from '../../components/general/siteFooter';
+import SiteNavbar from '../../components/general/siteNavbar';
 import FeedbackForm from "../../components/resources/feedbackform/feedbackform";
 import "../../components/general/page.css";
 
 const FeedbackFormPage = () => (
   <div className='page page-with-staggered-menu'>
     <Header />
-    <StaggeredMenu />
+    <SiteNavbar />
     
     <FeedbackForm />
-    <Footer />
+    <SiteFooter />
   </div>
 );
 

@@ -1,136 +1,224 @@
-.events-page {
-    padding-top: var(--space-2xl);
-    margin-bottom: var(--space-3xl);
-    max-width: 1400px;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*
+ * Events Calendar page — visual language matches the Figma home page.
+ * Uses the global :root mc-* design tokens defined in components/general/page.css.
+ * Fluid scale follows the :root --s factor.
+ */
 
-.events-hero {
-    text-align: center;
-    padding: var(--space-2xl) var(--space-lg);
-    margin-bottom: var(--space-xl);
-}
-
-.events-main-title {
-    font-family: 'DM Sans', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-    color: var(--white);
-    position: relative;
-    z-index: 1;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    background: linear-gradient(135deg, #ffffff 0%, #b8a3d9 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
-}
-
-.event-calendar-container {
-    padding: 0 !important;
-}
-
-@media (max-width: 768px) {
-    .event-calendar-container {
-        width: 100% !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .events-hero {
-        padding: var(--space-sm) var(--space-md);
-        margin-bottom: var(--space-md);
-    }
-
-    .events-main-title {
-        padding: 8px var(--space-sm);
-        line-height: 1.15;
-    }
-}
-
-.events-calendar-link {
-    color: var(--white);
-    position: relative;
-    max-width: 300px;
-    padding: var(--space-md) var(--space-lg);
-    text-align: center;
-    background: rgba(139, 111, 199, 0.3);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: var(--radius-lg);
-    transition: all var(--transition-base);
-    z-index: 100;
-    text-decoration: none;
-    margin: var(--space-2xl) auto;
-    box-shadow: 0 4px 15px rgba(139, 111, 199, 0.2);
-    border: 2px solid rgba(139, 111, 199, 0.4);
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.events-calendar-link::before {
-    content: '';
-    position: absolute;
+.ev-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
     width: 100%;
-    height: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(139, 111, 199, 0.4);
-    z-index: -1;
-    transition: height var(--transition-base);
+    overflow-x: hidden;
 }
 
-.events-calendar-link:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 6px 20px rgba(139, 111, 199, 0.3);
-    border-color: rgba(139, 111, 199, 0.6);
-}
+/* ----- Hero ribbon ----- */
 
-.events-calendar-link:hover::before {
-    height: 100%;
-}
-
-.events-calendar-link a {
-    color: var(--white);
-    text-decoration: none;
+.ev-hero {
+    position: relative;
+    width: 100%;
+    padding: calc(120px * var(--s)) calc(64px * var(--s)) calc(72px * var(--s));
+    overflow: hidden;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
+    gap: calc(24px * var(--s));
+    isolation: isolate;
 }
 
-.events-calendar-link img,
-.events-calendar-link svg {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-    transition: transform var(--transition-base);
-    width: 24px;
-    height: 24px;
-    color: var(--white);
+.ev-hero-swoosh {
+    position: absolute;
+    top: calc(-40px * var(--s));
+    left: calc(-200px * var(--s));
+    width: calc(840px * var(--s));
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.85;
 }
 
-.events-calendar-link:hover img,
-.events-calendar-link:hover svg {
-    transform: scale(1.1);
+.ev-hero-ellipse-large {
+    position: absolute;
+    top: calc(-80px * var(--s));
+    right: calc(-120px * var(--s));
+    width: calc(360px * var(--s));
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.45;
 }
 
-.events-calendar-link h2 {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: var(--font-base);
-    text-decoration: none;
+.ev-hero-ellipse-small {
+    position: absolute;
+    bottom: calc(-40px * var(--s));
+    left: calc(35% - 90px * var(--s));
+    width: calc(180px * var(--s));
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+}
+
+.ev-hero-heading {
+    position: relative;
+    z-index: 2;
     margin: 0;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(96px * var(--s));
+    line-height: 1.05;
+    color: var(--mc-purple-700);
+    text-align: center;
 }
 
-@media screen and (max-width: 840px) {
-    .event-calendar {
+.ev-hero-lede {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    max-width: calc(720px * var(--s));
+    font-family: var(--mc-font-body);
+    font-weight: 500;
+    font-size: calc(22px * var(--s));
+    line-height: 1.5;
+    color: var(--mc-purple-500);
+    text-align: center;
+}
+
+/* ----- Calendar card ----- */
+
+.ev-calendar-wrap {
+    max-width: calc(1280px * var(--s));
+    margin: calc(-32px * var(--s)) auto 0;
+    padding: calc(40px * var(--s));
+    background: var(--mc-paper);
+    border-radius: calc(28px * var(--s));
+    box-shadow:
+        0 calc(24px * var(--s)) calc(60px * var(--s)) calc(-20px * var(--s)) rgba(74, 52, 112, 0.32),
+        0 calc(4px * var(--s)) calc(16px * var(--s)) rgba(20, 12, 38, 0.10);
+    border: calc(2px * var(--s)) solid rgba(74, 52, 112, 0.12);
+    position: relative;
+    z-index: 3;
+}
+
+/* ----- Add to calendar CTA ----- */
+
+.ev-cta-row {
+    display: flex;
+    justify-content: center;
+    padding: calc(56px * var(--s)) calc(24px * var(--s)) calc(96px * var(--s));
+    background: linear-gradient(180deg, var(--mc-paper) 0%, #f4eef9 100%);
+}
+
+.ev-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(12px * var(--s));
+    padding: calc(16px * var(--s)) calc(34px * var(--s));
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    border-radius: 999px;
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: calc(18px * var(--s));
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 calc(8px * var(--s)) calc(22px * var(--s)) rgba(74, 52, 112, 0.35);
+    transition:
+        transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 220ms ease,
+        background 220ms ease;
+}
+
+.ev-cta:hover,
+.ev-cta:focus-visible {
+    background: var(--mc-purple-500);
+    color: var(--mc-paper);
+    transform: translateY(-2px);
+    box-shadow: 0 calc(14px * var(--s)) calc(28px * var(--s)) rgba(74, 52, 112, 0.45);
+}
+
+.ev-cta svg {
+    stroke: currentColor;
+}
+
+.ev-cta-arrow {
+    font-size: 1.3em;
+    line-height: 1;
+    transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ev-cta:hover .ev-cta-arrow {
+    transform: translateX(4px);
+}
+
+/* ----- Responsive ----- */
+
+@media (max-width: 1024px) {
+    .ev-hero {
+        padding: 56px 24px 40px;
+        gap: 16px;
+        text-align: center;
+    }
+    /* Keep the decorative shapes but reposition them so they sit OUTSIDE
+     * the heading area (bottom corners) — preserves the aesthetic without
+     * trashing contrast on the title. */
+    .ev-hero-swoosh {
+        top: auto;
+        bottom: -60px;
+        left: -140px;
+        width: 360px;
+        opacity: 0.4;
+    }
+    .ev-hero-ellipse-large {
+        top: auto;
+        bottom: -60px;
+        right: -80px;
+        width: 200px;
+        opacity: 0.35;
+    }
+    .ev-hero-ellipse-small {
         display: none;
     }
+    .ev-hero-heading {
+        font-size: clamp(2.5rem, 8vw, 4rem);
+        color: var(--mc-purple-700);
+    }
+    .ev-hero-lede {
+        /* Match the home page's "About McMurtry" lede style: bold mauve
+         * sentence, slightly larger than body, weight 700. */
+        font-size: clamp(1.05rem, 3.5vw, 1.4rem);
+        font-weight: 700;
+        line-height: 1.4;
+        color: var(--mc-purple-500);
+        max-width: 540px;
+    }
+    .ev-calendar-wrap {
+        max-width: 100%;
+        margin: 0 16px;
+        padding: 16px;
+        border-radius: 18px;
+    }
+    .ev-cta-row {
+        padding: 36px 16px 56px;
+    }
+    .ev-cta {
+        padding: 14px 24px;
+        font-size: 0.95rem;
+    }
 }
 
+@media (max-width: 640px) {
+    .ev-hero {
+        padding: 40px 16px 28px;
+    }
+    .ev-calendar-wrap {
+        margin: 0 8px;
+        padding: 8px;
+        border-radius: 14px;
+    }
+    .ev-cta {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}

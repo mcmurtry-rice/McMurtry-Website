@@ -1,7 +1,7 @@
 {
   "navbar_headers": [
     {
-      "name": "About",
+      "name": "Home",
       "subheaders": [
         {
           "name": "Home",
@@ -12,15 +12,14 @@
           "to": "/about/calendar"
         },
         {
+          "name": "Room Reservations",
+          "to": "/resources/roomreservations"
+        },
+        {
           "name": "Financial Inclusivity",
           "to": "/about/financialinclusivity"
         }
       ]
-    },
-    {
-      "name": "Room Reservations",
-      "to": "/resources/roomreservations",
-      "subheaders": []
     },
     {
       "name": "O-Week",
@@ -79,32 +78,37 @@
           "to": "/people/committees"
         },
         {
-          "name": "Affinity Groups",
-          "to": "/people/mcmurtryaffinitygroups"
-        },
-        {
-          "name": "Associates",
-          "to": "/people/associates"
-        },
-        {
-          "name": "Peer Academic Advisors",
-          "to": "/people/paas"
-        },
-        {
-          "name": "Academic Fellows",
-          "to": "/people/academicfellows"
-        },
-        {
-          "name": "RHAs",
-          "to": "/people/RHAs"
-        },
-        {
-          "name": "Head Caregivers",
-          "to": "/people/headcaregivers"
-        },
-        {
-          "name": "SMR",
-          "to": "/people/SMR"
+          "name": "Other",
+          "children": [
+            {
+              "name": "Affinity Groups",
+              "to": "/people/mcmurtryaffinitygroups"
+            },
+            {
+              "name": "Associates",
+              "to": "/people/associates"
+            },
+            {
+              "name": "Peer Academic Advisors",
+              "to": "/people/paas"
+            },
+            {
+              "name": "Academic Fellows",
+              "to": "/people/academicfellows"
+            },
+            {
+              "name": "RHAs",
+              "to": "/people/RHAs"
+            },
+            {
+              "name": "Head Caregivers",
+              "to": "/people/headcaregivers"
+            },
+            {
+              "name": "SMR",
+              "to": "/people/SMR"
+            }
+          ]
         }
       ]
     },
@@ -116,7 +120,7 @@
           "to": "/resources/roomreservations"
         },
         {
-          "name": "P-Card Requests & Purchases",
+          "name": "P-Card Requests",
           "to": "/resources/pcardmanagement"
         },
         {

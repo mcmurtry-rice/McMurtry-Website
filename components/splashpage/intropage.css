@@ -1,515 +1,1867 @@
-/* intropage.css — Home page styled to match Figma "Example Home Page 2" */
+/*
+ * intropage.css — home page, pixel-accurate port of Figma node 193:2
+ *
+ * Strategy:
+ *   The Figma is laid out on a 1728px-wide canvas with absolute positions.
+ *   We keep the absolute layout and scale it to the viewport with a single
+ *   custom property `--s`. Everything else uses `calc(N * var(--s))` so the
+ *   page stays 1:1 with Figma at 1728px+ and shrinks proportionally below.
+ *
+ *   Reference: static/reference-design.png
+ */
 
-.intro-page {
-    background: #ffffff;
-    color: #2c2440;
-    min-height: 100vh;
-    width: 100%;
+.intro-mc {
+    /* --s is defined globally on :root in page.css so navbar/footer scale
+     * fluidly on every page. We just consume it here. */
+    position: relative;
+    width: 100vw;
+    margin: 0;
+    background: var(--mc-paper);
     overflow-x: hidden;
-    font-family: 'Work Sans', sans-serif;
+    font-family: var(--mc-font-body);
+    color: var(--mc-ink);
 }
 
-.intro-page p {
-    color: #2c2440;
+/* On very wide monitors, let the design scale up to fill the viewport
+ * rather than centering with white space on either side. */
+
+/* ---------------- TOP NAVBAR (193:78) ---------------- */
+
+.mc-navbar {
+    position: relative;
+    z-index: 50;
+    width: 100%;
+    height: calc(80px * var(--s));
+    background: var(--mc-purple-700);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 calc(80px * var(--s)) 0 calc(53px * var(--s));   /* extra right padding so right-most dropdown doesn't overhang */
+    box-sizing: border-box;
+}
+
+.mc-navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: calc(13px * var(--s));
+    color: var(--mc-paper);
+    text-decoration: none;
+}
+
+.mc-navbar-crest {
+    width: calc(57px * var(--s));
+    height: calc(74px * var(--s));
+    object-fit: contain;
+    filter: drop-shadow(0 0 calc(18px * var(--s)) rgba(0, 0, 0, 0.25));
+}
+
+.mc-navbar-wordmark {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(34.114px * var(--s));
+    line-height: 1;
+    color: var(--mc-paper);
+    text-shadow: 0 0 calc(17px * var(--s)) rgba(0, 0, 0, 0.35);
+    white-space: nowrap;
+}
+
+.mc-navbar-links {
+    display: flex;
+    align-items: center;
+    gap: calc(104px * var(--s));
+    white-space: nowrap;
+}
+
+.mc-navbar-link {
+    font-family: var(--mc-font-nav);
+    font-weight: 400;
+    font-size: calc(20px * var(--s));
+    line-height: 1;
+    color: var(--mc-paper);
+    text-decoration: none;
+    transition: opacity 180ms ease;
+    white-space: nowrap;
+}
+
+.mc-navbar-link:hover,
+.mc-navbar-link:focus-visible {
+    color: var(--mc-paper);    /* override global a:hover orange */
+    opacity: 0.75;
+}
+
+/* Trigger buttons look identical to plain links */
+.mc-navbar-trigger {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: calc(6px * var(--s));
+    font-family: inherit;
+}
+
+.mc-navbar-caret {
+    font-size: 0.7em;
+    line-height: 1;
+    transform: translateY(2px);
+    transition: transform 180ms ease;
+}
+
+.mc-navbar-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.mc-navbar-item:hover .mc-navbar-caret,
+.mc-navbar-trigger[aria-expanded="true"] .mc-navbar-caret {
+    transform: translateY(2px) rotate(180deg);
+}
+
+/* The right-most nav item's dropdown should anchor to the trigger's right
+ * edge instead of being centered — otherwise it overhangs the viewport. */
+.mc-navbar-links .mc-navbar-item:last-child .mc-navbar-dropdown {
+    left: auto;
+    right: 0;
+    transform: translateX(0) translateY(-8px) scale(0.96);
+}
+
+.mc-navbar-links .mc-navbar-item:last-child .mc-navbar-dropdown-open {
+    transform: translateX(0) translateY(0) scale(1);
+}
+
+.mc-navbar-links .mc-navbar-item:last-child .mc-navbar-dropdown::after {
+    left: auto;
+    right: 24px;
+    transform: rotate(45deg);
+}
+
+/* Premium dropdown panel — fade + slide + soft scale, frosted background.
+ * Caret arrow on top points back to the trigger so users see the link. */
+.mc-navbar-dropdown {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px) scale(0.96);
+    transform-origin: top center;
+    min-width: 260px;
+    max-width: 360px;
+    background: rgba(255, 255, 255, 0.97);
+    color: var(--mc-purple-700);
+    border-radius: 14px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.7) inset,
+        0 18px 48px -10px rgba(20, 12, 38, 0.32),
+        0 4px 12px rgba(20, 12, 38, 0.12);
+    backdrop-filter: blur(12px) saturate(140%);
+    -webkit-backdrop-filter: blur(12px) saturate(140%);
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+        opacity 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        visibility 260ms;
+    z-index: 60;
+    border: 1px solid rgba(74, 52, 112, 0.08);
+}
+
+.mc-navbar-dropdown-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) scale(1);
+}
+
+/* Up-pointing caret on dropdown top */
+.mc-navbar-dropdown::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid rgba(74, 52, 112, 0.08);
+    border-left: 1px solid rgba(74, 52, 112, 0.08);
+}
+
+/* Invisible hover bridge so the dropdown stays open while the mouse
+ * travels from trigger to panel. */
+.mc-navbar-dropdown::before {
+    content: '';
+    position: absolute;
+    inset: -16px -8px 100% -8px;
+    background: transparent;
+}
+
+.mc-navbar-dropdown-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* Reserve a fixed 12px gutter on the left for the hover chevron so the
+     * row width never changes on hover (which would widen the dropdown
+     * and ripple to every other item). */
+    padding: 11px 16px 11px 28px;
+    font-family: var(--mc-font-body);
+    font-size: 0.96rem;
+    font-weight: 500;
+    color: var(--mc-purple-700);
+    text-decoration: none;
+    border-radius: 8px;
+    transition:
+        background 160ms ease,
+        color 160ms ease;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Chevron lives inside the reserved gutter; it slides in via transform/
+ * opacity so it never changes the row's layout width. */
+.mc-navbar-dropdown-link::before {
+    content: '›';
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translate(-6px, -50%);
+    color: var(--mc-purple-500);
+    font-size: 1.1em;
+    line-height: 1;
+    opacity: 0;
+    transition: opacity 160ms ease, transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mc-navbar-dropdown-link:hover,
+.mc-navbar-dropdown-link:focus-visible {
+    background: linear-gradient(
+        to right,
+        rgba(74, 52, 112, 0.10),
+        rgba(160, 124, 180, 0.04)
+    );
+    color: var(--mc-purple-700);
+}
+
+.mc-navbar-dropdown-link:hover::before,
+.mc-navbar-dropdown-link:focus-visible::before {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+
+/* ----- Nested submenu (e.g. People → Other → …) ----- */
+.mc-navbar-submenu {
+    position: relative;
+    cursor: default;
+}
+
+.mc-navbar-submenu .mc-navbar-submenu-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.mc-navbar-submenu-caret {
+    color: var(--mc-purple-500);
+    font-size: 1.1em;
+    transition: transform 160ms ease;
+}
+
+.mc-navbar-submenu:hover .mc-navbar-submenu-caret,
+.mc-navbar-submenu:focus-within .mc-navbar-submenu-caret {
+    transform: translateX(-2px);
+}
+
+/* The slide-out panel sits to the LEFT of the parent dropdown.
+ * A small visible gap separates it; an invisible pseudo-element on the
+ * .mc-navbar-submenu parent fills that gap so cursor :hover doesn't drop
+ * while you travel between the parent item and the panel. */
+.mc-navbar-submenu-panel {
+    position: absolute;
+    top: -4px;
+    right: 100%;
+    margin-right: 8px;
+    min-width: 220px;
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.18);
+    border-radius: 14px;
+    box-shadow:
+        0 20px 50px -16px rgba(74, 52, 112, 0.32),
+        0 4px 12px rgba(20, 12, 38, 0.08);
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    opacity: 0;
+    transform: translateX(6px);
+    pointer-events: none;
+    transition: opacity 180ms ease, transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 1;
+}
+
+/* Invisible hover-bridge between the parent item and the panel. Only
+ * appears while the parent is hovered, so it can't trap clicks elsewhere. */
+.mc-navbar-submenu::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    right: 100%;
+    width: 16px; /* slightly wider than the panel's margin-right */
+    background: transparent;
+    pointer-events: none;
+}
+
+.mc-navbar-submenu:hover::before,
+.mc-navbar-submenu:focus-within::before {
+    pointer-events: auto;
+}
+
+.mc-navbar-submenu:hover .mc-navbar-submenu-panel,
+.mc-navbar-submenu:focus-within .mc-navbar-submenu-panel {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Keep the panel open while the cursor is on the panel itself. */
+.mc-navbar-submenu-panel:hover {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* ----- Mobile drawer subsection header (for nested children) ----- */
+.mc-mobile-drawer-subsection {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mc-purple-500);
+    padding: 14px 16px 6px;
+    margin-top: 4px;
+}
+
+.mc-mobile-drawer-sublink-nested {
+    padding-left: 32px !important;
+}
+
+/* Same override for the mobile drawer + brand link */
+.mc-navbar-brand:hover,
+.mc-mobile-drawer-link:hover,
+.mc-mobile-drawer-link:focus-visible {
+    color: var(--mc-paper);
+}
+
+/* Footer links and footer email should stay paper-white, not orange */
+.mc-footer-contact a:hover,
+.mc-footer-contact a:focus-visible {
+    color: var(--mc-paper);
+    text-decoration: underline;
+}
+
+/* ---------------- MOBILE HAMBURGER + DRAWER ---------------- */
+
+.mc-navbar-hamburger {
+    display: none;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 8px;
+    flex-direction: column;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.mc-hamburger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--mc-paper);
+    border-radius: 2px;
+}
+
+.mc-mobile-scrim {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 220ms ease, visibility 220ms ease;
+    z-index: 90;
+}
+
+.mc-mobile-scrim-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mc-mobile-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(82vw, 320px);
+    height: 100vh;
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    display: flex;
+    flex-direction: column;
+    padding: 28px 24px;
+    transform: translateX(100%);
+    transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    box-shadow: -8px 0 24px rgba(0, 0, 0, 0.25);
+}
+
+.mc-mobile-drawer-open {
+    transform: translateX(0);
+}
+
+.mc-mobile-drawer-close {
+    align-self: flex-end;
+    background: transparent;
+    border: 0;
+    color: var(--mc-paper);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 12px;
+    margin-bottom: 24px;
+}
+
+.mc-mobile-drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mc-mobile-drawer-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px 4px;
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--mc-paper);
+    text-decoration: none;
+    border: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;     /* override global button bg */
+    box-shadow: none;            /* override global button shadow */
+    cursor: pointer;
+    text-align: left;
+    transition: padding-left 180ms ease, background 180ms ease;
+    box-sizing: border-box;
+}
+
+.mc-mobile-drawer-link:hover,
+.mc-mobile-drawer-link:focus,
+.mc-mobile-drawer-link:focus-visible {
+    padding-left: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--mc-paper);    /* override global a:hover orange */
+}
+
+.mc-mobile-drawer-trigger {
+    /* Same look as a plain link; the right-side caret shows it expands */
+    font-family: var(--mc-font-display);
+}
+
+.mc-mobile-drawer-caret {
+    font-size: 1.1rem;
+    transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.mc-mobile-drawer-caret-open {
+    transform: rotate(90deg);
+}
+
+/* Animated expand/collapse using the grid-template-rows 0fr→1fr trick.
+ * The single child .mc-mobile-drawer-sublinks-inner is the only grid row;
+ * it grows from 0 height to its natural auto height. */
+.mc-mobile-drawer-sublinks {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition:
+        grid-template-rows 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 240ms ease,
+        border-color 320ms ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.mc-mobile-drawer-sublinks-inner {
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 18px;
+}
+
+.mc-mobile-drawer-sublinks-open {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublinks-inner {
+    padding: 4px 0 12px 18px;
+}
+
+.mc-mobile-drawer-sublink {
+    display: block;
+    padding: 10px 4px;
+    font-family: var(--mc-font-body);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: padding-left 180ms ease, color 180ms ease, transform 200ms ease;
+    transform: translateX(-6px);
+    opacity: 0;
+}
+
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink {
+    transform: translateX(0);
+    opacity: 1;
+    transition:
+        padding-left 180ms ease,
+        color 180ms ease,
+        transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 280ms ease;
+}
+
+/* Stagger each sublink so they slide in one after the other */
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(1)  { transition-delay: 40ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(2)  { transition-delay: 80ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(3)  { transition-delay: 120ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(4)  { transition-delay: 160ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(5)  { transition-delay: 180ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(6)  { transition-delay: 200ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(7)  { transition-delay: 220ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(8)  { transition-delay: 240ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(9)  { transition-delay: 260ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(10) { transition-delay: 280ms; }
+.mc-mobile-drawer-sublinks-open .mc-mobile-drawer-sublink:nth-child(11) { transition-delay: 300ms; }
+
+.mc-mobile-drawer-sublink:hover,
+.mc-mobile-drawer-sublink:focus-visible {
+    padding-left: 10px;
+    color: var(--mc-paper);
+}
+
+.mc-mobile-drawer-section {
+    display: flex;
+    flex-direction: column;
 }
 
 /* ---------------- HERO ---------------- */
 
-.hero {
+.mc-hero {
     position: relative;
     width: 100%;
-    height: 540px;
-    margin-top: 0;
+    height: calc(1198px * var(--s));
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    isolation: isolate;
 }
 
-.hero-image-wrap {
+.mc-hero-bg {
+    position: absolute;
+    inset: calc(-795px * var(--s)) 0 0 0;
+    width: 100%;
+    height: calc(1649px * var(--s));
+    overflow: hidden;
+}
+
+.mc-hero-bg-img {
     position: absolute;
     inset: 0;
-}
-
-.hero-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
 }
 
-.hero-overlay {
+.mc-hero-bg-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg,
-        rgba(61, 42, 94, 0.78) 0%,
-        rgba(61, 42, 94, 0.55) 40%,
-        rgba(61, 42, 94, 0.85) 100%);
+    background: linear-gradient(163.6deg,
+        var(--mc-overlay-lilac) 31.9%,
+        var(--mc-overlay-ink) 77.7%);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 32px;
-    padding: 0 24px;
-    margin-top: 60px;
-}
-
-.hero-title {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 32px;
+.mc-hero-title {
+    position: absolute;
+    top: calc(283px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
     margin: 0;
-    color: #ffffff;
-    font-family: 'Playfair Display', Georgia, serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(24px * var(--s));
+    font-family: var(--mc-font-display);
     font-style: italic;
-    font-weight: 500;
-    font-size: 5rem;
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-hero) * var(--s));
     line-height: 1;
-    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    color: var(--mc-paper);
+    text-shadow: 0 0 calc(20px * var(--s)) rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+    white-space: nowrap;
+    width: max-content;
 }
 
-.hero-title-word {
+.mc-hero-title-word {
     display: inline-block;
 }
 
-.hero-crest {
-    width: 88px;
-    height: 88px;
-    filter: brightness(0) invert(1);
+/* Inline crest sized to title cap-height so it tucks between the words
+ * without overlapping the pill row below. The Figma 274x355 absolute
+ * crest is decorative; we render it inline-sized here. */
+.mc-hero-crest {
+    width: calc(180px * var(--s));
+    height: calc(232px * var(--s));
+    object-fit: contain;
+    flex: 0 0 auto;
 }
 
-.hero-pills {
+.mc-hero-pills {
+    position: absolute;
+    top: calc(495px * var(--s));
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-    margin-top: 8px;
+    gap: calc(18px * var(--s));
+    filter: drop-shadow(0 calc(4px * var(--s)) calc(10px * var(--s)) rgba(0, 0, 0, 0.25));
 }
 
-.hero-pill {
-    display: inline-block;
-    padding: 11px 26px;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.92);
-    color: #4a3470;
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 600;
-    letter-spacing: 0.01em;
+.mc-hero-pill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(59px * var(--s));
+    padding: calc(6px * var(--s)) calc(40px * var(--s));
+    min-width: calc(209px * var(--s));
+    background: var(--mc-lavender-400);
+    color: var(--mc-paper);
+    border-radius: calc(43px * var(--s));
+    font-family: var(--mc-font-body);
+    font-weight: 400;
+    font-size: calc(20px * var(--s));
+    line-height: 1;
     text-decoration: none;
-    transition: background 180ms ease, transform 180ms ease, color 180ms ease;
-    box-shadow: 0 6px 18px rgba(20, 12, 38, 0.18);
+    white-space: nowrap;
+    transition: transform 180ms ease, background 180ms ease;
 }
 
-.hero-pill:hover {
-    background: #ffffff;
-    color: #6b4ea0;
-    transform: translateY(-2px);
+.mc-hero-pill:hover,
+.mc-hero-pill:focus-visible {
+    background: var(--mc-purple-500);   /* deeper purple, NOT the global orange */
+    color: var(--mc-paper);             /* override global a:hover orange */
+    transform: translateY(calc(-2px * var(--s)));
 }
 
-/* ---------------- YURT BAND ---------------- */
-
-.yurt-band {
-    background: #ffffff;
-    padding: 56px 24px 24px;
-    display: flex;
-    justify-content: center;
-}
-
-.yurt-image {
-    max-width: 720px;
-    width: 100%;
-    height: auto;
+/* Yurt-trees illustration band — Figma image 3659, sits on the lower
+ * portion of the hero, bleeding into the white section below */
+.mc-yurt-band {
+    position: absolute;
+    top: calc(768px * var(--s));
+    left: calc(292px * var(--s));
+    width: calc(1143px * var(--s));
+    height: calc(336px * var(--s));
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 3;
 }
 
 /* ---------------- TRIPLE PHOTO STRIP ---------------- */
 
-.triple-strip {
-    max-width: 1240px;
-    margin: 24px auto 0;
-    padding: 0 48px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+.mc-strip {
+    position: relative;
+    width: 100%;
+    padding: calc(56px * var(--s)) 0 calc(40px * var(--s));
+    overflow: hidden;
 }
 
-.triple-card {
+/* Horizontal infinite carousel — auto-scrolls, supports click-drag,
+ * hover pauses. Snap is disabled because auto-scroll fights snap. */
+.mc-strip-row {
+    display: flex;
+    gap: calc(67px * var(--s));
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: calc(20px * var(--s)) calc(160px * var(--s));
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    user-select: none;
+    scroll-behavior: auto;
+}
+
+.mc-strip-row.mc-strip-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;       /* no smooth-fight while user drags */
+}
+
+.mc-strip-row * {
+    /* Prevent text selection / image drag-ghost while user is scrubbing */
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.mc-strip-row::-webkit-scrollbar {
+    display: none;
+}
+
+.mc-strip-card {
     margin: 0;
+    flex: 0 0 calc(663px * var(--s));
     display: flex;
     flex-direction: column;
-    gap: 12px;
 }
 
-.triple-image-wrap {
-    width: 100%;
-    aspect-ratio: 4 / 3;
+.mc-strip-image-wrap {
+    width: calc(663px * var(--s));
+    height: calc(455px * var(--s));
+    border: calc(7px * var(--s)) solid var(--mc-purple-500);
+    border-radius: calc(18.789px * var(--s));
     overflow: hidden;
-    border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(20, 12, 38, 0.1);
+    background: var(--mc-purple-500);
+    transition:
+        transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 320ms ease;
+    box-shadow: 0 6px 18px rgba(20, 12, 38, 0.12);
+    /* Composite-stage clipping fixes (Chrome breaks rounded clip when a child
+     * has its own transform during animation). Belt-and-suspenders:
+     *   1. isolate creates a stacking context that the clip respects
+     *   2. mask-image uses the GPU paint stage to enforce the rounded shape
+     *   3. clip-path duplicates the rounded shape as a hard clip
+     *   4. transform: translateZ(0) promotes to its own layer */
+    isolation: isolate;
+    -webkit-mask-image: radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    clip-path: inset(0 round calc(12px * var(--s)));
+    transform: translateZ(0);
+    contain: paint;
 }
 
-.triple-image {
+.mc-strip-card:hover .mc-strip-image-wrap {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+        0 14px 36px rgba(74, 52, 112, 0.28),
+        0 0 0 4px rgba(160, 124, 180, 0.35),
+        0 0 36px 6px rgba(160, 124, 180, 0.45);
+}
+
+.mc-strip-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mc-strip-card:hover .mc-strip-image {
+    transform: scale(1.06);
+}
+
+.mc-strip-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(8px * var(--s));
+    margin-top: calc(22px * var(--s));
+    padding-left: calc(40px * var(--s));
+}
+
+.mc-strip-caption-main {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-caption-xl) * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-purple-500);
+    /* Edge design: subtle underline accent + soft text-shadow for depth */
+    background-image: linear-gradient(
+        to right,
+        var(--mc-purple-500) 0%,
+        var(--mc-purple-500) 100%
+    );
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: calc(48px * var(--s)) calc(3px * var(--s));
+    padding-bottom: calc(10px * var(--s));
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.mc-strip-caption-sub {
+    font-family: var(--mc-font-body);
+    font-weight: 400;
+    font-size: calc(20px * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-purple-500);
+}
+
+/* Left + right fade-out gradient overlays (Figma 193:100/101) */
+.mc-strip-fade {
+    position: absolute;
+    top: 0;
+    width: calc(484px * var(--s));
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.mc-strip-fade-left {
+    left: calc(-18px * var(--s));
+    background: linear-gradient(to right,
+        rgba(255, 255, 255, 1) 6.349%,
+        rgba(255, 255, 255, 0) 77.91%);
+}
+
+.mc-strip-fade-right {
+    right: calc(-19px * var(--s));
+    background: linear-gradient(to left,
+        rgba(255, 255, 255, 1) 6.349%,
+        rgba(255, 255, 255, 0) 77.91%);
+}
+
+/* ---------------- ABOUT MCMURTRY ---------------- */
+/*  Figma section spans rows 2011 → 3458 on the 5079-tall canvas.
+ *  Section starts after triple-strip = top 1898 in our compressed flow.
+ *  We keep absolute positions but rebase to section-local top (subtract 1898).
+ */
+
+.mc-about {
+    position: relative;
+    width: 100%;
+    height: calc(1480px * var(--s));   /* fits 3-card cascade + body + dividers, no excess space */
+    overflow: hidden;
+}
+
+.mc-about-swoosh {
+    position: absolute;
+    top: calc(113px * var(--s));        /* Figma top 2011 - section start 1898 */
+    left: calc(-201px * var(--s));
+    width: calc(958px * var(--s));
+    height: calc(529px * var(--s));
+    pointer-events: none;
+}
+
+.mc-about-ellipse-large {
+    position: absolute;
+    top: calc(153px * var(--s));        /* 2051 - 1898 */
+    left: calc(1520px * var(--s));
+    width: calc(364px * var(--s));
+    height: calc(360px * var(--s));
+    pointer-events: none;
+}
+
+.mc-about-ellipse-small {
+    position: absolute;
+    top: calc(1061px * var(--s));       /* 2959 - 1898 */
+    left: calc(1183px * var(--s));
+    width: calc(186px * var(--s));
+    height: calc(184px * var(--s));
+    pointer-events: none;
+}
+
+.mc-about-heading {
+    position: absolute;
+    top: calc(242px * var(--s));        /* 2140 - 1898 */
+    left: calc(184px * var(--s));
+    width: calc(374px * var(--s));
+    margin: 0;
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-h2) * var(--s));
+    line-height: normal;
+    color: var(--mc-paper);
+    z-index: 2;
+}
+
+.mc-about-collage {
+    position: absolute;
+    top: calc(326px * var(--s));        /* 2224 - 1898 */
+    left: calc(191px * var(--s));
+    width: calc(611px * var(--s));
+    height: calc(1100px * var(--s));   /* fits 3 cards cascading with breathing room */
+    z-index: 4;
+}
+
+.mc-about-card {
+    position: absolute;
+    margin: 0;
+    border: calc(0.792px * var(--s)) solid var(--mc-purple-700);
+    border-radius: calc(18.789px * var(--s));
+    overflow: hidden;
+    background: var(--mc-paper);
+    transition:
+        transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 320ms ease;
+    /* Composite-clip stack so the inner img.transform: scale doesn't bleed
+     * past the rounded corners during animation. */
+    isolation: isolate;
+    -webkit-mask-image: radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    clip-path: inset(0 round calc(18px * var(--s)));
+    contain: paint;
+}
+
+.mc-about-card:hover {
+    box-shadow:
+        0 14px 36px rgba(74, 52, 112, 0.28),
+        0 0 0 4px rgba(160, 124, 180, 0.35),
+        0 0 36px 6px rgba(160, 124, 180, 0.45);
+    /* z-index intentionally NOT changed — design keeps card layering stable */
+}
+
+.mc-about-card .mc-about-card-img {
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mc-about-card:hover .mc-about-card-img {
+    transform: scale(1.06);
+}
+
+.mc-about-card-1 {
+    /* Top polaroid, slight CCW tilt */
+    top: 0;
+    left: 0;
+    width: calc(500px * var(--s));
+    height: calc(320px * var(--s));
+    transform: rotate(-3deg);
+    transform-origin: center;
+    box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.22);
+    z-index: 4;
+}
+
+.mc-about-card-2 {
+    /* Middle polaroid, CW tilt, larger vertical offset */
+    top: calc(360px * var(--s));
+    left: calc(110px * var(--s));
+    width: calc(500px * var(--s));
+    height: calc(320px * var(--s));
+    transform: rotate(4deg);
+    transform-origin: center;
+    box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.22);
+    z-index: 5;
+}
+
+.mc-about-card-3 {
+    /* Bottom polaroid, slight CCW tilt, offset down-left */
+    top: calc(720px * var(--s));
+    left: 0;
+    width: calc(500px * var(--s));
+    height: calc(320px * var(--s));
+    transform: rotate(-2deg);
+    transform-origin: center;
+    box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.22);
+    z-index: 6;
+}
+
+.mc-about-card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
 
-.triple-caption {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.05rem;
-    color: #4a3470;
-    text-align: left;
-    margin: 4px 0 0;
-}
-
-/* ---------------- ABOUT MCMURTRY ---------------- */
-
-.about-section {
-    position: relative;
-    max-width: 1240px;
-    margin: 80px auto 0;
-    padding: 80px 48px 0;
-    overflow: visible;
-}
-
-.about-section::before {
-    content: '';
+.mc-about-card-caption,
+.mc-burt-card-caption {
     position: absolute;
-    top: 0;
-    left: -80px;
-    width: 480px;
-    height: 200px;
-    background: #4a3470;
-    border-radius: 60% 50% 55% 45% / 70% 60% 40% 30%;
-    transform: rotate(-6deg);
-    z-index: 0;
-    opacity: 0.95;
-}
-
-.about-section::after {
-    content: '';
-    position: absolute;
-    top: 320px;
-    right: -120px;
-    width: 200px;
-    height: 200px;
-    background: rgba(74, 52, 112, 0.06);
-    border-radius: 50%;
-    z-index: 0;
-}
-
-.about-section > * {
-    position: relative;
-    z-index: 1;
-}
-
-.about-section .about-heading {
-    color: #ffffff;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    gap: 64px;
-    align-items: start;
-}
-
-.about-left {
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-}
-
-.about-heading {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 3rem;
-    color: #4a3470;
+    bottom: calc(16px * var(--s));
+    left: calc(20px * var(--s));
+    right: calc(20px * var(--s));
     margin: 0;
-    line-height: 1.05;
+    padding: calc(8px * var(--s)) calc(14px * var(--s));
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: calc(var(--mc-fs-cap-sm) * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-paper);
+    background: rgba(20, 12, 38, 0.55);
+    border-radius: calc(8px * var(--s));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-.about-collage {
-    position: relative;
-    width: 100%;
-    height: 460px;
-}
-
-.about-collage-img {
+.mc-about-body {
     position: absolute;
-    width: 70%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 12px 28px rgba(20, 12, 38, 0.18);
-    border: 4px solid #ffffff;
-}
-
-.about-collage-img-1 {
-    top: 0;
-    left: 0;
-    width: 78%;
-    transform: rotate(-3deg);
-    z-index: 1;
-}
-
-.about-collage-img-2 {
-    top: 140px;
-    left: 22%;
-    width: 70%;
-    transform: rotate(2deg);
+    top: calc(205px * var(--s));        /* 2103 - 1898 */
+    left: calc(851px * var(--s));       /* 824 + 27px inner padding */
+    width: calc(756px * var(--s));
     z-index: 2;
 }
 
-.about-collage-img-3 {
-    top: 280px;
-    left: 6%;
-    width: 60%;
-    transform: rotate(-1deg);
-    z-index: 3;
+.mc-about-lede {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: calc(var(--mc-fs-body-bold) * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-purple-500);
+    margin: 0 0 calc(28px * var(--s)) 0;
 }
 
-.about-right {
-    padding-top: 8px;
-}
-
-.about-lede {
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1.35rem;
-    line-height: 1.4;
-    color: #2c2440;
-    margin: 0 0 24px;
-}
-
-.about-para {
-    font-family: 'Work Sans', sans-serif;
+.mc-about-para,
+.mc-burt-para {
+    font-family: var(--mc-font-body);
     font-weight: 400;
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: #4a4458;
-    margin: 0 0 14px;
+    font-size: calc(var(--mc-fs-body) * var(--s));
+    line-height: calc(var(--mc-lh-body) * var(--s));
+    color: var(--mc-ink);
+    margin: 0 0 calc(20px * var(--s)) 0;
 }
 
-.about-amenities {
-    list-style: disc inside;
-    padding-left: 8px;
-    margin: 0 0 14px;
-    color: #4a4458;
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.95rem;
-    line-height: 1.65;
+.mc-about-list {
+    list-style: disc;
+    padding-left: calc(30px * var(--s));
+    margin: 0 0 calc(20px * var(--s)) 0;
+    font-family: var(--mc-font-body);
+    font-size: calc(var(--mc-fs-body) * var(--s));
+    line-height: calc(var(--mc-lh-body) * var(--s));
+    color: var(--mc-ink);
 }
 
-.about-amenities li {
-    margin: 2px 0;
+.mc-about-list li {
+    margin: 0;
+}
+
+.mc-divider {
+    border: 0;
+    border-left: calc(12px * var(--s)) solid var(--mc-purple-500);
+    height: calc(72px * var(--s));
+    width: 0;
+    margin: calc(33px * var(--s)) auto;
+    display: block;
 }
 
 /* ---------------- BURT & DEEDEE ---------------- */
+/* Figma section spans rows 3376 → 4582 on the 5079 canvas.
+ * Local rebase: subtract 1898 from all top values.
+ */
 
-.burt-section {
+.mc-burt {
     position: relative;
-    max-width: 1240px;
-    margin: 80px auto 96px;
-    padding: 80px 48px 0;
-    overflow: visible;
+    width: 100%;
+    height: calc(1140px * var(--s));   /* card-2 visual bottom ~1029 + 110px breathing room */
+    overflow: hidden;
+    margin-top: 0;
 }
 
-.burt-section::before {
-    content: '';
+.mc-burt-swoosh {
     position: absolute;
     top: 0;
-    right: -80px;
-    width: 480px;
-    height: 200px;
-    background: #4a3470;
-    border-radius: 55% 60% 45% 55% / 60% 70% 30% 40%;
-    transform: rotate(6deg);
-    z-index: 0;
-    opacity: 0.95;
+    left: calc(957px * var(--s));
+    width: calc(835px * var(--s));
+    height: calc(619px * var(--s));
+    pointer-events: none;
 }
 
-.burt-section::after {
-    content: '';
+.mc-burt-ellipse-large {
     position: absolute;
-    top: 320px;
-    left: -120px;
-    width: 200px;
-    height: 200px;
-    background: rgba(74, 52, 112, 0.06);
-    border-radius: 50%;
+    top: calc(130px * var(--s));        /* 3506 - 3376 */
+    left: calc(-132px * var(--s));
+    width: calc(364px * var(--s));
+    height: calc(360px * var(--s));
+    pointer-events: none;
+}
+
+.mc-burt-ellipse-small {
+    position: absolute;
+    top: calc(1295px * var(--s));       /* 4671 - 3376 — extends into the footer; clipped */
+    left: calc(184px * var(--s));
+    width: calc(186px * var(--s));
+    height: calc(184px * var(--s));
+    pointer-events: none;
+}
+
+.mc-burt-heading {
+    position: absolute;
+    top: calc(147px * var(--s));        /* 3523 - 3376 */
+    left: calc(1111px * var(--s));
+    width: calc(503px * var(--s));
+    margin: 0;
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-h2) * var(--s));
+    line-height: normal;
+    color: var(--mc-paper);
+    z-index: 2;
+}
+
+.mc-burt-body {
+    position: absolute;
+    top: calc(101px * var(--s));        /* 3477 - 3376 */
+    left: calc(128px * var(--s));       /* 80 + 48 inner padding */
+    width: calc(736px * var(--s));
+    z-index: 2;
+}
+
+.mc-burt-collage {
+    position: absolute;
+    top: calc(277px * var(--s));        /* 3653 - 3376 */
+    left: calc(991px * var(--s));
+    width: calc(694px * var(--s));
+    height: calc(929px * var(--s));     /* 4582 - 3653 */
+    z-index: 4;
+}
+
+.mc-burt-card {
+    position: absolute;
+    margin: 0;
+    border-radius: calc(18.789px * var(--s));
+    overflow: hidden;
+    border: calc(0.792px * var(--s)) solid var(--mc-purple-700);
+    transition:
+        transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 320ms ease;
+    isolation: isolate;
+    -webkit-mask-image: radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    clip-path: inset(0 round calc(18px * var(--s)));
+    contain: paint;
+}
+
+.mc-burt-card:hover {
+    box-shadow:
+        0 14px 36px rgba(74, 52, 112, 0.28),
+        0 0 0 4px rgba(160, 124, 180, 0.35),
+        0 0 36px 6px rgba(160, 124, 180, 0.45);
+}
+
+.mc-burt-card .mc-burt-card-img {
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mc-burt-card:hover .mc-burt-card-img {
+    transform: scale(1.06);
+}
+
+.mc-burt-card-1 {
+    top: 0;
+    left: 0;
+    width: calc(694px * var(--s));
+    height: calc(489px * var(--s));
+    z-index: 6;
+}
+
+.mc-burt-card-2 {
+    /* 557.137 x 392.565, rotated 10.38° */
+    top: calc(443px * var(--s));        /* 4096 - 3653 */
+    left: calc(47px * var(--s));        /* 1038 - 991 */
+    width: calc(557px * var(--s));
+    height: calc(392px * var(--s));
+    border-width: calc(0.636px * var(--s));
+    border-radius: calc(15.084px * var(--s));
+    transform: rotate(10.38deg);
+    transform-origin: center;
+    box-shadow: 0 calc(4px * var(--s)) calc(10px * var(--s)) rgba(0, 0, 0, 0.25);
+    z-index: 5;
+}
+
+.mc-burt-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------------- FOOTER (193:6) ---------------- */
+/* 1767x378 purple block, wordmark + contact + faded yurt silhouette */
+
+.mc-footer {
+    position: relative;
+    width: 100%;
+    height: calc(378px * var(--s));
+    background: var(--mc-purple-700);
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.mc-footer-silhouette {
+    position: absolute;
+    top: calc(82px * var(--s));         /* 4783 - 4701 */
+    left: calc(311px * var(--s));       /* 293 - (-18) = 311 */
+    width: calc(1143px * var(--s));
+    height: calc(336px * var(--s));
+    opacity: 0.2;
+    pointer-events: none;
     z-index: 0;
 }
 
-.burt-section > * {
+.mc-footer-wordmark {
+    position: absolute;
+    top: calc(93px * var(--s));         /* 4794 - 4701 */
+    left: calc(94px * var(--s));        /* 76 - (-18) = 94 */
+    width: calc(465px * var(--s));
+    color: var(--mc-paper-warm);
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(122.382px * var(--s));
+    line-height: 0.6822;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    z-index: 2;
+}
+
+.mc-footer-wordmark span {
+    display: block;
+}
+
+.mc-footer-contact {
+    position: absolute;
+    top: calc(94px * var(--s));         /* 4795 - 4701 */
+    left: calc(1291px * var(--s));      /* 1273 - (-18) */
+    width: calc(393px * var(--s));
+    font-family: var(--mc-font-body);
+    font-style: normal;
+    font-weight: 400;
+    font-size: calc(20px * var(--s));
+    line-height: 2.81;
+    color: var(--mc-paper);
+    z-index: 2;
+}
+
+.mc-footer-contact p {
+    margin: 0;
+    color: var(--mc-paper);
+}
+
+.mc-footer-contact a {
+    color: var(--mc-paper);
+    text-decoration: none;
+}
+
+.mc-footer-contact a:hover {
+    text-decoration: underline;
+}
+
+.mc-footer-row {
+    display: flex;
+    align-items: center;
+    gap: calc(20px * var(--s));
+}
+
+.mc-footer-icon {
+    display: inline-flex;
+    width: calc(24px * var(--s));
+    height: calc(24px * var(--s));
+    align-items: center;
+    justify-content: center;
+    font-size: calc(20px * var(--s));
+}
+
+/* ---------------- FIND US AT RICE ---------------- */
+
+.mc-find-us {
     position: relative;
+    width: 100%;
+    padding: calc(24px * var(--s)) calc(64px * var(--s)) calc(80px * var(--s));
+    background: linear-gradient(180deg, var(--mc-paper) 0%, #f4eef9 100%);
+    overflow: hidden;
+}
+
+.mc-find-us-inner {
+    max-width: calc(1180px * var(--s));
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(28px * var(--s));
+}
+
+.mc-find-us-heading {
+    margin: 0;
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(64px * var(--s));
+    line-height: 1.05;
+    color: var(--mc-purple-700);
+    text-align: center;
+}
+
+.mc-find-us-address {
+    margin: 0;
+    font-family: var(--mc-font-body);
+    font-weight: 500;
+    font-size: calc(20px * var(--s));
+    line-height: 1.4;
+    color: var(--mc-purple-500);
+    text-align: center;
+}
+
+.mc-find-us-map-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    max-height: calc(540px * var(--s));
+    border-radius: calc(20px * var(--s));
+    overflow: hidden;
+    box-shadow:
+        0 18px 48px -10px rgba(74, 52, 112, 0.35),
+        0 4px 12px rgba(20, 12, 38, 0.12);
+    border: calc(2px * var(--s)) solid rgba(74, 52, 112, 0.18);
+}
+
+.mc-find-us-map {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+}
+
+/* Invisible overlay sitting on top of the iframe. By absorbing the user's
+ * scroll/hover events, it prevents Google Maps from showing its dark
+ * "Use Ctrl+Scroll to zoom" shadow overlay. A click removes the cover so
+ * users can pan/zoom intentionally. */
+.mc-find-us-map-cover {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    cursor: pointer;
     z-index: 1;
 }
 
-.burt-section .burt-heading {
-    color: #ffffff;
+.mc-find-us-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(10px * var(--s));
+    padding: calc(14px * var(--s)) calc(32px * var(--s));
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    border-radius: 999px;
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: calc(18px * var(--s));
+    line-height: 1;
+    text-decoration: none;
+    box-shadow: 0 8px 22px rgba(74, 52, 112, 0.35);
+    transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 220ms ease,
+                background 220ms ease;
 }
 
-.burt-grid {
-    display: grid;
-    grid-template-columns: 1.15fr 1fr;
-    gap: 64px;
-    align-items: start;
+.mc-find-us-cta:hover,
+.mc-find-us-cta:focus-visible {
+    background: var(--mc-purple-500);
+    color: var(--mc-paper);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 28px rgba(74, 52, 112, 0.45);
 }
 
-.burt-left {
-    padding-top: 56px;
+.mc-find-us-cta-arrow {
+    font-size: 1.3em;
+    line-height: 1;
+    transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.burt-para {
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 400;
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: #4a4458;
-    margin: 0 0 14px;
+.mc-find-us-cta:hover .mc-find-us-cta-arrow {
+    transform: translateX(4px);
 }
 
-.burt-right {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.burt-heading {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-style: italic;
-    font-weight: 500;
-    font-size: 2.4rem;
-    color: #4a3470;
-    margin: 0;
-    line-height: 1.1;
-    white-space: nowrap;
-}
-
-.burt-image {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    border-radius: 14px;
-    box-shadow: 0 12px 28px rgba(20, 12, 38, 0.18);
-}
-
-/* ---------------- RESPONSIVE ---------------- */
+/* ==========================================================================
+ * LAYER 2 — TABLET BAND (641px – 1024px)
+ *
+ * Above 1024px the page uses the Figma absolute layout scaled by --s.
+ * Below 1024px that becomes too compressed to read, so we switch to a
+ * stacked single-column flow. Photos stop cascading and stack vertically;
+ * body text reverts to absolute rem sizes so it stays readable.
+ * ========================================================================== */
 
 @media (max-width: 1024px) {
-    .hero {
-        height: 460px;
-        margin-top: -60px;
+    .intro-mc {
+        --s: 1;
+        overflow-x: hidden;
     }
 
-    .hero-title {
-        font-size: 4rem;
-        gap: 24px;
+    /* ---- NAVBAR ---- */
+    .mc-navbar {
+        height: 64px;
+        padding: 0 20px;
+    }
+    .mc-navbar-crest {
+        width: 36px;
+        height: 46px;
+    }
+    .mc-navbar-wordmark {
+        font-size: 1.25rem;
+    }
+    .mc-navbar-links {
+        gap: 16px;
+    }
+    .mc-navbar-link {
+        font-size: 0.95rem;
     }
 
-    .hero-crest {
-        width: 72px;
-        height: 72px;
+    /* ---- HERO ---- */
+    .mc-hero {
+        height: auto;
+        min-height: 70vh;
+        padding: 48px 16px 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        overflow: hidden;
+    }
+    .mc-hero-bg {
+        position: absolute;
+        inset: 0;
+        height: 100%;
+    }
+    .mc-hero-bg-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .mc-hero-title {
+        position: static;
+        transform: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
+        width: auto;
+        max-width: 100%;
+        font-size: clamp(2.5rem, 9vw, 5rem);
+        text-align: center;
+    }
+    .mc-hero-crest {
+        width: clamp(72px, 12vw, 130px);
+        height: auto;
+    }
+    .mc-hero-pills {
+        position: static;
+        transform: none;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        max-width: 100%;
+    }
+    .mc-hero-pill {
+        height: 46px;
+        min-width: 0;
+        padding: 6px 22px;
+        font-size: 0.95rem;
+        border-radius: 23px;
+    }
+    .mc-yurt-band {
+        position: static;
+        width: min(85%, 560px);
+        height: auto;
+        margin: 24px auto 0;
+        display: block;
     }
 
-    .about-grid,
-    .burt-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
+    /* ---- TRIPLE PHOTO CAROUSEL ---- */
+    .mc-strip {
+        height: auto;
+        padding: 32px 0 24px;
+    }
+    .mc-strip-row {
+        padding: 16px 24px;
+        gap: 20px;
+        scroll-padding-left: 24px;
+    }
+    .mc-strip-card {
+        /* Scale with viewport inside tablet band — never larger than 60vw */
+        flex: 0 0 60vw;
+    }
+    .mc-strip-image-wrap {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-width: 5px;
+        border-radius: 12px;
+    }
+    .mc-strip-caption {
+        padding-left: 8px;
+        align-items: flex-start;
+        margin-top: 12px;
+    }
+    .mc-strip-caption-main {
+        font-size: 1.5rem;
+    }
+    .mc-strip-caption-sub {
+        font-size: 0.95rem;
+    }
+    .mc-strip-fade {
+        display: none;
     }
 
-    .burt-left {
-        padding-top: 0;
-        order: 2;
+    /* ---- ABOUT MCMURTRY ---- */
+    .mc-about {
+        height: auto;
+        padding: 48px 24px 32px;
+    }
+    .mc-about-swoosh,
+    .mc-about-ellipse-large,
+    .mc-about-ellipse-small {
+        display: none;
+    }
+    .mc-about {
+        display: flex;
+        flex-direction: column;
+    }
+    .mc-about-heading {
+        position: static;
+        width: auto;
+        font-size: clamp(2.25rem, 6vw, 3.2rem);
+        color: var(--mc-purple-500);
+        text-shadow: none;
+        margin: 0 0 24px;
+        order: 1;   /* heading first */
+    }
+    .mc-about-body {
+        order: 2;   /* body text second */
+    }
+    .mc-about-collage {
+        order: 3;   /* photo collage last */
+    }
+    .mc-about-collage {
+        position: static;
+        width: min(80%, 600px);
+        height: auto;
+        margin: 0 auto 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    /* Only the first polaroid renders below desktop; cards 2 & 3 hide */
+    .mc-about-card-2,
+    .mc-about-card-3 {
+        display: none;
+    }
+    .mc-about-card,
+    .mc-about-card-1 {
+        position: static;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        transform: none;
+        margin: 0;
+    }
+    .mc-about-card-img {
+        width: 100%;
+        height: 100%;
+    }
+    .mc-about-card-caption {
+        font-size: 0.9rem;
+    }
+    .mc-about-body {
+        position: static;
+        width: 100%;
+        max-width: 720px;
+        margin: 0 auto;
+        left: auto;
+        padding: 0;
+    }
+    .mc-about-lede {
+        font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+        margin: 0 0 18px;
+    }
+    .mc-about-para,
+    .mc-burt-para {
+        font-size: 1rem;
+        line-height: 1.65;
+        margin: 0 0 16px;
+    }
+    .mc-about-list {
+        font-size: 1rem;
+        line-height: 1.65;
+        padding-left: 24px;
+    }
+    .mc-divider {
+        height: 40px;
+        border-left-width: 6px;
+        margin: 22px auto;
     }
 
-    .burt-right {
+    /* ---- BURT & DEEDEE ---- */
+    .mc-burt {
+        height: auto;
+        padding: 32px 24px 56px;
+    }
+    .mc-burt-swoosh,
+    .mc-burt-ellipse-large,
+    .mc-burt-ellipse-small {
+        display: none;
+    }
+    .mc-burt {
+        display: flex;
+        flex-direction: column;
+    }
+    .mc-burt-heading {
+        position: static;
+        width: auto;
+        font-size: clamp(2.25rem, 6vw, 3.2rem);
+        color: var(--mc-purple-500);
+        text-shadow: none;
+        margin: 0 0 24px;
+        white-space: normal;
         order: 1;
     }
-
-    .about-collage {
-        height: 380px;
+    .mc-burt-body {
+        order: 2;
     }
-}
-
-@media (max-width: 768px) {
-    .hero {
-        height: 400px;
+    .mc-burt-collage {
+        order: 3;
     }
-
-    .hero-title {
-        font-size: 3rem;
-        gap: 16px;
-    }
-
-    .hero-crest {
-        width: 56px;
-        height: 56px;
-    }
-
-    .hero-pill {
-        padding: 9px 18px;
-        font-size: 0.85rem;
-    }
-
-    .triple-strip {
-        padding: 0 24px;
-        gap: 16px;
-    }
-
-    .about-section,
-    .burt-section {
-        padding: 0 24px;
-    }
-
-    .about-heading,
-    .burt-heading {
-        font-size: 2.25rem;
-    }
-
-    .about-lede {
-        font-size: 1.15rem;
-    }
-
-    .about-collage {
-        height: 320px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        height: 360px;
-    }
-
-    .hero-title {
+    .mc-burt-collage {
+        position: static;
+        width: min(80%, 600px);
+        height: auto;
+        margin: 0 auto 32px;
+        display: flex;
         flex-direction: column;
-        font-size: 2.5rem;
+        gap: 18px;
+    }
+    /* Only the first Burt portrait renders below desktop; card 2 hides */
+    .mc-burt-card-2 {
+        display: none;
+    }
+    .mc-burt-card,
+    .mc-burt-card-1 {
+        position: static;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        transform: none;
+        margin: 0;
+        border-width: 1px;
+    }
+    .mc-burt-card-img {
+        width: 100%;
+        height: 100%;
+    }
+    .mc-burt-body {
+        position: static;
+        width: 100%;
+        max-width: 720px;
+        margin: 0 auto;
+        left: auto;
+        padding: 0;
+    }
+
+    /* ---- FIND US AT RICE ---- */
+    .mc-find-us {
+        padding: 20px 24px 56px;
+    }
+    .mc-find-us-inner {
+        max-width: 720px;
+        gap: 18px;
+    }
+    .mc-find-us-heading {
+        font-size: clamp(2rem, 6vw, 3rem);
+    }
+    .mc-find-us-address {
+        font-size: 1rem;
+    }
+    .mc-find-us-map-wrap {
+        aspect-ratio: 4 / 3;
+        max-height: 480px;
+        border-radius: 16px;
+        border-width: 2px;
+    }
+    .mc-find-us-cta {
+        padding: 14px 28px;
+        font-size: 1rem;
         gap: 8px;
     }
 
-    .hero-crest {
-        width: 48px;
-        height: 48px;
+    /* ---- FOOTER ---- */
+    .mc-footer {
+        height: auto;
+        padding: 36px 24px;
+    }
+    .mc-footer-silhouette {
+        opacity: 0.08;
+        top: auto;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: auto;
+    }
+    .mc-footer-wordmark {
+        position: static;
+        width: auto;
+        font-size: clamp(2.5rem, 10vw, 4.5rem);
+        line-height: 0.85;
+        margin-bottom: 24px;
+    }
+    .mc-footer-contact {
+        position: static;
+        width: 100%;
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+    .mc-footer-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 18px;
+    }
+}
+
+/* ==========================================================================
+ * LAYER 3 — PHONE BAND (≤ 640px)
+ *
+ * Inline nav collapses to a hamburger drawer (state already in JSX). Hero
+ * pills go to a 2-up grid. Carousel cards fill 85vw so users can swipe
+ * one card at a time. Tighter padding throughout.
+ * ========================================================================== */
+
+@media (max-width: 640px) {
+    /* ---- NAVBAR: hamburger replaces inline links ---- */
+    .mc-navbar {
+        padding: 0 16px;
+    }
+    .mc-navbar-wordmark {
+        font-size: 1.05rem;
+    }
+    .mc-navbar-links {
+        display: none;
+    }
+    .mc-navbar-hamburger {
+        display: flex;
     }
 
-    .triple-strip {
-        grid-template-columns: 1fr;
+    /* ---- HERO ---- */
+    .mc-hero {
+        min-height: 64vh;
+        padding: 32px 12px;
+        gap: 22px;
+    }
+    .mc-hero-title {
+        font-size: clamp(2rem, 11vw, 3.5rem);
+        gap: 10px;
+    }
+    .mc-hero-crest {
+        width: clamp(56px, 14vw, 88px);
+    }
+    .mc-hero-pills {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 360px;
+    }
+    .mc-hero-pill {
+        height: 42px;
+        padding: 4px 12px;
+        font-size: 0.85rem;
+        border-radius: 21px;
+        width: 100%;
+    }
+    /* If an orphan pill ends up alone on its own row (5th of 5), center it
+     * across both columns instead of leaving it left-aligned. */
+    .mc-hero-pill:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: 50%;
     }
 
-    .about-heading,
-    .burt-heading {
-        font-size: 1.875rem;
+    /* ---- YURT BAND ---- */
+    .mc-yurt-band {
+        width: min(92%, 360px);
+    }
+
+    /* ---- CAROUSEL: cards fill 85vw, one-at-a-time swipe ---- */
+    .mc-strip {
+        padding: 24px 0 16px;
+    }
+    .mc-strip-row {
+        padding: 12px 16px;
+        gap: 14px;
+        scroll-padding-left: 16px;
+    }
+    .mc-strip-card {
+        flex: 0 0 85vw;
+    }
+    .mc-strip-image-wrap {
+        border-width: 4px;
+        border-radius: 10px;
+    }
+    .mc-strip-caption-main {
+        font-size: 1.25rem;
+    }
+    .mc-strip-caption-sub {
+        font-size: 0.85rem;
+    }
+
+    /* ---- SECTIONS: tighter padding ---- */
+    .mc-about {
+        padding: 36px 16px 24px;
+    }
+    .mc-about-heading {
+        font-size: clamp(1.85rem, 8vw, 2.4rem);
+        margin: 0 0 18px;
+    }
+    .mc-about-collage {
+        max-width: 100%;
+        margin: 0 auto 24px;
+        gap: 14px;
+    }
+    .mc-about-lede {
+        font-size: 1.1rem;
+        margin: 0 0 14px;
+    }
+    .mc-about-para,
+    .mc-burt-para,
+    .mc-about-list {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    .mc-about-list {
+        padding-left: 20px;
+    }
+    .mc-divider {
+        height: 32px;
+        border-left-width: 5px;
+        margin: 16px auto;
+    }
+
+    .mc-burt {
+        padding: 24px 16px 40px;
+    }
+    .mc-burt-heading {
+        font-size: clamp(1.85rem, 8vw, 2.4rem);
+        margin: 0 0 18px;
+    }
+    .mc-burt-collage {
+        max-width: 100%;
+        margin: 0 auto 24px;
+        gap: 14px;
+    }
+
+    /* ---- FOOTER ---- */
+    .mc-footer {
+        padding: 28px 18px;
+    }
+    .mc-footer-wordmark {
+        font-size: clamp(2.25rem, 13vw, 3.4rem);
+        margin-bottom: 18px;
+    }
+    .mc-footer-contact {
+        font-size: 0.9rem;
+        line-height: 1.7;
     }
 }
