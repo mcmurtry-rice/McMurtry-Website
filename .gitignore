@@ -25,9 +25,8 @@ yarn-error.log*
 # deployment readme
 DEPLOY.md
 
-# siteimprove fetcher: never commit credentials or issue snapshots
-siteimprove/.env
-siteimprove/data/
+# siteimprove: local dev tool, not part of the site
+siteimprove/
 
 # local tooling
 .claude/
