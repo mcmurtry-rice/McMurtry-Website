@@ -1,0 +1,60 @@
+.divisional-advisors-page {
+    padding-top: 10%;
+    margin-bottom: 5%;
+}
+
+.advisor-card-visible, .advisor-card-hidden {
+    margin: 2% auto;
+    transition: 0.2s ease-in-out;
+}
+
+.advisor-card-visible {
+    background-color: #515768;
+    color: #DCDFE5;
+    border: 1px solid #DCDFE5
+}
+
+.advisor-card-hidden {
+    color: #515768;
+    border: 1px solid #DCDFE5;
+    box-shadow: 0 0 5px 2px #BFBFCC;
+}
+
+.divisional-advisor-dropdown-visible, .divisional-advisor-dropdown-hidden {
+    overflow: hidden;
+    transition: 0.4s ease-in-out;
+}
+
+.divisional-advisor-dropdown-visible {
+    max-height: 1000px;
+}
+
+.divisional-advisor-dropdown-hidden {
+    max-height: 0;
+}
+
+.advisor-card-hidden:hover {
+    border-color: #515768;
+}
+
+.advisor-card-content h1, .advisor-card-content h2, .advisor-card-content h3, .advisor-card-content h4 {
+    font-weight: normal;
+    text-align: center;
+}
+
+.advisor-card-content .h2 {
+    margin: 15px 0;
+}
+
+.advisor-card-content h3, .advisor-card-content h4 {
+    margin: 10px 0;
+}
+
+.advisor-card-content {
+    margin-bottom: 30px;
+}
+
+.advisor-bio {
+    text-align: left;
+    padding-bottom: 30px;
+}

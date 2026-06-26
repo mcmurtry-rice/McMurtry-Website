@@ -1,0 +1,15 @@
+/*
+ * Events Calendar page — visual language matches the Figma home page.
+ * Uses the global :root mc-* design tokens defined in components/general/page.css.
+ * Fluid scale follows the :root --s factor.
+ */
+
+.ev-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ----- Calendar card & CTA: base styles in global.css ----- */

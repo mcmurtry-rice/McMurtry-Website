@@ -8,8 +8,12 @@
           "to": "/"
         },
         {
+          "name": "About",
+          "to": "/about"
+        },
+        {
           "name": "Calendar",
-          "to": "/about/calendar"
+          "to": "/calendar"
         },
         {
           "name": "Room Reservations",
@@ -17,7 +21,7 @@
         },
         {
           "name": "Financial Inclusivity",
-          "to": "/about/financialinclusivity"
+          "to": "/financialinclusivity"
         }
       ]
     },
@@ -129,7 +133,7 @@
         },
         {
           "name": "Financial Inclusivity",
-          "to": "/about/financialinclusivity"
+          "to": "/financialinclusivity"
         },
         {
           "name": "McMurtry Innovation Space",

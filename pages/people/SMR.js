@@ -1,18 +1,54 @@
-import Header from '../../components/general/header';
-import SiteNavbar from '../../components/general/siteNavbar';
+import React from 'react';
+import Header from '../../components/Header/Header';
+import SiteNavbar from '../../components/navbar/Navbar';
+import SiteFooter from '../../components/Footer/Footer';
+import { useSupabaseTable } from '../../lib/useSupabaseTable';
+import './SMR.css';
 
-import SiteFooter from '../../components/general/siteFooter';
-import SMR from '../../components/people/smr/smr';
-import '../../components/general/page.css'
+const SMRPage = () => {
+    const { rows: smr, isLoading } = useSupabaseTable('smr');
+    const person = smr[0];
 
-const SMRPage = () => (
-    <div className='page page-light page-with-staggered-menu'>
-        <Header />
-        <SiteNavbar />
-        
-        <SMR />
-        <SiteFooter />
-    </div>
-)
+    return (
+        <div className='page page-light page-with-staggered-menu'>
+            <Header />
+            <SiteNavbar />
+
+            <div className='smr-page'>
+                <header className='ev-hero'>
+                    <img src='/static/figma-about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
+                    <img src='/static/figma-ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
+                    <img src='/static/figma-ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
+                    <h1 className='ev-hero-heading'>Student Maintenance Rep</h1>
+                </header>
+
+                {isLoading || !person ? (
+                    <div className='loading-container'>
+                        <div className='loading-spinner'></div>
+                        <p className='loading-text'>Loading...</p>
+                    </div>
+                ) : (
+                    <section className='smr-detail'>
+                        <div className='smr-portrait'>
+                            <img src={person.image} alt={person.name} className='smr-portrait-image' />
+                        </div>
+                        <div className='smr-info'>
+                            <span className='smr-role'>Student Maintenance Rep</span>
+                            <h2 className='smr-name'>{person.name}</h2>
+                            {person.email ? (
+                                <a href={`mailto:${person.email}`} className='smr-email'>
+                                    {person.email}
+                                </a>
+                            ) : null}
+                            <p className='smr-bio'>{person.body}</p>
+                        </div>
+                    </section>
+                )}
+            </div>
+
+            <SiteFooter />
+        </div>
+    );
+};
 
 export default SMRPage;

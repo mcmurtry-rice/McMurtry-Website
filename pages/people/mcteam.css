@@ -1,0 +1,212 @@
+/* ============================================================
+ * McTeam — matches the Events Calendar / Room Reservations theme.
+ * ============================================================ */
+
+.mcteam-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+    padding-bottom: clamp(60px, 8vw, 120px);
+}
+
+.mcteam-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.mcteam-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+    z-index: 3;
+}
+
+.mcteam-page .ev-hero {
+    position: relative;
+    z-index: 5;
+    overflow: visible;
+}
+
+/* ----- Tab bar ----- */
+.mcteam-page .mt-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    padding: 0 clamp(16px, 4vw, 48px);
+    margin: 0 auto clamp(40px, 5vw, 64px);
+    max-width: 1200px;
+}
+
+.mcteam-page .mt-tab {
+    appearance: none;
+    border: 1.5px solid rgba(74, 52, 112, 0.20);
+    background: var(--mc-paper);
+    color: var(--mc-purple-700);
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 10px 22px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 180ms ease,
+                color 180ms ease,
+                border-color 180ms ease,
+                transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 180ms ease;
+}
+
+.mcteam-page .mt-tab:hover,
+.mcteam-page .mt-tab:focus-visible {
+    border-color: var(--mc-purple-500);
+    color: var(--mc-purple-500);
+    transform: translateY(-1px);
+}
+
+.mcteam-page .mt-tab-active {
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    border-color: var(--mc-purple-700);
+    box-shadow: 0 10px 24px -8px rgba(74, 52, 112, 0.45);
+}
+
+.mcteam-page .mt-tab-active:hover,
+.mcteam-page .mt-tab-active:focus-visible {
+    background: var(--mc-purple-500);
+    color: var(--mc-paper);
+    border-color: var(--mc-purple-500);
+}
+
+/* ----- Detail: single column with float-wrap image ----- */
+.mcteam-page .mt-detail {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 64px);
+    animation: mt-fade 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes mt-fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.mcteam-page .mt-detail-header {
+    text-align: center;
+    margin-bottom: clamp(24px, 4vw, 40px);
+}
+
+.mcteam-page .mt-detail-role {
+    display: inline-block;
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.74rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mc-purple-500);
+    margin-bottom: 8px;
+}
+
+.mcteam-page .mt-detail-name {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.9rem, 3.4vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--mc-purple-700);
+    margin: 0;
+    letter-spacing: 0;
+}
+
+.mcteam-page .mt-detail-body {
+    overflow: hidden;
+}
+
+.mcteam-page .mt-detail-image {
+    width: 280px;
+    height: auto;
+    float: left;
+    margin: 0 30px 20px 0;
+    border-radius: 16px;
+    border: 1px solid rgba(74, 52, 112, 0.18);
+    box-shadow: 0 24px 48px -20px rgba(74, 52, 112, 0.45);
+    display: block;
+}
+
+.mcteam-page .mt-detail-body p,
+.mcteam-page .mt-detail-body li {
+    font-family: var(--mc-font-body) !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    font-size: 1rem !important;
+    line-height: 1.75 !important;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    background: none !important;
+    text-shadow: none !important;
+    padding: 0 !important;
+    border: none !important;
+    margin: 0 0 18px !important;
+    text-align: justify !important;
+    hyphens: auto;
+}
+
+.mcteam-page .mt-detail-body p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.mcteam-page .mt-detail-list {
+    list-style: none;
+    padding: 18px 22px;
+    margin: 18px 0 0;
+    background: rgba(139, 111, 199, 0.08);
+    border-left: 3px solid var(--mc-purple-500);
+    border-radius: 12px;
+}
+
+.mcteam-page .mt-detail-list li {
+    font-family: var(--mc-font-body);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--mc-ink);
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 6px;
+}
+
+.mcteam-page .mt-detail-list li:last-child {
+    margin-bottom: 0;
+}
+
+.mcteam-page .mt-detail-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--mc-purple-500);
+}
+
+@media (max-width: 640px) {
+    .mcteam-page .mt-detail-image {
+        float: none;
+        width: 220px;
+        margin: 0 auto 24px;
+    }
+    .mcteam-page .mt-detail-body p {
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    .mcteam-page .mt-tab {
+        padding: 8px 16px;
+        font-size: 0.88rem;
+    }
+    .mcteam-page .mt-detail-image {
+        width: 200px;
+    }
+}

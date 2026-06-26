@@ -1,0 +1,75 @@
+/* ============================================================
+ * Wellbeing pages (Head Caregivers, RHAs, Strive Liaisons) — Figma theme.
+ * ============================================================ */
+
+.wellbeing-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+    min-height: 100vh;
+    padding-bottom: clamp(40px, 6vw, 80px);
+}
+
+.wellbeing-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.wellbeing-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+    z-index: 3;
+}
+
+.wellbeing-page .ev-hero {
+    position: relative;
+    z-index: 5;
+    overflow: visible;
+}
+
+.wellbeing-page .wellbeing-description {
+    font-family: var(--mc-font-body) !important;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 auto clamp(32px, 4.5vw, 56px) !important;
+    padding: 0 clamp(16px, 4vw, 48px) !important;
+    border: none !important;
+}
+
+.wellbeing-page .wellbeing-section {
+    margin: clamp(28px, 4vw, 48px) 0;
+}
+
+.wellbeing-page .division-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 0 clamp(20px, 3vw, 32px) !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
+}
+
+.wellbeing-page .subtitle h2 {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.5rem, 2.8vw, 2.2rem) !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-align: center;
+}

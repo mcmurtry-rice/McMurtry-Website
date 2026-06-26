@@ -1,0 +1,530 @@
+.mc-about-page {
+    background: var(--mc-paper);
+    overflow-x: hidden;
+    font-family: var(--mc-font-body);
+    color: var(--mc-ink);
+}
+
+/* ---------------- ABOUT MCMURTRY ---------------- */
+
+.mc-about {
+    position: relative;
+    width: 100%;
+    height: calc(1480px * var(--s));
+    overflow: hidden;
+}
+
+.mc-about-swoosh {
+    position: absolute;
+    top: calc(113px * var(--s));
+    left: calc(-201px * var(--s));
+    width: calc(958px * var(--s));
+    height: calc(529px * var(--s));
+    pointer-events: none;
+}
+
+.mc-about-ellipse-large {
+    position: absolute;
+    top: calc(153px * var(--s));
+    left: calc(1520px * var(--s));
+    width: calc(364px * var(--s));
+    height: calc(360px * var(--s));
+    pointer-events: none;
+}
+
+.mc-about-ellipse-small {
+    position: absolute;
+    top: calc(1061px * var(--s));
+    left: calc(1183px * var(--s));
+    width: calc(186px * var(--s));
+    height: calc(184px * var(--s));
+    pointer-events: none;
+}
+
+.mc-about-heading {
+    position: absolute;
+    top: calc(242px * var(--s));
+    left: calc(184px * var(--s));
+    width: calc(374px * var(--s));
+    margin: 0;
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-h2) * var(--s));
+    line-height: normal;
+    color: var(--mc-paper);
+    z-index: 2;
+}
+
+.mc-about-collage {
+    position: absolute;
+    top: calc(326px * var(--s));
+    left: calc(191px * var(--s));
+    width: calc(611px * var(--s));
+    height: calc(1100px * var(--s));
+    z-index: 4;
+}
+
+.mc-about-card {
+    position: absolute;
+    margin: 0;
+    border: calc(0.792px * var(--s)) solid var(--mc-purple-700);
+    border-radius: calc(18.789px * var(--s));
+    overflow: hidden;
+    background: var(--mc-paper);
+    transition:
+        transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 320ms ease;
+    isolation: isolate;
+    -webkit-mask-image: radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    clip-path: inset(0 round calc(18px * var(--s)));
+    contain: paint;
+}
+
+.mc-about-card:hover {
+    box-shadow:
+        0 14px 36px rgba(74, 52, 112, 0.28),
+        0 0 0 4px rgba(160, 124, 180, 0.35),
+        0 0 36px 6px rgba(160, 124, 180, 0.45);
+}
+
+.mc-about-card .mc-about-card-img {
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mc-about-card:hover .mc-about-card-img {
+    transform: scale(1.06);
+}
+
+.mc-about-card-1 {
+    top: 0;
+    left: 0;
+    width: calc(500px * var(--s));
+    height: calc(320px * var(--s));
+    transform: rotate(-3deg);
+    transform-origin: center;
+    box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.22);
+    z-index: 4;
+}
+
+.mc-about-card-2 {
+    top: calc(360px * var(--s));
+    left: calc(110px * var(--s));
+    width: calc(500px * var(--s));
+    height: calc(320px * var(--s));
+    transform: rotate(4deg);
+    transform-origin: center;
+    box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.22);
+    z-index: 5;
+}
+
+.mc-about-card-3 {
+    top: calc(720px * var(--s));
+    left: 0;
+    width: calc(500px * var(--s));
+    height: calc(320px * var(--s));
+    transform: rotate(-2deg);
+    transform-origin: center;
+    box-shadow: 0 calc(8px * var(--s)) calc(18px * var(--s)) rgba(0, 0, 0, 0.22);
+    z-index: 6;
+}
+
+.mc-about-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.mc-about-card-caption,
+.mc-burt-card-caption {
+    position: absolute;
+    bottom: calc(16px * var(--s));
+    left: calc(20px * var(--s));
+    right: calc(20px * var(--s));
+    margin: 0;
+    padding: calc(8px * var(--s)) calc(14px * var(--s));
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: calc(var(--mc-fs-cap-sm) * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-paper);
+    background: rgba(20, 12, 38, 0.55);
+    border-radius: calc(8px * var(--s));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.mc-about-body {
+    position: absolute;
+    top: calc(205px * var(--s));
+    left: calc(851px * var(--s));
+    width: calc(756px * var(--s));
+    z-index: 2;
+}
+
+.mc-about-lede {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: calc(var(--mc-fs-body-bold) * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-purple-500);
+    margin: 0 0 calc(28px * var(--s)) 0;
+}
+
+.mc-about-para,
+.mc-burt-para {
+    font-family: var(--mc-font-body);
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-body) * var(--s));
+    line-height: calc(var(--mc-lh-body) * var(--s));
+    color: var(--mc-ink);
+    margin: 0 0 calc(20px * var(--s)) 0;
+}
+
+.mc-about-list {
+    list-style: disc;
+    padding-left: calc(30px * var(--s));
+    margin: 0 0 calc(20px * var(--s)) 0;
+    font-family: var(--mc-font-body);
+    font-size: calc(var(--mc-fs-body) * var(--s));
+    line-height: calc(var(--mc-lh-body) * var(--s));
+    color: var(--mc-ink);
+}
+
+.mc-about-list li {
+    margin: 0;
+}
+
+.mc-divider {
+    border: 0;
+    border-left: calc(12px * var(--s)) solid var(--mc-purple-500);
+    height: calc(72px * var(--s));
+    width: 0;
+    margin: calc(33px * var(--s)) auto;
+    display: block;
+}
+
+/* ---------------- BURT & DEEDEE ---------------- */
+
+.mc-burt {
+    position: relative;
+    width: 100%;
+    height: calc(1140px * var(--s));
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.mc-burt-swoosh {
+    position: absolute;
+    top: 0;
+    left: calc(957px * var(--s));
+    width: calc(835px * var(--s));
+    height: calc(619px * var(--s));
+    pointer-events: none;
+}
+
+.mc-burt-ellipse-large {
+    position: absolute;
+    top: calc(130px * var(--s));
+    left: calc(-132px * var(--s));
+    width: calc(364px * var(--s));
+    height: calc(360px * var(--s));
+    pointer-events: none;
+}
+
+.mc-burt-ellipse-small {
+    position: absolute;
+    top: calc(1295px * var(--s));
+    left: calc(184px * var(--s));
+    width: calc(186px * var(--s));
+    height: calc(184px * var(--s));
+    pointer-events: none;
+}
+
+.mc-burt-heading {
+    position: absolute;
+    top: calc(147px * var(--s));
+    left: calc(1111px * var(--s));
+    width: calc(503px * var(--s));
+    margin: 0;
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-h2) * var(--s));
+    line-height: normal;
+    color: var(--mc-paper);
+    z-index: 2;
+}
+
+.mc-burt-body {
+    position: absolute;
+    top: calc(101px * var(--s));
+    left: calc(128px * var(--s));
+    width: calc(736px * var(--s));
+    z-index: 2;
+}
+
+.mc-burt-collage {
+    position: absolute;
+    top: calc(277px * var(--s));
+    left: calc(991px * var(--s));
+    width: calc(694px * var(--s));
+    height: calc(929px * var(--s));
+    z-index: 4;
+}
+
+.mc-burt-card {
+    position: absolute;
+    margin: 0;
+    border-radius: calc(18.789px * var(--s));
+    overflow: hidden;
+    border: calc(0.792px * var(--s)) solid var(--mc-purple-700);
+    transition:
+        transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 320ms ease;
+    isolation: isolate;
+    -webkit-mask-image: radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    clip-path: inset(0 round calc(18px * var(--s)));
+    contain: paint;
+}
+
+.mc-burt-card:hover {
+    box-shadow:
+        0 14px 36px rgba(74, 52, 112, 0.28),
+        0 0 0 4px rgba(160, 124, 180, 0.35),
+        0 0 36px 6px rgba(160, 124, 180, 0.45);
+}
+
+.mc-burt-card .mc-burt-card-img {
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mc-burt-card:hover .mc-burt-card-img {
+    transform: scale(1.06);
+}
+
+.mc-burt-card-1 {
+    top: 0;
+    left: 0;
+    width: calc(694px * var(--s));
+    height: calc(489px * var(--s));
+    z-index: 6;
+}
+
+.mc-burt-card-2 {
+    top: calc(443px * var(--s));
+    left: calc(47px * var(--s));
+    width: calc(557px * var(--s));
+    height: calc(392px * var(--s));
+    border-width: calc(0.636px * var(--s));
+    border-radius: calc(15.084px * var(--s));
+    transform: rotate(10.38deg);
+    transform-origin: center;
+    box-shadow: 0 calc(4px * var(--s)) calc(10px * var(--s)) rgba(0, 0, 0, 0.25);
+    z-index: 5;
+}
+
+.mc-burt-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ==========================================================================
+ * TABLET (641px – 1024px)
+ * ========================================================================== */
+
+@media (max-width: 1024px) {
+    .mc-about {
+        height: auto;
+        padding: 48px 24px 32px;
+        display: flex;
+        flex-direction: column;
+    }
+    .mc-about-swoosh,
+    .mc-about-ellipse-large,
+    .mc-about-ellipse-small {
+        display: none;
+    }
+    .mc-about-heading {
+        position: static;
+        width: auto;
+        font-size: clamp(2.25rem, 6vw, 3.2rem);
+        color: var(--mc-purple-500);
+        text-shadow: none;
+        margin: 0 0 24px;
+        order: 1;
+    }
+    .mc-about-body {
+        order: 2;
+        position: static;
+        width: 100%;
+        max-width: 720px;
+        margin: 0 auto;
+        left: auto;
+        padding: 0;
+    }
+    .mc-about-collage {
+        order: 3;
+        position: static;
+        width: min(80%, 600px);
+        height: auto;
+        margin: 0 auto 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .mc-about-card-2,
+    .mc-about-card-3 {
+        display: none;
+    }
+    .mc-about-card,
+    .mc-about-card-1 {
+        position: static;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        transform: none;
+        margin: 0;
+    }
+    .mc-about-card-img {
+        width: 100%;
+        height: 100%;
+    }
+    .mc-about-card-caption {
+        font-size: 0.9rem;
+    }
+    .mc-about-lede {
+        font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+        margin: 0 0 18px;
+    }
+    .mc-about-para,
+    .mc-burt-para {
+        font-size: 1rem;
+        line-height: 1.65;
+        margin: 0 0 16px;
+    }
+    .mc-about-list {
+        font-size: 1rem;
+        line-height: 1.65;
+        padding-left: 24px;
+    }
+    .mc-divider {
+        height: 40px;
+        border-left-width: 6px;
+        margin: 22px auto;
+    }
+
+    .mc-burt {
+        height: auto;
+        padding: 32px 24px 56px;
+        display: flex;
+        flex-direction: column;
+    }
+    .mc-burt-swoosh,
+    .mc-burt-ellipse-large,
+    .mc-burt-ellipse-small {
+        display: none;
+    }
+    .mc-burt-heading {
+        position: static;
+        width: auto;
+        font-size: clamp(2.25rem, 6vw, 3.2rem);
+        color: var(--mc-purple-500);
+        text-shadow: none;
+        margin: 0 0 24px;
+        white-space: normal;
+        order: 1;
+    }
+    .mc-burt-body {
+        order: 2;
+        position: static;
+        width: 100%;
+        max-width: 720px;
+        margin: 0 auto;
+        left: auto;
+        padding: 0;
+    }
+    .mc-burt-collage {
+        order: 3;
+        position: static;
+        width: min(80%, 600px);
+        height: auto;
+        margin: 0 auto 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+    }
+    .mc-burt-card-2 {
+        display: none;
+    }
+    .mc-burt-card,
+    .mc-burt-card-1 {
+        position: static;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        transform: none;
+        margin: 0;
+        border-width: 1px;
+    }
+    .mc-burt-card-img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+/* ==========================================================================
+ * PHONE (≤ 640px)
+ * ========================================================================== */
+
+@media (max-width: 640px) {
+    .mc-about {
+        padding: 36px 16px 24px;
+    }
+    .mc-about-heading {
+        font-size: clamp(1.85rem, 8vw, 2.4rem);
+        margin: 0 0 18px;
+    }
+    .mc-about-collage {
+        max-width: 100%;
+        margin: 0 auto 24px;
+        gap: 14px;
+    }
+    .mc-about-lede {
+        font-size: 1.1rem;
+        margin: 0 0 14px;
+    }
+    .mc-about-para,
+    .mc-burt-para,
+    .mc-about-list {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+    .mc-about-list {
+        padding-left: 20px;
+    }
+    .mc-divider {
+        height: 32px;
+        border-left-width: 5px;
+        margin: 16px auto;
+    }
+
+    .mc-burt {
+        padding: 24px 16px 40px;
+    }
+    .mc-burt-heading {
+        font-size: clamp(1.85rem, 8vw, 2.4rem);
+        margin: 0 0 18px;
+    }
+    .mc-burt-collage {
+        max-width: 100%;
+        margin: 0 auto 24px;
+        gap: 14px;
+    }
+}

@@ -28,3 +28,8 @@ DEPLOY.md
 # siteimprove fetcher: never commit credentials or issue snapshots
 siteimprove/.env
 siteimprove/data/
+
+# local tooling
+.claude/
+.vscode/
+.playwright-mcp/
