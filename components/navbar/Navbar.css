@@ -43,16 +43,18 @@
 .mc-navbar-links {
     display: flex;
     align-items: center;
-    gap: 80px;
+    gap: 56px;
     white-space: nowrap;
     margin-left: auto;
 }
 
 .mc-navbar-link {
-    font-family: var(--mc-font-nav);
+    font-family: var(--mc-font-display);
+    font-style: italic;
     font-weight: 400;
     font-size: calc(24px * var(--s));
     line-height: 1;
+    letter-spacing: 0.04em;
     color: var(--mc-paper);
     text-decoration: none;
     transition: opacity 180ms ease;
@@ -73,7 +75,10 @@
     display: inline-flex;
     align-items: center;
     gap: calc(6px * var(--s));
-    font-family: inherit;
+    font-family: var(--mc-font-display);
+    /* font-style: italic; */
+    font-weight: 400;
+    letter-spacing: 0.04em;
 }
 
 
@@ -472,10 +477,10 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 16px 4px;
+    padding: 10px 4px;
     font-family: var(--mc-font-display);
     font-style: italic;
-    font-size: 1.6rem;
+    font-size: 1.2rem;
     color: var(--mc-paper);
     text-decoration: none;
     border: 0;
@@ -498,6 +503,7 @@
 
 .mc-mobile-drawer-trigger {
     font-family: var(--mc-font-display);
+    font-style: italic;
 }
 
 .mc-mobile-drawer-sublinks {
@@ -588,7 +594,7 @@
         font-size: 1.25rem;
     }
     .mc-navbar-links {
-        gap: 28px;
+        gap: 36px;
     }
     .mc-navbar-link {
         font-size: 1rem;
