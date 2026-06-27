@@ -3,7 +3,9 @@ import { useState, useEffect } from 'react';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
-import { oweekPdfPath, oweekPdfDownloadName } from '../../../lib/oweek';
+import config from './config.json';
+const oweekPdfPath = `/static/oweek/2025-2026/${config.pdfFilename}`;
+const oweekPdfDownloadName = config.pdfDownloadName;
 import './oweek.css';
 
 const OweekBookPage = () => {

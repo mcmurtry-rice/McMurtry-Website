@@ -2,7 +2,9 @@
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
-import { oweekCoordinators, oweekImage } from '../../../lib/oweek';
+import coordinatorsData from './coordinators.json';
+const oweekCoordinators = coordinatorsData.coordinators;
+const oweekImage = (rel) => `/static/oweek/2025-2026/images/${rel}`;
 import './oweek.css';
 
 const CoordsPage = () => (

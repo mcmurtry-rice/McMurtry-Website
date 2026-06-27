@@ -2,7 +2,9 @@
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
-import { oweekTheme, oweekImage } from '../../../lib/oweek';
+import themeData from './theme.json';
+const oweekTheme = themeData;
+const oweekImage = (rel) => `/static/oweek/2025-2026/images/${rel}`;
 import './oweek.css';
 
 const ThemePage = () => (

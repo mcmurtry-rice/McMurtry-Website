@@ -3,7 +3,11 @@ import { Box } from 'rebass';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
-import { oweekCoordinators, oweekLeadership, oweekConfig } from '../../../lib/oweek';
+import coordinatorsData from './coordinators.json';
+import config from './config.json';
+const oweekCoordinators = coordinatorsData.coordinators;
+const oweekLeadership = coordinatorsData.leadership;
+const oweekConfig = config;
 import './oweek.css';
 
 const OweekContactPage = () => {

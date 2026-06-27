@@ -5,8 +5,14 @@ import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import ImageCarousel from '../../../components/ImageCarousel/ImageCarousel';
-import { oweekConfig, oweekMoveInDate, oweekImage } from '../../../lib/oweek';
+import config from './config.json';
 import './oweek.css';
+
+const IMAGE_BASE = '/static/oweek/2025-2026/images/';
+const oweekImage = (rel) => `${IMAGE_BASE}${rel}`;
+
+const [y, m, d] = config.moveInDate.split('-').map(Number);
+const oweekMoveInDate = new Date(y, m - 1, d);
 
 class Countdown extends React.Component {
     constructor(props) {
@@ -27,7 +33,7 @@ class Countdown extends React.Component {
     }
 }
 
-const oweekCarouselImages = oweekConfig.carousel.map(slide => ({ ...slide, src: oweekImage(slide.src) }));
+const oweekCarouselImages = config.carousel.map(slide => ({ ...slide, src: oweekImage(slide.src) }));
 
 const OweekHomepage = () => (
     <div className='page page-with-staggered-menu'>
@@ -36,7 +42,7 @@ const OweekHomepage = () => (
         <div className='oweek-homepage'>
             <div className='oweek-hero'>
                 <h1 className='oweek-main-title'>Welcome to McMurtry!</h1>
-                <h2 className='oweek-subtitle-hero'>{oweekConfig.themeSubtitle}</h2>
+                <h2 className='oweek-subtitle-hero'>{config.themeSubtitle}</h2>
                 <div className='oweek-countdown-hero'><Countdown /></div>
             </div>
             <ImageCarousel images={oweekCarouselImages} autoplay={true} />

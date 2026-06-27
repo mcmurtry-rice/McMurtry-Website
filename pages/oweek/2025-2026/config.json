@@ -1,0 +1,47 @@
+{
+  "year": 2025,
+  "themeName": "PicassO-Week",
+  "themeSubtitle": "PicassO-Week 2025",
+  "moveInDate": "2026-08-17",
+  "pdfFilename": "oweekbook.pdf",
+  "pdfDownloadName": "McMurtry-OWeek-Book-2025.pdf",
+  "generalEmail": "mcmurtryoweek@gmail.com",
+  "carousel": [
+    {
+      "src": "images/coords/groupphoto.JPG",
+      "alt": "2025 O-Week Coordinators",
+      "caption": "Meet Your 2025 O-Week Coordinators!",
+      "description": "Leading you through an unforgettable week"
+    },
+    {
+      "src": "images/hero/arrival.jpg",
+      "alt": "O-Week Arrival",
+      "caption": "O-Week Arrival Day",
+      "description": "Experience the magic of McMurtry traditions"
+    },
+    {
+      "src": "images/hero/welcome.png",
+      "alt": "O-Week Welcome",
+      "caption": "Welcome to Your New Home",
+      "description": "Where lifelong friendships begin"
+    },
+    {
+      "src": "images/hero/cardmovin.jpg",
+      "alt": "Moving In",
+      "caption": "Move-In Day",
+      "description": "Your journey at McMurtry starts here"
+    },
+    {
+      "src": "images/hero/building.jpg",
+      "alt": "McMurtry Building",
+      "caption": "McMurtry College",
+      "description": "Your home away from home"
+    },
+    {
+      "src": "images/hero/whatisoweek.png",
+      "alt": "What is O-Week",
+      "caption": "What is O-Week?",
+      "description": "A week of bonding, fun, and Rice traditions"
+    }
+  ]
+}

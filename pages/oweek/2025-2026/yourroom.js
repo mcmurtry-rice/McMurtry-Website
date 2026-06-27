@@ -18,7 +18,7 @@ const YourRoomPage = () => (
             </Box>
             <Box className='about-text' width={[1, 0.9, 0.8, 0.7]} ml='auto' mr='auto' mb={[20, 50]} mt={[20, 50]}>
                 <h2 className='section-title'>Included Furniture</h2>
-                <Image src='/static/oweek/current/images/hero/room.JPG' alt='McMurtry Room' width={350}
+                <Image src='/static/oweek/2025-2026/images/hero/room.JPG' alt='McMurtry Room' width={350}
                     className='float-right-img no-rotate' style={{ float: 'right', marginLeft: '30px', marginBottom: '20px' }} />
                 <p><strong>Per Person:</strong></p>
                 <ul>

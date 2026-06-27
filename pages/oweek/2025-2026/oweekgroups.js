@@ -5,7 +5,9 @@ import { Box, Image } from 'rebass';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
-import { oweekGroups, oweekImage } from '../../../lib/oweek';
+import groupsData from './groups.json';
+const oweekGroups = groupsData.oweek_groups;
+const oweekImage = (rel) => `/static/oweek/2025-2026/images/${rel}`;
 import './oweek.css';
 import './groups.css';
 

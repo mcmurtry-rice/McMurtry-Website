@@ -11,8 +11,8 @@ const MoveInPage = () => (
         <div className='oweek-page'>
             <h1 className='oweek-title'>Arrival and Move In</h1>
             <Flex flexDirection='row' justifyContent='center' flexWrap='wrap'>
-                <Box width={[0.8, 0.4]}><Image src='/static/oweek/current/images/hero/movein.jpg' alt='' /></Box>
-                <Box width={[0.8, 0.268]}><Image src='/static/oweek/current/images/hero/arrival.jpg' alt='' /></Box>
+                <Box width={[0.8, 0.4]}><Image src='/static/oweek/2025-2026/images/hero/movein.jpg' alt='' /></Box>
+                <Box width={[0.8, 0.268]}><Image src='/static/oweek/2025-2026/images/hero/arrival.jpg' alt='' /></Box>
             </Flex>
             <p>Due to Covid-19, Rice is following CDC guidelines for social distancing in order to maintain student safety during O-week. Because of this, move-in day will look different this year compared to previous years. You will receive an email with detailed instructions for move-in later this summer that will provide the time and date for your specific arrival to Rice.</p>
             <h2 className='oweek-subtitle'>Arriving by Car</h2>
