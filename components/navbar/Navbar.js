@@ -14,6 +14,10 @@ const navbar_headers = [
         ]
     },
     {
+        "name": "O-Week 2026",
+        "to": "/oweek/oweek2026"
+    },
+    {
         "name": "O-Week",
         "subheaders": [
             { "name": "O-Week Home", "to": "/oweek" },

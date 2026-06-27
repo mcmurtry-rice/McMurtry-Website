@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='impact-site-verification' value='a7e84909-a5e7-4d60-8a69-92ba87045b7c'>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        :root {
+            --resourceboy-primary-color: #e60b33;
+            --resourceboy-primary-color_hover: #d50329;
+        }
+    </style>
+	<meta name='robots' content='noindex, follow' />
+	<style>img:is([sizes="auto" i], [sizes^="auto," i]) { contain-intrinsic-size: 3000px 1500px }</style>
+	
+	<!-- This site is optimized with the Yoast SEO plugin v27.8 - https://yoast.com/product/yoast-seo-wordpress/ -->
+	<title>Page not found | Resource Boy</title>
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:title" content="Page not found | Resource Boy" />
+	<meta property="og:site_name" content="Resource Boy" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https:\/\/schema.org","@graph":[{"@type":"WebSite","@id":"https:\/\/resourceboy.com\/#website","url":"https:\/\/resourceboy.com\/","name":"Resource Boy","description":"Free Design Resources","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https:\/\/resourceboy.com\/?s={search_term_string}"},"query-input":{"@type":"PropertyValueSpecification","valueRequired":true,"valueName":"search_term_string"}}],"inLanguage":"en-US"}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<link rel='dns-prefetch' href='//www.googletagmanager.com' />
+<link rel="alternate" type="application/rss+xml" title="Resource Boy &raquo; Feed" href="https://resourceboy.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Resource Boy &raquo; Comments Feed" href="https://resourceboy.com/comments/feed/" />
+<link rel='stylesheet' id='wp-block-library-css' href='https://resourceboy.com/wp-includes/css/dist/block-library/style.min.css?ver=5dbcbdf187fcac15d0ae1c09265231f0' media='all' />
+<style id='classic-theme-styles-inline-css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css'>
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+:root :where(.wp-block-pullquote){font-size: 1.5em;line-height: 1.6;}
+</style>
+<style id='woocommerce-inline-inline-css'>
+.woocommerce form .form-row .required { visibility: visible; }
+</style>
+<link rel='stylesheet' id='brands-styles-css' href='https://resourceboy.com/wp-content/plugins/woocommerce/assets/css/brands.css?ver=10.0.5' media='all' />
+<link rel='stylesheet' id='resourceboy-style-css' href='https://resourceboy.com/wp-content/themes/resource-boy-wp/style.css?ver=resourceboy' media='all' />
+<link rel='stylesheet' id='resourceboy-custom-style-css' href='https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/customStyle.css?ver=1.1.7' media='all' />
+<script src="https://resourceboy.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1" id="jquery-core-js"></script>
+<script src="https://resourceboy.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1" id="jquery-migrate-js"></script>
+<script src="https://resourceboy.com/wp-content/plugins/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js?ver=2.7.0-wc.10.0.5" id="jquery-blockui-js" defer data-wp-strategy="defer"></script>
+<script id="wc-add-to-cart-js-extra">
+var wc_add_to_cart_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_view_cart":"View cart","cart_url":"https:\/\/resourceboy.com","is_cart":"","cart_redirect_after_add":"no"};
+</script>
+<script src="https://resourceboy.com/wp-content/plugins/woocommerce/assets/js/frontend/add-to-cart.min.js?ver=10.0.5" id="wc-add-to-cart-js" defer data-wp-strategy="defer"></script>
+<script src="https://resourceboy.com/wp-content/plugins/woocommerce/assets/js/js-cookie/js.cookie.min.js?ver=2.1.4-wc.10.0.5" id="js-cookie-js" defer data-wp-strategy="defer"></script>
+<script id="woocommerce-js-extra">
+var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":"\/?wc-ajax=%%endpoint%%","i18n_password_show":"Show password","i18n_password_hide":"Hide password"};
+</script>
+<script src="https://resourceboy.com/wp-content/plugins/woocommerce/assets/js/frontend/woocommerce.min.js?ver=10.0.5" id="woocommerce-js" defer data-wp-strategy="defer"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://resourceboy.com/xmlrpc.php?rsd" />
+
+<meta name="generator" content="Site Kit by Google 1.180.0" />	<noscript><style>.woocommerce-product-gallery{ opacity: 1 !important; }</style></noscript>
+	<style>.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>		<style id="wp-custom-css">
+			.single__main .article-container .single__main__article__left-side img {
+    width: 100%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+	padding-bottom: unset;
+}
+
+.single__main__article__right-side {
+      flex-direction: column !important;
+	    justify-content: flex-start !important;
+}
+
+.go-to-hyper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  max-height: 500px;
+  margin-top: 20px;
+  padding-top: 125.29%;
+}
+
+.go-to-hyper > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.go-to-hyper img {
+  width: 100%;
+  display: block;
+}
+
+.go-to-hyper__image {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  animation: slide-hyper-image;
+  animation-fill-mode: forwards;
+  animation-duration: 30s;
+  z-index: -1;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform: translateY(calc(0% + 479px));
+}
+
+@keyframes slide-hyper-image {
+  from {
+    transform: translateY(calc(100% - 0px));
+  }
+  to {
+    transform: translateY(calc(0% + 479px));
+  }
+}
+
+#single__main__article__left-side {
+    position: relative;
+}
+
+#bsa-zone_1715766746994-1_123456 {
+    margin-bottom: 32px;
+}
+
+.go-to-hyper {
+    margin-top: 32px;
+}
+
+.articles .articles-container article{
+	margin-bottom: 0px !important;
+}
+
+@media screen and (min-width: 121em) {
+    .single__main {
+        padding: 0 10%;
+    }
+}
+
+.articles .articles-container article img {
+    max-width: 100%;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.term-fonts .articles .articles-container article .article__img{
+    background-color: unset;
+}
+
+.single-product-font .articles .articles-container article .article__img{
+    background-color: unset;
+}
+
+.single__main .article-container .single__main__article__right-side .single__main__article__left-side__table-container .designer .designer-name {
+    display: flex;
+    flex-direction: row;
+}
+
+.single__main .article-container .single__main__article__right-side .single__main__article__left-side__table-container .designer .designer-name a{
+    padding-left: 8px;
+		font-size: 12px
+}
+
+.index__search-section .search-box .search-box__button button {
+    background-color: var(--resourceboy-primary-color);
+}
+
+.single__main .article-container .single__main__article__right-side .single__main__article__left-side__table-container .free-download {
+    background-color: var(--resourceboy-primary-color);
+}
+
+.header .header-dark .container .header__logo {
+    max-width: 115px;
+}
+
+.index__header .header__logo-container .header__logo {
+    max-width: 115px;
+}
+
+.index__header .header-mobile .header-mobile__logo {
+    width: 108px;
+    margin-top: 5px;
+}
+
+.header .header-mobile .header-mobile__logo{
+	width: 108px;
+  margin-top: 5px;
+}
+
+.tax-product_cat #bsa-zone_1702414879881-9_123456 {
+    margin-top: 115px;
+}
+
+.single-product #bsa-zone_1715766705165-7_123456{
+	margin-top: 50px;
+}
+
+.single-product #bsa-zone_1702414879881-9_123456{
+	margin-bottom: 50px;
+}
+
+.tax-product_cat #bsa-zone_1715766705165-7_123456, #bsa-zone_1729594521753-7_123456, #bsa-zone_1743672649437-6_123456 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin: 35px 0;
+}
+
+.specian-menu-color a{
+    color: #e60b33 !important;
+}
+
+a[href="https://hyperpix.net"] {
+    display: none !important;
+}		</style>
+			<script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript" data-wpfc-render="false"></script>
+    <script type="text/javascript" data-wpfc-render="false">
+        (function(){
+            var bsa_optimize=document.createElement('script');
+            bsa_optimize.type='text/javascript';
+            bsa_optimize.async=true;
+            bsa_optimize.src='https://cdn4.buysellads.net/pub/resourceboy.js?'+(new Date()-new Date()%600000);
+            (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa_optimize);
+        })();
+    </script>
+</head>
+<body class="error404 wp-theme-resource-boy-wp theme-resource-boy-wp woocommerce-no-js woocommerce-active hfeed">
+<header class="header">
+    <div class="header-dark">
+        <div class="container">
+            <a href="https://resourceboy.com"><img class="header__logo" src="https://resourceboy.com/wp-content/uploads/2024/11/rb-logo.svg" alt=""></a>
+            <form for="header__search" class="js-header-label" action="https://resourceboy.com/">
+                <img class="header__search-icon search-icon" src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/search.svg" alt="">
+                <img class="header__search-icon dark-search-icon" src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/dark-search.svg" alt="">
+                <input class="js-header-search-input" id="header__search" type="search" placeholder="Search" value="" name="s">
+            </form>
+        </div>
+    </div>
+    <div class="header-light">
+		<nav class="menu-main-container"><ul id="menu-main" class="container header-light__navigation"><li id="menu-item-9642" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-9642"><a href="https://resourceboy.com/">All</a></li>
+<li id="menu-item-85979" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-85979"><a href="https://resourceboy.com/exclusives/">Exclusives</a></li>
+<li id="menu-item-172936" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-172936"><a href="https://resourceboy.com/fonts/">Fonts</a></li>
+<li id="menu-item-82910" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82910"><a href="https://resourceboy.com/textures/">Textures</a></li>
+<li id="menu-item-76356" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-76356"><a href="https://resourceboy.com/text-effects/">Text Effects</a></li>
+<li id="menu-item-9234" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-9234"><a href="https://resourceboy.com/mockups/">Mockups</a></li>
+<li id="menu-item-82132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82132"><a href="https://resourceboy.com/photoshop-gradients/">Gradients</a></li>
+<li id="menu-item-81800" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81800"><a href="https://resourceboy.com/photoshop-brushes/">Brushes</a></li>
+<li id="menu-item-134791" class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-134791"><a href="https://resourceboy.com/patterns/">Patterns</a></li>
+<li id="menu-item-29344" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29344"><a href="https://resourceboy.com/flyers/">Flyers</a></li>
+</ul></nav>    </div>
+    <div class="header-mobile">
+        <div class="header-mobile__left-side">
+            <button class="header-mobile__menu-icon">
+                <img src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/menu.svg" alt="">
+                <img class="d-none" src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/close.svg" alt="">
+            </button>
+            <a href="https://resourceboy.com"><img class="header-mobile__logo" src="https://resourceboy.com/wp-content/uploads/2024/11/rb-logo.svg" alt=""></a>
+        </div>
+        <div class="header-mobile__right-side">
+            <button class="js-search-close-container">
+                <img class="search-icon" src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/search-white.svg" alt="">
+                <img class="close-icon d-none" src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/close.svg" alt="">
+            </button>
+        </div>
+    </div>
+    <div class="header-mobile__search js-header-mobile__search hide">
+        <form class="js-mobile-search__form hide" action="https://resourceboy.com/">
+            <img class="header__search-icon dark-search-icon" src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/dark-search.svg" alt="">
+            <input class="js-mobile-header-search-input" type="search" placeholder="Search" value="" name="s">
+        </form>
+    </div>
+    <div class="js-header-mobile__menu header-mobile__menu hide">
+		<ul id="menu-main-1" class="header-mobile__menu__nav"><li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-9642"><a href="https://resourceboy.com/">All</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-85979"><a href="https://resourceboy.com/exclusives/">Exclusives</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-172936"><a href="https://resourceboy.com/fonts/">Fonts</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82910"><a href="https://resourceboy.com/textures/">Textures</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-76356"><a href="https://resourceboy.com/text-effects/">Text Effects</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-9234"><a href="https://resourceboy.com/mockups/">Mockups</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-82132"><a href="https://resourceboy.com/photoshop-gradients/">Gradients</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-81800"><a href="https://resourceboy.com/photoshop-brushes/">Brushes</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-134791"><a href="https://resourceboy.com/patterns/">Patterns</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-29344"><a href="https://resourceboy.com/flyers/">Flyers</a></li>
+</ul>    </div>
+</header>
+    <main class="main-404">
+        <section class="section-404">
+            <div class="nf-container">
+                <img class="" src="https://resourceboy.com/wp-content/themes/resource-boy-wp/assets/images/404.svg" alt="404">
+                <h1 class="">Oops! That Page Can't Be Found.</h1>
+                <p class="">It looks like nothing was found at this location. Maybe try a search?</p>
+                <div class="nf-form-container">
+                    <form class="search-box" action="https://resourceboy.com/">
+                        <label class="search-box__input">
+                            <input type="search" placeholder="What do you want to download?" value="" name="s">
+                        </label>
+                        <label class="search-box__button">
+                            <button class="search-icon"></button>
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+<!--WPFC_FOOTER_START-->
+<footer class="footer">
+			<div class="menu-footer-container"><ul id="menu-footer" class="menu"><li id="menu-item-200169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-200169"><a href="https://resourceboy.com/about/">About</a></li>
+<li id="menu-item-200174" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-200174"><a href="https://resourceboy.com/license/">License</a></li>
+<li id="menu-item-200603" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-200603"><a href="https://resourceboy.com/contact/">Contact</a></li>
+<li id="menu-item-202567" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-202567"><a href="https://resourceboy.com/dmca/">DMCA</a></li>
+<li id="menu-item-200413" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-200413"><a href="https://resourceboy.com/privacy-policy/">Privacy Policy</a></li>
+</ul></div>	
+    <p class="footer__copyright"><span>© 2021-2026 Resource Boy. All Rights Reserved.</span></p>
+</footer>
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"\/*"},{"not":{"href_matches":["\/wp-*.php","\/wp-admin\/*","\/wp-content\/uploads\/*","\/wp-content\/*","\/wp-content\/plugins\/*","\/wp-content\/themes\/resource-boy-wp\/*","\/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+	<script>
+		(function () {
+			var c = document.body.className;
+			c = c.replace(/woocommerce-no-js/, 'woocommerce-js');
+			document.body.className = c;
+		})();
+	</script>
+	<link rel='stylesheet' id='wc-blocks-style-css' href='https://resourceboy.com/wp-content/plugins/woocommerce/assets/client/blocks/wc-blocks.css?ver=wc-10.0.5' media='all' />
+<script src="https://resourceboy.com/wp-content/themes/resource-boy-wp/js/navigation.js?ver=resourceboy" id="resourceboy-navigation-js"></script>
+<script src="https://resourceboy.com/wp-content/themes/resource-boy-wp/js/main.js?ver=1.1.7" id="resourceboy-main-js"></script>
+<script id="resourceboy-custom-js-extra">
+var resourceboy_counter_ajax = {"ajaxurl":"https:\/\/resourceboy.com\/wp-admin\/admin-ajax.php","homeurl":"https:\/\/resourceboy.com\/wp-content\/themes\/resource-boy-wp","nonce":"311fe62aaa"};
+var resourceboy_LoadMore_ajax = {"ajaxurl":"https:\/\/resourceboy.com\/wp-admin\/admin-ajax.php","homeurl":"https:\/\/resourceboy.com\/wp-content\/themes\/resource-boy-wp","nonce":"311fe62aaa"};
+var resourceboy_LoadPopup_ajax = {"ajaxurl":"https:\/\/resourceboy.com\/wp-admin\/admin-ajax.php","homeurl":"https:\/\/resourceboy.com\/wp-content\/themes\/resource-boy-wp","nonce":"311fe62aaa"};
+</script>
+<script src="https://resourceboy.com/wp-content/themes/resource-boy-wp/js/custom.js?ver=1.1.7" id="resourceboy-custom-js"></script>
+<script src="https://resourceboy.com/wp-content/plugins/woocommerce/assets/js/sourcebuster/sourcebuster.min.js?ver=10.0.5" id="sourcebuster-js-js"></script>
+<script id="wc-order-attribution-js-extra">
+var wc_order_attribution = {"params":{"lifetime":1.0000000000000000818030539140313095458623138256371021270751953125e-5,"session":30,"base64":false,"ajaxurl":"https:\/\/resourceboy.com\/wp-admin\/admin-ajax.php","prefix":"wc_order_attribution_","allowTracking":true},"fields":{"source_type":"current.typ","referrer":"current_add.rf","utm_campaign":"current.cmp","utm_source":"current.src","utm_medium":"current.mdm","utm_content":"current.cnt","utm_id":"current.id","utm_term":"current.trm","utm_source_platform":"current.plt","utm_creative_format":"current.fmt","utm_marketing_tactic":"current.tct","session_entry":"current_add.ep","session_start_time":"current_add.fd","session_pages":"session.pgs","session_count":"udata.vst","user_agent":"udata.uag"}};
+</script>
+<script src="https://resourceboy.com/wp-content/plugins/woocommerce/assets/js/frontend/order-attribution.min.js?ver=10.0.5" id="wc-order-attribution-js"></script>
+<script data-wpfc-render="false">
+     (function(){
+    if(typeof _bsa !== 'undefined' && _bsa) {
+      _bsa.init('flexbar', 'CWYD427I', 'placement:resourceboycom');
+    }
+  })();
+</script>
+<!-- partial -->
+</body>
+</html>
