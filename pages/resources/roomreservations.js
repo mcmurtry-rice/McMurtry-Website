@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Header from '../../components/Header/Header';
 import SiteNavbar from '../../components/navbar/Navbar';
 import SiteFooter from '../../components/Footer/Footer';
@@ -11,9 +11,9 @@ const RoomReservationsPage = () => (
         <SiteNavbar />
         <div className='room-reservations-page'>
             <header className='ev-hero'>
-                <img src='/static/figma-about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
-                <img src='/static/figma-ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
-                <img src='/static/figma-ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
+                <img src='/static/icons/about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
+                <img src='/static/icons/ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
+                <img src='/static/icons/ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
                 <h1 className='ev-hero-heading'>Room Reservations</h1>
                 <p className='ev-hero-lede'>Book a McMurtry space for studying, meetings, or events.</p>
             </header>
@@ -26,11 +26,11 @@ const RoomReservationsPage = () => (
                     <div className='rr-room-grid'>
                         {[
                             { name: 'Private Dining Room', loc: 'Above West Servery' },
-                            { name: 'Room 114', loc: '1st floor · study room' },
+                            { name: 'Room 114', loc: '1st floor Â· study room' },
                             { name: 'TV Lounge', loc: '1st floor' },
                             { name: '4th Floor Lounge', loc: '4th floor' },
                             { name: 'Music Room', loc: '1st floor' },
-                            { name: 'Bonfire Pit', loc: 'Quad · not a Quad reservation' },
+                            { name: 'Bonfire Pit', loc: 'Quad Â· not a Quad reservation' },
                         ].map(r => (
                             <div className='rr-room-card' key={r.name}>
                                 <span className='rr-room-name'>{r.name}</span>
@@ -65,8 +65,8 @@ const RoomReservationsPage = () => (
                 </div>
                 <div className='rr-section-body'>
                     <div className='rr-room-grid rr-room-grid-2'>
-                        <div className='rr-room-card'><span className='rr-room-name'>McMurtry Quad</span><span className='rr-room-loc'>Outdoor · large gatherings</span></div>
-                        <div className='rr-room-card'><span className='rr-room-name'>McMurtry Commons</span><span className='rr-room-loc'>Main hall · events</span></div>
+                        <div className='rr-room-card'><span className='rr-room-name'>McMurtry Quad</span><span className='rr-room-loc'>Outdoor Â· large gatherings</span></div>
+                        <div className='rr-room-card'><span className='rr-room-name'>McMurtry Commons</span><span className='rr-room-loc'>Main hall Â· events</span></div>
                     </div>
                     <div className='rr-callout'>
                         <span className='rr-callout-label'>Approval needed</span>
@@ -79,7 +79,7 @@ const RoomReservationsPage = () => (
             </div>
             <div className='ev-cta-row'>
                 <a className='ev-cta' href='https://calendar.google.com/calendar/u/1?cid=MjM1N2FmOGVhMzIxMjE5ZTY5ZjVmMDhmZTdiZDE2YmY2NjYzYzNhNWE1ZjU0YTlhMWY1MDUyOTcyZWQ5MzcyNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t' target='_blank' rel='noopener noreferrer'>
-                    Add to My Calendar <span aria-hidden='true' className='ev-cta-arrow'>›</span>
+                    Add to My Calendar <span aria-hidden='true' className='ev-cta-arrow'>â€º</span>
                 </a>
                 <p className='rr-contact-line'>Questions? Email <a href='mailto:mcmsecretary@gmail.com'>mcmsecretary@gmail.com</a>.</p>
             </div>

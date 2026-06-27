@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import './Navbar.css';
 
@@ -89,7 +89,7 @@ const SiteNavbar = () => {
                 <Link href="/">
                     <a className="mc-navbar-brand">
                         <img
-                            src="/static/figma-hero-crest.png"
+                            src="/static/logos/hero-crest.png"
                             alt=""
                             className="mc-navbar-crest"
                         />
@@ -115,20 +115,21 @@ const SiteNavbar = () => {
                                 onMouseLeave={() => setOpenDropdown(null)}
                             >
                                 <button
-                                    type="button"
-                                    className="mc-navbar-link mc-navbar-trigger"
-                                    aria-expanded={openDropdown === header.name}
-                                    aria-haspopup="menu"
-                                    onClick={() =>
-                                        setOpenDropdown(
-                                            openDropdown === header.name ? null : header.name
-                                        )
-                                    }
-                                >
-                                    {header.name}
-                                    <span className="mc-navbar-caret" aria-hidden="true">
-                                        ▾
-                                    </span>
+                            type="button"
+                            className="mc-navbar-link mc-navbar-trigger"
+                            aria-expanded={openDropdown === header.name}
+                            aria-haspopup="menu"
+                            onClick={() =>
+                                setOpenDropdown(
+                                    openDropdown === header.name ? null : header.name
+                                )
+                            }
+                        >
+                            {header.name}
+                            <span
+                                className="mc-navbar-caret"
+                                aria-hidden="true"
+                            />
                                 </button>
                                 <div
                                     className={
@@ -140,7 +141,7 @@ const SiteNavbar = () => {
                                     role="menu"
                                 >
                                     {header.subheaders.map((sub) => {
-                                        // Nested submenu — `children` array, no `to`.
+                                        // Nested submenu â€” `children` array, no `to`.
                                         if (sub.children && sub.children.length > 0) {
                                             return (
                                                 <div
@@ -150,7 +151,10 @@ const SiteNavbar = () => {
                                                     aria-haspopup="menu"
                                                 >
                                                     <span className="mc-navbar-submenu-label">
-                                                        <span className="mc-navbar-submenu-caret" aria-hidden="true">‹</span>
+                                                    <span
+                                                        className="mc-navbar-submenu-caret"
+                                                            aria-hidden="true"
+                                                        />
                                                         {sub.name}
                                                     </span>
                                                     <div className="mc-navbar-submenu-panel" role="menu">
@@ -245,9 +249,7 @@ const SiteNavbar = () => {
                     className="mc-mobile-drawer-close"
                     aria-label="Close menu"
                     onClick={closeAll}
-                >
-                    ×
-                </button>
+                />
                 <nav className="mc-mobile-drawer-links" aria-label="Mobile">
                     {navbar_headers.map((header) => {
                         const hasDropdown = header.subheaders && header.subheaders.length > 0;
@@ -274,13 +276,11 @@ const SiteNavbar = () => {
                                     {header.name}
                                     <span
                                         className={
-                                            'mc-mobile-drawer-caret' +
-                                            (isOpen ? ' mc-mobile-drawer-caret-open' : '')
+                                            "mc-mobile-drawer-caret" +
+                                            (isOpen ? " mc-mobile-drawer-caret-open" : "")
                                         }
                                         aria-hidden="true"
-                                    >
-                                        ▸
-                                    </span>
+                                    />
                                 </button>
                                 {/* Sublinks always mounted; CSS animates the grid-row from 0fr to 1fr */}
                                 <div

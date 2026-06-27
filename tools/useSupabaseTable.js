@@ -1,4 +1,4 @@
-// lib/useSupabaseTable.js
+﻿// lib/useSupabaseTable.js
 //
 // Tiny hook: fetch one Supabase table on mount, ordered by sort_order.
 // Returns { rows, isLoading, error } so each people page can render a
@@ -8,7 +8,7 @@
 //   const { rows, isLoading } = useSupabaseTable('mcteam');
 
 import { useEffect, useState } from 'react';
-import { supabase } from './supabase';
+import { supabase } from './supabase_db';
 
 /**
  * Collect distinct values of a given field from a list of rows, preserving

@@ -74,12 +74,6 @@
     font-family: inherit;
 }
 
-.mc-navbar-caret {
-    font-size: 0.7em;
-    line-height: 1;
-    transform: translateY(2px);
-    transition: transform 180ms ease;
-}
 
 .mc-navbar-item {
     position: relative;
@@ -87,10 +81,6 @@
     align-items: center;
 }
 
-.mc-navbar-item:hover .mc-navbar-caret,
-.mc-navbar-trigger[aria-expanded="true"] .mc-navbar-caret {
-    transform: translateY(2px) rotate(180deg);
-}
 
 .mc-navbar-links .mc-navbar-item:last-child .mc-navbar-dropdown {
     left: auto;
@@ -224,17 +214,6 @@
     gap: 10px;
 }
 
-.mc-navbar-submenu-caret {
-    color: var(--mc-purple-500);
-    font-size: 1.1em;
-    transition: transform 160ms ease;
-}
-
-.mc-navbar-submenu:hover .mc-navbar-submenu-caret,
-.mc-navbar-submenu:focus-within .mc-navbar-submenu-caret {
-    transform: translateX(-2px);
-}
-
 .mc-navbar-submenu-panel {
     position: absolute;
     top: -4px;
@@ -285,6 +264,117 @@
     opacity: 1;
     transform: translateX(0);
     pointer-events: auto;
+}
+
+
+/* ---------- Main navbar caret ---------- */
+
+.mc-navbar-caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.8em;
+    height: 0.8em;
+}
+
+.mc-navbar-caret::before {
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: .28em solid transparent;
+    border-right: .28em solid transparent;
+    border-bottom: .38em solid currentColor;
+    transition: transform .18s ease;
+}
+
+.mc-navbar-item:hover .mc-navbar-caret::before,
+.mc-navbar-trigger[aria-expanded="true"] .mc-navbar-caret::before {
+    transform: rotate(180deg);
+    border-top: .38em solid currentColor;
+    border-bottom: 0;
+}
+
+/* ---------- Nested submenu caret ---------- */
+
+.mc-navbar-submenu-caret {
+    display: inline-flex;
+    width: .75em;
+    height: .75em;
+    align-items: center;
+    justify-content: center;
+}
+
+.mc-navbar-submenu-caret::before {
+    content: "";
+    width: .4em;
+    height: .4em;
+    border-top: 2px solid var(--mc-purple-500);
+    border-left: 2px solid var(--mc-purple-500);
+    transform: rotate(-45deg);
+    transition: transform .18s ease;
+}
+
+.mc-navbar-submenu:hover .mc-navbar-submenu-caret::before,
+.mc-navbar-submenu:focus-within .mc-navbar-submenu-caret::before {
+    transform: translateX(-2px) rotate(-45deg);
+}
+
+/* ---------- Mobile drawer caret ---------- */
+
+.mc-mobile-drawer-caret {
+    display: inline-flex;
+    width: 1em;
+    height: 1em;
+    align-items: center;
+    justify-content: center;
+}
+
+.mc-mobile-drawer-caret::before {
+    content: "";
+    width: .45em;
+    height: .45em;
+    border-top: 2px solid rgba(255,255,255,.7);
+    border-right: 2px solid rgba(255,255,255,.7);
+    transform: rotate(45deg);
+    transition: transform .2s cubic-bezier(.2,.8,.2,1);
+}
+
+.mc-mobile-drawer-caret-open::before {
+    transform: rotate(135deg);
+}
+
+/* ---------- Drawer close button ---------- */
+
+.mc-mobile-drawer-close {
+    position: relative;
+    align-self: flex-end;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 24px;
+}
+
+.mc-mobile-drawer-close::before,
+.mc-mobile-drawer-close::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 24px;
+    height: 2px;
+    background: var(--mc-paper);
+    border-radius: 2px;
+}
+
+.mc-mobile-drawer-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.mc-mobile-drawer-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 /* ----- Mobile drawer ----- */
@@ -369,18 +459,6 @@
     transform: translateX(0);
 }
 
-.mc-mobile-drawer-close {
-    align-self: flex-end;
-    background: transparent;
-    border: 0;
-    color: var(--mc-paper);
-    font-size: 2rem;
-    line-height: 1;
-    cursor: pointer;
-    padding: 4px 12px;
-    margin-bottom: 24px;
-}
-
 .mc-mobile-drawer-links {
     display: flex;
     flex-direction: column;
@@ -418,16 +496,6 @@
 
 .mc-mobile-drawer-trigger {
     font-family: var(--mc-font-display);
-}
-
-.mc-mobile-drawer-caret {
-    font-size: 1.1rem;
-    transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.mc-mobile-drawer-caret-open {
-    transform: rotate(90deg);
 }
 
 .mc-mobile-drawer-sublinks {

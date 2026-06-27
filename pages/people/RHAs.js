@@ -1,10 +1,10 @@
-import React from 'react';
+﻿import React from 'react';
 import { Box } from 'rebass';
 import Header from '../../components/Header/Header';
 import SiteNavbar from '../../components/navbar/Navbar';
 import SiteFooter from '../../components/Footer/Footer';
 import Cards from '../../components/ContactCard/ContactCard';
-import { useSupabaseTable, distinctInOrder } from '../../lib/useSupabaseTable';
+import { useSupabaseTable, distinctInOrder } from '../../tools/useSupabaseTable';
 import './wellbeing.css';
 
 const RHA_PAGE_DESCRIPTION =
@@ -33,9 +33,9 @@ const RHAsPage = () => {
 
             <div className='wellbeing-page'>
                 <header className='ev-hero'>
-                    <img src='/static/figma-about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
-                    <img src='/static/figma-ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
-                    <img src='/static/figma-ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
+                    <img src='/static/icons/about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
+                    <img src='/static/icons/ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
+                    <img src='/static/icons/ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
                     <h1 className='ev-hero-heading'>Rice Health Advisors</h1>
                 </header>
 

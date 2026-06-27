@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { Box } from 'rebass';
 import Header from '../../components/Header/Header';
 import SiteNavbar from '../../components/navbar/Navbar';
 import SiteFooter from '../../components/Footer/Footer';
-import { useSupabaseTable } from '../../lib/useSupabaseTable';
+import { useSupabaseTable } from '../../tools/useSupabaseTable';
 import './associates.css';
 
 const ASSOCIATES_MISSION =
@@ -92,9 +92,9 @@ const AssociatesPage = () => {
 
             <div className='associates-page'>
                 <header className='ev-hero'>
-                    <img src='/static/figma-about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
-                    <img src='/static/figma-ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
-                    <img src='/static/figma-ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
+                    <img src='/static/icons/about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
+                    <img src='/static/icons/ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
+                    <img src='/static/icons/ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
                     <h1 className='ev-hero-heading'>Associates</h1>
                 </header>
 
@@ -131,7 +131,7 @@ const AssociatesPage = () => {
                                         <p className='as-card-career'>{associate.career}</p>
                                     ) : null}
                                     <span className='as-card-cta'>
-                                        View profile <span aria-hidden='true'>›</span>
+                                        View profile <span aria-hidden='true'>â€º</span>
                                     </span>
                                 </div>
                             </button>

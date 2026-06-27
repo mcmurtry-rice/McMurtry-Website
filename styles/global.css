@@ -6,8 +6,8 @@
 
 :root {
     /* ============================================================
-     * Figma home-page tokens (node 193:2 of McM-Website-Design)
-     * Used only by the Figma-spec home page. Existing colors below
+     * Home-page design tokens (node 193:2 of McM-Website-Design)
+     * Used only by the home page. Existing colors below
      * remain untouched so other pages keep working.
      * ============================================================ */
     --mc-purple-700:    #540B72;
@@ -35,7 +35,7 @@
     /* Site-wide fluid scale factor: 1 design pixel = (100vw / 1728) actual px.
      * Used by .mc-navbar, .mc-footer, and the home page sections. Defined at
      * :root so every page that renders the shared navbar/footer gets fluid
-     * scaling without needing the .intro-figma wrapper. */
+     * scaling without needing the .intro wrapper. */
     --s: tan(atan2(100vw, 1728px));
 
     /* ============================================================
@@ -227,7 +227,7 @@ body:has(.page-light)::before {
 
 /* ============================================================
  * Shared hero ribbon (.ev-hero) — used across events, people,
- * resources, and any page that uses the Figma swoosh header.
+ * resources, and any page that uses the swoosh header.
  * ============================================================ */
 
 .ev-hero {

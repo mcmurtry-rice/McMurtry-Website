@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Box } from 'rebass';
 import Link from 'next/link';
 import Header from '../../components/Header/Header';
@@ -27,7 +27,7 @@ const resources = {
         {
             "title": "Resources on Prison Abolition",
             "links": [
-                { "link": "https://www.vox.com/policy-and-politics/2020/7/9/21307137/abolish-ice-police-immigrant-black-lives-matter", "descr": "Vox - How “abolish ICE” helped bring abolitionist ideas into the mainstream" },
+                { "link": "https://www.vox.com/policy-and-politics/2020/7/9/21307137/abolish-ice-police-immigrant-black-lives-matter", "descr": "Vox - How â€œabolish ICEâ€ helped bring abolitionist ideas into the mainstream" },
                 { "link": "https://www.politico.com/magazine/story/2018/08/15/abolish-prisons-is-the-new-abolish-ice-219361", "descr": "Politico - 'Abolish Prisons' Is the New 'Abolish ICE'" }
             ]
         },
@@ -71,9 +71,9 @@ const DiversityResourcesPage = () => (
             </div>
             <Box width={[1, 1, 0.9, 0.8]} ml='auto' mr='auto' mb={[20, 50]} mt={[10, 20]} px={[0, 0, 'auto', 'auto']}>
                 <h2 className='dr-section-title'>McMurtry Resources Guide</h2>
-                <PDFViewer src='/static/mcmurtry_resources.pdf' />
+                <PDFViewer src='/static/documents/mcmurtry_resources.pdf' />
                 <div className='doc-link-container'>
-                    <a href='../../../static/mcmurtry_resources.pdf' target='_blank' rel='noopener noreferrer' className='dr-download-link'>
+                    <a href='../../../static/documents/mcmurtry_resources.pdf' target='_blank' rel='noopener noreferrer' className='dr-download-link'>
                         <img src='/static/icons/file.svg' alt='' />
                         <span>Open Full Guide</span>
                     </a>

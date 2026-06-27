@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+﻿import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Header from '../components/Header/Header';
 import SiteNavbar from '../components/navbar/Navbar';
@@ -14,12 +14,16 @@ const heroPills = [
 ];
 
 const tripleStrip = [
-    { src: '/static/figma-triple-1.png',         caption: 'O-Week traditions!',        subcap: 'Where the Murt family begins' },
-    { src: '/static/figma-polaroid-commons.png', caption: 'McMurtry Commons',          subcap: 'The heart of the college' },
-    { src: '/static/figma-triple-3.png',         caption: 'The amazing O-week team!',  subcap: 'Coords, advisors, A-Team' },
-    { src: '/static/yurt.jpg',                    caption: 'Inside the Yurt',            subcap: 'Our award-winning dome' },
-    { src: '/static/mcm_cohorts.jpg',            caption: 'McMurtry Cohorts',          subcap: 'Every class, one home' },
-    { src: '/static/oweek/current/images/hero/arrival.jpg', caption: 'O-Week Arrival', subcap: 'Move-in day energy' }
+    { src: '/static/general_pics/mcm-quad.png',      caption: 'McMurtry College',         subcap: 'Our home on campus' },
+    { src: '/static/general_pics/oweek-coords.png', caption: 'O-Week Coordinators',      subcap: 'Leading you through the week' },
+    { src: '/static/general_pics/yurt-evening.png', caption: 'The Yurt at Night',        subcap: 'Our award-winning dome' },
+    { src: '/static/general_pics/yurt.jpg',         caption: 'Inside the Yurt',          subcap: 'The heart of the college' },
+    { src: '/static/general_pics/mcm-event.png',    caption: 'McMurtry O-Week',          subcap: 'Every class, one home' },
+    { src: '/static/oweek/2025-2026/images/hero/arrival.jpg', caption: 'O-Week Arrival',           subcap: 'Move-in day energy' },
+    { src: '/static/general_pics/accioweek.jpg',              caption: 'AcciO-Week',               subcap: 'A magical O-Week theme' },
+    { src: '/static/general_pics/marshmalloweek.jpg',         caption: 'MarshmallO-Week',          subcap: 'Sweet memories at McMurtry' },
+    { src: '/static/general_pics/mcscottishnight.jpg',        caption: 'Scottish Night',           subcap: 'McMurtry traditions' },
+    { src: '/static/general_pics/ufoweek.jpg',                caption: 'UFO-Week',                 subcap: 'Out of this world O-Week' },
 ];
 
 const Home = () => {
@@ -135,12 +139,12 @@ const Home = () => {
 
                 <section className='mc-hero' aria-label='McMurtry College hero'>
                     <div className='mc-hero-bg'>
-                        <img src='/static/figma-hero-building.png' alt='' className='mc-hero-bg-img' />
+                        <img src='/static/general_pics/mcm-quad.png' alt='' className='mc-hero-bg-img' />
                         <div className='mc-hero-bg-overlay' />
                     </div>
                     <h1 className='mc-hero-title'>
                         <span className='mc-hero-title-word'>McMurtry</span>
-                        <img src='/static/figma-hero-crest.png' alt='' className='mc-hero-crest' />
+                        <img src='/static/logos/hero-crest.png' alt='' className='mc-hero-crest' />
                         <span className='mc-hero-title-word'>College</span>
                     </h1>
                     <nav className='mc-hero-pills' aria-label='Quick links'>
@@ -150,7 +154,7 @@ const Home = () => {
                             </Link>
                         ))}
                     </nav>
-                    <img src='/static/figma-yurt-band.png' alt='' className='mc-yurt-band' aria-hidden='true' />
+                    <img src='/static/logos/yurt-band.png' alt='' className='mc-yurt-band' aria-hidden='true' />
                 </section>
 
                 <section className='mc-strip' aria-label='College highlights'>
@@ -212,7 +216,7 @@ const Home = () => {
                             rel='noopener noreferrer'
                         >
                             Get Directions
-                            <span aria-hidden='true' className='mc-find-us-cta-arrow'>›</span>
+                            <span aria-hidden='true' className='mc-find-us-cta-arrow'>â€º</span>
                         </a>
                     </div>
                 </section>

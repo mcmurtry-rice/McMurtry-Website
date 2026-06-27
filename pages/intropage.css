@@ -1,11 +1,11 @@
 /*
- * intropage.css — home page, pixel-accurate port of Figma node 193:2
+ * intropage.css — home page
  *
  * Strategy:
- *   The Figma is laid out on a 1728px-wide canvas with absolute positions.
+ *   The design is laid out on a 1728px-wide canvas with absolute positions.
  *   We keep the absolute layout and scale it to the viewport with a single
  *   custom property `--s`. Everything else uses `calc(N * var(--s))` so the
- *   page stays 1:1 with Figma at 1728px+ and shrinks proportionally below.
+ *   page stays 1:1 at 1728px+ and shrinks proportionally below.
  *
  *   Reference: static/reference-design.png
  */
@@ -625,7 +625,7 @@
 }
 
 /* Inline crest sized to title cap-height so it tucks between the words
- * without overlapping the pill row below. The Figma 274x355 absolute
+ * without overlapping the pill row below. The 274x355 absolute
  * crest is decorative; we render it inline-sized here. */
 .mc-hero-crest {
     width: calc(180px * var(--s));
@@ -670,7 +670,7 @@
     transform: translateY(calc(-2px * var(--s)));
 }
 
-/* Yurt-trees illustration band — Figma image 3659, sits on the lower
+/* Yurt-trees illustration band, sits on the lower
  * portion of the hero, bleeding into the white section below */
 .mc-yurt-band {
     position: absolute;
@@ -811,7 +811,7 @@
     color: var(--mc-purple-500);
 }
 
-/* Left + right fade-out gradient overlays (Figma 193:100/101) */
+/* Left + right fade-out gradient overlays */
 .mc-strip-fade {
     position: absolute;
     top: 0;
@@ -836,7 +836,7 @@
 }
 
 /* ---------------- ABOUT MCMURTRY ---------------- */
-/*  Figma section spans rows 2011 → 3458 on the 5079-tall canvas.
+/*  Section spans rows 2011 → 3458 on the 5079-tall canvas.
  *  Section starts after triple-strip = top 1898 in our compressed flow.
  *  We keep absolute positions but rebase to section-local top (subtract 1898).
  */
@@ -850,7 +850,7 @@
 
 .mc-about-swoosh {
     position: absolute;
-    top: calc(113px * var(--s));        /* Figma top 2011 - section start 1898 */
+    top: calc(113px * var(--s));        /* top 2011 - section start 1898 */
     left: calc(-201px * var(--s));
     width: calc(958px * var(--s));
     height: calc(529px * var(--s));
@@ -1048,7 +1048,7 @@
 }
 
 /* ---------------- BURT & DEEDEE ---------------- */
-/* Figma section spans rows 3376 → 4582 on the 5079 canvas.
+/* Section spans rows 3376 → 4582 on the 5079 canvas.
  * Local rebase: subtract 1898 from all top values.
  */
 
@@ -1378,7 +1378,7 @@
 /* ==========================================================================
  * LAYER 2 — TABLET BAND (641px – 1024px)
  *
- * Above 1024px the page uses the Figma absolute layout scaled by --s.
+ * Above 1024px the page uses the absolute layout scaled by --s.
  * Below 1024px that becomes too compressed to read, so we switch to a
  * stacked single-column flow. Photos stop cascading and stack vertically;
  * body text reverts to absolute rem sizes so it stays readable.

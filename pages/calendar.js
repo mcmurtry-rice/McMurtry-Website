@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Header from '../components/Header/Header';
 import SiteNavbar from '../components/navbar/Navbar';
 import SiteFooter from '../components/Footer/Footer';
@@ -12,9 +12,9 @@ const CalendarPage = () => (
 
         <section className="ev-page" aria-label="Events Calendar">
             <header className="ev-hero">
-                <img src="/static/figma-about-swoosh.svg" alt="" className="ev-hero-swoosh" aria-hidden="true" />
-                <img src="/static/figma-ellipse-large.svg" alt="" className="ev-hero-ellipse-large" aria-hidden="true" />
-                <img src="/static/figma-ellipse-small.svg" alt="" className="ev-hero-ellipse-small" aria-hidden="true" />
+                <img src="/static/icons/about-swoosh.svg" alt="" className="ev-hero-swoosh" aria-hidden="true" />
+                <img src="/static/icons/ellipse-large.svg" alt="" className="ev-hero-ellipse-large" aria-hidden="true" />
+                <img src="/static/icons/ellipse-small.svg" alt="" className="ev-hero-ellipse-small" aria-hidden="true" />
                 <h1 className="ev-hero-heading">Events Calendar</h1>
                 <p className="ev-hero-lede">Everything happening at McMurtry! Tap any event for details.</p>
             </header>
@@ -39,7 +39,7 @@ const CalendarPage = () => (
                         <line x1="10" y1="16" x2="14" y2="16" />
                     </svg>
                     Add to My Calendar
-                    <span aria-hidden="true" className="ev-cta-arrow">›</span>
+                    <span aria-hidden="true" className="ev-cta-arrow">â€º</span>
                 </a>
             </div>
         </section>

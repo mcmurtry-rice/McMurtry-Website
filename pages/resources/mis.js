@@ -64,7 +64,7 @@ const personnel = [
 ];
 
 const MISLinks = [
-    { text: 'Safety Guidelines',     icon: '/static/icons/file.svg',     link: '../../../../static/mis_safety.pdf' },
+    { text: 'Safety Guidelines',     icon: '/static/icons/file.svg',     link: '/static/documents/mis_safety.pdf' },
     { text: 'Equipment Information', icon: '/static/icons/building.svg',  link: 'https://docs.google.com/document/d/1kNjTbBWRYK3Xxpgr73z7EFU3-pTms47MdRyTEex4w_E/edit?usp=sharing' },
     { text: 'Email us at',           icon: '/static/icons/email.svg',     link: 'mailto:mcminnovationspace@gmail.com' },
 ];

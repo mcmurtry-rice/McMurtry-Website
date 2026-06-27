@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Header from '../components/Header/Header';
 import SiteNavbar from '../components/navbar/Navbar';
 import SiteFooter from '../components/Footer/Footer';
@@ -25,7 +25,7 @@ const aboutBody3 =
     "McMurtry first opened its doors in the fall of 2009. The first generation of Murts numbered in the low seventies so Rice administration recruited some Will Rice College students to fill the remaining space. McMurtry survived the 'colonization' and the two groups have learned to coexist peacefully as sister colleges...until Beer Bike 2019.";
 
 const burtBody1 =
-    'Burt and Deedee McMurtry graduated from Rice University in 1956 and moved to the Bay Area in 1957 after Burt’s fifth year at Rice. Burt received Bachelor of Arts and Bachelor of Science degrees in Electrical Engineering from Rice in 1956 and 1957, respectively. He continued his education at Stanford, where he earned a Master of Science and a doctoral degree in electrical engineering in 1959 and 1962, respectively. A Rice trustee emeritus, Burt McMurtry was a private investor and a founding partner of Technology Venture Investors and Institutional Venture Associates in California. Burt passed away on September 2nd, 2018 at his home in Palo Alto. Deedee McMurtry is an active volunteer, a trustee of the American Conservatory Theater (ACT) in San Francisco, and is involved with arts advisory committees at Stanford.';
+    'Burt and Deedee McMurtry graduated from Rice University in 1956 and moved to the Bay Area in 1957 after Burtâ€™s fifth year at Rice. Burt received Bachelor of Arts and Bachelor of Science degrees in Electrical Engineering from Rice in 1956 and 1957, respectively. He continued his education at Stanford, where he earned a Master of Science and a doctoral degree in electrical engineering in 1959 and 1962, respectively. A Rice trustee emeritus, Burt McMurtry was a private investor and a founding partner of Technology Venture Investors and Institutional Venture Associates in California. Burt passed away on September 2nd, 2018 at his home in Palo Alto. Deedee McMurtry is an active volunteer, a trustee of the American Conservatory Theater (ACT) in San Francisco, and is involved with arts advisory committees at Stanford.';
 
 const burtBody2 =
     'Burt served seventeen years on the Rice University board, eleven years on the Stanford University board (the last four as chairman, ending July 1, 2008,) and seven years on the board of the Carnegie Institution of Washington. Burt played a role in planning the residential college system back when he was a student at Rice. He was a student representative on the 1955 committee that set out the original mission and basic organizational design of the residential colleges.';
@@ -41,23 +41,23 @@ const AboutPage = () => (
         <div className="mc-about-page">
 
             <section className="mc-about" aria-label="About McMurtry">
-                <img src="/static/figma-about-swoosh.svg" alt="" className="mc-about-swoosh" aria-hidden="true" />
-                <img src="/static/figma-ellipse-large.svg" alt="" className="mc-about-ellipse-large" aria-hidden="true" />
-                <img src="/static/figma-ellipse-small.svg" alt="" className="mc-about-ellipse-small" aria-hidden="true" />
+                <img src="/static/icons/about-swoosh.svg" alt="" className="mc-about-swoosh" aria-hidden="true" />
+                <img src="/static/icons/ellipse-large.svg" alt="" className="mc-about-ellipse-large" aria-hidden="true" />
+                <img src="/static/icons/ellipse-small.svg" alt="" className="mc-about-ellipse-small" aria-hidden="true" />
 
                 <h2 className="mc-about-heading">About McMurtry</h2>
 
                 <div className="mc-about-collage">
                     <figure className="mc-about-card mc-about-card-1">
-                        <img src="/static/mcm_commons.jpg" alt="" className="mc-about-card-img" />
+                        <img src="/static/general_pics/mcm_commons.jpg" alt="" className="mc-about-card-img" />
                         <figcaption className="mc-about-card-caption">McMurtry Commons</figcaption>
                     </figure>
                     <figure className="mc-about-card mc-about-card-2">
-                        <img src="/static/yurt.jpg" alt="" className="mc-about-card-img" />
+                        <img src="/static/general_pics/yurt.jpg" alt="" className="mc-about-card-img" />
                         <figcaption className="mc-about-card-caption">Inside the Yurt</figcaption>
                     </figure>
                     <figure className="mc-about-card mc-about-card-3">
-                        <img src="/static/figma-hero-building.png" alt="" className="mc-about-card-img" />
+                        <img src="/static/hero-building.png" alt="" className="mc-about-card-img" />
                         <figcaption className="mc-about-card-caption">McMurtry College</figcaption>
                     </figure>
                 </div>
@@ -78,9 +78,9 @@ const AboutPage = () => (
             </section>
 
             <section className="mc-burt" aria-label="Burt and Deedee McMurtry">
-                <img src="/static/figma-burt-swoosh.svg" alt="" className="mc-burt-swoosh" aria-hidden="true" />
-                <img src="/static/figma-ellipse-large.svg" alt="" className="mc-burt-ellipse-large" aria-hidden="true" />
-                <img src="/static/figma-ellipse-small.svg" alt="" className="mc-burt-ellipse-small" aria-hidden="true" />
+                <img src="/static/icons/burt-swoosh.svg" alt="" className="mc-burt-swoosh" aria-hidden="true" />
+                <img src="/static/icons/ellipse-large.svg" alt="" className="mc-burt-ellipse-large" aria-hidden="true" />
+                <img src="/static/icons/ellipse-small.svg" alt="" className="mc-burt-ellipse-small" aria-hidden="true" />
 
                 <h2 className="mc-burt-heading">Bert &amp; Deedee Murt</h2>
 
@@ -94,11 +94,11 @@ const AboutPage = () => (
 
                 <div className="mc-burt-collage">
                     <figure className="mc-burt-card mc-burt-card-1">
-                        <img src="/static/burt_deedee.jpg" alt="" className="mc-burt-card-img" />
+                        <img src="/static/general_pics/burt-deedee.png" alt="" className="mc-burt-card-img" />
                         <figcaption className="mc-burt-card-caption">Burt &amp; Deedee McMurtry</figcaption>
                     </figure>
                     <figure className="mc-burt-card mc-burt-card-2">
-                        <img src="/static/associates.jpg" alt="" className="mc-burt-card-img" />
+                        <img src="/static/general_pics/associates.jpg" alt="" className="mc-burt-card-img" />
                         <figcaption className="mc-burt-card-caption">Associates Dinner</figcaption>
                     </figure>
                 </div>
