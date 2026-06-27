@@ -5,8 +5,17 @@ import SiteNavbar from '../../components/navbar/Navbar';
 import SiteFooter from '../../components/Footer/Footer';
 import Title from '../../components/Title/Title';
 import ContactCards from '../../components/ContactCard/ContactCard';
-import { strive_liaisons } from '../../data/people/wellbeing.json';
 import './wellbeing.css';
+
+const strive_liaisons = {
+    "description": "STRIVE is a student-driven coalition that empowers all members of the Rice community to play an active role in eliminating gender-based inequality and sexual violence. We do this by engaging in positive, open dialogue, pooling on and off-campus resources, and providing the tools and skills necessary to create cultural change.",
+    "members": [
+        { "name": "Emily Duffus", "phone": "(973) 508-6538", "email": "ekd2@rice.edu" },
+        { "name": "Morgan Gage", "email": "mag26@rice.edu" },
+        { "name": "Sarah Swackhamer", "email": "sws5@rice.edu" },
+        { "name": "Callie Carnahan", "email": "cfc2@rice.edu" }
+    ]
+};
 
 const StriveLiaisonsPage = () => (
     <div className='page page-with-staggered-menu'>
