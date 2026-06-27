@@ -10,7 +10,7 @@ The official McMurtry College website, built with Next.js and hosted on GitHub P
 | --- | --- |
 | `npm run dev` | Local dev server on `:3000` with hot reload |
 | `npm run build` | Production build into `.next/` — sanity-check before deploying |
-| `npm run deploy` | Build, export to `deployments/`, set CNAME, stage for git |
+| `npm run deploy` | Build, export to `docs/`, set CNAME, stage for git |
 
 After `npm run deploy`, commit and push to publish:
 
@@ -19,9 +19,9 @@ git commit -m "deploy: your message"
 git push
 ```
 
-The live site is GitHub Pages serving the `deployments/` folder from `master`. Pushing publishes immediately.
+The live site is GitHub Pages serving the `docs/` folder from `master`. Pushing publishes immediately.
 
-> **Don't edit `deployments/` directly** — it's overwritten on every deploy.
+> **Don't edit `docs/` directly** — it's overwritten on every deploy.
 
 ## Repository structure
 
@@ -39,7 +39,7 @@ MurtWebsite/
 ├── static/                 Images, PDFs, SVGs, icons
 ├── google-apps-scripts/    Google Apps Scripts for P-Card automation
 ├── tools/                  Database schema and Supabase utilities
-├── deployments/            Build output (auto-generated, don't edit)
+├── docs/            Build output (auto-generated, don't edit)
 ├── next.config.js
 └── package.json
 ```

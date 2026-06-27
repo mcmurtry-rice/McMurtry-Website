@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider next -H 0.0.0.0",
     "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build",
     "export": "cross-env NODE_OPTIONS=--openssl-legacy-provider next export",
-    "deploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build && rimraf deployments && cross-env NODE_OPTIONS=--openssl-legacy-provider next export -o deployments && cd deployments && echo mcmurtry.rice.edu > CNAME && type nul > .nojekyll && cd .. && git add .",
+    "deploy": "cross-env NODE_OPTIONS=--openssl-legacy-provider next build && rimraf docs && cross-env NODE_OPTIONS=--openssl-legacy-provider next export -o docs && cd docs && echo mcmurtry.rice.edu > CNAME && type nul > .nojekyll && cd .. && git add .",
     "siteimprove:fetch": "node siteimprove/fetch-issues.js",
     "siteimprove:scrape": "node siteimprove/scrape-dashboard.js"
   },
