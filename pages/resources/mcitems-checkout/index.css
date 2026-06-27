@@ -1,0 +1,436 @@
+/* ============================================================
+ * McItems Checkout page — scoped under .mcitems-page
+ * Horizontal timeline layout.
+ * ============================================================ */
+
+.mcitems-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+}
+
+/* ----- Hero ----- */
+.mcitems-page .ev-hero {
+    background: var(--mc-paper);
+    position: relative;
+    overflow: hidden;
+}
+
+.mcitems-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.mcitems-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+}
+
+/* ----- CTA banner ----- */
+.mcitems-page .mci-banner {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 0 clamp(24px, 6vw, 96px) 80px;
+    padding: 28px 36px;
+    background: var(--mc-purple-700);
+    border-radius: 20px;
+    box-shadow: 0 20px 48px -16px rgba(74, 52, 112, 0.5);
+    flex-wrap: wrap;
+}
+
+.mcitems-page .mci-banner-left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    flex: 1;
+    min-width: 200px;
+}
+
+.mcitems-page .mci-banner-text {
+    font-family: var(--mc-font-body);
+    font-size: 1.05rem;
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.mcitems-page .mci-banner-text strong {
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    font-weight: 700;
+}
+
+.mcitems-page .mci-banner-deadlines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mcitems-page .mci-strip-label {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mc-paper);
+    background: rgba(255, 255, 255, 0.18);
+    padding: 4px 10px;
+    border-radius: 999px;
+    white-space: nowrap;
+    align-self: flex-start;
+}
+
+.mcitems-page .mci-banner-deadline-list {
+    list-style: none;
+    margin: 4px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.mcitems-page .mci-banner-deadline-list li {
+    font-family: var(--mc-font-body);
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+}
+
+.mcitems-page .mci-banner-deadline-list li strong {
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+.mcitems-page .mci-strip-note {
+    font-family: var(--mc-font-body);
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.6) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+
+.mcitems-page .mci-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 36px;
+    background: var(--mc-paper);
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    font-family: var(--mc-font-body);
+    font-weight: 800;
+    font-size: 1.08rem;
+    border-radius: 999px;
+    text-decoration: none !important;
+    white-space: nowrap;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), 0 0 0 3px rgba(255, 255, 255, 0.15);
+    transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 200ms ease, background 200ms ease;
+}
+
+.mcitems-page .mci-banner-cta:hover,
+.mcitems-page .mci-banner-cta:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.32), 0 0 0 3px rgba(255, 255, 255, 0.25);
+    background: #f0eaf6;
+}
+
+.mcitems-page .mci-banner-arrow {
+    font-size: 1.1em;
+    transition: transform 200ms ease;
+}
+
+.mcitems-page .mci-banner-cta:hover .mci-banner-arrow {
+    transform: translateX(4px);
+}
+
+/* ----- Horizontal timeline ----- */
+.mcitems-page .mci-timeline-wrap {
+    padding: 0 clamp(24px, 6vw, 96px);
+    margin-bottom: 96px;
+}
+
+.mcitems-page .mci-timeline-heading {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--mc-purple-700);
+    margin: 0 0 64px;
+    letter-spacing: 0;
+}
+
+.mcitems-page .mci-timeline {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    /* extra vertical space so above-the-line cards don't clip */
+    padding: 180px 0 180px;
+}
+
+/* The horizontal connecting line */
+.mcitems-page .mci-timeline-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--mc-purple-500) 8%, var(--mc-purple-500) 92%, transparent);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Each step column */
+.mcitems-page .mci-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+/* Circle node on the line */
+.mcitems-page .mci-step-node {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--mc-purple-700);
+    border: 4px solid var(--mc-paper);
+    box-shadow: 0 0 0 2px var(--mc-purple-500), 0 8px 20px rgba(74, 52, 112, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+.mcitems-page .mci-step-num {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--mc-paper);
+    letter-spacing: 0.03em;
+}
+
+/* Card floating above or below the line */
+.mcitems-page .mci-step-card {
+    position: absolute;
+    width: calc(100% - 16px);
+    max-width: 200px;
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-radius: 14px;
+    padding: 18px 16px;
+    box-shadow: 0 12px 32px -12px rgba(74, 52, 112, 0.25);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.mcitems-page .mci-step-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -12px rgba(74, 52, 112, 0.35);
+}
+
+/* Cards below the line (odd index) */
+.mcitems-page .mci-step-card-below {
+    top: calc(50% + 44px);
+}
+
+/* Cards above the line (even index) */
+.mcitems-page .mci-step-card-above {
+    bottom: calc(50% + 44px);
+}
+
+/* Connector tick from card to node */
+.mcitems-page .mci-step-card::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 20px;
+    background: var(--mc-purple-500);
+    opacity: 0.5;
+}
+
+.mcitems-page .mci-step-card-below::before {
+    top: -20px;
+}
+
+.mcitems-page .mci-step-card-above::before {
+    bottom: -20px;
+}
+
+.mcitems-page .mci-step-title {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--mc-purple-700);
+    margin: 0 0 8px;
+    line-height: 1.3;
+}
+
+.mcitems-page .mci-step-body {
+    font-family: var(--mc-font-body);
+    font-size: 0.85rem;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* ----- Policies ----- */
+.mcitems-page .mci-policies-wrap {
+    padding: 0 clamp(24px, 6vw, 96px);
+    margin-bottom: 64px;
+}
+
+.mcitems-page .mci-policies {
+    background: rgba(139, 111, 199, 0.07);
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-left: 4px solid var(--mc-purple-500);
+    border-radius: 18px;
+    padding: 32px 36px;
+}
+
+.mcitems-page .mci-policies-title {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    color: var(--mc-purple-700);
+    margin: 0 0 20px;
+    letter-spacing: 0;
+}
+
+.mcitems-page .mci-policy-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 48px;
+    margin: 0;
+    padding: 0 0 0 20px;
+}
+
+.mcitems-page .mci-policy-list li {
+    font-family: var(--mc-font-body);
+    font-size: 0.97rem;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    line-height: 1.6;
+}
+
+.mcitems-page .mci-policy-list li::marker {
+    color: var(--mc-purple-500);
+}
+
+/* ----- Contact row ----- */
+.mcitems-page .mci-contact-row {
+    text-align: center;
+    padding: 0 24px 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.mcitems-page .mci-contact-row p {
+    font-family: var(--mc-font-body);
+    font-size: 0.92rem;
+    color: rgba(0, 0, 0, 0.55);
+    margin: 0;
+}
+
+.mcitems-page .mci-contact-email {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 160ms ease;
+}
+
+.mcitems-page .mci-contact-email:hover,
+.mcitems-page .mci-contact-email:focus-visible {
+    color: var(--mc-purple-500) !important;
+    -webkit-text-fill-color: var(--mc-purple-500);
+}
+
+/* ----- Responsive — collapse to vertical timeline ----- */
+@media (max-width: 900px) {
+    .mcitems-page .mci-timeline {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 0 0 32px;
+        gap: 0;
+    }
+
+    .mcitems-page .mci-timeline-track {
+        top: 0;
+        bottom: 0;
+        left: 24px;
+        right: auto;
+        width: 2px;
+        height: auto;
+        background: linear-gradient(180deg, transparent, var(--mc-purple-500) 8%, var(--mc-purple-500) 92%, transparent);
+        transform: none;
+    }
+
+    .mcitems-page .mci-step {
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 32px 0;
+    }
+
+    .mcitems-page .mci-step-node {
+        position: relative;
+        top: auto;
+        transform: none;
+        flex-shrink: 0;
+    }
+
+    .mcitems-page .mci-step-card,
+    .mcitems-page .mci-step-card-below,
+    .mcitems-page .mci-step-card-above {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .mcitems-page .mci-step-card::before {
+        display: none;
+    }
+
+    .mcitems-page .mci-policy-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .mcitems-page .mci-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 22px 24px;
+        margin-bottom: 48px;
+    }
+
+    .mcitems-page .mci-policies {
+        padding: 24px 20px;
+    }
+}

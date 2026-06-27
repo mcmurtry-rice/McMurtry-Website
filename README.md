@@ -1,4 +1,4 @@
-![](https://github.com/mcmurtry-rice/McMurtry-Website/blob/master/static/YurtTrees.svg)
+![McMurtry College](https://github.com/mcmurtry-rice/McMurtry-Website/blob/master/static/YurtTrees.svg)
 
 # McMurtry Website
 
@@ -10,56 +10,59 @@ The official McMurtry College website, built with Next.js and hosted on GitHub P
 | --- | --- |
 | `npm run dev` | Local dev server on `:3000` with hot reload |
 | `npm run build` | Production build into `.next/` — sanity-check before deploying |
-| `npm run deploy` | Build, export to `docs/`, set CNAME, stage for git |
+| `npm run deploy` | Build, export to `deployments/`, set CNAME, stage for git |
 
 After `npm run deploy`, commit and push to publish:
 
 ```bash
-git commit -m "your message"
+git commit -m "deploy: your message"
 git push
 ```
 
-The live site is GitHub Pages serving the `docs/` folder from `master`. Pushing publishes immediately.
+The live site is GitHub Pages serving the `deployments/` folder from `master`. Pushing publishes immediately.
 
-> **Don't edit `docs/` directly** — it's overwritten on every deploy.
+> **Don't edit `deployments/` directly** — it's overwritten on every deploy.
 
 ## Repository structure
 
 ```
 MurtWebsite/
-├── pages/          Next.js routes — every .js file here is a URL
-│   ├── people/     co-located page JS + CSS (e.g. associates.js / associates.css)
-│   ├── resources/  co-located page JS + CSS
-│   └── oweek/2025-2026/
-├── components/     Shared React components (navbar, header, footer, etc.)
-├── data/           ALL site content as JSON — separated from code
-├── lib/            Shared utilities (Supabase hook, O-Week loader)
-├── styles/         global.css — design tokens + site-wide base styles
-├── static/         Images, PDFs, SVGs, icons
-├── supabase/       DB schema
-├── docs/           Build output (auto-generated, don't edit)
+├── pages/                  Next.js routes — every index.js here is a URL
+│   ├── home/               Home page, About, Calendar
+│   ├── people/             People pages (associates, fellows, court, etc.)
+│   ├── government/         Government pages (committees, court, mcministry)
+│   ├── resources/          Resource pages (p-card, room reservations, etc.)
+│   └── oweek/              O-Week pages, one folder per year
+│       └── 2025-2026/      Current year (index.js + index.css, self-contained)
+├── components/             Shared React components
+├── styles/                 global.css — design tokens + site-wide base styles
+├── static/                 Images, PDFs, SVGs, icons
+├── google-apps-scripts/    Google Apps Scripts for P-Card automation
+├── tools/                  Database schema and Supabase utilities
+├── deployments/            Build output (auto-generated, don't edit)
 ├── next.config.js
 └── package.json
 ```
 
 ## Pages
 
-Each `.js` file under `pages/` is a URL. File path → URL:
+Each `index.js` under `pages/` is a URL. File path → URL:
 
 | File | URL |
 | --- | --- |
-| `pages/index.js` | `/` |
-| `pages/about.js` | `/about` |
-| `pages/calendar.js` | `/calendar` |
-| `pages/financialinclusivity.js` | `/financialinclusivity` |
-| `pages/people/associates.js` | `/people/associates` |
-| `pages/people/RHAs.js` | `/people/RHAs` |
-| `pages/resources/roomreservations.js` | `/resources/roomreservations` |
+| `pages/home/index/index.js` | `/home/index` |
+| `pages/home/about/index.js` | `/home/about` |
+| `pages/home/calendar/index.js` | `/home/calendar` |
+| `pages/people/associates/index.js` | `/people/associates` |
+| `pages/people/mcteam/index.js` | `/people/mcteam` |
+| `pages/government/committees/index.js` | `/government/committees` |
+| `pages/resources/pcard-requests/index.js` | `/resources/pcard-requests` |
+| `pages/resources/room-reservations/index.js` | `/resources/room-reservations` |
 | `pages/oweek/2025-2026/index.js` | `/oweek/2025-2026` |
 
-**Casing matters on the live site.** GitHub Pages is case-sensitive — a navbar link to `/people/PAAs` will 404 if the file is `paas.js`. Match filename casing exactly.
+**Casing matters on the live site.** GitHub Pages is case-sensitive — a link to `/people/PAAs` will 404 if the file is `paas/`. Match folder casing exactly.
 
-Pages are self-contained: JS and CSS live together in the same folder. No separate component file needed.
+Each page is self-contained: `index.js` and `index.css` live together in the same folder.
 
 ## Components
 
@@ -68,44 +71,43 @@ Only truly shared components live in `components/`:
 ```
 components/
 ├── Header/         <head> meta tags
-├── navbar/         Site navigation (StaggeredMenu)
+├── navbar/         Site navigation
 ├── Footer/         Site footer
-├── ContactCard/    Reusable people card grid
+├── ContactCard/    Reusable people card
 ├── CustomCalendar/ Google Calendar embed
+├── ImageCarousel/  Auto-scrolling image carousel
+│                   NOTE: mobile scroll speed is set via AUTO_SPEED in
+│                   pages/home/index/index.js (not a prop) — see comment there
 ├── PDFViewer/      PDF embed wrapper
-├── Title/          Section title component
-└── oweek/2025-2026/ O-Week specific components
+└── Title/          Section title component
 ```
-
-## Data
-
-All site content lives in `data/` as JSON — not hardcoded in components.
-
-```
-data/
-├── navigation/     main-navbar.json
-├── people/         associates, committees, court, divisionaladvisors,
-│                   fellows, mcministry, mcmurtryaffinitygroups, mcteam,
-│                   paas, smr, wellbeing
-└── resources/      blm, diversityResources, mis
-```
-
-To update content, edit the JSON. To add a new page, add a JSON file here and import it from the page.
 
 ## O-Week rollover
 
-Each year's O-Week lives under `static/oweek/<year>/` and `pages/oweek/<year>/`. To roll over:
+Each year's O-Week is fully self-contained in `pages/oweek/<year>/`. To roll over to a new year:
 
-1. The previous year's pages and assets are already under their year folder — leave them.
-2. Create `pages/oweek/<new-year>/` by copying the previous year's folder.
-3. Create `static/oweek/<new-year>/` with the new JSON data files and images:
-   - `config.json` — countdown date, theme name
-   - `coordinators.json` — coord list
-   - `groups.json` — O-Week groups
-   - `theme.json` — theme text
+1. Copy `pages/oweek/<prev-year>/` to `pages/oweek/<new-year>/`
+2. Copy `static/oweek/<prev-year>/` to `static/oweek/<new-year>/` and replace:
+   - Coordinator photos in `images/coords/`
+   - Group photos in `images/groups/`
+   - Hero images in `images/hero/`
    - `oweekbook.pdf`
-   - `images/coords/`, `images/groups/`, `images/hero/`
-4. Update the navbar to point to the new year's routes.
+3. In `pages/oweek/<new-year>/index.js`, update the inline data at the top:
+   - `themeData` — theme name, paragraphs
+   - `groupsData` — group names and images
+   - `coordinatorsData` — coordinator info, bios, contact details
+   - `config` — year, move-in date, PDF filename, general email
+4. Update the navbar to point to the new year's route.
+
+## Google Apps Scripts
+
+`google-apps-scripts/` contains automation scripts for the P-Card system:
+
+- **`pcard-email-notification.gs`** — Email notifications for P-Card checkout/return/online purchases
+- **`pcard-calendar-automation.gs`** — Calendar automation for P-Card bookings
+- **`mcitems-email-notification.gs`** — Email notifications for MC items checkout
+
+See `google-apps-scripts/README.md` for setup and semester rollover instructions.
 
 ## Environment variables
 

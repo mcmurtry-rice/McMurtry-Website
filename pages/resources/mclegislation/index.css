@@ -1,0 +1,80 @@
+/* ============================================================
+ * McLegislation page — scoped under .documents-page
+ * Design language matches pcard / mcitems / mis pages.
+ * ============================================================ */
+
+.documents-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+    padding-bottom: 80px;
+}
+
+/* ----- Hero ----- */
+.documents-page .ev-hero {
+    background: var(--mc-paper);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ----- Tab bar ----- */
+.documents-page .doc-tabs-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 0 clamp(16px, 4vw, 48px);
+    margin-bottom: 40px;
+}
+
+.documents-page .doc-tabs {
+    display: inline-flex;
+    gap: 8px;
+    background: rgba(74, 52, 112, 0.07);
+    border-radius: 999px;
+    padding: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.documents-page .doc-tab {
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease, box-shadow 160ms ease;
+    background: transparent;
+    color: var(--mc-purple-700);
+    white-space: nowrap;
+}
+
+.documents-page .doc-tab:hover:not(.doc-tab-active) {
+    background: rgba(74, 52, 112, 0.08);
+}
+
+.documents-page .doc-tab-active {
+    background: var(--mc-purple-700);
+    color: var(--mc-paper);
+    box-shadow: 0 4px 16px -4px rgba(74, 52, 112, 0.45);
+}
+
+/* ----- PDF viewer wrapper ----- */
+.documents-page .doc-viewer-wrap {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 640px) {
+    .documents-page .doc-tabs {
+        gap: 4px;
+        padding: 4px;
+    }
+
+    .documents-page .doc-tab {
+        font-size: 0.84rem;
+        padding: 8px 14px;
+    }
+}

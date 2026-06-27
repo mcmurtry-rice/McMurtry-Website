@@ -13,14 +13,14 @@ const SiteFooter = () => (
             <span>College</span>
         </div>
         <address className="mc-footer-contact">
-            <p>McMurtry College Â· MS 761 Â· Rice University</p>
-            <p>1605 Rice Blvd Â· Houston, TX 77005</p>
+            <p>McMurtry College &middot; MS 761 &middot; Rice University</p>
+            <p>1605 Rice Blvd &middot; Houston, TX 77005</p>
             <p className="mc-footer-row">
-                <span aria-hidden="true" className="mc-footer-icon">â˜Ž</span>
+                <span aria-hidden="true" className="mc-footer-icon">&#9742;</span>
                 <a href="tel:+17133484583">(713) 348-4583</a>
             </p>
             <p className="mc-footer-row">
-                <span aria-hidden="true" className="mc-footer-icon">âœ‰</span>
+                <span aria-hidden="true" className="mc-footer-icon">&#9993;</span>
                 <a href="mailto:mcmurtry@rice.edu">mcmurtry@rice.edu</a>
             </p>
         </address>

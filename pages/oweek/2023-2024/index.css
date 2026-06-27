@@ -1,0 +1,18 @@
+.ow-archive-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+    padding-bottom: 80px;
+}
+
+.ow-archive-page .ev-hero {
+    background: var(--mc-paper);
+    position: relative;
+    overflow: hidden;
+}
+
+.ow-archive-page .ow-archive-viewer {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 48px);
+}

@@ -6,61 +6,55 @@ const navbar_headers = [
     {
         "name": "Home",
         "subheaders": [
-            { "name": "Home", "to": "/" },
-            { "name": "About", "to": "/about" },
-            { "name": "Calendar", "to": "/calendar" },
-            { "name": "Room Reservations", "to": "/resources/roomreservations" },
-            { "name": "Financial Inclusivity", "to": "/financialinclusivity" }
-        ]
-    },
-    {
-        "name": "O-Week",
-        "subheaders": [
-            { "name": "O-Week Home", "to": "/oweek" },
-            { "name": "About the Theme", "to": "/oweek/theme" },
-            { "name": "Meet the Coords", "to": "/oweek/coords" },
-            { "name": "O-Week Groups", "to": "/oweek/oweekgroups" },
-            { "name": "Tour of McMurtry", "to": "/oweek/mcmtour" },
-            { "name": "Your Room", "to": "/oweek/yourroom" },
-            { "name": "O-Week Book", "to": "/oweek/oweekbook" },
-            { "name": "Contact Info", "to": "/oweek/oweekcontact" }
+            { "name": "McMurtry", "to": "/home/index" },
+            { "name": "About", "to": "/home/about" },
+            { "name": "Calendar", "to": "/home/calendar" },
         ]
     },
     {
         "name": "People",
         "subheaders": [
             { "name": "McTeam", "to": "/people/mcteam" },
-            { "name": "McMinistry", "to": "/people/mcministry" },
-            { "name": "McCourt", "to": "/people/court" },
-            { "name": "Committees", "to": "/people/committees" },
-            {
-                "name": "Other",
-                "children": [
-                    { "name": "Affinity Groups", "to": "/people/mcmurtryaffinitygroups" },
-                    { "name": "Associates", "to": "/people/associates" },
-                    { "name": "Peer Academic Advisors", "to": "/people/paas" },
-                    { "name": "Academic Fellows", "to": "/people/academicfellows" },
-                    { "name": "RHAs", "to": "/people/RHAs" },
-                    { "name": "Head Caregivers", "to": "/people/headcaregivers" },
-                    { "name": "SMR", "to": "/people/SMR" }
-                ]
-            }
+            { "name": "Associates", "to": "/people/associates" },
+            { "name": "Affinity Groups", "to": "/people/mcmurtryaffinitygroups" },
+            { "name": "Academic Fellows", "to": "/people/academicfellows" },
+            { "name": "Peer Academic Advisors", "to": "/people/paas" },
+            { "name": "RHAs", "to": "/people/RHAs" },
+            { "name": "Head Caregivers", "to": "/people/headcaregivers" },
+            { "name": "SMR", "to": "/people/SMR" },
+            { "name": "Divisional Advisors", "to": "/people/divisionaladvisors" }
+        ]
+    },
+    {
+        "name": "Government",
+        "subheaders": [
+            { "name": "McCourt", "to": "/government/court" },
+            { "name": "Committees", "to": "/government/committees" },
+            { "name": "McMinistry", "to": "/government/mcministry" }
         ]
     },
     {
         "name": "Resources",
         "subheaders": [
-            { "name": "Room Reservations", "to": "/resources/roomreservations" },
-            { "name": "P-Card Requests", "to": "/resources/pcardmanagement" },
-            { "name": "McItems Check Out", "to": "/resources/mcitemscheckout" },
-            { "name": "Financial Inclusivity", "to": "/financialinclusivity" },
-            { "name": "McMurtry Innovation Space", "to": "/resources/mis" },
-            { "name": "McLegislation", "to": "/resources/documents" },
-            { "name": "Diversity Resources", "to": "/resources/diversityResources" },
-            { "name": "Work Orders", "to": "/resources/workorders" },
-            { "name": "McFUNd Requests", "to": "/resources/initiativerequests" },
+            { "name": "Room Reservations", "to": "/resources/room-reservations" },
+            { "name": "P-Card Requests", "to": "/resources/pcard-requests" },
+            { "name": "McItems Check Out", "to": "/resources/mcitems-checkout" },
+            { "name": "McMurtry Innovation Space", "to": "/resources/mcmurtry-innovation-space" },
+            { "name": "McLegislation", "to": "/resources/mclegislation" },
+            { "name": "Diversity Resources", "to": "/resources/diversity-resources" },
+
+            { "name": "McFUNd Requests", "to": "/resources/mcfund-requests" },
             { "name": "Budget Sheet", "to": "https://docs.google.com/spreadsheets/d/1imNFy7cyadxieh7JPcPRvMzB-LgMHozNkRzUX_Lwp1A/edit?usp=sharing" },
-            { "name": "Feedback Form", "to": "/resources/feedbackform" }
+            { "name": "Financial Inclusivity", "to": "/resources/financial-inclusivity" }
+        ]
+    },
+    {
+        "name": "O-Weeks",
+        "subheaders": [
+            { "name": "2026-2027", "to": "/oweek/2026-2027" },
+            { "name": "2025-2026", "to": "/oweek/2025-2026" },
+            { "name": "2024-2025", "to": "/oweek/2024-2025" },
+            { "name": "2023-2024", "to": "/oweek/2023-2024" }
         ]
     }
 ];
@@ -86,7 +80,7 @@ const SiteNavbar = () => {
     return (
         <React.Fragment>
             <header className="mc-navbar" role="banner">
-                <Link href="/">
+                <Link href="/home/index">
                     <a className="mc-navbar-brand">
                         <img
                             src="/static/logos/hero-crest.png"
@@ -127,7 +121,7 @@ const SiteNavbar = () => {
                         >
                             {header.name}
                             <span
-                                className="mc-navbar-caret"
+                                className={"mc-navbar-caret" + (openDropdown === header.name ? " mc-navbar-caret-open" : "")}
                                 aria-hidden="true"
                             />
                                 </button>
@@ -141,7 +135,7 @@ const SiteNavbar = () => {
                                     role="menu"
                                 >
                                     {header.subheaders.map((sub) => {
-                                        // Nested submenu â€” `children` array, no `to`.
+                                        // Nested submenu &rdquo;” `children` array, no `to`.
                                         if (sub.children && sub.children.length > 0) {
                                             return (
                                                 <div
