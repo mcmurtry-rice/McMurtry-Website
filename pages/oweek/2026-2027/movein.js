@@ -6,7 +6,7 @@ import ScrollToTop from '../../../components/oweek/oweek2026/ScrollToTop';
 import Sidebar from '../../../components/oweek/oweek2026/Sidebar';
 
 const OWeek2026MoveIn = () => (
-    <div>
+    <div className="page page-light">
         <Header />
         <SiteNavbar />
         <div className="groweek">

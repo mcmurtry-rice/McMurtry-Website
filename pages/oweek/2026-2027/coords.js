@@ -4,7 +4,7 @@ import SiteFooter from '../../../components/Footer/Footer';
 import CoordsPage from '../../../components/oweek/oweek2026/CoordsPage';
 
 const OWeek2026Coords = () => (
-    <div>
+    <div className="page page-light">
         <Header />
         <SiteNavbar />
         <CoordsPage />

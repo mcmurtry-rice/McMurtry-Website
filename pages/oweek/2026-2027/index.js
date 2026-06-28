@@ -4,7 +4,7 @@ import SiteFooter from '../../../components/Footer/Footer';
 import LandingPage from '../../../components/oweek/oweek2026/LandingPage';
 
 const OWeek20262027 = () => (
-    <div>
+    <div className="page page-light">
         <Header />
         <SiteNavbar />
         <LandingPage />
