@@ -1,0 +1,574 @@
+/* ============================================================
+ * O-Week 2025-2026 — single combined page, scoped under .ow-page
+ * ============================================================ */
+
+.ow-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+    padding-bottom: 80px;
+}
+
+/* ----- Hero ----- */
+.ow-page .ow-hero {
+    background: var(--mc-paper);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ----- Countdown ----- */
+.ow-page .ow-countdown {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 28px;
+    flex-wrap: wrap;
+}
+
+.ow-page .ow-countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(74, 52, 112, 0.08);
+    border: 1px solid rgba(74, 52, 112, 0.18);
+    border-radius: 14px;
+    padding: 16px 20px 12px;
+    min-width: 72px;
+}
+
+.ow-page .ow-countdown-num {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--mc-purple-700);
+    line-height: 1;
+    font-weight: 400;
+}
+
+.ow-page .ow-countdown-label {
+    font-family: var(--mc-font-body);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+/* ----- Carousel ----- */
+.ow-page .ow-carousel-wrap {
+    max-width: 1200px;
+    margin: 0 auto 64px;
+    padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* ----- Info cards (home section) ----- */
+.ow-page .ow-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    max-width: 1200px;
+    margin: 0 auto 16px;
+    padding: 0 clamp(16px, 4vw, 48px);
+}
+
+.ow-page .ow-info-card {
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-top: 4px solid var(--mc-purple-500);
+    border-radius: 18px;
+    padding: 28px 28px 24px;
+    box-shadow: 0 8px 32px -12px rgba(74, 52, 112, 0.15);
+}
+
+.ow-page .ow-info-card-title {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--mc-ink);
+    margin: 0 0 12px;
+}
+
+.ow-page .ow-info-card-body {
+    font-size: 0.95rem;
+    color: var(--mc-ink);
+    line-height: 1.75;
+    margin: 0;
+}
+
+/* ----- Sticky section nav ----- */
+.ow-page .ow-section-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(74, 52, 112, 0.12);
+    padding: 0 clamp(16px, 4vw, 48px);
+    margin: 48px 0 0;
+    display: flex;
+    align-items: stretch;
+}
+
+.ow-page .ow-section-nav-inner {
+    display: flex;
+    gap: 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex: 1;
+}
+
+.ow-page .ow-section-nav-inner::-webkit-scrollbar { display: none; }
+
+.ow-page .ow-section-nav-arrow {
+    display: none;
+    background: none;
+    border: none;
+    color: rgba(74, 52, 112, 0.6);
+    font-size: 1.6rem;
+    line-height: 1;
+    padding: 0 6px;
+    cursor: pointer;
+    flex-shrink: 0;
+    align-self: center;
+    margin-bottom: 4px;
+}
+
+@media (max-width: 768px) {
+    .ow-page .ow-section-nav-arrow {
+        display: block;
+    }
+}
+
+.ow-page .ow-section-nav-btn {
+    font-family: var(--mc-font-body);
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: rgba(74, 52, 112, 0.55);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 14px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 160ms ease, border-color 160ms ease;
+    flex-shrink: 0;
+}
+
+.ow-page .ow-section-nav-btn:hover {
+    color: var(--mc-purple-700);
+}
+
+.ow-page .ow-section-nav-btn-active {
+    color: var(--mc-purple-700) !important;
+    border-bottom-color: var(--mc-purple-700) !important;
+}
+
+/* ----- Shared section layout ----- */
+.ow-page .ow-section {
+    scroll-margin-top: 56px;
+}
+
+.ow-page .ow-content-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 64px clamp(16px, 4vw, 48px) 0;
+}
+
+.ow-page .ow-section-title {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--mc-purple-700);
+    text-align: center;
+    margin: 0 0 48px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(74, 52, 112, 0.15);
+}
+
+.ow-page .ow-subsection-title {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--mc-ink);
+    margin: 0 0 16px;
+}
+
+/* ----- Prose / floating images ----- */
+.ow-page .ow-prose-wrap {
+    margin-bottom: 48px;
+    overflow: hidden;
+}
+
+.ow-page .ow-prose {
+    font-size: 0.97rem;
+    color: var(--mc-ink);
+    line-height: 1.8;
+    margin: 0 0 16px;
+}
+
+.ow-page .ow-float-img {
+    width: 300px;
+    border-radius: 12px;
+    box-shadow: 0 12px 40px -12px rgba(74, 52, 112, 0.3);
+}
+
+.ow-page .ow-float-left {
+    float: left;
+    margin: 4px 28px 16px 0;
+}
+
+.ow-page .ow-float-right {
+    float: right;
+    margin: 4px 0 16px 28px;
+}
+
+.ow-page .ow-link {
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+.ow-page .ow-list {
+    padding: 0 0 0 20px;
+    margin: 0 0 16px;
+}
+
+.ow-page .ow-list li {
+    font-size: 0.97rem;
+    color: var(--mc-ink);
+    line-height: 1.75;
+    margin-bottom: 4px;
+}
+
+.ow-page .ow-list li::marker {
+    color: var(--mc-purple-500);
+}
+
+/* ----- Coord cards (portrait grid) ----- */
+.ow-page .ow-coord-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin-bottom: 56px;
+}
+
+.ow-page .ow-coord-card {
+    width: 220px;
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px -10px rgba(74, 52, 112, 0.18);
+    text-align: center;
+}
+
+.ow-page .ow-coord-img-link { display: block; }
+
+.ow-page .ow-coord-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    display: block;
+}
+
+.ow-page .ow-coord-info {
+    padding: 16px 14px;
+}
+
+.ow-page .ow-coord-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--mc-ink);
+    margin: 0 0 4px;
+}
+
+.ow-page .ow-coord-meta {
+    font-size: 0.82rem;
+    color: rgba(74, 52, 112, 0.7);
+    margin: 0 0 2px;
+    line-height: 1.4;
+}
+
+.ow-page .ow-coord-bio {
+    padding-top: 40px;
+    border-top: 1px solid rgba(74, 52, 112, 0.1);
+}
+
+/* ----- Groups grid ----- */
+.ow-page .ow-groups-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 16px;
+}
+
+.ow-page .ow-group-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(74, 52, 112, 0.12);
+    box-shadow: 0 4px 16px -6px rgba(74, 52, 112, 0.14);
+}
+
+.ow-page .ow-group-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+}
+
+.ow-page .ow-group-name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--mc-ink);
+    padding: 10px 12px;
+    margin: 0;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* ----- Video ----- */
+.ow-page .ow-video-wrap {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 16px;
+    box-shadow: 0 12px 40px -12px rgba(74, 52, 112, 0.25);
+    margin-bottom: 16px;
+}
+
+.ow-page .ow-video-wrap iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+    border-radius: 16px;
+}
+
+/* ----- O-Week Book ----- */
+.ow-page .ow-book-actions {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.ow-page .ow-book-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    background: var(--mc-purple-700);
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    text-decoration: none !important;
+    transition: background 160ms ease, transform 160ms ease;
+    box-shadow: 0 4px 16px -6px rgba(74, 52, 112, 0.5);
+}
+
+.ow-page .ow-book-btn:hover {
+    background: var(--mc-purple-500);
+    transform: translateY(-2px);
+}
+
+.ow-page .ow-book-viewer {
+    margin-bottom: 16px;
+}
+
+/* ----- Contact ----- */
+
+.ow-page .ow-address-box {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0;
+    border: 1px solid rgba(74, 52, 112, 0.15);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 48px;
+}
+
+.ow-page .ow-address-box-left {
+    background: rgba(74, 52, 112, 0.06);
+    padding: 28px 32px;
+    border-right: 1px solid rgba(74, 52, 112, 0.12);
+    min-width: 220px;
+}
+
+.ow-page .ow-address-box-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+    display: block;
+    margin-bottom: 12px;
+}
+
+.ow-page .ow-address-box-line {
+    font-size: 0.97rem;
+    color: var(--mc-ink);
+    margin: 0;
+    line-height: 1.8;
+}
+
+.ow-page .ow-address-box-note {
+    padding: 28px 32px;
+    font-size: 0.9rem;
+    color: var(--mc-ink);
+    line-height: 1.7;
+    display: flex;
+    align-items: center;
+}
+
+.ow-page .ow-address-box-note strong {
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+/* ----- Contact email row ----- */
+.ow-page .ow-contact-email-row {
+    font-size: 0.97rem;
+    color: var(--mc-ink);
+    margin: 0 0 20px;
+}
+
+/* ----- Coord contact grid ----- */
+.ow-page .ow-coord-contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.ow-page .ow-coord-contact-card {
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.ow-page .ow-contact-photo {
+    width: 90px;
+    flex-shrink: 0;
+    object-fit: cover;
+    object-position: top;
+}
+
+.ow-page .ow-contact-card-body {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* ----- Leadership grid ----- */
+.ow-page .ow-leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.ow-page .ow-leadership-card {
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-top: 3px solid var(--mc-purple-500);
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* ----- Shared contact text ----- */
+.ow-page .ow-contact-role {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+    background: rgba(74, 52, 112, 0.08);
+    padding: 3px 8px;
+    border-radius: 999px;
+    align-self: flex-start;
+    margin-bottom: 4px;
+}
+
+.ow-page .ow-contact-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--mc-ink);
+    margin: 0 0 2px;
+}
+
+.ow-page .ow-contact-meta {
+    font-size: 0.8rem;
+    color: rgba(74, 52, 112, 0.55);
+    margin: 0 0 4px;
+    line-height: 1.4;
+}
+
+.ow-page .ow-contact-detail {
+    font-size: 0.85rem;
+    color: rgba(74, 52, 112, 0.7) !important;
+    -webkit-text-fill-color: rgba(74, 52, 112, 0.7);
+    text-decoration: none !important;
+    line-height: 1.6;
+    display: block;
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 768px) {
+    .ow-page .ow-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ow-page .ow-groups-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .ow-page .ow-float-img {
+        float: none;
+        display: block;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 20px;
+    }
+
+    .ow-page .ow-address-box {
+        grid-template-columns: 1fr;
+    }
+
+    .ow-page .ow-address-box-left {
+        border-right: none;
+        border-bottom: 1px solid rgba(74, 52, 112, 0.12);
+    }
+
+    .ow-page .ow-coord-contact-grid,
+    .ow-page .ow-leadership-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .ow-page .ow-groups-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ow-page .ow-coord-card {
+        width: 100%;
+        max-width: 280px;
+    }
+}

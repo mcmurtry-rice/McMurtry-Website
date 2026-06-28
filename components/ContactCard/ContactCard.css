@@ -201,10 +201,11 @@
 }
 
 .cc-detail-value {
-    /* Allow URLs/emails to break at any point; never overflow */
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
     line-height: 1.4;
+    min-width: 0;
 }
 
 /* ----- Loading helpers (re-used from older CSS) ----- */

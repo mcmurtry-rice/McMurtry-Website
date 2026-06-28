@@ -3,7 +3,7 @@ import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import LandingPage from '../../../components/oweek/oweek2026/LandingPage';
 
-const OWeek2026 = () => (
+const OWeek20262027 = () => (
     <div>
         <Header />
         <SiteNavbar />
@@ -12,4 +12,4 @@ const OWeek2026 = () => (
     </div>
 );
 
-export default OWeek2026;
+export default OWeek20262027;

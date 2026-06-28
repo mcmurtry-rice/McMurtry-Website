@@ -1,0 +1,307 @@
+/* ============================================================
+ * McMurtry Innovation Space — scoped under .mis-page
+ * Design language matches pcard / mcitems pages.
+ * ============================================================ */
+
+.mis-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+}
+
+/* ----- Hero ----- */
+.mis-page .ev-hero {
+    background: var(--mc-paper);
+    position: relative;
+    overflow: hidden;
+}
+
+.mis-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.mis-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+}
+
+/* ----- Intro banner ----- */
+.mis-page .mis-banner {
+    position: relative;
+    z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 40px;
+    margin: 0 clamp(24px, 6vw, 96px) 72px;
+    padding: 32px 36px;
+    background: var(--mc-purple-700);
+    border-radius: 20px;
+    box-shadow: 0 20px 48px -16px rgba(74, 52, 112, 0.5);
+    align-items: center;
+}
+
+.mis-page .mis-banner-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mis-page .mis-banner-text {
+    font-family: var(--mc-font-body);
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.88) !important;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.88);
+    margin: 0;
+    line-height: 1.7;
+}
+
+.mis-page .mis-banner-text strong {
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+    font-weight: 700;
+}
+
+/* Quick-link cards inside the banner */
+.mis-page .mis-banner-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 180px;
+}
+
+.mis-page .mis-link-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    text-decoration: none !important;
+    transition: background 180ms ease, transform 180ms ease;
+}
+
+.mis-page .mis-link-card:hover,
+.mis-page .mis-link-card:focus-visible {
+    background: rgba(255, 255, 255, 0.22);
+    transform: translateX(3px);
+}
+
+.mis-page .mis-link-icon {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+    flex-shrink: 0;
+    opacity: 0.9;
+}
+
+.mis-page .mis-link-card span {
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--mc-paper) !important;
+    -webkit-text-fill-color: var(--mc-paper);
+}
+
+/* ----- Mid section: hours + about ----- */
+.mis-page .mis-mid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 32px;
+    padding: 0 clamp(24px, 6vw, 96px);
+    margin-bottom: 72px;
+    align-items: start;
+}
+
+.mis-page .mis-panel-title {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+    color: var(--mc-purple-700);
+    margin: 0 0 24px;
+    letter-spacing: 0;
+}
+
+/* Hours panel */
+.mis-page .mis-hours-panel {
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-radius: 18px;
+    padding: 32px 28px;
+    box-shadow: 0 16px 40px -16px rgba(74, 52, 112, 0.2);
+}
+
+.mis-page .mis-hours-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.mis-page .mis-hour-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(74, 52, 112, 0.08);
+}
+
+.mis-page .mis-hour-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.mis-page .mis-hour-row:first-child {
+    padding-top: 0;
+}
+
+.mis-page .mis-hour-day {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--mc-ink);
+    min-width: 100px;
+}
+
+.mis-page .mis-hour-sep {
+    flex: 1;
+    height: 1px;
+    background: rgba(74, 52, 112, 0.12);
+    margin: 0 12px;
+}
+
+.mis-page .mis-hour-time {
+    font-family: var(--mc-font-body);
+    font-size: 0.93rem;
+    color: var(--mc-purple-700);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* About / what we offer panel */
+.mis-page .mis-about-panel {
+    background: var(--mc-paper);
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-radius: 18px;
+    padding: 32px 36px;
+    box-shadow: 0 16px 40px -16px rgba(74, 52, 112, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.mis-page .mis-offer-list {
+    margin: 0;
+    padding: 0 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mis-page .mis-offer-list li {
+    font-family: var(--mc-font-body);
+    font-size: 0.97rem;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    line-height: 1.6;
+}
+
+.mis-page .mis-offer-list li::marker {
+    color: var(--mc-purple-500);
+}
+
+.mis-page .mis-about-note {
+    background: rgba(139, 111, 199, 0.07);
+    border-left: 4px solid var(--mc-purple-500);
+    border-radius: 10px;
+    padding: 16px 20px;
+}
+
+.mis-page .mis-note-label {
+    display: inline-block;
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+    background: rgba(139, 111, 199, 0.18);
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+}
+
+.mis-page .mis-about-note p {
+    margin: 0;
+    font-family: var(--mc-font-body);
+    font-size: 0.93rem;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    line-height: 1.6;
+}
+
+/* ----- People sections — identical structure to RHAs / wellbeing-page ----- */
+.mis-page .mis-people-section {
+    margin: clamp(28px, 4vw, 48px) 0;
+}
+
+.mis-page .mis-division-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    /* Match cc-grid: max-width 1200px, centered, same side padding */
+    max-width: 1200px;
+    margin: 0 auto clamp(20px, 3vw, 32px) !important;
+    padding: 0 clamp(16px, 4vw, 48px) clamp(16px, 2vw, 24px) !important;
+    letter-spacing: 0 !important;
+    border-bottom: 1px solid rgba(74, 52, 112, 0.15);
+}
+
+/* ----- Responsive ----- */
+@media (max-width: 900px) {
+    .mis-page .mis-banner {
+        grid-template-columns: 1fr;
+    }
+
+    .mis-page .mis-banner-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        min-width: unset;
+    }
+
+    .mis-page .mis-mid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .mis-page .mis-banner {
+        padding: 24px 20px;
+        margin: 0 16px 48px;
+        gap: 20px;
+    }
+
+    .mis-page .mis-banner-links {
+        flex-direction: column;
+    }
+
+    .mis-page .mis-link-card {
+        width: 100%;
+    }
+
+    .mis-page .mis-about-panel {
+        padding: 24px 20px;
+    }
+
+    .mis-page .mis-hours-panel {
+        padding: 24px 20px;
+    }
+}

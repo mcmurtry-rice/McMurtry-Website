@@ -73,7 +73,7 @@ const Card = ({
                     <DetailRow icon="/static/icons/email.svg" href={`mailto:${email}`}>{email}</DetailRow>
                 ) : null}
                 {year ? (
-                    <DetailRow label="Year">{year}</DetailRow>
+                    <DetailRow>Class of {year}</DetailRow>
                 ) : null}
                 {room ? (
                     <DetailRow label="Room">{room}</DetailRow>

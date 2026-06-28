@@ -3,43 +3,45 @@ import './ImageCarousel.css';
 
 const ImageCarousel = ({ images, autoplay = true }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
   const carouselRef = useRef(null);
 
   // Minimum swipe distance (in px)
   const minSwipeDistance = 50;
+  const isAnimatingRef = useRef(false);
 
   useEffect(() => {
     if (!autoplay) return;
-    
     const interval = setInterval(() => {
-      handleNext();
-    }, 5000);
+      if (isAnimatingRef.current) return;
+      isAnimatingRef.current = true;
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+      setTimeout(() => { isAnimatingRef.current = false; }, 600);
+    }, 12000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, autoplay]);
+  }, [autoplay, images.length]);
 
   const handleNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-    setTimeout(() => setIsAnimating(false), 600);
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+        setCurrentIndex((prev) => (prev + 1) % images.length);
+    setTimeout(() => { isAnimatingRef.current = false; }, 600);
   };
 
   const handlePrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-    setTimeout(() => setIsAnimating(false), 600);
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+        setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    setTimeout(() => { isAnimatingRef.current = false; }, 600);
   };
 
   const goToSlide = (index) => {
-    if (isAnimating || index === currentIndex) return;
-    setIsAnimating(true);
-    setCurrentIndex(index);
-    setTimeout(() => setIsAnimating(false), 600);
+    if (isAnimatingRef.current || index === currentIndex) return;
+    isAnimatingRef.current = true;
+        setCurrentIndex(index);
+    setTimeout(() => { isAnimatingRef.current = false; }, 600);
   };
 
   const onTouchStart = (e) => {

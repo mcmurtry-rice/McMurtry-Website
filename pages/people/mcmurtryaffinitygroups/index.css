@@ -1,0 +1,91 @@
+/* ============================================================
+ * Affinity Groups page.
+ * ============================================================ */
+
+.mcmurtry-affinity-groups-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+    min-height: 100vh;
+    padding-bottom: clamp(40px, 6vw, 80px);
+}
+
+.mcmurtry-affinity-groups-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.mcmurtry-affinity-groups-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+    z-index: 3;
+}
+
+.mcmurtry-affinity-groups-page .ev-hero {
+    position: relative;
+    z-index: 5;
+    overflow: visible;
+}
+
+.mcmurtry-affinity-groups-page .affinity-description {
+    margin: 0 auto clamp(32px, 4.5vw, 56px) !important;
+    padding: 0 clamp(16px, 4vw, 48px) !important;
+    text-align: center;
+}
+
+.mcmurtry-affinity-groups-page .affinity-description p {
+    font-family: var(--mc-font-body) !important;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+    color: var(--mc-ink) !important;
+    -webkit-text-fill-color: var(--mc-ink);
+    background: none !important;
+    text-shadow: none !important;
+    margin: 0 0 14px !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.mcmurtry-affinity-groups-page .affinity-description p:last-child {
+    margin-bottom: 0 !important;
+}
+
+.mcmurtry-affinity-groups-page .affinity-section {
+    margin: clamp(28px, 4vw, 48px) 0;
+}
+
+@media (max-width: 640px) {
+    .mcmurtry-affinity-groups-page .cc-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 0 12px 32px;
+        justify-items: center;
+    }
+    .mcmurtry-affinity-groups-page .cc-grid > .cc-card {
+        max-width: none;
+        width: 100%;
+    }
+    .mcmurtry-affinity-groups-page .cc-grid > .cc-card:last-child:nth-child(odd) {
+        grid-column: 1 / -1;
+        max-width: calc(50% - 6px);
+    }
+}
+
+.mcmurtry-affinity-groups-page .division-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 0 clamp(20px, 3vw, 32px) !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
+}
