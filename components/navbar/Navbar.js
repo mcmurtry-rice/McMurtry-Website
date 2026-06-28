@@ -15,7 +15,7 @@ const navbar_headers = [
     },
     {
         "name": "O-Week 2026",
-        "to": "/oweek/oweek2026"
+        "to": "/oweek/2026-2027"
     },
     {
         "name": "O-Week",
