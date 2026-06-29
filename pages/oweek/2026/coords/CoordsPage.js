@@ -1,7 +1,7 @@
 import React from 'react';
-import { WatercolorFilters, WatercolorBlotch } from '../WatercolorFilters';
-import ScrollToTop from '../ScrollToTop';
-import Sidebar from '../Sidebar';
+import { WatercolorFilters, WatercolorBlotch } from '../../../../components/oweek2026/WatercolorFilters';
+import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
+import Sidebar from '../../../../components/oweek2026/Sidebar';
 
 const COORDINATORS = [
     {
