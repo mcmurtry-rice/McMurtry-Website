@@ -135,7 +135,7 @@
 }
 
 .mcteam-page .mt-detail-body p,
-.mcteam-page .mt-detail-body li {
+.mcteam-page .mt-detail-list li {
     font-family: var(--mc-font-body) !important;
     font-style: normal !important;
     font-weight: 400 !important;
@@ -170,7 +170,7 @@
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--mc-ink);
-    padding-left: 18px;
+    padding-left: 18px !important;
     position: relative;
     margin-bottom: 6px;
 }

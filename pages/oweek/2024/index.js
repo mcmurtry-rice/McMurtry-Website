@@ -14,11 +14,11 @@ const OWeek20242025 = () => (
                 <img src='/static/icons/about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
                 <img src='/static/icons/ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
                 <img src='/static/icons/ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
-                <h1 className='ev-hero-heading'>O-Week 2024-2025</h1>
+                <h1 className='ev-hero-heading'>O-Week 2024</h1>
                 <p className='ev-hero-lede'>McMurtry College Orientation Week 2024.</p>
             </header>
             <div className='ow-archive-viewer'>
-                <PDFViewer src='/static/oweek/2024-2025/oweekbook.pdf' title='O-Week Book 2024-2025' height={900} />
+                <PDFViewer src='/static/oweek/2024/oweekbook.pdf' title='O-Week Book 2024' height={900} />
             </div>
         </div>
         <SiteFooter />

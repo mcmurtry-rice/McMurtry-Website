@@ -51,10 +51,10 @@ const navbar_headers = [
     {
         "name": "O-Weeks",
         "subheaders": [
-            { "name": "2026-2027", "to": "/oweek/2026-2027" },
-            { "name": "2025-2026", "to": "/oweek/2025-2026" },
-            { "name": "2024-2025", "to": "/oweek/2024-2025" },
-            { "name": "2023-2024", "to": "/oweek/2023-2024" }
+            { "name": "2026", "to": "/oweek/2026" },
+            { "name": "2025", "to": "/oweek/2025" },
+            { "name": "2024", "to": "/oweek/2024" },
+            { "name": "2023", "to": "/oweek/2023" }
         ]
     }
 ];

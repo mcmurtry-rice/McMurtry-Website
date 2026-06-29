@@ -1,0 +1,197 @@
+.mc-strip {
+    position: relative;
+    width: 100%;
+    padding: 0 0 calc(40px * var(--s));
+    overflow: hidden;
+}
+
+.mc-strip-row {
+    display: flex;
+    gap: calc(67px * var(--s));
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: calc(20px * var(--s)) calc(160px * var(--s));
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+    user-select: none;
+    scroll-behavior: auto;
+}
+
+.mc-strip-row.mc-strip-dragging {
+    cursor: grabbing;
+    scroll-behavior: auto;
+}
+
+.mc-strip-row * {
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+.mc-strip-row::-webkit-scrollbar {
+    display: none;
+}
+
+.mc-strip-card {
+    margin: 0;
+    flex: 0 0 calc(663px * var(--s));
+    display: flex;
+    flex-direction: column;
+}
+
+.mc-strip-image-wrap {
+    width: calc(663px * var(--s));
+    height: calc(455px * var(--s));
+    border: calc(7px * var(--s)) solid var(--mc-purple-500);
+    border-radius: calc(18.789px * var(--s));
+    overflow: hidden;
+    background: var(--mc-purple-500);
+    transition:
+        transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 320ms ease;
+    box-shadow: 0 6px 18px rgba(20, 12, 38, 0.12);
+    isolation: isolate;
+    -webkit-mask-image: radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    clip-path: inset(0 round calc(12px * var(--s)));
+    transform: translateZ(0);
+    contain: paint;
+}
+
+.mc-strip-card:hover .mc-strip-image-wrap {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow:
+        0 14px 36px rgba(74, 52, 112, 0.28),
+        0 0 0 4px rgba(160, 124, 180, 0.35),
+        0 0 36px 6px rgba(160, 124, 180, 0.45);
+}
+
+.mc-strip-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mc-strip-card:hover .mc-strip-image {
+    transform: scale(1.06);
+}
+
+.mc-strip-caption {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: calc(8px * var(--s));
+    margin-top: calc(22px * var(--s));
+    padding-left: calc(40px * var(--s));
+}
+
+.mc-strip-caption-main {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: calc(var(--mc-fs-caption-xl) * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-purple-500);
+    background-image: linear-gradient(
+        to right,
+        var(--mc-purple-500) 0%,
+        var(--mc-purple-500) 100%
+    );
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: calc(48px * var(--s)) calc(3px * var(--s));
+    padding-bottom: calc(10px * var(--s));
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.mc-strip-caption-sub {
+    font-family: var(--mc-font-body);
+    font-weight: 400;
+    font-size: calc(20px * var(--s));
+    line-height: var(--mc-lh-tight);
+    color: var(--mc-purple-500);
+}
+
+.mc-strip-fade {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.mc-strip-fade-left {
+    left: 0;
+    background: linear-gradient(to right,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%);
+}
+
+.mc-strip-fade-right {
+    right: 0;
+    background: linear-gradient(to left,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0) 100%);
+}
+
+@media (max-width: 1024px) {
+    .mc-strip {
+        height: auto;
+        padding: 32px 0 24px;
+    }
+    .mc-strip-row {
+        padding: 16px 24px;
+        gap: 20px;
+        scroll-padding-left: 24px;
+    }
+    .mc-strip-card {
+        flex: 0 0 60vw;
+    }
+    .mc-strip-image-wrap {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border-width: 5px;
+        border-radius: 12px;
+    }
+    .mc-strip-caption {
+        padding-left: 8px;
+        align-items: flex-start;
+        margin-top: 12px;
+    }
+    .mc-strip-caption-main {
+        font-size: 1.5rem;
+    }
+    .mc-strip-caption-sub {
+        font-size: 0.95rem;
+    }
+    .mc-strip-fade {
+        display: none;
+    }
+}
+
+@media (max-width: 640px) {
+    .mc-strip {
+        padding: 24px 0 16px;
+    }
+    .mc-strip-row {
+        padding: 12px 16px;
+        gap: 14px;
+        scroll-padding-left: 16px;
+    }
+    .mc-strip-card {
+        flex: 0 0 85vw;
+    }
+    .mc-strip-image-wrap {
+        border-width: 4px;
+        border-radius: 10px;
+    }
+    .mc-strip-caption-main {
+        font-size: 1.25rem;
+    }
+    .mc-strip-caption-sub {
+        font-size: 0.85rem;
+    }
+}

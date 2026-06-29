@@ -27,7 +27,7 @@
 .mc-hero {
     position: relative;
     width: 100%;
-    height: calc(1198px * var(--s));
+    height: calc(920px * var(--s));
     overflow: hidden;
     isolation: isolate;
 }
@@ -146,7 +146,7 @@
 .mc-strip {
     position: relative;
     width: 100%;
-    padding: calc(56px * var(--s)) 0 calc(40px * var(--s));
+    padding: 0 0 calc(40px * var(--s));
     overflow: hidden;
 }
 

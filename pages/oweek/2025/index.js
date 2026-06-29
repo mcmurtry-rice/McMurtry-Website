@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
-import ImageCarousel from '../../../components/ImageCarousel/ImageCarousel';
+import StripCarousel from '../../../components/StripCarousel/StripCarousel';
 import PDFViewer from '../../../components/PDFViewer/PDFViewer';
 const themeData = {
   subtitle: "PicassO-Week 2025",
@@ -139,8 +139,8 @@ const config = {
     ],
 };
 
-const IMG = (rel) => `/static/oweek/2025-2026/${rel}`;
-const PDF_PATH = `/static/oweek/2025-2026/${config.pdfFilename}`;
+const IMG = (rel) => `/static/oweek/2025/${rel}`;
+const PDF_PATH = `/static/oweek/2025/${config.pdfFilename}`;
 
 const coords = coordinatorsData.coordinators;
 const { mailingAddress, president, coordinator, magisters } = coordinatorsData.leadership;
@@ -249,7 +249,7 @@ const OWeekPage = () => (
                     <p className='ev-hero-lede'>{config.themeSubtitle}</p>
                 </header>
                 <div className='ow-carousel-wrap'>
-                    <ImageCarousel images={carouselImages} autoplay={true} />
+                    <StripCarousel images={carouselImages} fadeWidth="6%" />
                 </div>
                 <div className='ow-info-grid'>
                     <div className='ow-info-card'>

@@ -25,9 +25,10 @@
 
     background-color: #f5ead6;
     background-image: url('/static/oweek/2026/watercolor-paper.jpg');
-    background-size: 100% auto;
-    background-repeat: repeat-y;
+    background-size: cover;
+    background-repeat: no-repeat;
     background-position: top center;
+    background-attachment: fixed;
     background-blend-mode: multiply;
     position: relative;
 }
@@ -245,6 +246,12 @@
     padding-bottom: 0 !important;
 }
 
+@media (max-width: 768px) {
+    .groweek-last-section {
+        padding-bottom: 2rem !important;
+    }
+}
+
 .groweek-last-section .groweek-info-grid {
     margin-bottom: 0 !important;
 }
@@ -301,20 +308,6 @@
     padding: 3.5rem 2.5rem 2rem;
     position: relative;
     overflow: visible;
-}
-
-.groweek-hero-seuss .groweek-hero-bg-photo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 100vw;
-    height: 140%;
-    object-fit: cover;
-    opacity: 0.08;
-    filter: grayscale(30%) blur(1.5px);
-    z-index: 0;
-    pointer-events: none;
 }
 
 .groweek-hero-row {
@@ -395,7 +388,7 @@
 
 /* ---- Countdown ---- */
 .groweek-countdown-wrap {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     margin: 2rem auto 0;
@@ -403,15 +396,21 @@
     background: linear-gradient(135deg, rgba(139, 106, 173, 0.1) 0%, rgba(196, 174, 218, 0.15) 100%);
     border: 2px solid var(--gw-purple-light);
     border-radius: 20px;
+    width: min(620px, calc(100vw - 4rem));
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 .groweek-countdown-wrap h3 {
     font-family: 'DM Sans', sans-serif;
-    font-size: clamp(1rem, 3vw, 1.4rem);
+    font-size: 1.25rem;
     color: var(--gw-purple-dark);
     margin: 0;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
+    white-space: normal;
+    text-align: center;
+    width: 100%;
 }
 
 .groweek-countdown-wrap p {
@@ -513,13 +512,25 @@
 }
 
 .groweek-expect-icon {
-    font-size: 1.8rem;
     flex-shrink: 0;
     width: 2.5rem;
     height: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--gw-purple);
+}
+
+.groweek-expect-icon i {
+    font-size: 1.8rem;
+    line-height: 1;
+}
+
+.groweek-info-card h4 i {
+    font-size: 1.1rem;
+    vertical-align: middle;
+    margin-right: 0.3rem;
+    color: var(--card-accent, var(--gw-purple));
 }
 
 .groweek-expect-item h4 {
@@ -848,7 +859,7 @@
 /* ---- Sidebar / Hamburger ---- */
 .groweek-hamburger {
     position: fixed;
-    top: 70px;
+    top: 105px;
     left: 1rem;
     z-index: 10001;
     width: 44px;
@@ -943,7 +954,7 @@
 
 .groweek-sidebar-close {
     background: none;
-    border: none;
+border: none;
     font-size: 2rem;
     color: var(--gw-purple);
     cursor: pointer;
@@ -980,83 +991,112 @@
 }
 
 /* ---- Responsive ---- */
-@media (max-width: 768px) {
-    .groweek-hero {
-        padding: 2.5rem 1.25rem 1.5rem;
+@media (max-width: 1100px) {
+    .groweek-hamburger {
+        top: 68px;
     }
+}
 
+@media (max-width: 768px) {
     .groweek-hero-seuss {
-        padding: 2.5rem 1.25rem 1.5rem;
+        padding: 1.5rem 1rem 1rem;
     }
 
     .groweek-hero-row {
         flex-direction: column;
+        align-items: center;
+        gap: 1rem;
         text-align: center;
-        gap: 1.5rem;
     }
 
     .groweek-hero-illustration .groweek-logo {
-        width: 260px;
-        max-width: 260px;
-    }
-
-    .groweek-hero-text {
-        max-width: 100%;
+        width: 220px;
+        max-width: 220px;
     }
 
     .groweek-hero-quote {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 0.5rem;
         border-left: none;
         padding-left: 0;
         text-align: center;
     }
 
     .groweek-hero-cite {
+        font-size: 0.8rem;
+        margin-bottom: 0.75rem;
         padding-left: 0;
         text-align: center;
     }
 
     .groweek-hero-welcome {
+        font-size: 1rem;
         text-align: center;
+        margin-bottom: 0;
     }
 
-    .groweek-logo {
-        max-width: 320px;
+    .groweek-countdown-wrap {
+        padding: 0.75rem 1rem;
+        width: calc(100vw - 2rem);
+        margin-top: 1rem;
+        border-radius: 14px;
     }
 
-    .groweek-mission {
-        padding: 1.5rem 1.25rem;
+    .groweek-countdown-wrap h3 {
+        font-size: 1rem;
     }
 
-    .groweek-pull-quote {
-        font-size: 1.2rem;
-        padding: 1rem 1.5rem;
+    .groweek-section {
+        margin-bottom: 2rem;
+        padding: 0 1rem;
     }
 
-    .groweek-pull-quote::before {
-        font-size: 2.5rem;
-        left: 0.25rem;
+    .groweek-section-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .groweek-info-grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+
+    .groweek-info-card {
+        padding: 1.25rem;
     }
 
     .groweek-expect-grid {
         grid-template-columns: 1fr;
-        gap: 1rem;
+        gap: 0.75rem;
+    }
+
+    .groweek-expect-item {
+        padding: 1rem;
     }
 
     .groweek-coords-grid {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
+        gap: 1rem;
     }
 
-    .groweek-countdown-wrap {
-        padding: 1rem 1.5rem;
+    .groweek-mission {
+        padding: 1.25rem 1rem;
     }
 
-    .groweek-section {
-        margin-bottom: 2.5rem;
+    .groweek-mission p {
+        font-size: 0.95rem;
+        line-height: 1.65;
     }
 
-    .groweek-section-title {
-        margin-bottom: 1.5rem;
+    .groweek-pull-quote {
+        font-size: 1rem;
+        padding: 0.75rem 1rem;
+        margin: 1rem 0;
+    }
+
+    .groweek-carousel-section {
+        padding: 0 0.75rem;
     }
 
     .groweek-quickinfo-grid {
@@ -1066,49 +1106,61 @@
     .groweek-decor {
         display: none;
     }
+
+    .groweek-sig-img {
+        width: 280px;
+    }
 }
 
 @media (max-width: 480px) {
-    .groweek-hero {
-        padding: 2rem 1rem 1rem;
-    }
-
     .groweek-hero-seuss {
-        padding: 2rem 1rem 1rem;
-    }
-
-    .groweek-hero-row {
-        gap: 1rem;
+        padding: 1rem 0.875rem 0.75rem;
     }
 
     .groweek-hero-illustration .groweek-logo {
-        width: 220px;
-        max-width: 220px;
+        width: 180px;
+        max-width: 180px;
     }
 
-    .groweek-logo {
-        max-width: 260px;
+    .groweek-hero-quote {
+        font-size: 0.95rem;
     }
 
     .groweek-section {
-        padding: 0 1rem;
+        padding: 0 0.875rem;
+        margin-bottom: 1.75rem;
     }
 
-    .groweek-coords {
-        padding: 0 1rem;
+    .groweek-expect-item {
+        gap: 0.75rem;
     }
 
-    .groweek-coord-card {
-        padding: 1.5rem;
+    .groweek-expect-icon {
+        width: 2rem;
+        height: 2rem;
+    }
+
+    .groweek-expect-icon i {
+        font-size: 1.4rem;
     }
 
     .groweek-coord-photo,
     .groweek-coord-photo-placeholder {
-        width: 110px;
-        height: 110px;
+        width: 100px;
+        height: 100px;
     }
+}
 
-    .groweek-expect-item {
-        padding: 1.25rem;
+/* iOS Safari: background-attachment:fixed causes scroll glitches */
+@supports (-webkit-touch-callout: none) {
+    .groweek {
+        background-attachment: scroll;
+    }
+}
+
+/* Hide oversized blotches on narrow screens to prevent horizontal overflow */
+@media (max-width: 600px) {
+    .watercolor-blotch {
+        display: none;
     }
 }

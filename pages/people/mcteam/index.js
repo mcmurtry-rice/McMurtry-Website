@@ -19,7 +19,7 @@ const renderBody = (body) => {
     };
     body.forEach((line, idx) => {
         if (typeof line === 'string' && (line.startsWith('• ') || line.startsWith('â€¢ '))) {
-            bulletBuffer.push(line.replace(/^(•|â€¢) /, ''));
+            bulletBuffer.push(line.replace(/^[^\w\s!]+\s*/, ''));
         } else {
             flushBullets();
             nodes.push(<p key={`p-${idx}`}>{line}</p>);

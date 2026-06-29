@@ -1,9 +1,10 @@
-import Header from '../../../components/Header/Header';
-import SiteNavbar from '../../../components/navbar/Navbar';
-import SiteFooter from '../../../components/Footer/Footer';
-import { WatercolorFilters, WatercolorBlotch } from '../../../components/oweek/oweek2026/WatercolorFilters';
-import ScrollToTop from '../../../components/oweek/oweek2026/ScrollToTop';
-import Sidebar from '../../../components/oweek/oweek2026/Sidebar';
+import '../oweek2026.css';
+import Header from '../../../../components/Header/Header';
+import SiteNavbar from '../../../../components/navbar/Navbar';
+import SiteFooter from '../../../../components/Footer/Footer';
+import { WatercolorFilters, WatercolorBlotch } from '../WatercolorFilters';
+import ScrollToTop from '../ScrollToTop';
+import Sidebar from '../Sidebar';
 
 const OWeek2026Letter = () => (
     <div className="page page-light">

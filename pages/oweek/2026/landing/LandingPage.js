@@ -1,8 +1,8 @@
 import React from 'react';
-import StripCarousel from '../../StripCarousel/StripCarousel';
-import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
-import ScrollToTop from './ScrollToTop';
-import Sidebar from './Sidebar';
+import StripCarousel from '../../../../components/StripCarousel/StripCarousel';
+import { WatercolorFilters, WatercolorBlotch } from '../WatercolorFilters';
+import ScrollToTop from '../ScrollToTop';
+import Sidebar from '../Sidebar';
 var countdown = require('countdown');
 
 const MOVE_IN_DATE = new Date(2026, 7, 16);
@@ -146,7 +146,7 @@ const LandingPage = () => (
 
         {/* Photo Carousel */}
         <section className="groweek-carousel-section">
-            <StripCarousel images={CAROUSEL_IMAGES} fadeWidth="0" fadeColor= '233,223,204'/>
+            <StripCarousel images={CAROUSEL_IMAGES} fadeWidth="1%" fadeColor= '233,223,204'/>
         </section>
 
         {/* Mission Statement — with pull quote */}
