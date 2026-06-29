@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const NAV_ITEMS = [
     { name: 'Let It GrO-Week', href: '/oweek/2026' },
@@ -10,44 +11,34 @@ const NAV_ITEMS = [
 ];
 
 const Sidebar = () => {
-    const [open, setOpen] = useState(false);
+    const { pathname } = useRouter();
+    const innerRef = useRef(null);
+
+    const isActive = (href) =>
+        href === '/oweek/2026' ? pathname === href : pathname.startsWith(href);
+
+    const scrollNav = (dir) => {
+        if (innerRef.current) innerRef.current.scrollBy({ left: dir * 160, behavior: 'smooth' });
+    };
 
     return (
-        <>
-            <button
-                className={'groweek-hamburger' + (open ? ' groweek-hamburger-open' : '')}
-                onClick={() => setOpen(!open)}
-                aria-label={open ? 'Close menu' : 'Open menu'}
-                aria-expanded={open}
-            >
-                <span />
-                <span />
-                <span />
-            </button>
-
-            <div
-                className={'groweek-sidebar-scrim' + (open ? ' groweek-sidebar-scrim-open' : '')}
-                onClick={() => setOpen(false)}
-            />
-
-            <nav className={'groweek-sidebar' + (open ? ' groweek-sidebar-open' : '')} aria-label="O-Week 2026 Navigation">
-                <div className="groweek-sidebar-header">
-                    <img src="/static/oweek/2026/signature.png" alt="Let It GrO-Week 2026 — McMurtry College" className="groweek-sidebar-sig" />
-                    <button className="groweek-sidebar-close" onClick={() => setOpen(false)} aria-label="Close menu">×</button>
-                </div>
-                <ul className="groweek-sidebar-links">
+        <nav className="groweek-topnav" aria-label="O-Week 2026 Navigation">
+            <div className="groweek-topnav-inner-wrap">
+                <button className="groweek-topnav-arrow groweek-topnav-arrow-left" onClick={() => scrollNav(-1)} aria-label="Scroll left">&#8249;</button>
+                <ul className="groweek-topnav-list" ref={innerRef}>
                     {NAV_ITEMS.map((item) => (
                         <li key={item.href}>
                             <Link href={item.href}>
-                                <a className="groweek-sidebar-link" onClick={() => setOpen(false)}>
+                                <a className={'groweek-topnav-link' + (isActive(item.href) ? ' groweek-topnav-link-active' : '')}>
                                     {item.name}
                                 </a>
                             </Link>
                         </li>
                     ))}
                 </ul>
-            </nav>
-        </>
+                <button className="groweek-topnav-arrow groweek-topnav-arrow-right" onClick={() => scrollNav(1)} aria-label="Scroll right">&#8250;</button>
+            </div>
+        </nav>
     );
 };
 
