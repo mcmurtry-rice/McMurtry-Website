@@ -4,6 +4,7 @@ import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import StripCarousel from '../../../components/StripCarousel/StripCarousel';
+import ImageFadeIn from '../../../components/ImageFadeIn/ImageFadeIn';
 import './index.css';
 
 const heroPills = [
@@ -36,7 +37,7 @@ const Home = () => (
 
             <section className='mc-hero' aria-label='McMurtry College hero'>
                 <div className='mc-hero-bg'>
-                    <img src='/static/general_pics/mcm-quad.png' alt='' className='mc-hero-bg-img' />
+                    <ImageFadeIn src='/static/general_pics/mcm-quad.png' alt='' className='mc-hero-bg-img' />
                     <div className='mc-hero-bg-overlay' />
                 </div>
                 <h1 className='mc-hero-title'>
