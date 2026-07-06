@@ -3,36 +3,62 @@ import { WatercolorFilters, WatercolorBlotch } from '../../../../components/owee
 import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
 import Sidebar from '../../../../components/oweek2026/Sidebar';
 
+// Bios transcribed from "Meet The McCoordinators" (The O-Week Book, pages 35-40) -
+// written by the other coords about each other, kept in their original voice.
 const COORDINATORS = [
-    {
-        name: 'Collin DeSoto',
-        pronouns: '(he/him)',
-        year: 'Junior',
-        major: 'Psychology, Medical Humanities',
-        from: 'DFW, TX',
-        email: 'cd112@rice.edu',
-        phone: '(972) 249-6110',
-        emoji: '🌱',
-    },
     {
         name: 'Ava Casperson',
         pronouns: '',
         year: '',
-        major: '',
-        from: '',
+        major: 'Business, Political Science',
+        from: 'Kingwood, TX',
         email: 'ac321@rice.edu',
         phone: '(832) 696-3530',
-        emoji: '🌿',
+        photo: '/static/oweek/2026/coords/ava.png',
+        bio: [
+            'HEY MURT!!! (Hey what?!?)',
+            'Those chants you’re hearing aren’t just coming from any Murt… you’re hearing McMurtry’s very own POWERHOUSE of a hypewoman, Ava Casperson.',
+            'You may know her as an O-Week Coord or Murt’s External Vice President, but everyone else (us included) know her well as THE. BACK. TO. BACK. Swim and Dive Team conference champion (if you doubt it, ask her close personal friend selena2trim). A Kingwood, TX native (she’ll say she’s from Houston), Business/Political Science/ChatGPT triple major, you KNOW you can count on Ava “Clap-that-asperson” to rally all of McMurtry college in the loudest and strongest way possible.',
+            'Doing all of that must make her tired, but luckily enough, another one of her favorite pastimes is phone. Ava wears her screentime like a badge of HONOR. And you can hear it too. Any conversation with Ava is genuinely like rolling the dice on a hidden sleeper agent – any given word will trigger an exact one-to-one replica of any viral or recognizable sound, quote, song etc.',
+            'Get to know her at all, and you will automatically be the next lucky recipient of a free weekly subscription to a new vocal stim (seriously, we’ve been singing “Sunflower” for wayyyyy too long at this point). She gon call me baby boo.',
+            'Whether it’s making the prettiest and most OD-looking color-coded spreadsheet, sharing her cursed “for you” page, or curating the perfect O-Week playlist, Ava knows what it means to be dedicated. That same dedication carries the most to her friendships, where it truly shows that Ava is a fierce, loyal friend who always stands all ten toes down when it comes to defending and helping the people she cares about.',
+            'And you know for SURE that that dedication is what makes McMurtry what it is today - and what will make your Let It GrO-Week experience so special. We hope you’re sufficiently hyped to meet Ava this year so that she can call you baby boo too <3.',
+        ],
+        bioBy: 'Collin DeSoto (McMurtry ‘28) and Chad Federico (McMurtry ‘28)',
     },
     {
         name: 'Chad Federico',
         pronouns: '',
         year: '',
-        major: '',
-        from: '',
+        major: 'Sports Analytics, Statistics',
+        from: 'Long Island, NY',
         email: 'cf70@rice.edu',
         phone: '(631) 381-2607',
-        emoji: '🌳',
+        photo: '/static/oweek/2026/coords/chad.png',
+        bio: [
+            'Welcome back to the broadcast, coming at you LIVE from MCM Commons where our next batter is up: Chaaaaaaaaaad “C-Fed” Federico!',
+            'Hailing all the way from Long Island, New York, Chad is our resident sports encyclopedia, Sports Analytics and Statistics double major, and the person you should find if you ever wished for the human version of ESPN and need a full explanation of a stat you did not know existed. As a general rule of thumb, if you want to know whether Chad is in a good mood, check the Yankees score first.',
+            'When he’s not being McMurtry’s Sports Committee Head or working with the Rice Baseball Analytics Team, you can catch Chad living his y2k college student dreams, listening to a Rihanna or Katy Perry classic. Thought his baseball knowledge was impressive? Chad can name ALL 1,025 Pokemon just by seeing them. And somehow, he still has time to work on his Animal Crossing island, which probably took more hours to perfect than the Lorax movie.',
+            'More than that, Chad is one of those people who notices the details everyone else misses. Whether it was something you said and forgot about or something you overlooked in your work, Chad always pays attention and remembers. If you ever think he’s wrong about something, he’ll even patiently wait for about 10 seconds until you realize that you were actually in fact wrong the whole time. He’s so dedicated to his teams, that he’ll even ask if it’s ok to use the restroom or eat food while working on a group project. With Chad, no stone gets left unturned, no one gets left behind and no tears are left to cry.',
+            'We cannot wait for y’all to meet him, and he cannot wait to meet you - as long as the Yankees are doing okay ;)',
+        ],
+        bioBy: 'Collin DeSoto (McMurtry ‘28) and Ava Casperson (McMurtry ‘28)',
+    },
+    {
+        name: 'Collin DeSoto',
+        pronouns: '(he/him)',
+        year: 'Junior',
+        major: 'Psychology, Medical Humanities',
+        from: 'Denton, TX',
+        email: 'cd112@rice.edu',
+        phone: '(972) 249-6110',
+        photo: '/static/oweek/2026/coords/collin.png',
+        bio: [
+            'If you see a pair of Birkenstock clogs moving through McMurtry with purpose, follow them. There is a strong chance you’ll find Collin DeSoto, with AirPods in, calendar full, listening to his niche music, and already on his way to make someone’s day 1000 times better. From Denton, Texas, Collin is resident host to any and every Murt ready for a fun time! Collin is a Psychology major, making him one of the wisest people in the Greater Houston Area. Collin is knowledgeable in more than just school, 67 times out of 10 he will understand ANY reference that you have seen online.',
+            'If you’re ever looking for the definition of someone who “bleeds purple” for McMurtry, you don’t have to look further than Collin. O-Week Coord, McMurtry Prime Minister, and Socials Head by day, 5-star Doordasher/UberEats-er/Instacart-er by night. It’s hard to miss Collin around McMurtry and around Rice.',
+            'From his infectious smile, common treks to working at his lab, or taking scooter shortcuts around campus (do NOT ask him what happened this past January), Collin’s familiar face will be your constant reminder that this is where you belong. We can say wholeheartedly that Collin will do his absolute best to make you feel comfortable at your new home. I mean, have you seen how well furnished his room is?!? But even more than that, just wait until you see the home that Collin has prepared to welcome you to at McMurtry. With every McMurtry event throughout O-Week and the school year, you’ll see Collin’s heart and soul poured into it. In fact, the best public of the year, McMurtry Y2K, would not have happened without him!!! As soon as you arrive and join the McMurtry community, you too will understand the whole new meaning he’s given to “purple” by Olivia Rodrigo.',
+        ],
+        bioBy: 'Chad Federico (McMurtry ‘28) and Ava Casperson (McMurtry ‘28)',
     },
 ];
 
@@ -49,29 +75,33 @@ const CoordsPage = () => (
 
         <section className="groweek-coords" style={{ paddingTop: '2.5rem' }}>
             <h2 className="groweek-section-title">Meet Your Coordinators</h2>
-            <div className="groweek-coords-grid">
+            <div className="groweek-coords-list">
                 {COORDINATORS.map((coord, i) => (
-                    <div className="groweek-coord-card" key={i}>
-                        <div className="groweek-coord-photo-placeholder">
-                            {coord.emoji}
-                        </div>
-                        <h3 className="groweek-coord-name">{coord.name}</h3>
-                        {coord.pronouns && (
-                            <p className="groweek-coord-role">{coord.pronouns}</p>
-                        )}
-                        <p className="groweek-coord-details">
-                            {[coord.year, coord.major, coord.from].filter(Boolean).join(' · ')}
-                        </p>
-                        {coord.email && (
-                            <a className="groweek-coord-email" href={`mailto:${coord.email}`}>
-                                {coord.email}
-                            </a>
-                        )}
-                        {coord.phone && (
-                            <p className="groweek-coord-details" style={{marginTop: '0.25rem'}}>
-                                {coord.phone}
+                    <div className="groweek-coord-card-full" key={i}>
+                        <div className="groweek-coord-card-full-media">
+                            <img className="groweek-coord-photo-lg" src={coord.photo} alt={coord.name} />
+                            <h3 className="groweek-coord-name">{coord.name}</h3>
+                            {coord.pronouns && <p className="groweek-coord-role">{coord.pronouns}</p>}
+                            <p className="groweek-coord-details">
+                                {[coord.year, coord.major, coord.from].filter(Boolean).join(' · ')}
                             </p>
-                        )}
+                            {coord.email && (
+                                <a className="groweek-coord-email" href={`mailto:${coord.email}`}>
+                                    {coord.email}
+                                </a>
+                            )}
+                            {coord.phone && (
+                                <p className="groweek-coord-details" style={{ marginTop: '0.25rem' }}>
+                                    {coord.phone}
+                                </p>
+                            )}
+                        </div>
+                        <div className="groweek-coord-card-full-bio">
+                            {coord.bio.map((para, pi) => (
+                                <p key={pi}>{para}</p>
+                            ))}
+                            <cite className="groweek-coord-bio-by">— {coord.bioBy}</cite>
+                        </div>
                     </div>
                 ))}
             </div>

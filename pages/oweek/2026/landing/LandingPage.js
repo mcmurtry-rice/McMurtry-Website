@@ -1,5 +1,5 @@
 import React from 'react';
-import StripCarousel from '../../../../components/StripCarousel/StripCarousel';
+import ImageCarousel from '../../../../components/ImageCarousel/ImageCarousel';
 import { WatercolorFilters, WatercolorBlotch } from '../../../../components/oweek2026/WatercolorFilters';
 import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
 import Sidebar from '../../../../components/oweek2026/Sidebar';
@@ -146,7 +146,7 @@ const LandingPage = () => (
 
         {/* Photo Carousel */}
         <section className="groweek-carousel-section">
-            <StripCarousel images={CAROUSEL_IMAGES} fadeWidth="1%" fadeColor= '233,223,204'/>
+            <ImageCarousel images={CAROUSEL_IMAGES} />
         </section>
 
         {/* Mission Statement - with pull quote */}

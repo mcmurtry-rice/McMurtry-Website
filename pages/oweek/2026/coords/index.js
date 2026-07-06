@@ -2,13 +2,16 @@ import '../oweek2026.css';
 import Header from '../../../../components/Header/Header';
 import SiteNavbar from '../../../../components/navbar/Navbar';
 import SiteFooter from '../../../../components/Footer/Footer';
+import OWeekGate from '../../../../components/oweek2026/OWeekGate';
 import CoordsPage from './CoordsPage';
 
 const OWeek2026Coords = () => (
     <div className="page page-light">
         <Header />
         <SiteNavbar />
-        <CoordsPage />
+        <OWeekGate>
+            <CoordsPage />
+        </OWeekGate>
         <SiteFooter />
     </div>
 );
