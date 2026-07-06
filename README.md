@@ -1,4 +1,4 @@
-![McMurtry College](https://github.com/mcmurtry-rice/McMurtry-Website/blob/master/static/YurtTrees.svg)
+  ![McMurtry College](https://github.com/mcmurtry-rice/McMurtry-Website/blob/master/static/YurtTrees.svg)
 
 # McMurtry Website
 

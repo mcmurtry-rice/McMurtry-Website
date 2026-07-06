@@ -17,7 +17,7 @@ const heroPills = [
 
 const tripleStrip = [
     { src: '/static/general_pics/mcm-quad.png',      caption: 'McMurtry College',         subcap: 'Our home on campus' },
-    { src: '/static/general_pics/oweek-coords.png', caption: 'O-Week Coordinators',      subcap: 'Leading you through the week' },
+    { src: '/static/oweek/2025/images/coords/groupphoto.JPG', caption: '2025 O-Week Coordinators', subcap: 'Leading you through the week' },
     { src: '/static/general_pics/yurt-evening.png', caption: 'The Yurt at Night',        subcap: 'Our award-winning dome' },
     { src: '/static/general_pics/yurt.jpg',         caption: 'Inside the Yurt',          subcap: 'The heart of the college' },
     { src: '/static/general_pics/mcm-event.png',    caption: 'McMurtry O-Week',          subcap: 'Every class, one home' },

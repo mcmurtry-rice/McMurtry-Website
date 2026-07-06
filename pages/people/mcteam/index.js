@@ -29,6 +29,35 @@ const renderBody = (body) => {
     return nodes;
 };
 
+const PersonPhotos = ({ images, name }) => {
+    const [primarySrc, setPrimarySrc] = useState(images[0]);
+
+    if (images.length <= 1) {
+        return <img src={images[0]} alt={name} className='mt-detail-image' />;
+    }
+
+    const thumbs = images.filter((src) => src !== primarySrc);
+
+    return (
+        <div className='mt-detail-image-group'>
+            <img src={primarySrc} alt={name} className='mt-detail-image mt-detail-image-primary' />
+            <div className='mt-detail-image-thumbs'>
+                {thumbs.map((src) => (
+                    <button
+                        key={src}
+                        type='button'
+                        className='mt-detail-image-thumb-btn'
+                        onClick={() => setPrimarySrc(src)}
+                        aria-label='Set as main photo'
+                    >
+                        <img src={src} alt={name} className='mt-detail-image-thumb' />
+                    </button>
+                ))}
+            </div>
+        </div>
+    );
+};
+
 const McTeamPage = () => {
     const { rows: positions, isLoading } = useSupabaseTable('mcteam');
     const [current, setCurrent] = useState(0);
@@ -36,6 +65,7 @@ const McTeamPage = () => {
     const safeCurrent = positions.length === 0 ? 0 : Math.min(current, positions.length - 1);
     const active = positions[safeCurrent];
     const body = active && Array.isArray(active.body) ? active.body : [];
+    const images = active && Array.isArray(active.images) ? active.images : [];
 
     return (
         <div className='page page-light page-with-staggered-menu'>
@@ -76,7 +106,7 @@ const McTeamPage = () => {
                                     <h2 className='mt-detail-name'>{active.names}</h2>
                                 </div>
                                 <div className='mt-detail-body'>
-                                    <img src={active.image} alt={active.names} className='mt-detail-image' />
+                                    <PersonPhotos key={active.id} images={images} name={active.names} />
                                     {renderBody(body)}
                                 </div>
                             </section>

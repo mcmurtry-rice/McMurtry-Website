@@ -1,14 +1,28 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import './PDFViewer.css';
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
+// These booklets run 15-90MB with dozens of image-heavy pages. Rendering
+// every page as a full-res canvas at once (react-pdf's default) blows past
+// mobile Safari's per-tab memory limit and crashes the page. Instead, only
+// pages near the current scroll position are rendered as real <Page>s;
+// the rest are lightweight placeholder divs sized to match, so scrolling
+// stays stable without every page ever needing to be in memory at once.
+const RENDER_BUFFER = 2;
+const INITIAL_RENDER_COUNT = 2;
+const PAGE_GAP = 12;
+const DEFAULT_PAGE_HEIGHT = 850;
+
 const PDFViewer = ({ src, title, height = 800 }) => {
     const [numPages, setNumPages] = useState(null);
     const [pageNumber, setPageNumber] = useState(1);
     const [zoom, setZoom] = useState(1.0);
+    const [pageSize, setPageSize] = useState(null); // { width, height } at scale 1
+    const [renderRange, setRenderRange] = useState({ start: 0, end: INITIAL_RENDER_COUNT - 1 });
+    const scrollRef = useRef(null);
     const ZOOM_STEP = 0.25;
     const ZOOM_MIN = 0.5;
     const ZOOM_MAX = 2.0;
@@ -20,7 +34,42 @@ const PDFViewer = ({ src, title, height = 800 }) => {
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
         setPageNumber(1);
+        setRenderRange({ start: 0, end: Math.min(numPages - 1, INITIAL_RENDER_COUNT - 1) });
     };
+
+    const onFirstPageLoadSuccess = useCallback((page) => {
+        setPageSize({ width: page.originalWidth, height: page.originalHeight });
+    }, []);
+
+    const rowHeight = (pageSize ? pageSize.height * zoom : DEFAULT_PAGE_HEIGHT) + PAGE_GAP;
+
+    const recomputeRange = useCallback(() => {
+        const el = scrollRef.current;
+        if (!el || !numPages) return;
+        const start = Math.max(0, Math.floor(el.scrollTop / rowHeight) - RENDER_BUFFER);
+        const end = Math.min(
+            numPages - 1,
+            Math.ceil((el.scrollTop + el.clientHeight) / rowHeight) + RENDER_BUFFER
+        );
+        setRenderRange(prev => (prev.start === start && prev.end === end) ? prev : { start, end });
+    }, [numPages, rowHeight]);
+
+    useEffect(() => {
+        recomputeRange();
+        const el = scrollRef.current;
+        if (!el) return;
+        let ticking = false;
+        const onScroll = () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                recomputeRange();
+                ticking = false;
+            });
+        };
+        el.addEventListener('scroll', onScroll);
+        return () => el.removeEventListener('scroll', onScroll);
+    }, [recomputeRange]);
 
     const filename = title || src.split('/').pop().replace(/_/g, ' ').replace(/\.pdf$/i, '');
 
@@ -58,7 +107,7 @@ const PDFViewer = ({ src, title, height = 800 }) => {
             </div>
 
             <div className='pv-body' style={{ height }}>
-                <div className='pv-scroll'>
+                <div className='pv-scroll' ref={scrollRef}>
                     <Document
                         file={src}
                         onLoadSuccess={onDocumentLoadSuccess}
@@ -72,15 +121,31 @@ const PDFViewer = ({ src, title, height = 800 }) => {
                             </div>
                         }
                     >
-                        {Array.from({ length: numPages || 0 }, (_, i) => (
-                            <Page
-                                key={i + 1}
-                                pageNumber={i + 1}
-                                scale={zoom}
-                                className='pv-page'
-                                renderTextLayer={false}
-                            />
-                        ))}
+                        {Array.from({ length: numPages || 0 }, (_, i) => {
+                            const inRange = i >= renderRange.start && i <= renderRange.end;
+                            if (!inRange) {
+                                return (
+                                    <div
+                                        key={i + 1}
+                                        className='pv-page pv-page-placeholder'
+                                        style={{
+                                            height: pageSize ? pageSize.height * zoom : DEFAULT_PAGE_HEIGHT,
+                                            width: pageSize ? pageSize.width * zoom : undefined,
+                                        }}
+                                    />
+                                );
+                            }
+                            return (
+                                <Page
+                                    key={i + 1}
+                                    pageNumber={i + 1}
+                                    scale={zoom}
+                                    className='pv-page'
+                                    renderTextLayer={false}
+                                    onLoadSuccess={i === 0 ? onFirstPageLoadSuccess : undefined}
+                                />
+                            );
+                        })}
                     </Document>
                 </div>
             </div>
