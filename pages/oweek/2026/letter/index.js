@@ -21,11 +21,19 @@ const OWeek2026Letter = () => (
                 <WatercolorBlotch color="#f0d86e" size={320} style={{ top: '40%', right: '-9%' }} />
                 <WatercolorBlotch color="#7db87a" size={300} style={{ bottom: '10%', left: '-7%' }} />
 
-                <section className="groweek-section" style={{ paddingTop: '2.5rem' }}>
-                    <h2 className="groweek-section-title">Letter to Parents</h2>
-                    <div className="groweek-mission" style={{ textAlign: 'center' }}>
-                        <p style={{ textAlign: 'center' }}>Coming soon! A letter for parents and families will be posted here.</p>
+                <section className="groweek-section groweek-letter-pending">
+                    <div className="groweek-letter-pending-icon" aria-hidden="true">
+                        <i className="ph ph-envelope-simple-open" />
                     </div>
+                    <h2 className="groweek-section-title">Letter to Parents</h2>
+                    <p className="groweek-letter-pending-body">
+                        We're still writing this one — a note from the McTeam for parents and
+                        families will land here as move-in gets closer.
+                    </p>
+                    <p className="groweek-letter-pending-contact">
+                        Questions in the meantime? Reach us at{' '}
+                        <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>.
+                    </p>
                 </section>
             </div>
         </OWeekGate>

@@ -1,8 +1,8 @@
 import React from 'react';
-import ImageCarousel from '../../../../components/ImageCarousel/ImageCarousel';
-import { WatercolorFilters, WatercolorBlotch } from '../../../../components/oweek2026/WatercolorFilters';
-import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
-import Sidebar from '../../../../components/oweek2026/Sidebar';
+import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
+import ScrollToTop from './ScrollToTop';
+import Sidebar from './Sidebar';
 var countdown = require('countdown');
 
 const MOVE_IN_DATE = new Date(2026, 7, 16);

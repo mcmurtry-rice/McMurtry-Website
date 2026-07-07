@@ -63,12 +63,23 @@ const SiteNavbar = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);   // top-level item name
     const [openMobileSection, setOpenMobileSection] = useState(null);
+    // Drawer is only ever off-canvas via `transform`, which still occupies
+    // layout space at the viewport's edge and pushes document scrollWidth
+    // past clientWidth (confirmed: real horizontal scroll reveals it, even
+    // with `overflow-x: clip` on <html>). Give it `display:none` whenever
+    // fully closed so it has no box at all, and only drop back to none
+    // after the close transition finishes so the slide-out still plays.
+    const [drawerInDom, setDrawerInDom] = useState(false);
 
     // Lock body scroll while the mobile drawer is open
     useEffect(() => {
         if (typeof document === 'undefined') return;
         document.body.style.overflow = menuOpen ? 'hidden' : '';
         return () => { document.body.style.overflow = ''; };
+    }, [menuOpen]);
+
+    useEffect(() => {
+        if (menuOpen) setDrawerInDom(true);
     }, [menuOpen]);
 
     const closeAll = () => {
@@ -236,6 +247,10 @@ const SiteNavbar = () => {
             <aside
                 id="mc-mobile-drawer"
                 className={'mc-mobile-drawer' + (menuOpen ? ' mc-mobile-drawer-open' : '')}
+                style={{ display: drawerInDom ? 'flex' : 'none' }}
+                onTransitionEnd={(e) => {
+                    if (e.propertyName === 'transform' && !menuOpen) setDrawerInDom(false);
+                }}
                 aria-hidden={!menuOpen}
             >
                 <button

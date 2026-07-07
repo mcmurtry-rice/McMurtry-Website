@@ -10,6 +10,10 @@ import OWeekGate from '../../../../components/oweek2026/OWeekGate';
 import BookPageNav from '../../../../components/oweek2026/BookPageNav';
 
 const HEYZINE_BOOK_URL = 'https://heyzine.com/flip-book/31ff7c50f4.html';
+// Same convention as static/oweek/2023-2025/oweekbook.pdf — drop the 2026
+// PDF at this path once it's ready. Gives a plain fallback if Heyzine is
+// down or blocked, and something a screen reader can actually reach.
+const PDF_PATH = '/static/oweek/2026/oweekbook.pdf';
 
 // Verified against the live flipbook: Heyzine's "#page/N" hash is its own
 // internal spread index, not the book's printed page number, but it reliably
@@ -98,6 +102,11 @@ const OWeek2026Book = () => {
                         <h2 className="groweek-section-title">The O-Week Book</h2>
                         {HEYZINE_BOOK_URL ? (
                             <React.Fragment>
+                                <div className="groweek-book-download-row">
+                                    <a className="groweek-book-download-btn" href={PDF_PATH} download>
+                                        Download the PDF
+                                    </a>
+                                </div>
                                 <div className="groweek-book-rotate-notice">
                                     <div className="groweek-book-rotate-icon" aria-hidden="true">⟳📱</div>
                                     <p>Rotate your phone to landscape to read the book as a two-page spread.</p>

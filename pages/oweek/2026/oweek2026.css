@@ -31,6 +31,10 @@
     background-attachment: fixed;
     background-blend-mode: multiply;
     position: relative;
+    /* Watercolor blotches below bleed past this box on purpose (absolute,
+       negative left/right offsets) — clip here so they don't also inflate
+       the document's own scrollWidth and open up real horizontal scroll. */
+    overflow-x: clip;
 }
 
 /* Paper grain overlay — disabled, was causing scroll glitches */
@@ -455,6 +459,48 @@
     margin-top: 1rem;
 }
 
+/* A page with genuinely one thing to say still needs to fill the frame —
+   center it in the space rather than let it sit top-aligned over a long
+   stretch of empty parchment texture. */
+.groweek-letter-pending {
+    min-height: calc(100vh - 220px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 0.5rem;
+}
+
+.groweek-letter-pending-icon {
+    font-size: 2.75rem;
+    color: var(--gw-purple);
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+}
+
+.groweek-letter-pending-body {
+    max-width: 46ch;
+    font-size: 1.05rem;
+    color: var(--gw-ink-soft);
+    line-height: 1.6;
+}
+
+.groweek-letter-pending-contact {
+    font-size: 0.95rem;
+    color: var(--gw-ink-soft);
+}
+
+.groweek-letter-pending-contact a {
+    color: var(--gw-purple-dark);
+}
+
+@media (max-width: 640px) {
+    .groweek-letter-pending {
+        min-height: calc(100vh - 320px);
+    }
+}
+
 .groweek-section-title {
     font-family: 'Playfair Display', 'Instrument Serif', Georgia, serif;
     font-size: clamp(1.8rem, 4.5vw, 2.6rem);
@@ -658,6 +704,12 @@
     margin: 0 0 1rem;
 }
 
+.groweek-coord-card-full-bio p:first-of-type {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--gw-purple-dark);
+}
+
 .groweek-coord-card-full-bio p:last-of-type {
     margin-bottom: 0.75rem;
 }
@@ -686,11 +738,22 @@
     margin: 0 0 0.5rem;
 }
 
-.groweek-coord-details {
-    font-size: 0.9rem;
-    color: var(--gw-ink-soft);
-    line-height: 1.5;
-    margin: 0;
+.groweek-coord-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    margin: 0 0 0.25rem;
+}
+
+.groweek-coord-tag {
+    font-size: 0.78rem;
+    color: var(--gw-purple-dark);
+    background: var(--gw-purple-light);
+    background: color-mix(in srgb, var(--gw-purple-light) 45%, white);
+    border-radius: 999px;
+    padding: 0.2rem 0.7rem;
+    line-height: 1.4;
 }
 
 .groweek-coord-email {
@@ -1363,6 +1426,31 @@
 
 .groweek-book-rotate-notice {
     display: none;
+}
+
+.groweek-book-download-row {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1.25rem;
+}
+
+.groweek-book-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    background: var(--gw-purple);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.groweek-book-download-btn:hover {
+    background: var(--gw-purple-dark);
 }
 
 /* Heyzine renders its own "flipbook-title" chrome (white box, book title) as
