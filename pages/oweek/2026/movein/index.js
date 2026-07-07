@@ -50,13 +50,13 @@ const OWeek2026MoveIn = () => (
                                 <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a><br />
                                 <br />
                                 Ava Casperson<br />
-                                <a href="mailto:ac321@rice.edu">ac321@rice.edu</a> · (832) 696-3530<br />
+                                <a href="mailto:ac321@rice.edu">ac321@rice.edu</a><br />
                                 <br />
                                 Chad Federico<br />
-                                <a href="mailto:cf70@rice.edu">cf70@rice.edu</a> · (631) 381-2607<br />
+                                <a href="mailto:cf70@rice.edu">cf70@rice.edu</a><br />
                                 <br />
                                 Collin DeSoto<br />
-                                <a href="mailto:cd112@rice.edu">cd112@rice.edu</a> · (972) 249-6110
+                                <a href="mailto:cd112@rice.edu">cd112@rice.edu</a>
                             </p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-pink)' }}>
