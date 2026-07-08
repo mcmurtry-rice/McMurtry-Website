@@ -281,8 +281,8 @@
 
 /* Site-wide footer, re-themed for O-Week pages only (scoped by the
    .groweek-page wrapper class - every other page keeps the plain
-   purple footer). Truffula forest as the background; the Commons/
-   Yurt silhouette that used to sit on top of it is hidden here. */
+   purple footer). Truffula forest sits behind the existing Commons/
+   Yurt silhouette as a second background layer. */
 .groweek-page .mc-footer {
     background: linear-gradient(180deg, #f5ead6 0%, #f3d0e3 55%, #c4aeda 100%);
 }
@@ -300,7 +300,7 @@
 }
 
 .groweek-page .mc-footer-silhouette {
-    display: none;
+    opacity: 0.6;
 }
 
 .groweek-page .mc-footer-wordmark,

@@ -184,11 +184,6 @@ const LandingPage = () => (
                 </div>
             </div>
         </section>
-
-        {/* Tree panorama footer */}
-        <section className="groweek-tree-footer">
-            <img src="/static/oweek/2026/decor/tree-panorama.png" alt="Truffula Tree Forest" />
-        </section>
     </div>
 );
 
