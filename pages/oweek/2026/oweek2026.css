@@ -247,12 +247,12 @@
 
 .groweek-last-section {
     margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+    padding-bottom: 3.5rem !important;
 }
 
 @media (max-width: 768px) {
     .groweek-last-section {
-        padding-bottom: 2rem !important;
+        padding-bottom: 2.5rem !important;
     }
 }
 
@@ -287,6 +287,17 @@
     background: linear-gradient(180deg, #f5ead6 0%, #f3d0e3 55%, #c4aeda 100%);
 }
 
+/* Base footer height is tuned for a two-line wordmark; the signature
+   image stacked under it needs extra room or it clips against
+   overflow:hidden. Only at the desktop width where Footer.css gives
+   .mc-footer a fixed height at all - below 1024px it's already
+   height:auto and grows to fit its content on its own. */
+@media (min-width: 1025px) {
+    .groweek-page .mc-footer {
+        height: calc(448px * var(--s));
+    }
+}
+
 .groweek-page .mc-footer::before {
     content: '';
     position: absolute;
@@ -308,6 +319,23 @@
 .groweek-page .mc-footer-contact p,
 .groweek-page .mc-footer-contact a {
     color: #3d2f4a;
+}
+
+.mc-footer-signature {
+    width: calc(240px * var(--s));
+    max-width: 60%;
+    height: auto;
+    margin-top: calc(16px * var(--s));
+    filter: drop-shadow(0 4px 16px rgba(139, 106, 173, 0.15));
+    opacity: 0.9;
+}
+
+@media (max-width: 1024px) {
+    .mc-footer-signature {
+        width: 180px;
+        max-width: 55%;
+        margin-top: 14px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -857,22 +885,6 @@
     }
 }
 
-/* ---- Signature Image ---- */
-.groweek-sig-section {
-    text-align: center;
-    padding: 1.5rem 2rem 0;
-    margin: 0 auto 2rem;
-    max-width: 700px;
-}
-
-.groweek-sig-img {
-    max-width: 100%;
-    width: 420px;
-    height: auto;
-    filter: drop-shadow(0 4px 16px rgba(139, 106, 173, 0.15));
-    opacity: 0.9;
-}
-
 /* ---- Quick Info callout ---- */
 .groweek-quickinfo-grid {
     grid-template-columns: 1fr 1fr;
@@ -1214,10 +1226,6 @@
 
     .groweek-decor {
         display: none;
-    }
-
-    .groweek-sig-img {
-        width: 280px;
     }
 }
 

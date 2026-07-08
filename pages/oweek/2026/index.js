@@ -12,7 +12,7 @@ const OWeek20262027 = () => (
         <OWeekGate>
             <LandingPage />
         </OWeekGate>
-        <SiteFooter />
+        <SiteFooter oweekSignature />
     </div>
 );
 

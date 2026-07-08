@@ -12,7 +12,7 @@ const OWeek2026Coords = () => (
         <OWeekGate>
             <CoordsPage />
         </OWeekGate>
-        <SiteFooter />
+        <SiteFooter oweekSignature />
     </div>
 );
 

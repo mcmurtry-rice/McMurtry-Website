@@ -164,11 +164,6 @@ const LandingPage = () => (
             </div>
         </section>
 
-        {/* Signature */}
-        <section className="groweek-sig-section">
-            <img className="groweek-sig-img" src="/static/oweek/2026/signature.png" alt="Let It GrO-Week 2026 - McMurtry College" />
-        </section>
-
         {/* Quick Info - with bears */}
         <section className="groweek-section groweek-decorated-section groweek-last-section">
             <img className="groweek-decor" src="/static/oweek/2026/decor/bears.png" alt="" aria-hidden="true" style={{ bottom: '-30px', left: '-10px', width: '150px' }} />

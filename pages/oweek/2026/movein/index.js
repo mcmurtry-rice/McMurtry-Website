@@ -170,7 +170,7 @@ const OWeek2026MoveIn = () => (
                 </section>
             </div>
         </OWeekGate>
-        <SiteFooter />
+        <SiteFooter oweekSignature />
     </div>
 );
 

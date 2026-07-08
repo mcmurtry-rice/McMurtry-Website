@@ -133,7 +133,7 @@ const OWeek2026Book = () => {
                     </section>
                 </div>
             </OWeekGate>
-            <SiteFooter />
+            <SiteFooter oweekSignature />
         </div>
     );
 };
