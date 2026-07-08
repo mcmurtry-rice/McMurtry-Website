@@ -6,7 +6,7 @@ import OWeekGate from '../../../components/oweek2026/OWeekGate';
 import LandingPage from '../../../components/oweek2026/LandingPage';
 
 const OWeek20262027 = () => (
-    <div className="page page-light">
+    <div className="page page-light groweek-page">
         <Header />
         <SiteNavbar />
         <OWeekGate>

@@ -8,7 +8,7 @@ import Sidebar from '../../../../components/oweek2026/Sidebar';
 import OWeekGate from '../../../../components/oweek2026/OWeekGate';
 
 const OWeek2026Letter = () => (
-    <div className="page page-light">
+    <div className="page page-light groweek-page">
         <Header />
         <SiteNavbar />
         <OWeekGate>

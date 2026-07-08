@@ -11,7 +11,7 @@ import OWeekGate from '../../../../components/oweek2026/OWeekGate';
 // Info", "Directions to McMurtry", and "What to Bring" (The O-Week Book,
 // pages 15-18 and 25-26).
 const OWeek2026MoveIn = () => (
-    <div className="page page-light">
+    <div className="page page-light groweek-page">
         <Header />
         <SiteNavbar />
         <OWeekGate>

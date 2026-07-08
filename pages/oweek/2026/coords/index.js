@@ -6,7 +6,7 @@ import OWeekGate from '../../../../components/oweek2026/OWeekGate';
 import CoordsPage from '../../../../components/oweek2026/CoordsPage';
 
 const OWeek2026Coords = () => (
-    <div className="page page-light">
+    <div className="page page-light groweek-page">
         <Header />
         <SiteNavbar />
         <OWeekGate>

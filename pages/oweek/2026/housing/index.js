@@ -22,7 +22,7 @@ const SPACES = [
 ];
 
 const OWeek2026Housing = () => (
-    <div className="page page-light">
+    <div className="page page-light groweek-page">
         <Header />
         <SiteNavbar />
         <OWeekGate>

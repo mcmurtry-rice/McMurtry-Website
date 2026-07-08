@@ -85,7 +85,7 @@ const OWeek2026Book = () => {
     const iframeRef = useRef(null);
 
     return (
-        <div className="page page-light">
+        <div className="page page-light groweek-page">
             <Header />
             <SiteNavbar />
             <OWeekGate>
