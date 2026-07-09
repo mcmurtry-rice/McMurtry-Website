@@ -646,6 +646,20 @@
     margin-bottom: 1rem;
 }
 
+/* Exact colors from the 2026 Advisor Application's Mission Statement -
+   sampled directly from the doc, not the site's own softer palette. */
+.groweek-mission-pink {
+    color: #ffb5f6;
+}
+
+.groweek-mission-blue {
+    color: #a7def2;
+}
+
+.groweek-mission-orange {
+    color: #ffa32c;
+}
+
 .groweek-mission p:last-child {
     margin-bottom: 0;
 }
@@ -669,9 +683,8 @@
     text-align: center !important;
     font-family: 'Instrument Serif', Georgia, serif !important;
     font-size: 1.3rem !important;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--gw-green) !important;
+    font-weight: 700;
+    color: #ffb5f6 !important;
     margin-top: 1.75rem !important;
     letter-spacing: 0.02em;
 }
