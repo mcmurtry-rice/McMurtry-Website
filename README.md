@@ -111,14 +111,7 @@ See `google-apps-scripts/README.md` for setup and semester rollover instructions
 
 ## Environment variables
 
-Copy `.env.local.example` to `.env.local` and fill in your Supabase credentials:
-
-```
-NEXT_PUBLIC_SUPABASE_URL=...
-NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-```
-
-`.env.local` is gitignored — never commit it.
+The public Supabase config (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`) ships in the checked-in `.env` at the repo root — these are safe to commit because Supabase access is locked down by Row Level Security, not by key secrecy (see `tools/database/schema.sql`). A normal `npm install && npm run dev`/`build`/`deploy` needs no setup — nothing else to configure.
 
 ## Contributors
 

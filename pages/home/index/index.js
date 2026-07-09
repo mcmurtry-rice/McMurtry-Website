@@ -16,11 +16,11 @@ const heroPills = [
 ];
 
 const tripleStrip = [
-    { src: '/static/general_pics/mcm-quad.png',      caption: 'McMurtry College',         subcap: 'Our home on campus' },
+    { src: '/static/general_pics/mcm-quad.jpg',      caption: 'McMurtry College',         subcap: 'Our home on campus' },
     { src: '/static/oweek/2025/images/coords/groupphoto.JPG', caption: '2025 O-Week Coordinators', subcap: 'Leading you through the week' },
-    { src: '/static/general_pics/yurt-evening.png', caption: 'The Yurt at Night',        subcap: 'Our award-winning dome' },
+    { src: '/static/general_pics/yurt-evening.jpg', caption: 'The Yurt at Night',        subcap: 'Our award-winning dome' },
     { src: '/static/general_pics/yurt.jpg',         caption: 'Inside the Yurt',          subcap: 'The heart of the college' },
-    { src: '/static/general_pics/mcm-event.png',    caption: 'McMurtry O-Week',          subcap: 'Every class, one home' },
+    { src: '/static/general_pics/mcm-event.jpg',    caption: 'McMurtry O-Week',          subcap: 'Every class, one home' },
     { src: '/static/oweek/2025/images/hero/arrival.jpg', caption: 'O-Week Arrival',           subcap: 'Move-in day energy' },
     { src: '/static/general_pics/accioweek.jpg',              caption: 'AcciO-Week',               subcap: 'A magical O-Week theme' },
     { src: '/static/general_pics/marshmalloweek.jpg',         caption: 'MarshmallO-Week',          subcap: 'Sweet memories at McMurtry' },
@@ -37,7 +37,7 @@ const Home = () => (
 
             <section className='mc-hero' aria-label='McMurtry College hero'>
                 <div className='mc-hero-bg'>
-                    <ImageFadeIn src='/static/general_pics/mcm-quad.png' alt='' className='mc-hero-bg-img' />
+                    <ImageFadeIn src='/static/general_pics/mcm-quad.jpg' alt='' className='mc-hero-bg-img' />
                     <div className='mc-hero-bg-overlay' />
                 </div>
                 <h1 className='mc-hero-title'>

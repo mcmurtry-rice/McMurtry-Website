@@ -167,6 +167,24 @@ create table if not exists public.academic_fellows (
     sort_order    int not null default 0
 );
 
+-- ---------- divisionaladvisors ----------
+-- Source: Rice Office of Academic Advising divisional advisors listing for
+-- McMurtry (https://oaa.rice.edu), transcribed manually since it's not a
+-- feed. `bio`/`image` are optional extras borrowed from the `associates`
+-- table for advisors who are also associates; most rows leave them null.
+create table if not exists public.divisionaladvisors (
+    id            bigserial primary key,
+    name          text not null,
+    division      text,
+    department    text,
+    phone         text,
+    email         text,
+    office        text,
+    bio           text,
+    image         text,
+    sort_order    int not null default 0
+);
+
 -- ---------- committee_members ----------
 -- One row per person on a committee. `role` is 'head' or 'member' (heads
 -- were marked with a trailing asterisk in the source sheet). Linked to
@@ -191,7 +209,8 @@ begin
     foreach t in array array[
         'mcteam', 'mcministry', 'mccourt', 'affinity_groups',
         'associates', 'paas', 'rhas', 'head_caregivers', 'smr',
-        'committees', 'committee_members', 'academic_fellows'
+        'committees', 'committee_members', 'academic_fellows',
+        'divisionaladvisors'
     ]
     loop
         execute format('alter table public.%I enable row level security;', t);

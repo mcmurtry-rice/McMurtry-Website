@@ -49,7 +49,7 @@ const AboutPage = () => (
 
                 <div className="mc-about-collage">
                     <figure className="mc-about-card mc-about-card-1">
-                        <img src="/static/general_pics/mcm-quad.png" alt="" className="mc-about-card-img" />
+                        <img src="/static/general_pics/mcm-quad.jpg" alt="" className="mc-about-card-img" />
                         <figcaption className="mc-about-card-caption">McMurtry Commons</figcaption>
                     </figure>
                     <figure className="mc-about-card mc-about-card-2">
