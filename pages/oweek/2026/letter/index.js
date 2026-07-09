@@ -37,7 +37,7 @@ const OWeek2026Letter = () => (
                 </section>
             </div>
         </OWeekGate>
-        <SiteFooter oweekSignature />
+        <SiteFooter />
     </div>
 );
 

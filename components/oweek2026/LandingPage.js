@@ -65,6 +65,7 @@ const LandingPage = () => (
 
         {/* Hero - storybook opening: illustration + quote, countdown centered below */}
         <section className="groweek-hero-seuss">
+            <img className="groweek-decor groweek-unless-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ bottom: '-20px', right: '-10px', width: '150px' }} />
             <div className="groweek-hero-row">
                 <div className="groweek-hero-illustration">
                     <img
@@ -149,24 +150,19 @@ const LandingPage = () => (
             <ImageCarousel images={CAROUSEL_IMAGES} />
         </section>
 
-        {/* Mission Statement - with pull quote */}
+        {/* Mission Statement - word-for-word from the 2026 Advisor Application */}
         <section className="groweek-section groweek-decorated-section groweek-mission-section">
-            <img className="groweek-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ bottom: '-20px', right: '-20px', width: '160px' }} />
             <h2 className="groweek-section-title">Our Mission</h2>
             <div className="groweek-mission">
-                <p>In the <strong>McMurTREE forest</strong>, every New Student will have the opportunity to grow, change, and adapt to their new environments. Just like a <strong>truffula seed</strong>, students need the right conditions to thrive. <strong>Let It GrO-Week 2026</strong> nurtures those conditions through <strong>connection, guidance, and empathy</strong>. With these resources, the newest sprouts can begin to plant their roots into both the McMurtry family we hold so much pride for and Rice University as a whole.</p>
-                <blockquote className="groweek-pull-quote">
-                    How bad could it possibly be?
-                </blockquote>
+                <p>In the <strong>McMurTREE forest</strong>, every New Student will have the opportunity to grow, change, and adapt to their new environments. Just like a <strong>truffula seed</strong>, students need the right conditions to thrive. <strong>Let It GrO-Week 2026</strong> nurtures those conditions through <strong>connection, guidance, and empathy</strong>. With these resources, the newest sprouts can begin to plant their roots into both the McMurtry family we hold so much pride for and Rice University as a whole. New Students may think that college is daunting, but how bad could it possibly be?</p>
                 <p>Through being encouraged to <strong>step outside their comfort zones, try something new, and learn through experience</strong>, they will have all that they <strong>thneed</strong>.</p>
                 <p>By the end of <strong>Let It GrO-Week</strong>, New Students will understand that growth comes from <strong>asking for help, making mistakes, and taking initiative</strong>. After all, <strong>you can't reap what you don't sow</strong>. A forest will flourish through community; advisors, the McTeam, affiliates, and fellow Murts are eager to offer the water, light, and nutrients needed to <strong>celebrate each Murt's rebirth</strong> in their new community.</p>
-                <p className="groweek-mission-tagline">This is the place to Let It Grow!</p>
+                <p className="groweek-mission-tagline">This is the place to Let It Grow!!!</p>
             </div>
         </section>
 
-        {/* Quick Info - with bears */}
+        {/* Quick Info */}
         <section className="groweek-section groweek-decorated-section groweek-last-section">
-            <img className="groweek-decor" src="/static/oweek/2026/decor/bears.png" alt="" aria-hidden="true" style={{ bottom: '-30px', left: '-10px', width: '150px' }} />
             <h2 className="groweek-section-title">Quick Info</h2>
             <div className="groweek-info-grid groweek-quickinfo-grid">
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-orange)' }}>

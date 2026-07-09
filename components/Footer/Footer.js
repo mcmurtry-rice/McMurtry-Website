@@ -1,6 +1,6 @@
 ﻿import React from 'react';
 import './Footer.css';
-const SiteFooter = ({ oweekSignature }) => (
+const SiteFooter = () => (
     <footer className="mc-footer" role="contentinfo">
         <img
             src="/static/logos/yurt-band.png"
@@ -11,13 +11,6 @@ const SiteFooter = ({ oweekSignature }) => (
         <div className="mc-footer-wordmark">
             <span>McMurtry</span>
             <span>College</span>
-            {oweekSignature && (
-                <img
-                    src="/static/oweek/2026/signature.png"
-                    alt="Let It GrO-Week 2026 - McMurtry College"
-                    className="mc-footer-signature"
-                />
-            )}
         </div>
         <address className="mc-footer-contact">
             <p>McMurtry College &middot; MS 761 &middot; Rice University</p>
