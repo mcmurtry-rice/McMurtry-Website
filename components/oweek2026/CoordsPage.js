@@ -72,7 +72,7 @@ const CoordsPage = () => {
             <WatercolorBlotch color="#7db87a" size={300} style={{ bottom: '5%', left: '-8%' }} />
 
             <section className="groweek-coords" style={{ paddingTop: '2.5rem' }}>
-                <h2 className="groweek-section-title">Meet Your Coordinators</h2>
+                <h1 className="groweek-section-title">Meet Your Coordinators</h1>
                 <p className="groweek-coords-contact-note">
                     Questions for any of us? Reach the whole team at{' '}
                     <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>.

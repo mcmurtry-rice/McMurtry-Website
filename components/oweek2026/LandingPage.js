@@ -34,13 +34,13 @@ class Countdown extends React.Component {
         if (begun) {
             return (
                 <div className="groweek-countdown-wrap groweek-countdown-lilac groweek-countdown-begun">
-                    <h3>LET IT GRO-WEEK HAS BEGUN!!!!</h3>
+                    <p className="groweek-countdown-time">LET IT GRO-WEEK HAS BEGUN!!!!</p>
                 </div>
             );
         }
         return (
             <div className="groweek-countdown-wrap groweek-countdown-lilac">
-                <h3>{time}</h3>
+                <p className="groweek-countdown-time">{time}</p>
                 <p>until O-Week!</p>
             </div>
         );
@@ -65,6 +65,7 @@ const LandingPage = () => (
 
         {/* Hero - storybook opening: illustration + quote, countdown centered below */}
         <section className="groweek-hero-seuss">
+            <h1 className="groweek-sr-only">Let It GrO-Week 2026 - McMurtry College Orientation Week</h1>
             <div className="groweek-hero-row">
                 <div className="groweek-hero-illustration">
                     <img
@@ -118,28 +119,28 @@ const LandingPage = () => (
                 <div className="groweek-expect-item">
                     <span className="groweek-expect-icon" aria-hidden="true"><i className="ph ph-house" /></span>
                     <div>
-                        <h4>Moving In</h4>
+                        <h3>Moving In</h3>
                         <p>You'll arrive on campus, move into your room at McMurtry, and meet your O-Week group and advisors for the first time. We'll be there to help you carry your stuff and welcome you home. This is your room for the entire academic year.</p>
                     </div>
                 </div>
                 <div className="groweek-expect-item">
                     <span className="groweek-expect-icon" aria-hidden="true"><i className="ph ph-confetti" /></span>
                     <div>
-                        <h4>Activities &amp; Traditions</h4>
+                        <h3>Activities &amp; Traditions</h3>
                         <p>From icebreakers and team-building to campus tours and Rice traditions, O-Week is packed with memorable moments. You'll explore Houston, bond with your group, and discover what makes McMurtry special.</p>
                     </div>
                 </div>
                 <div className="groweek-expect-item">
                     <span className="groweek-expect-icon" aria-hidden="true"><i className="ph ph-books" /></span>
                     <div>
-                        <h4>Academic Prep</h4>
+                        <h3>Academic Prep</h3>
                         <p>Meet with your academic advisors, learn about course registration, and get oriented to Rice's academic resources. You'll feel confident and ready before classes even start.</p>
                     </div>
                 </div>
                 <div className="groweek-expect-item">
                     <span className="groweek-expect-icon" aria-hidden="true"><i className="ph ph-hands-clapping" /></span>
                     <div>
-                        <h4>Finding Your Community</h4>
+                        <h3>Finding Your Community</h3>
                         <p>O-Week is where lifelong friendships begin. Whether it's your O-Week family, your hallmates, or the clubs you discover at the activities fair - you'll find your people.</p>
                     </div>
                 </div>
@@ -167,12 +168,12 @@ const LandingPage = () => (
             <h2 className="groweek-section-title">Quick Info</h2>
             <div className="groweek-info-grid groweek-quickinfo-grid">
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-orange)' }}>
-                    <h4><i className="ph ph-envelope" /> Mailing Address</h4>
+                    <h3><i className="ph ph-envelope" /> Mailing Address</h3>
                     <p>(Your Name)<br />McMurtry College<br />1605 Rice Blvd.<br />Houston, TX 77005</p>
                     <p><strong><em>Nothing should be shipped to the college until after O-Week.</em></strong></p>
                 </div>
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-green)' }}>
-                    <h4><i className="ph ph-chat-circle-dots" /> Questions?</h4>
+                    <h3><i className="ph ph-chat-circle-dots" /> Questions?</h3>
                     <p>Reach us anytime at <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a></p>
                 </div>
             </div>

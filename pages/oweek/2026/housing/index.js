@@ -35,6 +35,7 @@ const OWeek2026Housing = () => (
                 <WatercolorBlotch color="#e8a4c8" size={320} style={{ top: '40%', right: '-9%' }} />
                 <WatercolorBlotch color="#f0d86e" size={300} style={{ bottom: '10%', left: '-7%' }} />
 
+                <h1 className="groweek-sr-only">Your Room - McMurtry College Housing Info</h1>
                 <section className="groweek-section" style={{ paddingTop: '2.5rem' }}>
                     <h2 className="groweek-section-title">Map of McMurtry</h2>
                     <img
@@ -54,7 +55,7 @@ const OWeek2026Housing = () => (
                         {SPACES.map((space) => (
                             <div className="groweek-expect-item" key={space.name}>
                                 <div>
-                                    <h4>{space.name}</h4>
+                                    <h3>{space.name}</h3>
                                     <p>{space.desc}</p>
                                 </div>
                             </div>
@@ -71,15 +72,15 @@ const OWeek2026Housing = () => (
                     />
                     <div className="groweek-info-grid">
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-purple)' }}>
-                            <h4>Kitchens</h4>
+                            <h3>Kitchens</h3>
                             <p>McMurtry has kitchens on each 2nd-5th floor, equipped with a fridge, stove, oven, microwave, and essential cooking supplies. Just make sure to clean up after yourself when you&apos;re done.</p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-pink)' }}>
-                            <h4>Study Rooms</h4>
+                            <h3>Study Rooms</h3>
                             <p>McMurtry has two study rooms on the ground floor and one on each of the higher floors. Each study room offers a table and whiteboard for Murts to catch up on some work.</p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-green)' }}>
-                            <h4>4th Floor Lounge</h4>
+                            <h3>4th Floor Lounge</h3>
                             <p>A flex common area equipped with mirrors and couches. Often used by students to practice dances or to hangout with friends!</p>
                         </div>
                     </div>

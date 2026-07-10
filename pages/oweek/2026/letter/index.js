@@ -25,7 +25,7 @@ const OWeek2026Letter = () => (
                     <div className="groweek-letter-pending-icon" aria-hidden="true">
                         <i className="ph ph-envelope-simple-open" />
                     </div>
-                    <h2 className="groweek-section-title">Letter to Parents</h2>
+                    <h1 className="groweek-section-title">Letter to Parents</h1>
                     <p className="groweek-letter-pending-body">
                         We're still writing this one — a note from the McTeam for parents and
                         families will land here as move-in gets closer.

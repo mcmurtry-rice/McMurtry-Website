@@ -1,5 +1,17 @@
 /* Let It GrO-Week 2026 — Lorax / Watercolor / Cream + Purple Pastels */
 
+.groweek-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 .groweek {
     --gw-cream: #fdf6ec;
     --gw-cream-warm: #f5ead6;
@@ -206,7 +218,7 @@
     z-index: 1;
 }
 
-.groweek-countdown-lilac h3 {
+.groweek-countdown-lilac .groweek-countdown-time {
     color: white !important;
 }
 
@@ -446,7 +458,7 @@
     box-sizing: border-box;
 }
 
-.groweek-countdown-wrap h3 {
+.groweek-countdown-wrap .groweek-countdown-time {
     font-family: 'DM Sans', sans-serif;
     font-size: 1.25rem;
     color: var(--gw-purple-dark);
@@ -613,14 +625,14 @@
     line-height: 1;
 }
 
-.groweek-info-card h4 i {
+.groweek-info-card h3 i {
     font-size: 1.1rem;
     vertical-align: middle;
     margin-right: 0.3rem;
     color: var(--card-accent, var(--gw-purple));
 }
 
-.groweek-expect-item h4 {
+.groweek-expect-item h3 {
     font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
     font-size: 1.15rem;
     color: var(--gw-purple-dark);
@@ -880,7 +892,7 @@
     border: 1px solid rgba(139, 106, 173, 0.1);
 }
 
-.groweek-info-card h4 {
+.groweek-info-card h3 {
     font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
     font-size: 1.2rem;
     color: var(--gw-purple-dark);
@@ -1147,7 +1159,7 @@
         border-radius: 14px;
     }
 
-    .groweek-countdown-wrap h3 {
+    .groweek-countdown-wrap .groweek-countdown-time {
         font-size: 1rem;
     }
 

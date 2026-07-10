@@ -25,7 +25,7 @@ const OWeek2026MoveIn = () => (
                 <WatercolorBlotch color="#c8e2f0" size={300} style={{ bottom: '10%', right: '-7%' }} />
 
                 <section className="groweek-section" style={{ paddingTop: '2.5rem' }}>
-                    <h2 className="groweek-section-title">Move-In Day Instructions</h2>
+                    <h1 className="groweek-section-title">Move-In Day Instructions</h1>
                     <div className="groweek-mission">
                         <p>Plan to arrive in the morning on Sunday, August 16th. When you arrive at Rice, please enter through Entrance #1 (the main entrance), take your first right, and follow the signs for McMurtry. After you unload, you will be given directions for where to park for the remainder of the morning. As you get closer to McMurtry, Advisors will be holding signs, yelling your name, and welcoming you to the college. They are super excited to meet you!</p>
                         <p>Your Advisors, maybe some helpful football players, will empty your car and start moving your stuff into the building (that&apos;s right - you don&apos;t have to do ANY work). In the meantime, you and your family will be introduced to our wonderful College Coordinator, Jackie, who will give you your keys and other important information. After you check that all your belongings are in your room, you will meet the McTeam (our amazing Core Team), who will welcome you to McMurtry and Rice. They are so excited to meet you and you can read more about them later in this book! You will also have some time to unpack and begin setting up your room.</p>
@@ -45,7 +45,7 @@ const OWeek2026MoveIn = () => (
                     <h2 className="groweek-section-title">Important Contact Info</h2>
                     <div className="groweek-info-grid">
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-purple)' }}>
-                            <h4>O-Week Coordinators</h4>
+                            <h3>O-Week Coordinators</h3>
                             <p>
                                 Ava Casperson<br />
                                 Chad Federico<br />
@@ -56,7 +56,7 @@ const OWeek2026MoveIn = () => (
                             </p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-pink)' }}>
-                            <h4>McMurtry College Coordinator</h4>
+                            <h3>McMurtry College Coordinator</h3>
                             <p>
                                 Jackie Carrizales<br />
                                 <a href="mailto:jjc3@rice.edu">jjc3@rice.edu</a><br />
@@ -65,7 +65,7 @@ const OWeek2026MoveIn = () => (
                             </p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-green)' }}>
-                            <h4>McMurtry College Magisters</h4>
+                            <h3>McMurtry College Magisters</h3>
                             <p>
                                 Elizabeth Vann &amp; Jeffrey Fleisher<br />
                                 <a href="mailto:evann@rice.edu">evann@rice.edu</a><br />
@@ -79,7 +79,7 @@ const OWeek2026MoveIn = () => (
                     <h2 className="groweek-section-title">Directions to McMurtry</h2>
                     <div className="groweek-info-grid">
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-orange)' }}>
-                            <h4>Arriving By Car</h4>
+                            <h3>Arriving By Car</h3>
                             <p>
                                 <strong>From the West on I-10 East:</strong> Take 610 South to US-59 North and exit at Greenbriar. Follow Greenbriar and turn left at Rice Boulevard. Stay on Rice Boulevard until it becomes Sunset Blvd. Turn right on Main Street and take an immediate right into campus at Entrance 1.
                             </p>
@@ -94,7 +94,7 @@ const OWeek2026MoveIn = () => (
                             </p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-sky)' }}>
-                            <h4>Arriving By Plane</h4>
+                            <h3>Arriving By Plane</h3>
                             <p>Houston has two airports. George Bush Intercontinental (IAH) is about 22-25 miles north of campus (roughly 35-50 minutes by car). William P. Hobby (HOU) is about 10 miles southeast (roughly 25-35 minutes). Hobby is the closer and usually cheaper option if you have a choice.</p>
                             <p><strong>Rideshare (Uber/Lyft):</strong> The most common choice and available on demand at both airports. From IAH, expect roughly $40-$60, depending on time of day and surge pricing. From Hobby, expect roughly $30-$40. Follow the airport&apos;s signs to the designated rideshare pickup area.</p>
                             <p><strong>Taxi:</strong> Available at both airports&apos; ground transportation areas. Fares run a bit lower than rideshare from Hobby (about $25-$30 plus tip) and comparable or higher from IAH. Confirm the fare or that the meter is running before you depart.</p>
@@ -108,7 +108,7 @@ const OWeek2026MoveIn = () => (
                     <h2 className="groweek-section-title">What to Bring</h2>
                     <div className="groweek-info-grid">
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-purple)' }}>
-                            <h4>Necessities</h4>
+                            <h3>Necessities</h3>
                             <ul>
                                 <li>Toiletries + medicines</li>
                                 <li>Twin XL bedding</li>
@@ -122,7 +122,7 @@ const OWeek2026MoveIn = () => (
                             </ul>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-pink)' }}>
-                            <h4>Popular Buys</h4>
+                            <h3>Popular Buys</h3>
                             <ul>
                                 <li>Mattress pad</li>
                                 <li>TV</li>
@@ -140,7 +140,7 @@ const OWeek2026MoveIn = () => (
                             </ul>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-green)' }}>
-                            <h4>Useful Supplies</h4>
+                            <h3>Useful Supplies</h3>
                             <ul>
                                 <li>School supplies</li>
                                 <li>Desk lamp</li>
@@ -153,7 +153,7 @@ const OWeek2026MoveIn = () => (
                             </ul>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-orange)' }}>
-                            <h4>What NOT to Bring</h4>
+                            <h3>What NOT to Bring</h3>
                             <ul>
                                 <li>Toilet paper</li>
                                 <li>Trash cans</li>
