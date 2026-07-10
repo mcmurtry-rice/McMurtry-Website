@@ -18,7 +18,7 @@ const aboutAmenities = [
     'an off-campus student lounge',
     'the game room',
     'music room',
-    'McMurtry Innovation Space (MIS) on the 1st floor, with a plethora of study rooms throughout the college.'
+    'McMakerspace on the 1st floor, with a plethora of study rooms throughout the college.'
 ];
 
 const aboutBody3 =

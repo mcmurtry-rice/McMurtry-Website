@@ -20,7 +20,7 @@ var APPROVERS = {
   'gd33@rice.edu': { name: 'Approver (Commons/Music Room/Gym)', location: 'Commons/Music Room/Gym' },
   'jg225@rice.edu': { name: 'Approver (Tech Closet)', location: 'Tech Closet' },
   'jbf2@rice.edu': { name: 'Approver (Magister\'s)', location: 'Magister\'s' },
-  'mcminnovationspace@gmail.com': { name: 'MIS Team', location: 'McMurtry Innovation Space' },
+  'mcminnovationspace@gmail.com': { name: 'McMakerspace Team', location: 'McMakerspace' },
   'as610@rice.edu': { name: 'TESTER Antony Saleh', location: 'TESTTESTTEST' },
 };
 
