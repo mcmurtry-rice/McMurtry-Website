@@ -143,7 +143,7 @@ const OWeek2026Housing = () => {
                                 </div>
                                 <div className="groweek-mission" style={{ marginTop: '1.5rem' }}>
                                     <p>Coming in as New Students to McMurtry, you will most likely be placed in a double (one room shared between two people) with your roommate. The diagram above should give you an idea of what your 18&apos;x18&apos; room will look like!</p>
-                                    <p>Desk: 61&frac12;&quot; L &times; 32&quot; W &times; 30&quot; H · Dresser drawer: D 5.5&quot; · Nightstand drawer: D 22&quot; L 13.5&quot;</p>
+                                    <p>Desk: 61&frac12;&quot; L &times; 32&quot; W &times; 30&quot; H · Dresser: 61&frac12;&quot; L &times; 29&frac12;&quot; W &times; 30&quot; H (drawer D 5.5&quot;) · Nightstand drawer: D 22&quot; L 13.5&quot;</p>
                                     <p className="groweek-pull-quote">
                                         Every room has: bed, dresser, AC/heating unit, desk &amp; chair, ethernet port, private bathroom, built-in closet, cable TV outlet, towel racks, trash can &amp; recycling bin, shower curtain.
                                     </p>
