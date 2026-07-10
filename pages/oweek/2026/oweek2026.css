@@ -856,6 +856,57 @@
     margin: 0 0 2rem;
 }
 
+/* ---- Side-by-side maps (Housing page) ---- */
+.groweek-maps-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.groweek-maps-col {
+    text-align: center;
+}
+
+.groweek-maps-img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(139, 106, 173, 0.15);
+}
+
+.groweek-maps-caption {
+    margin-top: 0.75rem;
+    font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem;
+    color: var(--gw-purple-dark);
+}
+
+.groweek-subsection-title {
+    font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--gw-purple-dark);
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 1.25rem;
+}
+
+.groweek-furniture-img {
+    width: 150px;
+}
+
+@media (max-width: 768px) {
+    .groweek-maps-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .groweek-furniture-img {
+        width: 120px;
+    }
+}
+
 /* ---- Tab switch (Your Room page) ---- */
 .groweek-tab-switch {
     display: flex;
