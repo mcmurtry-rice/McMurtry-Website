@@ -128,22 +128,20 @@ const OWeek2026Housing = () => {
                         <>
                             <section className="groweek-section">
                                 <h2 className="groweek-section-title">Your Room</h2>
-                                <img
-                                    src="/static/oweek/2026/housing/room-layout.png"
-                                    alt="Diagram of a typical 18-foot by 18-foot McMurtry double room"
-                                    style={{ width: '100%', maxWidth: '340px', display: 'block', margin: '0 auto 1.5rem' }}
-                                />
-                                <div className="groweek-mission">
+                                <div className="groweek-room-grid">
                                     <img
-                                        src="/static/oweek/2026/housing/furniture/desk.png"
-                                        alt="Watercolor illustration of a McMurtry dorm desk"
-                                        className="groweek-float-img groweek-float-left groweek-furniture-img"
+                                        src="/static/oweek/2026/housing/room-layout.png"
+                                        alt="Diagram of a typical 18-foot by 18-foot McMurtry double room"
+                                        className="groweek-room-map-img"
                                     />
-                                    <img
-                                        src="/static/oweek/2026/housing/furniture/chair.png"
-                                        alt="Watercolor illustration of a McMurtry dorm chair"
-                                        className="groweek-float-img groweek-float-right groweek-furniture-img"
-                                    />
+                                    <div className="groweek-furniture-gallery">
+                                        <img src="/static/oweek/2026/housing/furniture/desk.png" alt="Watercolor illustration of a McMurtry dorm desk" />
+                                        <img src="/static/oweek/2026/housing/furniture/chair.png" alt="Watercolor illustration of a McMurtry dorm chair" />
+                                        <img src="/static/oweek/2026/housing/furniture/dresser.png" alt="Watercolor illustration of a McMurtry dorm dresser" />
+                                        <img src="/static/oweek/2026/housing/furniture/nightstand.png" alt="Watercolor illustration of a McMurtry dorm nightstand" />
+                                    </div>
+                                </div>
+                                <div className="groweek-mission" style={{ marginTop: '1.5rem' }}>
                                     <p>Coming in as New Students to McMurtry, you will most likely be placed in a double (one room shared between two people) with your roommate. The diagram above should give you an idea of what your 18&apos;x18&apos; room will look like!</p>
                                     <p>Desk: 61&frac12;&quot; L &times; 32&quot; W &times; 30&quot; H · Dresser drawer: D 5.5&quot; · Nightstand drawer: D 22&quot; L 13.5&quot;</p>
                                     <p className="groweek-pull-quote">

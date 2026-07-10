@@ -893,8 +893,34 @@
     margin: 0 0 1.25rem;
 }
 
-.groweek-furniture-img {
-    width: 150px;
+.groweek-room-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.groweek-room-map-img {
+    width: 100%;
+    display: block;
+}
+
+.groweek-furniture-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.groweek-furniture-gallery img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(139, 106, 173, 0.1);
+    padding: 0.5rem;
 }
 
 @media (max-width: 768px) {
@@ -902,8 +928,8 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    .groweek-furniture-img {
-        width: 120px;
+    .groweek-room-grid {
+        grid-template-columns: 1fr;
     }
 }
 
