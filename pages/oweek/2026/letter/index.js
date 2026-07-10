@@ -5,14 +5,12 @@ import SiteFooter from '../../../../components/Footer/Footer';
 import { WatercolorFilters, WatercolorBlotch } from '../../../../components/oweek2026/WatercolorFilters';
 import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
 import Sidebar from '../../../../components/oweek2026/Sidebar';
-import OWeekGate from '../../../../components/oweek2026/OWeekGate';
 
 const OWeek2026Letter = () => (
     <div className="page page-light groweek-page">
         <Header />
         <SiteNavbar />
-        <OWeekGate>
-            <div className="groweek">
+        <div className="groweek">
                 <WatercolorFilters />
                 <Sidebar />
                 <ScrollToTop />
@@ -49,7 +47,6 @@ const OWeek2026Letter = () => (
                     </div>
                 </section>
             </div>
-        </OWeekGate>
         <SiteFooter />
     </div>
 );

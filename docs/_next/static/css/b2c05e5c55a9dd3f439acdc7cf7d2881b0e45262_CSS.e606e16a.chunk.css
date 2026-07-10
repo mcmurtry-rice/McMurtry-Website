@@ -1295,6 +1295,9 @@
 
 /* ---- Responsive ---- */
 @media (max-width: 1100px) {
+    .groweek-unless-decor {
+        display: none;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1446,87 +1449,6 @@
     }
 }
 
-/* ---- Password gate ---- */
-.groweek-gate-page {
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3rem 2rem;
-}
-
-.groweek-gate-card {
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 20px;
-    padding: 2.5rem 3rem;
-    box-shadow: 0 4px 30px rgba(139, 106, 173, 0.12);
-    border: 1px solid rgba(139, 106, 173, 0.15);
-    max-width: 440px;
-    width: 100%;
-    text-align: center;
-}
-
-.groweek-gate-card p {
-    color: var(--gw-ink-soft);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin: 0 0 1.5rem;
-}
-
-.groweek-gate-form {
-    display: flex;
-    gap: 0.75rem;
-}
-
-.groweek-gate-input {
-    flex: 1;
-    min-width: 0;
-    padding: 0.75rem 1rem;
-    border-radius: 12px;
-    border: 2px solid var(--gw-purple-light);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.95rem;
-    color: var(--gw-ink);
-    background: white;
-}
-
-.groweek-gate-input:focus {
-    outline: none;
-    border-color: var(--gw-purple);
-}
-
-.groweek-gate-button {
-    padding: 0.75rem 1.5rem;
-    border-radius: 12px;
-    border: none;
-    background: var(--gw-purple);
-    color: white;
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    flex-shrink: 0;
-}
-
-.groweek-gate-button:hover {
-    background: var(--gw-purple-dark);
-}
-
-.groweek-gate-error {
-    color: #b5544a;
-    font-size: 0.85rem;
-    margin: 1rem 0 0 !important;
-}
-
-@media (max-width: 480px) {
-    .groweek-gate-card {
-        padding: 2rem 1.5rem;
-    }
-    .groweek-gate-form {
-        flex-direction: column;
-    }
-}
 
 
 /* ---------------- TOP NAVBAR (193:78) ---------------- */
