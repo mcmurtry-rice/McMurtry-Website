@@ -26,14 +26,7 @@ const OWeek2026Letter = () => (
                         <i className="ph ph-envelope-simple-open" />
                     </div>
                     <h1 className="groweek-section-title">Letter to Parents</h1>
-                    <p className="groweek-letter-pending-body">
-                        We're still writing this one — a note from the McTeam for parents and
-                        families will land here as move-in gets closer.
-                    </p>
-                    <p className="groweek-letter-pending-contact">
-                        Questions in the meantime? Reach us at{' '}
-                        <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>.
-                    </p>
+                    <p className="groweek-letter-pending-body">In progress</p>
                 </section>
             </div>
         </OWeekGate>

@@ -94,7 +94,7 @@ const OWeek2026Housing = () => {
                                 <img
                                     src="/static/oweek/2026/housing/floor-plan.png"
                                     alt="McMurtry Floor Plan, showing room numbering around a typical floor"
-                                    style={{ width: '100%', maxWidth: '600px', display: 'block', margin: '0 auto 1.5rem', borderRadius: '20px', boxShadow: '0 4px 30px rgba(139, 106, 173, 0.15)' }}
+                                    style={{ width: '100%', maxWidth: '600px', display: 'block', margin: '0 auto 1.5rem' }}
                                 />
                                 <div className="groweek-info-grid">
                                     <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-purple)' }}>
@@ -121,7 +121,7 @@ const OWeek2026Housing = () => {
                                 <img
                                     src="/static/oweek/2026/housing/room-layout.png"
                                     alt="Diagram of a typical 18-foot by 18-foot McMurtry double room"
-                                    style={{ width: '100%', maxWidth: '340px', display: 'block', margin: '0 auto 1.5rem', borderRadius: '20px', boxShadow: '0 4px 30px rgba(139, 106, 173, 0.15)' }}
+                                    style={{ width: '100%', maxWidth: '340px', display: 'block', margin: '0 auto 1.5rem' }}
                                 />
                                 <div className="groweek-mission">
                                     <p>Coming in as New Students to McMurtry, you will most likely be placed in a double (one room shared between two people) with your roommate. The diagram above should give you an idea of what your 18&apos;x18&apos; room will look like!</p>

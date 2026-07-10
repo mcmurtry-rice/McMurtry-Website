@@ -26,19 +26,19 @@ const OWeek2026MoveIn = () => (
 
                 <section className="groweek-section" style={{ paddingTop: '2.5rem' }}>
                     <h1 className="groweek-section-title">Move-In Day Instructions</h1>
+                    <img
+                        src="/static/oweek/2026/movein/route-map.jpg"
+                        alt="Move-in day arrival route map, showing the path from Entrance 1 to McMurtry College"
+                        style={{ width: '100%', maxWidth: '700px', display: 'block', margin: '1.5rem auto 0', borderRadius: '20px', boxShadow: '0 4px 30px rgba(139, 106, 173, 0.15)' }}
+                    />
+                </section>
+
+                <section className="groweek-section">
                     <div className="groweek-mission">
                         <p>Plan to arrive in the morning on Sunday, August 16th. When you arrive at Rice, please enter through Entrance #1 (the main entrance), take your first right, and follow the signs for McMurtry. After you unload, you will be given directions for where to park for the remainder of the morning. As you get closer to McMurtry, Advisors will be holding signs, yelling your name, and welcoming you to the college. They are super excited to meet you!</p>
                         <p>Your Advisors, maybe some helpful football players, will empty your car and start moving your stuff into the building (that&apos;s right - you don&apos;t have to do ANY work). In the meantime, you and your family will be introduced to our wonderful College Coordinator, Jackie, who will give you your keys and other important information. After you check that all your belongings are in your room, you will meet the McTeam (our amazing Core Team), who will welcome you to McMurtry and Rice. They are so excited to meet you and you can read more about them later in this book! You will also have some time to unpack and begin setting up your room.</p>
                         <p>Around noon, there will be lunch for you, your family, and your Advisors. Soon after lunch, it will be time to say a final goodbye to your family, and head off to join your O-Week group for the first time. While your family and loved ones stay behind for a New Families Orientation, you will be starting one of the most jam-packed and fun-filled weeks of your college career!</p>
                     </div>
-                </section>
-
-                <section className="groweek-section">
-                    <img
-                        src="/static/oweek/2026/movein/route-map.jpg"
-                        alt="Move-in day arrival route map, showing the path from Entrance 1 to McMurtry College"
-                        style={{ width: '100%', maxWidth: '700px', display: 'block', margin: '0 auto', borderRadius: '20px', boxShadow: '0 4px 30px rgba(139, 106, 173, 0.15)' }}
-                    />
                 </section>
 
                 <section className="groweek-section">
