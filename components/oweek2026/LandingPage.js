@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageCarousel from '../ImageCarousel/ImageCarousel';
+import StripCarousel from '../StripCarousel/StripCarousel';
 import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
 import ScrollToTop from './ScrollToTop';
 import Sidebar from './Sidebar';
@@ -65,7 +65,6 @@ const LandingPage = () => (
 
         {/* Hero - storybook opening: illustration + quote, countdown centered below */}
         <section className="groweek-hero-seuss">
-            <img className="groweek-decor groweek-unless-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ bottom: '-20px', right: '-10px', width: '150px' }} />
             <div className="groweek-hero-row">
                 <div className="groweek-hero-illustration">
                     <img
@@ -75,9 +74,12 @@ const LandingPage = () => (
                     />
                 </div>
                 <div className="groweek-hero-text">
-                    <blockquote className="groweek-hero-quote">
-                        "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not."
-                    </blockquote>
+                    <div className="groweek-hero-quote-wrap">
+                        <blockquote className="groweek-hero-quote">
+                            "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not."
+                        </blockquote>
+                        <img className="groweek-decor groweek-unless-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ top: 'calc(100% - 5px)', left: '48%', width: '85px' }} />
+                    </div>
                     <cite className="groweek-hero-cite">- Dr. Seuss, The Lorax</cite>
                     <p className="groweek-hero-welcome">Welcome to McMurtry College, Class of 2030!</p>
                 </div>
@@ -87,7 +89,6 @@ const LandingPage = () => (
 
         {/* What is O-Week */}
         <section className="groweek-section groweek-decorated-section">
-            <img className="groweek-decor" src="/static/oweek/2026/decor/lorax-fish.png" alt="" aria-hidden="true" style={{ top: '-30px', right: '-20px', width: '140px' }} />
             <h2 className="groweek-section-title">What is O-Week?</h2>
             <div className="groweek-info-grid">
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-purple)' }}>
@@ -117,8 +118,8 @@ const LandingPage = () => (
                 <div className="groweek-expect-item">
                     <span className="groweek-expect-icon" aria-hidden="true"><i className="ph ph-house" /></span>
                     <div>
-                        <h4>Move-In Day</h4>
-                        <p>You'll arrive on campus, move into your room at McMurtry, and meet your O-Week group and advisors for the first time. We'll be there to help you carry your stuff and welcome you home.</p>
+                        <h4>Moving In</h4>
+                        <p>You'll arrive on campus, move into your room at McMurtry, and meet your O-Week group and advisors for the first time. We'll be there to help you carry your stuff and welcome you home. This is your room for the entire academic year.</p>
                     </div>
                 </div>
                 <div className="groweek-expect-item">
@@ -147,7 +148,7 @@ const LandingPage = () => (
 
         {/* Photo Carousel */}
         <section className="groweek-carousel-section">
-            <ImageCarousel images={CAROUSEL_IMAGES} />
+            <StripCarousel images={CAROUSEL_IMAGES} fadeWidth="8%" fadeColor="245,234,214" />
         </section>
 
         {/* Mission Statement - word-for-word from the 2026 Advisor Application */}
@@ -168,6 +169,7 @@ const LandingPage = () => (
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-orange)' }}>
                     <h4><i className="ph ph-envelope" /> Mailing Address</h4>
                     <p>(Your Name)<br />McMurtry College<br />1605 Rice Blvd.<br />Houston, TX 77005</p>
+                    <p><strong><em>Nothing should be shipped to the college until after O-Week.</em></strong></p>
                 </div>
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-green)' }}>
                     <h4><i className="ph ph-chat-circle-dots" /> Questions?</h4>

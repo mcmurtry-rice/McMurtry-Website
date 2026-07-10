@@ -47,16 +47,12 @@ const OWeek2026MoveIn = () => (
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-purple)' }}>
                             <h4>O-Week Coordinators</h4>
                             <p>
-                                <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a><br />
-                                <br />
                                 Ava Casperson<br />
-                                <a href="mailto:ac321@rice.edu">ac321@rice.edu</a><br />
-                                <br />
                                 Chad Federico<br />
-                                <a href="mailto:cf70@rice.edu">cf70@rice.edu</a><br />
-                                <br />
-                                Collin DeSoto<br />
-                                <a href="mailto:cd112@rice.edu">cd112@rice.edu</a>
+                                Collin DeSoto
+                            </p>
+                            <p>
+                                <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>
                             </p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-pink)' }}>
@@ -72,8 +68,8 @@ const OWeek2026MoveIn = () => (
                             <h4>McMurtry College Magisters</h4>
                             <p>
                                 Elizabeth Vann &amp; Jeffrey Fleisher<br />
-                                <a href="mailto:evann@rice.edu">evann@rice.edu</a> · (281) 889-1159<br />
-                                <a href="mailto:jfleisher@rice.edu">jfleisher@rice.edu</a> · (713) 339-0589
+                                <a href="mailto:evann@rice.edu">evann@rice.edu</a><br />
+                                <a href="mailto:jfleisher@rice.edu">jfleisher@rice.edu</a>
                             </p>
                         </div>
                     </div>

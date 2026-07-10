@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
 import ScrollToTop from './ScrollToTop';
 import Sidebar from './Sidebar';
@@ -12,7 +12,6 @@ const COORDINATORS = [
         year: '',
         major: 'Business, Political Science',
         from: 'Kingwood, TX',
-        email: 'ac321@rice.edu',
         photo: '/static/oweek/2026/coords/ava.png',
         bio: [
             'HEY MURT!!! (Hey what?!?)',
@@ -31,7 +30,6 @@ const COORDINATORS = [
         year: '',
         major: 'Sports Analytics, Statistics',
         from: 'Long Island, NY',
-        email: 'cf70@rice.edu',
         photo: '/static/oweek/2026/coords/chad.png',
         bio: [
             'Welcome back to the broadcast, coming at you LIVE from MCM Commons where our next batter is up: Chaaaaaaaaaad “C-Fed” Federico!',
@@ -48,7 +46,6 @@ const COORDINATORS = [
         year: 'Junior',
         major: 'Psychology, Medical Humanities',
         from: 'Denton, TX',
-        email: 'cd112@rice.edu',
         photo: '/static/oweek/2026/coords/collin.png',
         bio: [
             'If you see a pair of Birkenstock clogs moving through McMurtry with purpose, follow them. There is a strong chance you’ll find Collin DeSoto, with AirPods in, calendar full, listening to his niche music, and already on his way to make someone’s day 1000 times better. From Denton, Texas, Collin is resident host to any and every Murt ready for a fun time! Collin is a Psychology major, making him one of the wisest people in the Greater Houston Area. Collin is knowledgeable in more than just school, 67 times out of 10 he will understand ANY reference that you have seen online.',
@@ -59,52 +56,60 @@ const COORDINATORS = [
     },
 ];
 
-const CoordsPage = () => (
-    <div className="groweek">
-        <WatercolorFilters />
-        <Sidebar />
-        <ScrollToTop />
-        <WatercolorBlotch color="#e8a4c8" size={400} style={{ top: '0%', left: '-10%' }} />
-        <WatercolorBlotch color="#c4aeda" size={350} style={{ top: '5%', right: '-8%' }} />
-        <WatercolorBlotch color="#f0d86e" size={380} style={{ top: '35%', left: '-9%' }} />
-        <WatercolorBlotch color="#c8e2f0" size={320} style={{ top: '60%', right: '-7%' }} />
-        <WatercolorBlotch color="#7db87a" size={300} style={{ bottom: '5%', left: '-8%' }} />
+const CoordsPage = () => {
+    const [expanded, setExpanded] = useState({});
+    const toggleExpanded = (i) => setExpanded((prev) => ({ ...prev, [i]: !prev[i] }));
 
-        <section className="groweek-coords" style={{ paddingTop: '2.5rem' }}>
-            <h2 className="groweek-section-title">Meet Your Coordinators</h2>
-            <p className="groweek-coords-contact-note">
-                Questions for any of us? Reach the whole team at{' '}
-                <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>.
-            </p>
-            <div className="groweek-coords-list">
-                {COORDINATORS.map((coord, i) => (
-                    <div className="groweek-coord-card-full" key={i}>
-                        <div className="groweek-coord-card-full-media">
-                            <img className="groweek-coord-photo-lg" src={coord.photo} alt={coord.name} />
-                            <h3 className="groweek-coord-name">{coord.name}</h3>
-                            {coord.pronouns && <p className="groweek-coord-role">{coord.pronouns}</p>}
-                            <div className="groweek-coord-tags">
-                                {[coord.year, coord.major, coord.from].filter(Boolean).map((tag) => (
-                                    <span className="groweek-coord-tag" key={tag}>{tag}</span>
-                                ))}
+    return (
+        <div className="groweek">
+            <WatercolorFilters />
+            <Sidebar />
+            <ScrollToTop />
+            <WatercolorBlotch color="#e8a4c8" size={400} style={{ top: '0%', left: '-10%' }} />
+            <WatercolorBlotch color="#c4aeda" size={350} style={{ top: '5%', right: '-8%' }} />
+            <WatercolorBlotch color="#f0d86e" size={380} style={{ top: '35%', left: '-9%' }} />
+            <WatercolorBlotch color="#c8e2f0" size={320} style={{ top: '60%', right: '-7%' }} />
+            <WatercolorBlotch color="#7db87a" size={300} style={{ bottom: '5%', left: '-8%' }} />
+
+            <section className="groweek-coords" style={{ paddingTop: '2.5rem' }}>
+                <h2 className="groweek-section-title">Meet Your Coordinators</h2>
+                <p className="groweek-coords-contact-note">
+                    Questions for any of us? Reach the whole team at{' '}
+                    <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>.
+                </p>
+                <div className="groweek-coords-list">
+                    {COORDINATORS.map((coord, i) => (
+                        <div className="groweek-coord-card-full" key={i}>
+                            <div className="groweek-coord-card-full-media">
+                                <img className="groweek-coord-photo-lg" src={coord.photo} alt={coord.name} />
+                                <h3 className="groweek-coord-name">{coord.name}</h3>
+                                {coord.pronouns && <p className="groweek-coord-role">{coord.pronouns}</p>}
+                                <div className="groweek-coord-tags">
+                                    {[coord.year, coord.major, coord.from].filter(Boolean).map((tag) => (
+                                        <span className="groweek-coord-tag" key={tag}>{tag}</span>
+                                    ))}
+                                </div>
                             </div>
-                            {coord.email && (
-                                <a className="groweek-coord-email" href={`mailto:${coord.email}`}>
-                                    {coord.email}
-                                </a>
-                            )}
+                            <div className={'groweek-coord-card-full-bio' + (expanded[i] ? ' groweek-bio-expanded' : '')}>
+                                {coord.bio.map((para, pi) => (
+                                    <p key={pi}>{para}</p>
+                                ))}
+                                <cite className="groweek-coord-bio-by">— {coord.bioBy}</cite>
+                            </div>
+                            <button
+                                type="button"
+                                className="groweek-coord-bio-toggle"
+                                onClick={() => toggleExpanded(i)}
+                                aria-expanded={!!expanded[i]}
+                            >
+                                {expanded[i] ? 'Show less' : `Read ${coord.name.split(' ')[0]}'s story`}
+                            </button>
                         </div>
-                        <div className="groweek-coord-card-full-bio">
-                            {coord.bio.map((para, pi) => (
-                                <p key={pi}>{para}</p>
-                            ))}
-                            <cite className="groweek-coord-bio-by">— {coord.bioBy}</cite>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
-    </div>
-);
+                    ))}
+                </div>
+            </section>
+        </div>
+    );
+};
 
 export default CoordsPage;
