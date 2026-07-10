@@ -100,7 +100,7 @@ const CoordsPage = () => (
                             {coord.bio.map((para, pi) => (
                                 <p key={pi}>{para}</p>
                             ))}
-                            <cite className="groweek-coord-bio-by">— {coord.bioBy}</cite>
+                            <cite className="groweek-coord-bio-by">- {coord.bioBy}</cite>
                         </div>
                     </div>
                 ))}

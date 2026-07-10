@@ -3,7 +3,10 @@ import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import Cards from '../../../components/ContactCard/ContactCard';
+import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
 import './index.css';
+
+const COMMITTEE_NAME = 'McMakerspace';
 
 const hours = [
     { day: 'Monday',    hours: '8 AM - Midnight' },
@@ -15,53 +18,15 @@ const hours = [
     { day: 'Sunday',    hours: '8 AM - Midnight' },
 ];
 
-const leadership = [
-    {
-        name: 'Lucas Dovalina',
-        position: 'General Manager',
-        major: 'Mechanical Engineering',
-        college: 'McMurtry',
-        email: 'lbd1@rice.edu',
-        askMeAbout: '3D Printing, Assembly, Advanced CAD (Fusion 360, SOLIDWORKS, Inventor), Arduino and Raspberry Pi, Woodworking, Welding, Soldering, Hand Tools',
-    },
-];
+const mapToCard = (data) => data.map(({ name, email }) => ({ name, email }));
 
-const personnel = [
-    {
-        name: 'Raj Anthony',
-        major: 'Electrical and Computer Engineering',
-        email: 'rra2@rice.edu',
-        askMeAbout: 'Computer/tech repair and troubleshooting, 3D Printing, CAD, Hand Tools, Shop Tools, Microcontrollers, Soldering',
-    },
-    {
-        name: 'Bri Schulstad',
-        major: 'Chemical Engineering + Earth, Environmental, and Planetary Sciences',
-        email: 'bts8@rice.edu',
-        askMeAbout: 'CAD, 3D printing, Hand Tools',
-    },
-    {
-        name: 'Owen Krum',
-        major: 'Mechanical Engineering',
-        email: 'otk1@rice.edu',
-        askMeAbout: 'Woodworking, Wood species, Vintage hand tools, Tool Restoration, Carpentry, Cabinet Making, CAD, Laser Cutting, Wood Finishing',
-    },
-    {
-        name: 'Tristen Flores',
-        major: 'Mechanical Engineering, Minor in CAAM',
-        email: 'trf5@rice.edu',
-        askMeAbout: 'CAD, Arduino, 3D Printing, Laser Cutting, Woodworking, Hand Tools, Power Tools',
-    },
-];
+const McMakerspacePage = () => {
+    const { rows: members, isLoading } = useSupabaseTable('committee_members');
+    const committeeMembers = members.filter(m => m.committee_name === COMMITTEE_NAME);
+    const leadership = committeeMembers.filter(m => m.role === 'head');
+    const personnel = committeeMembers.filter(m => m.role === 'member');
 
-const mapToCard = (data) => data.map(person => ({
-    name: person.name,
-    position: person.position,
-    major: person.major,
-    email: person.email,
-    subjects: person.askMeAbout ? `Ask Me About: ${person.askMeAbout}` : undefined,
-}));
-
-const McMakerspacePage = () => (
+    return (
     <div className='page page-light'>
         <Header />
         <SiteNavbar />
@@ -126,19 +91,33 @@ const McMakerspacePage = () => (
             </div>
 
             {/* People */}
-            <section className='mcmakerspace-people-section'>
-                <h2 className='mcmakerspace-division-title'>Leadership</h2>
-                <Cards content={mapToCard(leadership)} minHeight='200px' />
-            </section>
+            {isLoading ? (
+                <div className='loading-container'>
+                    <div className='loading-spinner'></div>
+                    <p className='loading-text'>Loading...</p>
+                </div>
+            ) : (
+                <React.Fragment>
+                    {leadership.length > 0 && (
+                        <section className='mcmakerspace-people-section'>
+                            <h2 className='mcmakerspace-division-title'>Leadership</h2>
+                            <Cards content={mapToCard(leadership)} minHeight='200px' />
+                        </section>
+                    )}
 
-            <section className='mcmakerspace-people-section'>
-                <h2 className='mcmakerspace-division-title'>Student Personnel</h2>
-                <Cards content={mapToCard(personnel)} minHeight='200px' />
-            </section>
+                    {personnel.length > 0 && (
+                        <section className='mcmakerspace-people-section'>
+                            <h2 className='mcmakerspace-division-title'>Student Personnel</h2>
+                            <Cards content={mapToCard(personnel)} minHeight='200px' />
+                        </section>
+                    )}
+                </React.Fragment>
+            )}
 
         </div>
         <SiteFooter />
     </div>
-);
+    );
+};
 
 export default McMakerspacePage;

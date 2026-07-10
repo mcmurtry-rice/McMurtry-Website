@@ -444,6 +444,14 @@
     visibility: visible;
 }
 
+/* The off-canvas drawer parks beyond the right edge via translateX(100%);
+ * Chromium still counts it toward the document's horizontal scroll range,
+ * so clip the viewport's x-axis (body overflow propagates to the viewport,
+ * so this doesn't create an inner scroll container). */
+body {
+    overflow-x: hidden;
+}
+
 .mc-mobile-drawer {
     position: fixed;
     top: 0;

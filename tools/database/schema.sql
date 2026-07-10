@@ -1,5 +1,5 @@
 -- ============================================================
--- McMurtry Website — Supabase schema for people pages
+-- McMurtry Website - Supabase schema for people pages
 --
 -- One table per people page. Field shapes mirror the data that
 -- already exists (mix of JSON files in data/people/ and the
@@ -24,7 +24,7 @@ create table if not exists public.mcteam (
 );
 
 -- ---------- mcministry ----------
--- Source: Google Sheet (gid 405858748) — 3 tabs in component:
+-- Source: Google Sheet (gid 405858748) - 3 tabs in component:
 --   Executive Council, McCabinet, People's Council
 -- Fields per row: position, name, email, year
 create table if not exists public.mcministry (
@@ -80,7 +80,7 @@ create table if not exists public.associates (
 );
 
 -- ---------- paas ----------
--- Source: Google Sheet (gid 519315703) — 3 tabs in component:
+-- Source: Google Sheet (gid 519315703) - 3 tabs in component:
 --   Head, O-Week, Year Long
 -- Fields: name, major, minor, pre_prof_path, email, year
 create table if not exists public.paas (

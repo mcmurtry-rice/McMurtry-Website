@@ -98,7 +98,7 @@ const PCardManagementPage = () => (
                 </div>
             </div>
 
-            {/* Calendar — full width */}
+            {/* Calendar - full width */}
             <div className='pc-calendar-section'>
                 <h2 className='pc-calendar-heading'>P-Card Availability</h2>
                 <div className='pc-calendar-box'>

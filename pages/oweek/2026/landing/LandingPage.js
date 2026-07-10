@@ -61,7 +61,7 @@ const LandingPage = () => (
         <WatercolorBlotch color="#e8985a" size={350} style={{ top: '55%', right: '-9%' }} />
         <WatercolorBlotch color="#c4aeda" size={400} style={{ top: '70%', left: '-10%' }} />
         <WatercolorBlotch color="#e8a4c8" size={320} style={{ top: '85%', right: '-7%' }} />
-        <WatercolorBlotch color="#7db87a" size={280} style={{ top: '95%', left: '-8%' }} />
+        <WatercolorBlotch color="#7db87a" size={280} style={{ bottom: '0%', left: '-8%' }} />
 
         {/* Hero - storybook opening: illustration + quote, countdown centered below */}
         <section className="groweek-hero-seuss">

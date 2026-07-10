@@ -1,4 +1,4 @@
-# static/oweek/current — Active O-Week year
+# static/oweek/current - Active O-Week year
 
 This folder holds the **active** O-Week year's content. The components in `components/oweek/` (via `lib/oweek.js`) read everything from here.
 
@@ -16,7 +16,7 @@ This folder holds the **active** O-Week year's content. The components in `compo
 | `theme.json` | Theme page subtitle, hero image, theme paragraphs |
 | `coordinators.json` | List of coords (name, pronouns, year, major, hometown, photo, email, phone, bio, LinkedIn) + college leadership (president, college coordinator, magisters) + mailing address |
 | `groups.json` | O-Week groups list (name + image) |
-| `oweekbook.pdf` | The O-Week book — viewer/download/print |
+| `oweekbook.pdf` | The O-Week book - viewer/download/print |
 | `images/coords/` | Coord headshots referenced by `coordinators.json` |
 | `images/groups/` | Group photos referenced by `groups.json` |
 | `images/hero/` | Carousel + theme hero images referenced by `config.json` and `theme.json` |
@@ -28,6 +28,6 @@ Image paths inside JSON files are **relative to `current/`**. For example: `"ima
 ## Schema gotchas
 
 - `config.moveInDate` is `YYYY-MM-DD`. The countdown component parses month from this (zero-indexed in JS Date).
-- `coordinators.bioImageAlign` is either `"left"` or `"right"` — controls which side the coord's photo floats on in their bio section.
-- `coordinators.linkedin` can be empty string — the photo just won't be a link.
+- `coordinators.bioImageAlign` is either `"left"` or `"right"` - controls which side the coord's photo floats on in their bio section.
+- `coordinators.linkedin` can be empty string - the photo just won't be a link.
 - `config.carousel[].src`, `coordinators[].image`, `groups[].image`, `theme.heroImage` all use the same `images/...` relative path convention.

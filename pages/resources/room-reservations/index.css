@@ -1074,7 +1074,7 @@
  * HOME-PAGE SKIN OVERRIDE (Room Reservations only)
  *
  * Reuse the home-page typography + color tokens (--mc-*) on this page.
- * Only changes fonts, sizes, colors, and the box look of CTAs/cards —
+ * Only changes fonts, sizes, colors, and the box look of CTAs/cards -
  * layout / positioning / page structure stays exactly as before.
  * Scoped under .room-reservations-page so we don't touch other pages
  * that share the same legacy class names.
@@ -1317,11 +1317,11 @@
 }
 
 /* ============================================================
- * PURPLE BLOB title + body — Category sections
+ * PURPLE BLOB title + body - Category sections
  *
  * Layout: a large purple organic blob
  * holding only the section title, with the body text laid out beside
- * it. Sections alternate sides — Category 1 has the blob on the
+ * it. Sections alternate sides - Category 1 has the blob on the
  * left, Category 2 on the right.
  * ============================================================ */
 
@@ -1345,7 +1345,7 @@
 }
 
 /* ============================================================
- * "Questions?" contact line — sits directly below the Add to Calendar
+ * "Questions?" contact line - sits directly below the Add to Calendar
  * button inside the CTA row, on its own line.
  * ============================================================ */
 .room-reservations-page .ev-cta-row {
@@ -1396,7 +1396,7 @@
  * extends past the hero's bottom edge via bottom: -20px) renders on top
  * of the room cards instead of being hidden behind them. The hero has
  * isolation:isolate from events.css, so we have to lift the hero itself
- * in the parent stacking context — z-indexing the ellipse alone isn't
+ * in the parent stacking context - z-indexing the ellipse alone isn't
  * enough. */
 .room-reservations-page .ev-hero {
     position: relative;

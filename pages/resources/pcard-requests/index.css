@@ -1,5 +1,5 @@
 /* ============================================================
- * P-Card Management page — scoped under .pcard-page
+ * P-Card Management page - scoped under .pcard-page
  * Cards-grid layout.
  * ============================================================ */
 
@@ -13,7 +13,7 @@
 .pcard-page .ev-hero {
     background: var(--mc-paper);
     position: relative;
-    /* No z-index here — avoids creating a stacking context that would
+    /* No z-index here - avoids creating a stacking context that would
        trap the decorative SVGs above the banner below */
     overflow: hidden;
 }

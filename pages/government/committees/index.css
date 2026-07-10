@@ -1,5 +1,8 @@
 /* ============================================================
- * Committees page (matches McMinistry / Events).
+ * Committees page - diagram layout following the O-Week Book:
+ * a full-width band per division lead, committee boxes with
+ * three quick bullets underneath, and a zoom-in modal showing
+ * each committee's description, heads, and members.
  * ============================================================ */
 
 .committee-page {
@@ -29,128 +32,243 @@
     overflow: visible;
 }
 
-/* ----- Division pill row ----- */
-.cm-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
+.cm-lede {
+    font-family: var(--mc-font-body) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: var(--mc-ink) !important;
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto clamp(24px, 3vw, 36px) !important;
     padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* ----- Diagram: division bands + committee boxes ----- */
+.cm-diagram {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 clamp(14px, 3vw, 40px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(24px, 3vw, 36px);
 }
 
-.cm-tabs-division {
-    margin-bottom: 18px;
-}
-
-.cm-tab {
-    appearance: none;
-    border: 1.5px solid rgba(74, 52, 112, 0.20);
-    background: var(--mc-paper);
-    color: var(--mc-purple-700);
-    font-family: var(--mc-font-body);
-    font-weight: 600;
-    font-size: 0.95rem;
-    padding: 10px 22px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 180ms ease,
-                color 180ms ease,
-                border-color 180ms ease,
-                transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 180ms ease;
-}
-
-.cm-tab:hover,
-.cm-tab:focus-visible {
-    border-color: var(--mc-purple-500);
-    color: var(--mc-purple-500);
-    transform: translateY(-1px);
-}
-
-.cm-tab-active {
-    background: var(--mc-purple-700);
-    color: var(--mc-paper);
-    border-color: var(--mc-purple-700);
-    box-shadow: 0 10px 24px -8px rgba(74, 52, 112, 0.45);
-}
-
-.cm-tab-active:hover,
-.cm-tab-active:focus-visible {
-    background: var(--mc-purple-500);
-    color: var(--mc-paper);
-    border-color: var(--mc-purple-500);
-}
-
-/* ----- Committee chip row (smaller, ghost) ----- */
-.cm-tabs-committee {
-    gap: 8px;
-    margin-bottom: clamp(28px, 4vw, 48px);
-}
-
-.cm-chip {
-    appearance: none;
-    border: 1px solid rgba(74, 52, 112, 0.18);
-    background: transparent;
-    color: var(--mc-purple-700);
-    font-family: var(--mc-font-body);
-    font-weight: 500;
-    font-size: 0.85rem;
-    padding: 6px 14px;
-    border-radius: 999px;
-    cursor: pointer;
-    transition: background 150ms ease,
-                color 150ms ease,
-                border-color 150ms ease;
-}
-
-.cm-chip:hover,
-.cm-chip:focus-visible {
-    background: rgba(139, 111, 199, 0.10);
-    color: var(--mc-purple-500);
-}
-
-.cm-chip-active {
-    background: var(--mc-purple-500);
-    color: var(--mc-paper);
-    border-color: var(--mc-purple-500);
-}
-
-.cm-chip-active:hover,
-.cm-chip-active:focus-visible {
-    background: var(--mc-purple-700);
-    color: var(--mc-paper);
-    border-color: var(--mc-purple-700);
-}
-
-/* ----- Detail section ----- */
-.cm-detail {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 clamp(20px, 5vw, 64px);
-}
-
-.committee-page .division-title {
+.cm-band {
     font-family: var(--mc-font-display) !important;
     font-style: italic !important;
     font-weight: 400 !important;
-    font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+    font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
+    line-height: 1.2 !important;
+    color: var(--mc-paper, #ffffff) !important;
+    -webkit-text-fill-color: var(--mc-paper, #ffffff);
+    background: var(--mc-purple-700) !important;
+    text-align: center;
+    text-shadow: none !important;
+    letter-spacing: 0.01em !important;
+    margin: 0 0 14px !important;
+    padding: 10px 16px !important;
+    border-radius: 12px;
+}
+
+.cm-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(12px, 1.5vw, 18px);
+}
+
+.cm-box {
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1 1 300px;
+    max-width: 370px;
+    background: var(--mc-paper, #ffffff);
+    border: 1px solid rgba(74, 52, 112, 0.28);
+    border-radius: 14px;
+    padding: 14px 16px 12px;
+    text-align: left;
+    cursor: pointer;
+    box-shadow: 0 6px 18px -14px rgba(74, 52, 112, 0.35);
+    transition: transform 200ms cubic-bezier(0.2, 0.8, 0.2, 1),
+                box-shadow 200ms ease,
+                border-color 200ms ease;
+}
+
+.cm-box:hover,
+.cm-box:focus-visible {
+    transform: translateY(-3px) scale(1.015);
+    border-color: var(--mc-purple-500);
+    box-shadow: 0 18px 36px -18px rgba(74, 52, 112, 0.45);
+}
+
+.cm-box-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.2 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
+}
+
+.cm-box-bullets {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cm-box-bullets li {
+    font-family: var(--mc-font-body);
+    font-size: 0.8rem;
+    line-height: 1.45;
+    color: var(--mc-ink);
+    opacity: 0.85;
+    padding-left: 14px;
+    position: relative;
+}
+
+.cm-box-bullets li::before {
+    content: '•';
+    position: absolute;
+    left: 2px;
+    color: var(--mc-purple-500);
+}
+
+.cm-box-more {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mc-purple-500);
+    transition: color 160ms ease;
+    padding-top: 6px;
+}
+
+.cm-box:hover .cm-box-more,
+.cm-box:focus-visible .cm-box-more {
+    color: var(--mc-purple-700);
+}
+
+/* ----- Zoom-in modal ----- */
+.cm-modal-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(28, 20, 48, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: clamp(12px, 3vw, 40px);
+    animation: cm-scrim-fade 200ms ease;
+}
+
+.cm-modal {
+    position: relative;
+    width: min(760px, 100%);
+    max-height: min(85vh, 900px);
+    overflow-y: auto;
+    background: var(--mc-paper, #ffffff);
+    border: 1.5px solid var(--mc-purple-700);
+    border-radius: 20px;
+    padding: clamp(20px, 3vw, 36px) clamp(18px, 3vw, 40px) clamp(24px, 3vw, 36px);
+    box-shadow: 0 40px 80px -30px rgba(28, 20, 48, 0.6);
+    animation: cm-modal-zoom 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes cm-scrim-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes cm-modal-zoom {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.cm-modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    appearance: none;
+    border: 1px solid rgba(74, 52, 112, 0.25);
+    background: var(--mc-paper, #ffffff);
+    color: var(--mc-purple-700);
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.cm-modal-close:hover,
+.cm-modal-close:focus-visible {
+    background: var(--mc-purple-700);
+    color: var(--mc-paper, #ffffff);
+}
+
+.cm-modal-eyebrow {
+    font-family: var(--mc-font-body) !important;
+    font-weight: 700 !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--mc-purple-500) !important;
+    -webkit-text-fill-color: var(--mc-purple-500);
+    text-align: center;
+    margin: 0 0 6px !important;
+    padding: 0 !important;
+}
+
+.cm-modal-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.7rem, 3vw, 2.3rem) !important;
     line-height: 1.15 !important;
     color: var(--mc-purple-700) !important;
     -webkit-text-fill-color: var(--mc-purple-700);
     background: none !important;
     text-shadow: none !important;
     text-align: center;
-    margin: 0 0 clamp(20px, 3vw, 32px) !important;
+    margin: 0 0 clamp(14px, 2vw, 22px) !important;
     padding: 0 !important;
     letter-spacing: 0 !important;
 }
 
+.cm-modal-empty {
+    font-family: var(--mc-font-body) !important;
+    font-size: 0.9rem !important;
+    color: var(--mc-purple-500) !important;
+    text-align: center;
+    margin: 0 0 8px !important;
+}
+
+/* ----- Detail styles shared with the modal ----- */
 .cm-image-wrap {
     width: min(560px, 100%);
-    margin: 0 auto clamp(20px, 3vw, 32px);
+    margin: 0 auto clamp(16px, 2.5vw, 26px);
     border-radius: 18px;
     overflow: hidden;
     border: 1px solid rgba(74, 52, 112, 0.18);
@@ -165,12 +283,10 @@
 
 .cm-description {
     font-family: var(--mc-font-body);
-    font-size: 1rem;
-    line-height: 1.75;
+    font-size: 0.95rem;
+    line-height: 1.7;
     color: var(--mc-ink);
-    margin: 0 0 clamp(28px, 4vw, 48px);
-    text-align: justify;
-    hyphens: auto;
+    margin: 0 0 clamp(16px, 2.5vw, 24px);
 }
 
 .cm-description p {
@@ -181,9 +297,9 @@
     text-shadow: none !important;
     padding: 0 !important;
     border: none !important;
-    margin: 0 0 14px !important;
-    line-height: 1.75 !important;
-    font-size: 1rem !important;
+    margin: 0 0 12px !important;
+    line-height: 1.7 !important;
+    font-size: 0.95rem !important;
 }
 
 .cm-description br {
@@ -194,13 +310,13 @@
     font-family: var(--mc-font-display) !important;
     font-style: italic !important;
     font-weight: 400 !important;
-    font-size: clamp(1.3rem, 2.4vw, 1.9rem) !important;
+    font-size: clamp(1.2rem, 2vw, 1.5rem) !important;
     line-height: 1.2 !important;
     color: var(--mc-purple-700) !important;
     -webkit-text-fill-color: var(--mc-purple-700);
     background: none !important;
     text-align: center;
-    margin: clamp(20px, 3vw, 36px) 0 16px !important;
+    margin: clamp(14px, 2vw, 22px) 0 12px !important;
     padding: 0 !important;
 }
 
@@ -213,43 +329,25 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* 3 cards per row */
-.committee-page .cc-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-items: center;
-}
-
-@media (max-width: 900px) {
-    .committee-page .cc-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
+/* ----- Mobile ----- */
 @media (max-width: 640px) {
-    .committee-page .cc-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 0 12px 32px;
-        justify-items: center;
+    .cm-diagram {
+        padding: 0 12px;
+        gap: 20px;
     }
-    .committee-page .cc-grid > .cc-card {
+
+    .cm-box {
+        flex-basis: 100%;
         max-width: none;
-        width: 100%;
     }
-    .committee-page .cc-grid > .cc-card:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        max-width: calc(50% - 6px);
-    }
-}
 
-@media (max-width: 640px) {
-    .cm-tab {
-        padding: 8px 16px;
-        font-size: 0.88rem;
+    .cm-modal-scrim {
+        padding: 10px;
+        align-items: flex-end;
     }
-    .cm-chip {
-        padding: 6px 12px;
-        font-size: 0.8rem;
+
+    .cm-modal {
+        max-height: 92vh;
+        border-radius: 18px 18px 8px 8px;
     }
 }

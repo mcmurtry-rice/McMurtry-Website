@@ -38,7 +38,7 @@ var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzsox-S1IQKFajL43OOtr
 
 // Spreadsheet ID for storing McItems requests
 // Get ID from URL: https://docs.google.com/spreadsheets/d/SPREADSHEET_ID_HERE/edit
-// Leave as empty string if not yet created — requests will still be emailed but not logged
+// Leave as empty string if not yet created - requests will still be emailed but not logged
 var REQUESTS_SHEET_ID = '1GNlIxRFkbQoyEVGoi0uOd94wLLjumYPeHPzNhSvzK-Q';
 
 // ========== UTILITY FUNCTIONS ==========
@@ -360,7 +360,7 @@ function sendCheckoutRequestEmail(responses, studentEmail) {
     timestamp: formatToHoustonTime(new Date())
   });
 
-  var subject = 'McItems Checkout Request: ' + item + ' — ' + studentName;
+  var subject = 'McItems Checkout Request: ' + item + ' - ' + studentName;
 
   var htmlBody = '<html>' +
     '<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">' +
@@ -393,7 +393,7 @@ function sendCheckoutRequestEmail(responses, studentEmail) {
     '<h3 style="color: #8B6FC7;">Next Steps</h3>' +
     '<ul>' +
     '<li>Review the request details above</li>' +
-    '<li>Click <strong>Approve</strong> to provide pickup instructions — the student will be emailed automatically</li>' +
+    '<li>Click <strong>Approve</strong> to provide pickup instructions - the student will be emailed automatically</li>' +
     '<li>Click <strong>Decline</strong> if the item is unavailable or the request cannot be fulfilled</li>' +
     '</ul>' +
     '<div style="background-color: #FFF3CD; padding: 15px; border-left: 4px solid #FFD700; margin: 20px 0;">' +
@@ -502,7 +502,7 @@ function sendErrorNotification(error) {
  */
 function saveRequest(requestData) {
   if (!REQUESTS_SHEET_ID || REQUESTS_SHEET_ID === '') {
-    Logger.log('No spreadsheet ID configured — skipping sheet storage for request: ' + requestData.id);
+    Logger.log('No spreadsheet ID configured - skipping sheet storage for request: ' + requestData.id);
     return;
   }
 
@@ -561,7 +561,7 @@ function saveRequest(requestData) {
     Logger.log('Request saved to sheet: ' + requestData.id);
   } catch (error) {
     Logger.log('Error saving request to sheet: ' + error.toString());
-    // Don't throw — allow email flow to continue even if sheet fails
+    // Don't throw - allow email flow to continue even if sheet fails
   }
 }
 
@@ -570,7 +570,7 @@ function saveRequest(requestData) {
  */
 function getRequest(requestId) {
   if (!REQUESTS_SHEET_ID || REQUESTS_SHEET_ID === '') {
-    Logger.log('No spreadsheet ID configured — cannot retrieve request');
+    Logger.log('No spreadsheet ID configured - cannot retrieve request');
     return null;
   }
 
@@ -621,7 +621,7 @@ function getRequest(requestId) {
  */
 function markApproved(requestId, pickupInstructions) {
   if (!REQUESTS_SHEET_ID || REQUESTS_SHEET_ID === '') {
-    Logger.log('No spreadsheet ID configured — skipping status update');
+    Logger.log('No spreadsheet ID configured - skipping status update');
     return false;
   }
 
@@ -653,7 +653,7 @@ function markApproved(requestId, pickupInstructions) {
  */
 function markDeclined(requestId) {
   if (!REQUESTS_SHEET_ID || REQUESTS_SHEET_ID === '') {
-    Logger.log('No spreadsheet ID configured — skipping status update');
+    Logger.log('No spreadsheet ID configured - skipping status update');
     return false;
   }
 

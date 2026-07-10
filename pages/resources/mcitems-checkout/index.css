@@ -1,5 +1,5 @@
 /* ============================================================
- * McItems Checkout page — scoped under .mcitems-page
+ * McItems Checkout page - scoped under .mcitems-page
  * Horizontal timeline layout.
  * ============================================================ */
 
@@ -369,7 +369,7 @@
     -webkit-text-fill-color: var(--mc-purple-500);
 }
 
-/* ----- Responsive — collapse to vertical timeline ----- */
+/* ----- Responsive - collapse to vertical timeline ----- */
 @media (max-width: 900px) {
     .mcitems-page .mci-timeline {
         flex-direction: column;

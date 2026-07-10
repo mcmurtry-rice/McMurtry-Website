@@ -9,7 +9,7 @@ The official McMurtry College website, built with Next.js and hosted on GitHub P
 | Command | What it does |
 | --- | --- |
 | `npm run dev` | Local dev server on `:3000` with hot reload |
-| `npm run build` | Production build into `.next/` — sanity-check before deploying |
+| `npm run build` | Production build into `.next/` - sanity-check before deploying |
 | `npm run deploy` | Build, export to `docs/`, set CNAME, stage for git |
 
 After `npm run deploy`, commit and push to publish:
@@ -21,13 +21,13 @@ git push
 
 The live site is GitHub Pages serving the `docs/` folder from `master`. Pushing publishes immediately.
 
-> **Don't edit `docs/` directly** — it's overwritten on every deploy.
+> **Don't edit `docs/` directly** - it's overwritten on every deploy.
 
 ## Repository structure
 
 ```
 MurtWebsite/
-├── pages/                  Next.js routes — every index.js here is a URL
+├── pages/                  Next.js routes - every index.js here is a URL
 │   ├── home/               Home page, About, Calendar
 │   ├── people/             People pages (associates, fellows, court, etc.)
 │   ├── government/         Government pages (committees, court, mcministry)
@@ -35,7 +35,7 @@ MurtWebsite/
 │   └── oweek/              O-Week pages, one folder per year
 │       └── 2025-2026/      Current year (index.js + index.css, self-contained)
 ├── components/             Shared React components
-├── styles/                 global.css — design tokens + site-wide base styles
+├── styles/                 global.css - design tokens + site-wide base styles
 ├── static/                 Images, PDFs, SVGs, icons
 ├── google-apps-scripts/    Google Apps Scripts for P-Card automation
 ├── tools/                  Database schema and Supabase utilities
@@ -60,7 +60,7 @@ Each `index.js` under `pages/` is a URL. File path → URL:
 | `pages/resources/room-reservations/index.js` | `/resources/room-reservations` |
 | `pages/oweek/2025-2026/index.js` | `/oweek/2025-2026` |
 
-**Casing matters on the live site.** GitHub Pages is case-sensitive — a link to `/people/PAAs` will 404 if the file is `paas/`. Match folder casing exactly.
+**Casing matters on the live site.** GitHub Pages is case-sensitive - a link to `/people/PAAs` will 404 if the file is `paas/`. Match folder casing exactly.
 
 Each page is self-contained: `index.js` and `index.css` live together in the same folder.
 
@@ -77,7 +77,7 @@ components/
 ├── CustomCalendar/ Google Calendar embed
 ├── ImageCarousel/  Auto-scrolling image carousel
 │                   NOTE: mobile scroll speed is set via AUTO_SPEED in
-│                   pages/home/index/index.js (not a prop) — see comment there
+│                   pages/home/index/index.js (not a prop) - see comment there
 ├── PDFViewer/      PDF embed wrapper
 └── Title/          Section title component
 ```
@@ -93,27 +93,26 @@ Each year's O-Week is fully self-contained in `pages/oweek/<year>/`. To roll ove
    - Hero images in `images/hero/`
    - `oweekbook.pdf`
 3. In `pages/oweek/<new-year>/index.js`, update the inline data at the top:
-   - `themeData` — theme name, paragraphs
-   - `groupsData` — group names and images
-   - `coordinatorsData` — coordinator info, bios, contact details
-   - `config` — year, move-in date, PDF filename, general email
+   - `themeData` - theme name, paragraphs
+   - `groupsData` - group names and images
+   - `coordinatorsData` - coordinator info, bios, contact details
+   - `config` - year, move-in date, PDF filename, general email
 4. Update the navbar to point to the new year's route.
 
 ## Google Apps Scripts
 
 `google-apps-scripts/` contains automation scripts for the P-Card system:
 
-- **`pcard-email-notification.gs`** — Email notifications for P-Card checkout/return/online purchases
-- **`pcard-calendar-automation.gs`** — Calendar automation for P-Card bookings
-- **`mcitems-email-notification.gs`** — Email notifications for MC items checkout
+- **`pcard-email-notification.gs`** - Email notifications for P-Card checkout/return/online purchases
+- **`pcard-calendar-automation.gs`** - Calendar automation for P-Card bookings
+- **`mcitems-email-notification.gs`** - Email notifications for MC items checkout
 
 See `google-apps-scripts/README.md` for setup and semester rollover instructions.
 
 ## Environment variables
 
-The public Supabase config (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`) ships in the checked-in `.env` at the repo root — these are safe to commit because Supabase access is locked down by Row Level Security, not by key secrecy (see `tools/database/schema.sql`). A normal `npm install && npm run dev`/`build`/`deploy` needs no setup — nothing else to configure.
+The public Supabase config (`NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`) ships in the checked-in `.env` at the repo root - these are safe to commit because Supabase access is locked down by Row Level Security, not by key secrecy (see `tools/database/schema.sql`). A normal `npm install && npm run dev`/`build`/`deploy` needs no setup - nothing else to configure.
 
 ## Contributors
 
-- Nicholas Meisburger ([nmeisburger0](https://github.com/nmeisburger0))
 - Antony Saleh ([antonysa23-meet](https://github.com/antonysa23-meet))

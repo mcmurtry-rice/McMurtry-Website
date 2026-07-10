@@ -3,8 +3,8 @@
 **Status:** Partial snapshot.
 
 ## Preserved
-- `oweekbook.pdf` — the 2024 O-Week book
-- `images/coords/groupphoto.JPG` — the 2024 coordinator group photo
+- `oweekbook.pdf` - the 2024 O-Week book
+- `images/coords/groupphoto.JPG` - the 2024 coordinator group photo
 
 ## Missing (not captured before the archive system existed)
 - `config.json`, `theme.json`, `coordinators.json`, `groups.json`

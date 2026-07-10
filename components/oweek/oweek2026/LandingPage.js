@@ -53,7 +53,7 @@ const LandingPage = () => (
         <Sidebar />
         <ScrollToTop />
 
-        {/* Intentional blotches — clustered at transitions, not mechanical */}
+        {/* Intentional blotches - clustered at transitions, not mechanical */}
         <WatercolorBlotch color="#c4aeda" size={450} style={{ top: '0%', left: '-12%' }} />
         <WatercolorBlotch color="#e8a4c8" size={380} style={{ top: '2%', right: '-8%' }} />
         <WatercolorBlotch color="#f0d86e" size={300} style={{ top: '22%', right: '-10%' }} />
@@ -63,21 +63,21 @@ const LandingPage = () => (
         <WatercolorBlotch color="#e8a4c8" size={320} style={{ top: '85%', right: '-7%' }} />
         <WatercolorBlotch color="#7db87a" size={280} style={{ top: '95%', left: '-8%' }} />
 
-        {/* Hero — storybook opening: illustration + quote, countdown centered below */}
+        {/* Hero - storybook opening: illustration + quote, countdown centered below */}
         <section className="groweek-hero-seuss">
             <div className="groweek-hero-row">
                 <div className="groweek-hero-illustration">
                     <img
                         className="groweek-logo"
                         src="/static/oweek/2026/logo.png"
-                        alt="Let It GrO-Week 2026 — McMurtry College"
+                        alt="Let It GrO-Week 2026 - McMurtry College"
                     />
                 </div>
                 <div className="groweek-hero-text">
                     <blockquote className="groweek-hero-quote">
                         "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not."
                     </blockquote>
-                    <cite className="groweek-hero-cite">— Dr. Seuss, The Lorax</cite>
+                    <cite className="groweek-hero-cite">- Dr. Seuss, The Lorax</cite>
                     <p className="groweek-hero-welcome">Welcome to McMurtry College, Class of 2030!</p>
                 </div>
             </div>
@@ -101,14 +101,14 @@ const LandingPage = () => (
                     <p>
                         You'll be placed into an O-Week group with a small team of advisors who will
                         guide you through the week. They're upperclassmen who've been in your shoes and
-                        are here to help you navigate everything — from finding your classes to finding
+                        are here to help you navigate everything - from finding your classes to finding
                         your people.
                     </p>
                 </div>
             </div>
         </section>
 
-        {/* What to Expect — varied card accents */}
+        {/* What to Expect - varied card accents */}
         <section className="groweek-section groweek-decorated-section">
             <img className="groweek-decor" src="/static/oweek/2026/decor/truffula-patch.png" alt="" aria-hidden="true" style={{ bottom: '-30px', left: '-30px', width: '170px' }} />
             <h2 className="groweek-section-title">What to Expect</h2>
@@ -138,7 +138,7 @@ const LandingPage = () => (
                     <span className="groweek-expect-icon" aria-hidden="true"><i className="ph ph-hands-clapping" /></span>
                     <div>
                         <h4>Finding Your Community</h4>
-                        <p>O-Week is where lifelong friendships begin. Whether it's your O-Week family, your hallmates, or the clubs you discover at the activities fair — you'll find your people.</p>
+                        <p>O-Week is where lifelong friendships begin. Whether it's your O-Week family, your hallmates, or the clubs you discover at the activities fair - you'll find your people.</p>
                     </div>
                 </div>
             </div>
@@ -149,7 +149,7 @@ const LandingPage = () => (
             <StripCarousel images={CAROUSEL_IMAGES} fadeWidth="0" fadeColor= '233,223,204'/>
         </section>
 
-        {/* Mission Statement — with pull quote */}
+        {/* Mission Statement - with pull quote */}
         <section className="groweek-section groweek-decorated-section groweek-mission-section">
             <img className="groweek-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ bottom: '-20px', right: '-20px', width: '160px' }} />
             <h2 className="groweek-section-title">Our Mission</h2>
@@ -166,10 +166,10 @@ const LandingPage = () => (
 
         {/* Signature */}
         <section className="groweek-sig-section">
-            <img className="groweek-sig-img" src="/static/oweek/2026/signature.png" alt="Let It GrO-Week 2026 — McMurtry College" />
+            <img className="groweek-sig-img" src="/static/oweek/2026/signature.png" alt="Let It GrO-Week 2026 - McMurtry College" />
         </section>
 
-        {/* Quick Info — with bears */}
+        {/* Quick Info - with bears */}
         <section className="groweek-section groweek-decorated-section groweek-last-section">
             <img className="groweek-decor" src="/static/oweek/2026/decor/bears.png" alt="" aria-hidden="true" style={{ bottom: '-30px', left: '-10px', width: '150px' }} />
             <h2 className="groweek-section-title">Quick Info</h2>

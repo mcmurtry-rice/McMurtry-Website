@@ -2,7 +2,7 @@ import React from 'react';
 import './ContactCard.css';
 
 /*
- * Contact card — the universal "person card" used on every people page.
+ * Contact card - the universal "person card" used on every people page.
  *
  * Field rules:
  *  - Every field is optional. Missing fields collapse cleanly with no
@@ -59,9 +59,13 @@ const Card = ({
                 {name     ? <h3 className="cc-name">{name}</h3>   : null}
             </header>
 
-            {hasPhoto ? (
+            {name ? (
                 <div className="cc-photo-well">
-                    <img src={photo} alt={`${name || ''}`.trim() || 'Photo'} className="cc-photo" />
+                    {hasPhoto ? (
+                        <img src={photo} alt={name.trim()} className="cc-photo" />
+                    ) : (
+                        <span className="cc-photo-placeholder" aria-hidden="true">{name.trim().charAt(0)}</span>
+                    )}
                 </div>
             ) : null}
 

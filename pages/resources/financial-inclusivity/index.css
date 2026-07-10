@@ -1,6 +1,6 @@
 /* ============================================================
- * Financial Inclusivity page — scoped under .fin-inc-page
- * Design language matches the diversity-resources / mclegislation
+ * Financial Inclusivity page - scoped under .fin-inc-page
+ * Design language matches the mclegislation
  * card-based pages rather than a one-off layout.
  * ============================================================ */
 
@@ -18,7 +18,7 @@
 }
 
 /* Keep the small ellipse fully inside the hero instead of bleeding off
-   the bottom edge — with no glow/spine behind it anymore, the hard clip
+   the bottom edge - with no glow/spine behind it anymore, the hard clip
    line sat right at the boundary with the intro text below. */
 .fin-inc-page .ev-hero-ellipse-small {
     bottom: 12px;

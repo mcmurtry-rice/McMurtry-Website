@@ -1,5 +1,5 @@
 /* ============================================================
- * Contact card — universal "person card" component.
+ * Contact card - universal "person card" component.
  *
  * Visual spec:
  *   - Light paper background, 1.5px purple-700 border, 18px radius.
@@ -131,6 +131,22 @@
     border-radius: 0 !important;
     box-shadow: none !important;
     margin: 0 !important;
+}
+
+.cc-photo-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-family: var(--mc-font-display, 'Playfair Display', serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 6vw, 3.2rem);
+    line-height: 1;
+    color: var(--mc-purple-500, #8b6fc7);
+    background: linear-gradient(160deg, rgba(139, 111, 199, 0.28), rgba(139, 111, 199, 0.10));
+    -webkit-text-fill-color: var(--mc-purple-500, #8b6fc7);
 }
 
 /* ----- Footer details (phone, email, year, room, major, etc.) ----- */

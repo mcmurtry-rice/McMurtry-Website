@@ -1,5 +1,14 @@
 /* ============================================================
- * McMinistry page (matches Events Calendar / McTeam).
+ * McMinistry page - org-chart layout of the college government,
+ * mirroring the Executive Council & Committee Structure spread
+ * in the O-Week Book:
+ *
+ *   row 1: Treasurers | McPresident | Chief Justice
+ *   row 2: the four division leads (4-up on desktop)
+ *   row 3: Secretaries | (RSA Senator) | Parliamentarian
+ *
+ * Cards are deliberately compact; person chips render smaller
+ * inside cards than they do standalone.
  * ============================================================ */
 
 .mcministry-page {
@@ -29,57 +38,404 @@
     overflow: visible;
 }
 
-/* ----- Pill tabs ----- */
-.mcministry-tabs {
+/* ----- Intro + badge legend ----- */
+.mcm-intro {
+    max-width: 860px;
+    margin: 0 auto clamp(18px, 2.5vw, 28px);
+    padding: 0 clamp(16px, 4vw, 48px);
+    text-align: center;
+}
+
+.mcm-intro-tight {
+    margin-bottom: 10px;
+}
+
+.mcm-intro-text {
+    font-family: var(--mc-font-body) !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+    color: var(--mc-ink) !important;
+    margin: 0 0 12px !important;
+}
+
+.mcm-intro-tight .mcm-intro-text {
+    margin-bottom: 0 !important;
+}
+
+/* Legend panel: one row per badge, hints left-aligned in a soft box so
+ * badge and meaning read as pairs on any screen width. */
+.mcm-legend {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 12px 18px;
+    border: 1px solid rgba(74, 52, 112, 0.15);
+    border-radius: 14px;
+    background: rgba(139, 111, 199, 0.05);
+    text-align: left;
+}
+
+.mcm-legend-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* equal-width badge column so the hints line up */
+.mcm-legend-row .mcm-badge {
+    min-width: 136px;
+    justify-content: center;
+}
+
+.mcm-legend-hint {
+    font-size: 0.82rem;
+    color: var(--mc-purple-500);
+    line-height: 1.4;
+}
+
+.mcm-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.64rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+    background: rgba(139, 111, 199, 0.12);
+    border: 1px solid rgba(74, 52, 112, 0.28);
+    border-radius: 999px;
+    padding: 3px 10px;
+    white-space: nowrap;
+}
+
+.mcm-badge i {
+    font-size: 0.85rem;
+    line-height: 1;
+}
+
+/* ----- Org chart tiers ----- */
+.mcm-chart {
+    max-width: 1320px;
+    margin: 0 auto clamp(32px, 4vw, 52px);
+    padding: 0 clamp(14px, 3vw, 40px);
+}
+
+.mcm-tier {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
-    padding: 0 clamp(16px, 4vw, 48px);
-    margin: 0 auto clamp(36px, 4.5vw, 56px);
-    max-width: 1200px;
+    align-items: stretch;
+    gap: clamp(12px, 1.5vw, 18px);
 }
 
-.ministry-tab {
-    appearance: none;
-    border: 1.5px solid rgba(74, 52, 112, 0.20);
-    background: var(--mc-paper);
-    color: var(--mc-purple-700);
+/* top & bottom rows: three medium cards */
+.mcm-tier-top .mcm-role-card,
+.mcm-tier-bottom .mcm-role-card {
+    flex: 1 1 300px;
+    max-width: 400px;
+}
+
+/* division row: four narrow columns on desktop, like the book spread */
+.mcm-tier-divisions .mcm-role-card {
+    flex: 1 1 250px;
+    max-width: 330px;
+}
+
+/* invisible on desktop: the tiers flex directly over the cards */
+.mcm-node {
+    display: contents;
+}
+
+/* mobile-only tier captions */
+.mcm-tier-label {
+    display: none;
+}
+
+.mcm-connector {
+    width: 2px;
+    height: clamp(16px, 2vw, 26px);
+    margin: 0 auto;
+    background: rgba(74, 52, 112, 0.25);
+}
+
+/* ----- Role cards ----- */
+.mcm-role-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: var(--mc-paper, #ffffff);
+    border: 1.5px solid var(--mc-purple-700, #4a3470);
+    border-radius: 16px;
+    overflow: hidden;
+    padding-bottom: 16px;
+    text-align: center;
+    box-shadow: 0 8px 24px -16px rgba(74, 52, 112, 0.30);
+}
+
+/* thin purple cap bar, echoing the contact card */
+.mcm-role-card::before {
+    content: '';
+    display: block;
+    height: 8px;
+    background: var(--mc-purple-700, #4a3470);
+    flex-shrink: 0;
+}
+
+/* The McPresident card reads as the root of the chart. Same geometry as
+ * its neighbours (so their internal zones stay aligned); the weight comes
+ * from a halo ring, tinted header, deeper shadow, crown, and larger title. */
+.mcm-role-card-primary {
+    background: linear-gradient(180deg, rgba(139, 111, 199, 0.12), rgba(139, 111, 199, 0.03) 55%, var(--mc-paper, #ffffff));
+    background-color: var(--mc-paper, #ffffff); /* opaque base so the mobile spine can't show through */
+    box-shadow: 0 0 0 4px rgba(139, 111, 199, 0.22),
+                0 20px 44px -18px rgba(74, 52, 112, 0.55);
+}
+
+.mcm-role-card-primary .mcm-role-title {
+    font-size: 1.5rem !important;
+}
+
+.mcm-role-crown {
+    font-size: 1.2rem;
+    line-height: 1;
+    margin-right: 8px;
+    vertical-align: -2px;
+    color: var(--mc-purple-500);
+    -webkit-text-fill-color: var(--mc-purple-500);
+}
+
+
+/* Fixed-height header zone: titles sit at the top, badges anchor to the
+ * bottom of the zone, so badges and everything after them line up across
+ * a row regardless of subtitles. */
+.mcm-role-head {
+    padding: 8px 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: 88px;
+}
+
+.mcm-role-badges {
+    margin-top: auto;
+}
+
+.mcm-role-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: 1.3rem !important;
+    line-height: 1.2 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
+}
+
+.mcm-role-subtitle {
+    font-family: var(--mc-font-body) !important;
+    font-weight: 700 !important;
+    font-size: 0.68rem !important;
+    line-height: 1.3 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: var(--mc-purple-500) !important;
+    -webkit-text-fill-color: var(--mc-purple-500);
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.mcm-role-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Fixed-height blurb zone so person chips start at the same y in a row;
+ * top row gets an extra line because its cards are wider but wordier. */
+.mcm-role-blurb {
+    font-family: var(--mc-font-body) !important;
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    color: var(--mc-ink) !important;
+    opacity: 0.85;
+    margin: 0 !important;
+    padding: 0 18px !important;
+    min-height: 4.5em; /* three lines, so wordier blurbs don't push chips down */
+}
+
+.mcm-tier-top .mcm-role-blurb {
+    min-height: 5.2em;
+}
+
+/* ----- Compact person chips inside cards & groups ----- */
+.mcm-role-card .pc-row,
+.mcm-pc-group .pc-row {
+    padding: 0 12px;
+    gap: 8px;
+}
+
+/* People's Council groups: one uniform-width pill per line */
+.mcm-pc-group .pc-row {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.mcm-pc-group .pc-chip {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.mcm-role-card .pc-chip,
+.mcm-pc-group .pc-chip {
+    gap: 9px;
+    padding: 6px 16px 6px 8px;
+}
+
+.mcm-role-card .pc-initial,
+.mcm-pc-group .pc-initial {
+    width: 34px;
+    height: 34px;
+    font-size: 1.05rem;
+}
+
+.mcm-role-card .pc-name,
+.mcm-pc-group .pc-name {
+    font-size: 0.95rem;
+}
+
+.mcm-role-card .pc-email,
+.mcm-pc-group .pc-email {
+    font-size: 0.74rem;
+}
+
+.mcm-role-card .pc-position,
+.mcm-pc-group .pc-position {
+    font-size: 0.6rem;
+}
+
+/* ----- Committee chips inside division cards ----- */
+.mcm-role-committees {
+    /* top-aligned after the person zone so the COMMITTEES label sits at
+     * the same y across the row; leftover space stays at the card bottom */
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding-top: 2px;
+}
+
+.mcm-role-committees-label {
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mc-purple-500);
+}
+
+.mcm-committee-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 14px;
+}
+
+.mcm-committee-chip {
     font-family: var(--mc-font-body);
     font-weight: 600;
-    font-size: 0.95rem;
-    padding: 10px 22px;
+    font-size: 0.74rem;
+    color: var(--mc-purple-700);
+    background: var(--mc-paper, #ffffff);
+    border: 1px solid rgba(74, 52, 112, 0.25);
     border-radius: 999px;
-    cursor: pointer;
-    transition: background 180ms ease,
-                color 180ms ease,
-                border-color 180ms ease,
-                transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1),
-                box-shadow 180ms ease;
-    min-width: 160px;
+    padding: 4px 10px;
+    text-decoration: none;
+    transition: background 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
-.ministry-tab:hover,
-.ministry-tab:focus-visible {
-    border-color: var(--mc-purple-500);
-    color: var(--mc-purple-500);
-    transform: translateY(-1px);
-}
-
-.ministry-tab.active {
+.mcm-committee-chip:hover,
+.mcm-committee-chip:focus-visible {
     background: var(--mc-purple-700);
-    color: var(--mc-paper);
     border-color: var(--mc-purple-700);
-    box-shadow: 0 10px 24px -8px rgba(74, 52, 112, 0.45);
+    color: var(--mc-paper, #ffffff);
 }
 
-.ministry-tab.active:hover,
-.ministry-tab.active:focus-visible {
-    background: var(--mc-purple-500);
-    color: var(--mc-paper);
-    border-color: var(--mc-purple-500);
+.mcm-role-link {
+    display: inline-block;
+    margin: auto auto 0; /* pin links (Meet McCourt, People's Council) to the card bottom */
+    padding-top: 6px;
+    font-family: var(--mc-font-body);
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--mc-purple-500);
+    text-decoration: none;
+    transition: color 160ms ease;
 }
 
+.mcm-role-link:hover,
+.mcm-role-link:focus-visible {
+    color: var(--mc-purple-700);
+}
+
+/* ----- People's Council ----- */
+.mcm-pc-title {
+    margin-top: clamp(24px, 3vw, 40px) !important;
+    scroll-margin-top: 90px; /* room for the fixed navbar on #peoples-council jumps */
+}
+
+.mcm-pc-lead {
+    margin-bottom: clamp(6px, 1vw, 12px);
+}
+
+.mcm-pc-lead .pc-row {
+    padding-bottom: 0;
+}
+
+.mcm-pc-groups {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: clamp(12px, 1.5vw, 18px);
+    max-width: 1320px;
+    margin: clamp(12px, 2vw, 20px) auto 0;
+    padding: 0 clamp(14px, 3vw, 40px);
+}
+
+.mcm-pc-group {
+    flex: 1 1 380px;
+    max-width: 560px;
+    border: 1px solid rgba(74, 52, 112, 0.20);
+    border-radius: 16px;
+    padding: 16px 10px;
+    background: rgba(139, 111, 199, 0.05);
+}
+
+.mcm-pc-group-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: 1.15rem !important;
+    line-height: 1.2 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 0 12px !important;
+    padding: 0 !important;
+}
+
+/* ----- Section title + fade (shared look with other gov pages) ----- */
 .division-title {
     font-family: var(--mc-font-display) !important;
     font-style: italic !important;
@@ -91,7 +447,7 @@
     background: none !important;
     text-shadow: none !important;
     text-align: center;
-    margin: 0 0 clamp(20px, 3vw, 32px) !important;
+    margin: 0 0 clamp(16px, 2.5vw, 26px) !important;
     padding: 0 !important;
     letter-spacing: 0 !important;
 }
@@ -105,29 +461,125 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ----- Mobile: centered spine ---------------------------------------
+ * The three desktop rows become one uniform column with McPresident at
+ * the root. A single vertical spine runs down the middle of the chart,
+ * visible in the gaps between cards, and each tier is announced by a
+ * small pill caption sitting on the spine - so the hierarchy reads as
+ * one orderly chain instead of a flat stack.
+ * -------------------------------------------------------------------- */
 @media (max-width: 640px) {
-    .ministry-tab {
-        min-width: auto;
-        flex: 1;
-        padding: 8px 16px;
-        font-size: 0.88rem;
+    .mcm-chart,
+    .mcm-pc-groups {
+        padding: 0 12px;
     }
-    .mcministry-tabs {
-        gap: 8px;
-    }
-    .mcministry-page .cc-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+
+    .mcm-tier {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
         gap: 12px;
-        padding: 0 12px 32px;
-        justify-items: center;
+        margin-bottom: 12px;
+        position: relative;
     }
-    .mcministry-page .cc-grid > .cc-card {
+
+    /* the spine: painted behind the cards, visible only in the gaps */
+    .mcm-tier::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        margin-left: -1px;
+        width: 2px;
+        top: -14px; /* bridge the gap to the previous tier */
+        bottom: 0;
+        background: rgba(74, 52, 112, 0.25);
+    }
+
+    .mcm-tier-top::before {
+        top: 0; /* the chart starts here; nothing to bridge above */
+    }
+
+    .mcm-node {
+        display: block;
+        position: relative; /* paints above the spine */
+    }
+
+    /* tier caption: a pill riding the spine */
+    .mcm-tier-label {
+        display: inline-flex;
+        align-self: center;
+        position: relative;
+        background: var(--mc-paper, #ffffff);
+        border: 1px solid rgba(74, 52, 112, 0.28);
+        border-radius: 999px;
+        padding: 4px 14px;
+        font-family: var(--mc-font-body);
+        font-weight: 700;
+        font-size: 0.64rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--mc-purple-500);
+    }
+
+    /* McPresident is the root: first in the column, above its tier label */
+    .mcm-node-primary {
+        order: -1;
+    }
+
+    .mcm-role-card {
+        gap: 8px;
+        padding-bottom: 14px;
         max-width: none;
-        width: 100%;
     }
-    .mcministry-page .cc-grid > .cc-card:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        max-width: calc(50% - 6px);
+
+    .mcm-role-title {
+        font-size: 1.2rem !important;
+    }
+
+    .mcm-role-blurb,
+    .mcm-tier-top .mcm-role-blurb {
+        font-size: 0.8rem !important;
+        padding: 0 14px !important;
+        min-height: 0; /* stacked cards: no need to reserve alignment space */
+    }
+
+    .mcm-role-head {
+        min-height: 0;
+    }
+
+    /* tier-to-tier links are drawn by the rail instead */
+    .mcm-connector {
+        display: none;
+    }
+
+    .mcm-legend {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+
+    .mcm-legend-row {
+        gap: 10px;
+    }
+
+    .mcm-legend-row .mcm-badge {
+        min-width: 120px;
+    }
+
+    .mcm-legend-hint {
+        font-size: 0.78rem;
+    }
+
+    /* chips become full-width rows so long lists stay tidy */
+    .mcm-role-card .pc-chip,
+    .mcm-pc-group .pc-chip,
+    .mcm-pc-lead .pc-chip {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .mcm-pc-group {
+        flex-basis: 100%;
+        max-width: none;
+        padding: 14px 10px;
     }
 }

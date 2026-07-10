@@ -1,5 +1,5 @@
 /*
- * FullCalendar skin — themed to match the home page (mc-* tokens).
+ * FullCalendar skin - themed to match the home page (mc-* tokens).
  * Light background, purple accents, no dark gradients.
  */
 
@@ -499,7 +499,7 @@
     }
 }
 
-/* Events must never blow out their day cell — clip overflow + ellipsis */
+/* Events must never blow out their day cell - clip overflow + ellipsis */
 .fc .fc-daygrid-event-harness {
     overflow: hidden;
 }

@@ -1,4 +1,4 @@
-# Supabase migration — people pages
+# Supabase migration - people pages
 
 The people pages (McTeam, McMinistry, McCourt, Affinity Groups, Associates,
 PAAs, RHAs, Head Caregivers, SMR) now read from Supabase instead of a mix
@@ -12,7 +12,7 @@ Open the Supabase dashboard → SQL Editor for the project and paste the entire
 contents of [`schema.sql`](./schema.sql). Run it. It creates 9 tables and
 sets up read-only public access policies (RLS).
 
-Safe to re-run — every `create table` is `if not exists`.
+Safe to re-run - every `create table` is `if not exists`.
 
 ### 2. Get your service-role key
 
@@ -43,7 +43,7 @@ This script:
 - Applies the exact same row-shaping logic the live components used to do.
 - Clears each Supabase table, then inserts rows preserving order.
 
-Re-runnable any time — each run truncates and replaces. No data is edited
+Re-runnable any time - each run truncates and replaces. No data is edited
 or normalised; values go in byte-for-byte.
 
 ### 4. Verify
@@ -57,7 +57,7 @@ before. The page chrome, copy, and ordering should be identical.
 
 ### 5. (Optional) Clean up old sources
 
-Only after you've confirmed every page renders correctly — delete:
+Only after you've confirmed every page renders correctly - delete:
 
 - `lib/googleSheets.js`
 - `lib/googleSheets.README.md`
@@ -67,13 +67,13 @@ Only after you've confirmed every page renders correctly — delete:
 - `data/people/wellbeing.json`
 - `data/people/smr.json`
 
-(You can keep them around as a backup until you're certain — they're no
+(You can keep them around as a backup until you're certain - they're no
 longer imported anywhere.)
 
 ## Editing data after migration
 
 Open the Supabase dashboard → **Table Editor**. Each table is editable
-through the UI. The `sort_order` column controls display order — keep
+through the UI. The `sort_order` column controls display order - keep
 values unique-per-tab and ascending.
 
 For the `body` column on `mcteam`: it's `jsonb` and must be a JSON array of

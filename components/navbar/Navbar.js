@@ -12,25 +12,25 @@ const navbar_headers = [
         ]
     },
     {
-        "name": "People",
+        "name": "Government",
         "subheaders": [
-            { "name": "McTeam", "to": "/people/mcteam" },
-            { "name": "Associates", "to": "/people/associates" },
-            { "name": "Affinity Groups", "to": "/people/mcmurtryaffinitygroups" },
-            { "name": "Academic Fellows", "to": "/people/academicfellows" },
-            { "name": "Peer Academic Advisors", "to": "/people/paas" },
-            { "name": "RHAs", "to": "/people/RHAs" },
-            { "name": "Head Caregivers", "to": "/people/headcaregivers" },
-            { "name": "SMR", "to": "/people/SMR" },
-            { "name": "Divisional Advisors", "to": "/people/divisionaladvisors" }
+            { "name": "McMinistry", "to": "/government/mcministry" },
+            { "name": "Committees", "to": "/government/committees" },
+            { "name": "McCourt", "to": "/government/court" },
         ]
     },
     {
-        "name": "Government",
+        "name": "People",
         "subheaders": [
-            { "name": "McCourt", "to": "/government/court" },
-            { "name": "Committees", "to": "/government/committees" },
-            { "name": "McMinistry", "to": "/government/mcministry" }
+            { "name": "McTeam", "to": "/people/mcteam" },
+            { "name": "RHAs", "to": "/people/RHAs" },
+            { "name": "Associates", "to": "/people/associates" },
+            { "name": "Head Caregivers", "to": "/people/headcaregivers" },
+            { "name": "Affinity Groups", "to": "/people/mcmurtryaffinitygroups" },
+            { "name": "Peer Academic Advisors", "to": "/people/paas" },
+            { "name": "Academic Fellows", "to": "/people/academicfellows" },
+            { "name": "Divisional Advisors", "to": "/people/divisionaladvisors" },
+            { "name": "SMR", "to": "/people/SMR" },
         ]
     },
     {
@@ -41,8 +41,6 @@ const navbar_headers = [
             { "name": "McItems Check Out", "to": "/resources/mcitems-checkout" },
             { "name": "McMakerspace", "to": "/resources/mcmakerspace" },
             { "name": "McLegislation", "to": "/resources/mclegislation" },
-            { "name": "Diversity Resources", "to": "/resources/diversity-resources" },
-
             { "name": "McFUNd Requests", "to": "/resources/mcfund-requests" },
             { "name": "Budget Sheet", "to": "https://docs.google.com/spreadsheets/d/1imNFy7cyadxieh7JPcPRvMzB-LgMHozNkRzUX_Lwp1A/edit?usp=sharing" },
             { "name": "Financial Inclusivity", "to": "/resources/financial-inclusivity" }

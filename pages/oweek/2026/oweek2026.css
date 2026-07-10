@@ -1,4 +1,4 @@
-/* Let It GrO-Week 2026 — Lorax / Watercolor / Cream + Purple Pastels */
+/* Let It GrO-Week 2026 - Lorax / Watercolor / Cream + Purple Pastels */
 
 .groweek {
     --gw-cream: #fdf6ec;
@@ -31,16 +31,21 @@
     background-attachment: fixed;
     background-blend-mode: multiply;
     position: relative;
+    /* 'hidden' forces overflow-y to compute to 'auto', turning the wrapper
+     * into a second scroll container (double scrollbar). 'clip' cuts off
+     * the decorative blotches without creating a scroll container. */
+    overflow-x: hidden; /* fallback for browsers without 'clip' */
+    overflow-x: clip;
 }
 
-/* Paper grain overlay — disabled, was causing scroll glitches */
+/* Paper grain overlay - disabled, was causing scroll glitches */
 
 .groweek > * {
     position: relative;
     z-index: 1;
 }
 
-/* Watercolor blotch elements — real paint look via SVG displacement */
+/* Watercolor blotch elements - real paint look via SVG displacement */
 .watercolor-blotch {
     position: absolute;
     border-radius: 42% 58% 63% 37% / 45% 55% 45% 55%;
@@ -92,7 +97,7 @@
     animation: none;
 }
 
-/* ---- Hero — Photo with logo overlay ---- */
+/* ---- Hero - Photo with logo overlay ---- */
 .groweek-hero-photo {
     position: relative;
     width: 100%;
@@ -160,7 +165,7 @@
     }
 }
 
-/* Hero bar — logo left, countdown right, quad bg full width */
+/* Hero bar - logo left, countdown right, quad bg full width */
 .groweek-hero-bar {
     display: flex;
     align-items: center;
@@ -256,7 +261,7 @@
     margin-bottom: 0 !important;
 }
 
-/* Tree panorama footer — locked to bottom, no gaps */
+/* Tree panorama footer - locked to bottom, no gaps */
 .groweek-tree-footer {
     width: 100%;
     margin: -1px 0 -1px;
@@ -298,7 +303,7 @@
     filter: drop-shadow(0 4px 20px rgba(139, 106, 173, 0.2));
 }
 
-/* ---- Hero — Seuss book layout: illustration + quote, countdown centered below ---- */
+/* ---- Hero - Seuss book layout: illustration + quote, countdown centered below ---- */
 .groweek-hero-seuss {
     display: flex;
     flex-direction: column;
@@ -487,7 +492,7 @@
     box-shadow: 0 6px 24px rgba(139, 106, 173, 0.12);
 }
 
-/* ---- "What to Expect" grid — icon + text rows ---- */
+/* ---- "What to Expect" grid - icon + text rows ---- */
 .groweek-expect-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -573,7 +578,7 @@
     margin-bottom: 0;
 }
 
-/* Pull quote — subtle inline emphasis */
+/* Pull quote - subtle inline emphasis */
 .groweek-pull-quote {
     font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
     font-size: 1.1rem;

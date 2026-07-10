@@ -28,4 +28,4 @@ yarn-error.log*
 # siteimprove: local dev tool, not part of the site
 siteimprove/
 
-# Note: deployments/ is intentionally tracked — GitHub Pages serves it
+# Note: deployments/ is intentionally tracked - GitHub Pages serves it
