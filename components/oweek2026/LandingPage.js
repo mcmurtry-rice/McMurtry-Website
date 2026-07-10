@@ -66,6 +66,7 @@ const LandingPage = () => (
         {/* Hero - storybook opening: illustration + quote, countdown centered below */}
         <section className="groweek-hero-seuss">
             <h1 className="groweek-sr-only">Let It GrO-Week 2026 - McMurtry College Orientation Week</h1>
+            <img className="groweek-decor groweek-unless-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ bottom: '-10px', right: '5%', width: '210px' }} />
             <div className="groweek-hero-row">
                 <div className="groweek-hero-illustration">
                     <img
@@ -75,12 +76,9 @@ const LandingPage = () => (
                     />
                 </div>
                 <div className="groweek-hero-text">
-                    <div className="groweek-hero-quote-wrap">
-                        <blockquote className="groweek-hero-quote">
-                            "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not."
-                        </blockquote>
-                        <img className="groweek-decor groweek-unless-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ top: 'calc(100% - 5px)', left: '48%', width: '85px' }} />
-                    </div>
+                    <blockquote className="groweek-hero-quote">
+                        "Unless someone like you cares a whole awful lot, nothing is going to get better. It's not."
+                    </blockquote>
                     <cite className="groweek-hero-cite">- Dr. Seuss, The Lorax</cite>
                     <p className="groweek-hero-welcome">Welcome to McMurtry College, Class of 2030!</p>
                 </div>
@@ -93,6 +91,7 @@ const LandingPage = () => (
             <h2 className="groweek-section-title">What is O-Week?</h2>
             <div className="groweek-info-grid">
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-purple)' }}>
+                    <h3>The Basics</h3>
                     <p>
                         Orientation Week (O-Week) is your exciting introduction to life at Rice University
                         and McMurtry College. Led by our dedicated coordinators and advisors, you'll
@@ -101,6 +100,7 @@ const LandingPage = () => (
                     </p>
                 </div>
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-pink)' }}>
+                    <h3>Your O-Week Group</h3>
                     <p>
                         You'll be placed into an O-Week group with a small team of advisors who will
                         guide you through the week. They're upperclassmen who've been in your shoes and
