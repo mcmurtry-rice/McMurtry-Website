@@ -7,7 +7,7 @@ const NAV_ITEMS = [
     { name: 'Meet the Coords', href: '/oweek/2026/coords' },
     { name: 'Letter to Parents', href: '/oweek/2026/letter' },
     { name: 'Move-In Info', href: '/oweek/2026/movein' },
-    { name: 'Your Room', href: '/oweek/2026/housing' },
+    { name: 'Murt Spaces', href: '/oweek/2026/housing' },
 ];
 
 const Sidebar = () => {

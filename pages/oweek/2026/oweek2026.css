@@ -34,8 +34,10 @@
     min-height: 100vh;
     padding-bottom: 0;
     margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
 
-    background-color: #f5ead6;
+    background-color: #faf5eb;
     background-image: url('/static/oweek/2026/watercolor-paper.jpg');
     background-size: cover;
     background-repeat: no-repeat;
@@ -47,6 +49,16 @@
        negative left/right offsets) — clip here so they don't also inflate
        the document's own scrollWidth and open up real horizontal scroll. */
     overflow-x: clip;
+}
+
+/* Push footer to bottom */
+.groweek-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.groweek-page main {
+    flex: 1;
 }
 
 /* Paper grain overlay — disabled, was causing scroll glitches */
@@ -134,7 +146,7 @@
     align-items: center;
     justify-content: center;
     border-radius: 20px;
-    background: rgba(247, 239, 226, 0.65);
+    background: rgba(252, 249, 243, 0.65);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 }
@@ -296,7 +308,7 @@
    purple footer). Truffula forest sits behind the existing Commons/
    Yurt silhouette as a second background layer. */
 .groweek-page .mc-footer {
-    background: linear-gradient(180deg, #f5ead6 0%, #f3d0e3 55%, #c4aeda 100%);
+    background: linear-gradient(180deg, #faf5eb 0%, #f3d0e3 55%, #c4aeda 100%);
 }
 
 .groweek-page .mc-footer::before {
@@ -866,15 +878,26 @@
     margin: 0 auto;
 }
 
+/* ---- Maps row: map on left, spaces on right ---- */
+.groweek-maps-row {
+    display: grid;
+    grid-template-columns: minmax(280px, 2fr) 3fr;
+    gap: 2.5rem;
+    align-items: start;
+    margin-bottom: 2rem;
+}
+
 .groweek-maps-col {
     text-align: center;
+}
+
+.groweek-maps-spaces .groweek-expect-grid {
+    grid-template-columns: 1fr;
 }
 
 .groweek-maps-img {
     width: 100%;
     display: block;
-    border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(139, 106, 173, 0.15);
 }
 
 .groweek-maps-caption {
@@ -907,20 +930,66 @@
     display: block;
 }
 
+.groweek-furniture-title {
+    font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+    font-size: 1.4rem;
+    color: var(--gw-purple-dark);
+    font-weight: 400;
+    text-align: center;
+    margin: 0 0 1rem;
+}
+
 .groweek-furniture-gallery {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: 1.75rem;
+    justify-items: center;
+    align-items: end;
+    overflow: visible;
+}
+
+.groweek-furniture-item {
+    overflow: visible;
 }
 
 .groweek-furniture-gallery img {
-    width: 100%;
-    aspect-ratio: 1 / 1;
+    width: 168px;
+    height: 168px;
     object-fit: contain;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(139, 106, 173, 0.1);
-    padding: 0.5rem;
+    /* transparent — no background, no box, no shadow */
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0;
+    display: block;
+}
+
+.groweek-furniture-item {
+    text-align: center;
+}
+
+.groweek-furniture-caption {
+    font-family: 'Instrument Serif', 'Playfair Display', Georgia, serif;
+    font-size: 0.9rem;
+    color: var(--gw-purple-dark);
+    margin-top: 0.35rem;
+}
+
+/* ---- Space card with watercolor image ---- */
+.groweek-space-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.groweek-space-img {
+    width: 120px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 10px rgba(139, 106, 173, 0.1);
+    border: 1px solid rgba(139, 106, 173, 0.08);
 }
 
 @media (max-width: 768px) {
@@ -930,6 +999,14 @@
     }
     .groweek-room-grid {
         grid-template-columns: 1fr;
+    }
+    .groweek-space-card {
+        flex-direction: column;
+    }
+    .groweek-space-img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
     }
 }
 
