@@ -66,7 +66,7 @@ const LandingPage = () => (
         {/* Hero - storybook opening: illustration + quote, countdown centered below */}
         <section className="groweek-hero-seuss">
             <h1 className="groweek-sr-only">Let It GrO-Week 2026 - McMurtry College Orientation Week</h1>
-            <img className="groweek-decor groweek-unless-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ bottom: '-10px', right: '5%', width: '210px' }} />
+            <img className="groweek-decor groweek-unless-decor" src="/static/oweek/2026/decor/unless-stone.png" alt="" aria-hidden="true" style={{ top: '140px', right: '11%', width: '210px' }} />
             <div className="groweek-hero-row">
                 <div className="groweek-hero-illustration">
                     <img

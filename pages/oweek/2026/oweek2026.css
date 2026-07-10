@@ -809,6 +809,19 @@
     margin: 0 0 1rem 1.25rem;
 }
 
+.groweek-letter-photo {
+    width: 260px;
+    aspect-ratio: auto;
+    object-position: center;
+}
+
+@media (max-width: 640px) {
+    .groweek-letter-photo {
+        width: 100%;
+        max-width: 320px;
+    }
+}
+
 .groweek-coord-bio-p {
     font-size: 0.95rem;
     line-height: 1.7;
