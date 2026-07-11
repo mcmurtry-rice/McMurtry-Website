@@ -721,14 +721,23 @@
         height: auto;
     }
     .mc-footer-wordmark {
-        position: static;
+        /* z-index only applies to positioned elements - static would drop
+           this behind the absolutely-positioned background layers (e.g. the
+           O-Week tree panorama), so keep it positioned via `relative`, and
+           reset the desktop rule's top/left offsets (inert under `static`,
+           but relative would otherwise apply them as real offsets). */
+        position: relative;
+        top: auto;
+        left: auto;
         width: auto;
         font-size: clamp(2.5rem, 10vw, 4.5rem);
         line-height: 0.85;
         margin-bottom: 24px;
     }
     .mc-footer-contact {
-        position: static;
+        position: relative;
+        top: auto;
+        left: auto;
         width: 100%;
         line-height: 1.7;
         font-size: 0.95rem;

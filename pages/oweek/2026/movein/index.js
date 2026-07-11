@@ -5,6 +5,7 @@ import SiteFooter from '../../../../components/Footer/Footer';
 import { WatercolorFilters, WatercolorBlotch } from '../../../../components/oweek2026/WatercolorFilters';
 import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
 import Sidebar from '../../../../components/oweek2026/Sidebar';
+import PageNav from '../../../../components/oweek2026/PageNav';
 
 // Content transcribed from "Move-In Day Instructions", "Important Contact
 // Info", "Directions to McMurtry", and "What to Bring" (The O-Week Book,
@@ -101,6 +102,8 @@ const OWeek2026MoveIn = () => (
                         </div>
                     </div>
                 </section>
+
+                <PageNav />
             </div>
         <SiteFooter />
     </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
 import ScrollToTop from './ScrollToTop';
 import Sidebar from './Sidebar';
+import PageNav from './PageNav';
 
 // Bios transcribed from "Meet The McCoordinators" (The O-Week Book, pages 35-40) -
 // written by the other coords about each other, kept in their original voice.
@@ -101,6 +102,8 @@ const CoordsPage = () => (
                 </div>
             ))}
         </section>
+
+        <PageNav />
     </div>
 );
 

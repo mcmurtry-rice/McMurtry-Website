@@ -5,6 +5,7 @@ import SiteFooter from '../../../../components/Footer/Footer';
 import { WatercolorFilters, WatercolorBlotch } from '../../../../components/oweek2026/WatercolorFilters';
 import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
 import Sidebar from '../../../../components/oweek2026/Sidebar';
+import PageNav from '../../../../components/oweek2026/PageNav';
 
 const OWeek2026Letter = () => (
     <div className="page page-light groweek-page">
@@ -46,6 +47,8 @@ const OWeek2026Letter = () => (
                         <p>After you leave Murt, you will be welcomed to Rice University and be addressed by President Reginald DesRoches and Dean of Undergraduates Bridgett Gorman. You will also have a day full of informational programming from the University before you leave campus.</p>
                     </div>
                 </section>
+
+                <PageNav />
             </div>
         <SiteFooter />
     </div>

@@ -3,6 +3,7 @@ import StripCarousel from '../StripCarousel/StripCarousel';
 import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
 import ScrollToTop from './ScrollToTop';
 import Sidebar from './Sidebar';
+import PageNav from './PageNav';
 var countdown = require('countdown');
 
 const MOVE_IN_DATE = new Date(2026, 7, 16);
@@ -178,6 +179,8 @@ const LandingPage = () => (
                 </div>
             </div>
         </section>
+
+        <PageNav />
     </div>
 );
 

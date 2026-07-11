@@ -1549,6 +1549,7 @@ body:has(.page-light)::before {
     cursor: grab;
     user-select: none;
     scroll-behavior: auto;
+    touch-action: pan-y;
 }
 
 .mc-strip-row.mc-strip-dragging {
