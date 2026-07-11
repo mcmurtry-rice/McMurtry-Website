@@ -13,13 +13,12 @@ const StripCarousel = ({ images, fadeWidth = '15%', fadeColor = '255,255,255' })
     const handleScroll = useCallback(() => {
         const el = stripRef.current;
         if (!el) return;
-        const half = el.scrollWidth / 2;
-        if (!half) return;
-        const quarter = half / 2;
-        if (el.scrollLeft >= half + quarter) {
-            el.scrollLeft = el.scrollLeft - half;
-        } else if (el.scrollLeft <= quarter) {
-            el.scrollLeft = el.scrollLeft + half;
+        const segment = el.scrollWidth / 3;
+        if (!segment) return;
+        if (el.scrollLeft >= segment * 2) {
+            el.scrollLeft = el.scrollLeft - segment;
+        } else if (el.scrollLeft <= segment) {
+            el.scrollLeft = el.scrollLeft + segment;
         }
     }, []);
 
@@ -27,8 +26,8 @@ const StripCarousel = ({ images, fadeWidth = '15%', fadeColor = '255,255,255' })
         const el = stripRef.current;
         if (!el) return;
         const id = requestAnimationFrame(() => {
-            const half = el.scrollWidth / 2;
-            if (half > 0) el.scrollLeft = half;
+            const segment = el.scrollWidth / 3;
+            if (segment > 0) el.scrollLeft = segment;
         });
         return () => cancelAnimationFrame(id);
     }, []);
@@ -108,7 +107,7 @@ const StripCarousel = ({ images, fadeWidth = '15%', fadeColor = '255,255,255' })
         }
     };
 
-    const doubled = [...images, ...images];
+    const tripled = [...images, ...images, ...images];
 
     return (
         <section className='mc-strip' aria-label='College highlights'>
@@ -121,12 +120,12 @@ const StripCarousel = ({ images, fadeWidth = '15%', fadeColor = '255,255,255' })
                 onPointerUp={onPointerUp}
                 onPointerCancel={onPointerUp}
             >
-                {doubled.map((item, i) => (
+                {tripled.map((item, i) => (
                     <figure className='mc-strip-card' key={`${item.caption}-${i}`}>
                         <div className='mc-strip-image-wrap'>
                             <img
                                 src={item.src}
-                                alt={i < images.length ? (item.alt || item.caption) : ''}
+                                alt={i >= images.length && i < images.length * 2 ? (item.alt || item.caption) : ''}
                                 className='mc-strip-image'
                                 draggable={false}
                             />
