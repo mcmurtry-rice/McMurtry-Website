@@ -461,13 +461,155 @@
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* ----- Mobile: centered spine ---------------------------------------
- * The three desktop rows become one uniform column with McPresident at
- * the root. A single vertical spine runs down the middle of the chart,
- * visible in the gaps between cards, and each tier is announced by a
- * small pill caption sitting on the spine - so the hierarchy reads as
- * one orderly chain instead of a flat stack.
- * -------------------------------------------------------------------- */
+
+/* hidden on desktop: cards already show everything, no tap affordance */
+.mcm-role-more {
+    display: none;
+}
+
+/* ----- Role detail modal (mobile) ----- */
+.mcm-modal-scrim {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(28, 20, 48, 0.55);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 10px;
+    animation: mcm-scrim-fade 200ms ease;
+}
+
+.mcm-modal {
+    position: relative;
+    width: min(560px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: var(--mc-paper, #ffffff);
+    border: 1.5px solid var(--mc-purple-700);
+    border-radius: 18px 18px 8px 8px;
+    padding: 24px 18px 26px;
+    box-shadow: 0 40px 80px -30px rgba(28, 20, 48, 0.6);
+    animation: mcm-modal-zoom 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes mcm-scrim-fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes mcm-modal-zoom {
+    from { opacity: 0; transform: scale(0.88) translateY(16px); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* closing: distinct keyframe names, because re-running an already-finished
+ * animation under the same name (even reversed) never restarts it */
+@keyframes mcm-scrim-fade-out {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes mcm-modal-zoom-out {
+    from { opacity: 1; transform: scale(1) translateY(0); }
+    to   { opacity: 0; transform: scale(0.88) translateY(16px); }
+}
+
+.mcm-modal-scrim-closing {
+    animation: mcm-scrim-fade-out 200ms ease forwards;
+    pointer-events: none; /* ignore taps while closing */
+}
+
+.mcm-modal-scrim-closing .mcm-modal {
+    animation: mcm-modal-zoom-out 200ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.mcm-modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    appearance: none;
+    border: 1px solid rgba(74, 52, 112, 0.25);
+    background: var(--mc-paper, #ffffff);
+    color: var(--mc-purple-700);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: background 160ms ease, color 160ms ease;
+}
+
+.mcm-modal-close:hover,
+.mcm-modal-close:focus-visible {
+    background: var(--mc-purple-700);
+    color: var(--mc-paper, #ffffff);
+}
+
+.mcm-modal-eyebrow {
+    font-family: var(--mc-font-body) !important;
+    font-weight: 700 !important;
+    font-size: 0.68rem !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: var(--mc-purple-500) !important;
+    -webkit-text-fill-color: var(--mc-purple-500);
+    text-align: center;
+    margin: 0 0 4px !important;
+    padding: 0 !important;
+}
+
+.mcm-modal-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: 1.7rem !important;
+    line-height: 1.15 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 0 12px !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
+}
+
+.mcm-modal-badges {
+    justify-content: center;
+    margin: -4px 0 12px;
+}
+
+.mcm-modal-blurb {
+    font-family: var(--mc-font-body) !important;
+    font-size: 0.92rem !important;
+    line-height: 1.6 !important;
+    color: var(--mc-ink) !important;
+    text-align: center;
+    margin: 0 0 14px !important;
+}
+
+.mcm-modal-committees {
+    margin-top: 14px;
+    align-items: center;
+    text-align: center;
+}
+
+.mcm-modal .mcm-role-link {
+    display: block;
+    text-align: center;
+    margin-top: 14px;
+}
+
+/* ----- Mobile: mini diagram --------------------------------------
+ * The chart keeps its SHAPE on phones: McPresident full-width at the
+ * root, then compact side-by-side nodes flanking a central spine,
+ * with a pill caption naming each tier. Nodes show just the role,
+ * badges (icon only), and names; tapping zooms into a detail modal.
+ * ------------------------------------------------------------------ */
 @media (max-width: 640px) {
     .mcm-chart,
     .mcm-pc-groups {
@@ -475,40 +617,55 @@
     }
 
     .mcm-tier {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-        margin-bottom: 12px;
+        gap: 10px;
+        margin-bottom: 10px;
         position: relative;
     }
 
-    /* the spine: painted behind the cards, visible only in the gaps */
+    /* the spine: painted behind the nodes, visible between the columns */
     .mcm-tier::before {
         content: '';
         position: absolute;
         left: 50%;
         margin-left: -1px;
         width: 2px;
-        top: -14px; /* bridge the gap to the previous tier */
+        top: -12px; /* bridge the gap to the previous tier */
         bottom: 0;
         background: rgba(74, 52, 112, 0.25);
+        z-index: 0; /* explicitly under the nodes (paint order alone is unreliable) */
     }
 
     .mcm-tier-top::before {
         top: 0; /* the chart starts here; nothing to bridge above */
     }
 
+    /* nodes: two per row around the spine */
     .mcm-node {
         display: block;
-        position: relative; /* paints above the spine */
+        position: relative;
+        z-index: 1; /* above the spine */
+        flex: 1 1 calc(50% - 5px);
+        max-width: calc(50% - 5px);
+        min-width: 0;
     }
 
-    /* tier caption: a pill riding the spine */
+    /* McPresident is the root: first, full width */
+    .mcm-node-primary {
+        order: -1;
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+
+    /* tier caption: a pill riding the spine on its own row */
     .mcm-tier-label {
-        display: inline-flex;
-        align-self: center;
+        display: flex;
+        flex-basis: 100%;
+        max-width: 100%;
+        justify-content: center;
         position: relative;
+    }
+
+    .mcm-tier-label-pill {
         background: var(--mc-paper, #ffffff);
         border: 1px solid rgba(74, 52, 112, 0.28);
         border-radius: 999px;
@@ -521,33 +678,131 @@
         color: var(--mc-purple-500);
     }
 
-    /* McPresident is the root: first in the column, above its tier label */
-    .mcm-node-primary {
-        order: -1;
-    }
-
+    /* compact nodes: title + icon badges + names; details live in the modal */
     .mcm-role-card {
-        gap: 8px;
-        padding-bottom: 14px;
+        position: relative; /* anchors the corner badges */
+        height: 100%;
+        gap: 6px;
+        padding-bottom: 10px;
+        cursor: pointer;
         max-width: none;
     }
 
-    .mcm-role-title {
-        font-size: 1.2rem !important;
+    .mcm-role-card::before {
+        height: 6px;
     }
 
-    .mcm-role-blurb,
-    .mcm-tier-top .mcm-role-blurb {
-        font-size: 0.8rem !important;
-        padding: 0 14px !important;
-        min-height: 0; /* stacked cards: no need to reserve alignment space */
-    }
-
+    /* natural-height header: with subtitles hidden the titles are all one
+     * line, so no reserved space is needed and the nodes stay tight */
     .mcm-role-head {
         min-height: 0;
+        padding: 6px 8px 0;
+        gap: 4px;
     }
 
-    /* tier-to-tier links are drawn by the rail instead */
+    .mcm-role-title {
+        font-size: 0.98rem !important;
+    }
+
+    .mcm-role-card-primary .mcm-role-title {
+        font-size: 1.25rem !important;
+    }
+
+    /* the subtitle ("Socials Vice President") only shows in the detail
+     * modal on mobile; in the chart it just pushes rows apart */
+    .mcm-chart .mcm-role-subtitle {
+        display: none !important;
+    }
+
+    /* icon-only badges sit in the card's bottom corners, flanking the
+     * Details label: key bottom-left, P-Card bottom-right */
+    .mcm-chart .mcm-role-badges {
+        display: contents;
+    }
+
+    .mcm-chart .mcm-badge {
+        position: absolute;
+        bottom: 7px;
+        padding: 3px 7px;
+        gap: 0;
+        margin: 0;
+    }
+
+    .mcm-chart .mcm-badge-key {
+        left: 8px;
+    }
+
+    .mcm-chart .mcm-badge-pcard {
+        right: 8px;
+    }
+
+    .mcm-chart .mcm-badge-text {
+        display: none;
+    }
+
+    /* the node shows who, the modal shows what */
+    .mcm-chart .mcm-role-blurb,
+    .mcm-chart .mcm-role-committees,
+    .mcm-chart .mcm-role-link {
+        display: none;
+    }
+
+    /* tiny name-only chips: uniform width, one per line */
+    .mcm-chart .mcm-role-card .pc-row {
+        padding: 0 10px;
+        gap: 4px;
+    }
+
+    .mcm-chart .mcm-role-card .pc-chip {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        justify-content: flex-start;
+        padding: 3px 10px 3px 4px;
+        gap: 6px;
+    }
+
+    .mcm-chart .mcm-role-card .pc-initial {
+        width: 22px;
+        height: 22px;
+        font-size: 0.8rem;
+    }
+
+    /* the text fills the pill and centers between the initial and the edge */
+    .mcm-chart .mcm-role-card .pc-text {
+        flex: 1;
+        min-width: 0;
+        text-align: center;
+    }
+
+    .mcm-chart .mcm-role-card .pc-name {
+        font-size: 0.9rem;
+        /* long names truncate instead of wrapping the pill taller */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        overflow-wrap: normal;
+    }
+
+    .mcm-chart .mcm-role-card .pc-email,
+    .mcm-chart .mcm-role-card .pc-position {
+        display: none;
+    }
+
+    /* tap affordance pinned to the node bottom */
+    .mcm-role-more {
+        display: block;
+        margin-top: auto;
+        padding-top: 4px;
+        font-family: var(--mc-font-body);
+        font-weight: 700;
+        font-size: 0.58rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--mc-purple-500);
+    }
+
+    /* tier-to-tier links are drawn by the spine instead */
     .mcm-connector {
         display: none;
     }
@@ -569,8 +824,7 @@
         font-size: 0.78rem;
     }
 
-    /* chips become full-width rows so long lists stay tidy */
-    .mcm-role-card .pc-chip,
+    /* People's Council: full-width chip rows stay tidy */
     .mcm-pc-group .pc-chip,
     .mcm-pc-lead .pc-chip {
         width: 100%;

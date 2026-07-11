@@ -122,6 +122,20 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+a, button, input, textarea, select, [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a:focus, button:focus, input:focus, textarea:focus, select:focus, [role="button"]:focus {
+    outline: none;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, [role="button"]:focus-visible {
+    outline: 2px solid var(--mc-purple-700, #540B72);
+    outline-offset: 2px;
 }
 
 html {

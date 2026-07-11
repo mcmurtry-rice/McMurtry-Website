@@ -309,11 +309,18 @@
    purple footer). Truffula forest sits behind the existing Commons/
    Yurt silhouette as a second background layer. */
 .groweek-page .mc-footer {
+    /* The footer is a sibling of .groweek, not a child, so the page's parchment
+       background does not reach it - a transparent footer just exposed the plain
+       white page beneath. Painting the SAME fixed, cover-fit watercolor texture
+       here makes it align to the viewport identically to the content above, so
+       the two meet with no visible seam. */
     background-color: #faf5eb;
     background-image: url('/static/oweek/2026/watercolor-paper.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: top center;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
 }
 
 .groweek-page .mc-footer::before {
@@ -328,16 +335,15 @@
        the parchment texture behind it show through. */
     background-position: center top;
     background-size: cover;
+    /* The source illustration has opaque white watercolor "splatter"
+       blotches baked into its sky area (not transparency), which read as
+       flat white rectangles against the cream page. Multiply blends those
+       white pixels down to whatever's behind (the cream/paper footer
+       background), matching the multiply treatment already used on the
+       page's own paper texture, while only lightly darkening the painted
+       trees. */
+    mix-blend-mode: multiply;
     z-index: 0;
-}
-
-.groweek-page .mc-footer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(250, 245, 235, 0.4) 0%, rgba(243, 208, 227, 0.3) 55%, rgba(196, 174, 218, 0.4) 100%);
-    z-index: 0;
-    pointer-events: none;
 }
 
 .groweek-page .mc-footer-silhouette {
@@ -355,8 +361,71 @@
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.85), 0 0 14px rgba(255, 255, 255, 0.6);
 }
 
+/* Soft frosted panel behind each text block so the purple type reads clearly
+   against the busy tree illustration. Drawn as a ::before pseudo-element that
+   sits BEHIND the text rather than as padding/margin on the text box itself -
+   this way the text keeps its exact position on every layout (crucially the
+   mobile in-flow footer, where padding/negative-margins would shift things and
+   collapse the gap between the two blocks). The panel is inset by a negative
+   amount so it extends out around the letters. */
+.groweek-page .mc-footer-wordmark,
+.groweek-page .mc-footer-contact {
+    z-index: 2;
+}
+
+/* Shrink the wordmark box to its text so the panel hugs the letters instead of
+   spanning the wider fixed wordmark box (which left dead space to the right of
+   the shorter "College" line and looked off-center). */
 .groweek-page .mc-footer-wordmark {
-    line-height: 0.9;
+    width: -moz-fit-content;
+    width: fit-content;
+}
+
+.groweek-page .mc-footer-wordmark::before,
+.groweek-page .mc-footer-contact::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: rgba(253, 246, 236, 0.42);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+    border-radius: 18px;
+    box-shadow: 0 2px 14px rgba(94, 61, 122, 0.07);
+    pointer-events: none;
+}
+
+/* The wordmark's tight line-height crops its box inside the glyphs, so the
+   panel is pushed out further top/bottom to wrap the ascenders and the italic
+   "College" descenders. */
+.groweek-page .mc-footer-wordmark::before {
+    inset: -0.34em -0.4em -0.5em;
+}
+
+.groweek-page .mc-footer-contact::before {
+    inset: -1.1em -1.2em;
+}
+
+/* Mobile: the contact block is full-width in the stacked footer, so its panel
+   would span edge-to-edge and clash with the wordmark's text-hugging card.
+   Shrink it to its content so both blocks read as matching cards. */
+@media (max-width: 1024px) {
+    .groweek-page .mc-footer-contact {
+        width: -moz-fit-content;
+        width: fit-content;
+    }
+    /* The wordmark's looser mobile line-height (0.85) already leaves room for
+       the glyphs, so the panel needs far less top/bottom overhang than on
+       desktop. Trimming it - plus extra space below the wordmark - stops the
+       two panels from overlapping into a dark double-layered band. */
+    .groweek-page .mc-footer-wordmark::before {
+        inset: -0.12em -0.3em -0.18em;
+    }
+    .groweek-page .mc-footer-contact::before {
+        inset: -0.8em -1em;
+    }
+    .groweek-page .mc-footer-wordmark {
+        margin-bottom: 34px;
+    }
 }
 
 @media (max-width: 768px) {

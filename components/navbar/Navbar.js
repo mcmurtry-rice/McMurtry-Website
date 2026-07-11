@@ -68,6 +68,12 @@ const SiteNavbar = () => {
     // fully closed so it has no box at all, and only drop back to none
     // after the close transition finishes so the slide-out still plays.
     const [drawerInDom, setDrawerInDom] = useState(false);
+    // Mirrors menuOpen but flips a frame later on open, so the drawer first
+    // paints mounted-but-closed (display:flex, translateX(100%)) before the
+    // "-open" class is added - otherwise display:none -> flex and the open
+    // transform land in the same paint and the drawer just pops in instead
+    // of sliding.
+    const [drawerOpen, setDrawerOpen] = useState(false);
 
     // Lock body scroll while the mobile drawer is open
     useEffect(() => {
@@ -77,8 +83,18 @@ const SiteNavbar = () => {
     }, [menuOpen]);
 
     useEffect(() => {
-        if (menuOpen) setDrawerInDom(true);
+        if (menuOpen) {
+            setDrawerInDom(true);
+        } else {
+            setDrawerOpen(false);
+        }
     }, [menuOpen]);
+
+    useEffect(() => {
+        if (!menuOpen || !drawerInDom) return;
+        const raf = requestAnimationFrame(() => setDrawerOpen(true));
+        return () => cancelAnimationFrame(raf);
+    }, [menuOpen, drawerInDom]);
 
     const closeAll = () => {
         setMenuOpen(false);
@@ -244,7 +260,7 @@ const SiteNavbar = () => {
             />
             <aside
                 id="mc-mobile-drawer"
-                className={'mc-mobile-drawer' + (menuOpen ? ' mc-mobile-drawer-open' : '')}
+                className={'mc-mobile-drawer' + (drawerOpen ? ' mc-mobile-drawer-open' : '')}
                 style={{ display: drawerInDom ? 'flex' : 'none' }}
                 onTransitionEnd={(e) => {
                     if (e.propertyName === 'transform' && !menuOpen) setDrawerInDom(false);

@@ -175,7 +175,7 @@ const LandingPage = () => (
             <h2 className="groweek-section-title">Quick Info</h2>
             <div className="groweek-info-grid groweek-quickinfo-grid">
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-orange)' }}>
-                    <h4><i className="ph ph-envelope" /> Mailing Address</h4>
+                    <h4><i className="ph ph-envelope" /> Your Mailing Address</h4>
                     <p>(Your Name)<br />McMurtry College<br />1605 Rice Blvd.<br />Houston, TX 77005</p>
                 </div>
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-green)' }}>

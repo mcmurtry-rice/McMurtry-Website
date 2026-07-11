@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
@@ -14,6 +14,11 @@ import './index.css';
  *   row 1: Treasurers | McPresident | Chief Justice
  *   row 2: External VP | Internal VP | Prime Minister | At-Large Rep
  *   row 3: Secretaries | (RSA Senator) | Parliamentarian
+ *
+ * Desktop shows full cards. Mobile keeps the same diagram SHAPE with
+ * compact side-by-side nodes around a central spine; tapping a node
+ * zooms into a modal with the role's full details (same interaction
+ * as the committees diagram).
  *
  * People come from the `mcministry` table (Chief Justice from `mccourt`)
  * and committee lists from the `committees` table, so the chart stays in
@@ -91,9 +96,9 @@ const PC_GROUPS = [
 const committeeHref = (name) => `/government/committees#${encodeURIComponent(name)}`;
 
 const Badge = ({ type }) => (
-    <span className="mcm-badge">
+    <span className={`mcm-badge mcm-badge-${type}`}>
         <i className={`ph ${type === 'key' ? 'ph-key' : 'ph-credit-card'}`} aria-hidden="true" />
-        {type === 'key' ? 'Key Holder' : 'P-Card Holder'}
+        <span className="mcm-badge-text">{type === 'key' ? 'Key Holder' : 'P-Card Holder'}</span>
     </span>
 );
 
@@ -104,40 +109,100 @@ const toChips = (rows, showPositions) =>
         position: showPositions ? position : undefined,
     }));
 
+const TierLabel = ({ children }) => (
+    <span className='mcm-tier-label'>
+        <span className='mcm-tier-label-pill'>{children}</span>
+    </span>
+);
+
 /* The .mcm-node wrapper is display:contents on desktop (invisible to the
- * flex tiers) and becomes the anchor for the tree-connector pseudo-elements
- * on mobile, since the card itself clips overflow for its cap bar. */
-const RoleCard = ({ title, subtitle, badges = [], blurb, people = [], committees = [], showPositions, accent, link, primary }) => (
-    <div className={`mcm-node${primary ? ' mcm-node-primary' : ''}`}>
-    <article className={`mcm-role-card${primary ? ' mcm-role-card-primary' : ''}`}>
-        <header className="mcm-role-head">
-            <h3 className="mcm-role-title">
-                {primary ? <i className="ph ph-crown mcm-role-crown" aria-hidden="true" /> : null}
-                {title}
-            </h3>
-            {subtitle ? <p className="mcm-role-subtitle">{subtitle}</p> : null}
-            {badges.length > 0 && (
-                <div className="mcm-role-badges">
-                    {badges.map((b) => <Badge key={b} type={b} />)}
+ * flex tiers) and becomes the sized grid cell on mobile. */
+const RoleCard = ({ role, onSelect }) => (
+    <div className={`mcm-node${role.primary ? ' mcm-node-primary' : ''}`}>
+        <article
+            className={`mcm-role-card${role.primary ? ' mcm-role-card-primary' : ''}`}
+            onClick={() => onSelect(role)}
+        >
+            <header className="mcm-role-head">
+                <h3 className="mcm-role-title">
+                    {role.primary ? <i className="ph ph-crown mcm-role-crown" aria-hidden="true" /> : null}
+                    {role.title}
+                </h3>
+                {role.subtitle ? <p className="mcm-role-subtitle">{role.subtitle}</p> : null}
+                {(role.badges || []).length > 0 && (
+                    <div className="mcm-role-badges">
+                        {role.badges.map((b) => <Badge key={b} type={b} />)}
+                    </div>
+                )}
+            </header>
+            <p className="mcm-role-blurb">{role.blurb}</p>
+            {(role.people || []).length > 0 && (
+                <div onClick={(e) => e.stopPropagation()}>
+                    <PersonChips content={toChips(role.people, role.showPositions)} accent={role.accent} />
                 </div>
             )}
-        </header>
-        <p className="mcm-role-blurb">{blurb}</p>
-        {people.length > 0 && (
-            <PersonChips content={toChips(people, showPositions)} accent={accent} />
-        )}
-        {committees.length > 0 && (
-            <div className="mcm-role-committees">
-                <span className="mcm-role-committees-label">Committees</span>
-                <div className="mcm-committee-list">
-                    {committees.map((c) => (
-                        <a key={c} href={committeeHref(c)} className="mcm-committee-chip">{c}</a>
-                    ))}
+            {(role.committees || []).length > 0 && (
+                <div className="mcm-role-committees">
+                    <span className="mcm-role-committees-label">Committees</span>
+                    <div className="mcm-committee-list">
+                        {role.committees.map((c) => (
+                            <a key={c} href={committeeHref(c)} className="mcm-committee-chip">{c}</a>
+                        ))}
+                    </div>
                 </div>
-            </div>
-        )}
-        {link ? <a href={link.href} className="mcm-role-link">{link.label}</a> : null}
-    </article>
+            )}
+            {role.link ? <a href={role.link.href} className="mcm-role-link">{role.link.label}</a> : null}
+            <span className="mcm-role-more" aria-hidden="true">Details ›</span>
+        </article>
+    </div>
+);
+
+/* Mobile detail view: zoom-in modal, same interaction pattern as the
+ * committees page. While `closing` the reverse animation plays before
+ * the component unmounts. */
+const RoleModal = ({ role, closing, onClose }) => (
+    <div className={`mcm-modal-scrim${closing ? ' mcm-modal-scrim-closing' : ''}`} onClick={onClose}>
+        <div
+            className='mcm-modal'
+            role='dialog'
+            aria-modal='true'
+            aria-label={role.title}
+            onClick={(e) => e.stopPropagation()}
+        >
+            <button type='button' className='mcm-modal-close' onClick={onClose} aria-label='Close'>
+                <i className='ph ph-x' aria-hidden='true' />
+            </button>
+
+            {role.subtitle ? <p className='mcm-modal-eyebrow'>{role.subtitle}</p> : null}
+            <h2 className='mcm-modal-title'>
+                {role.primary ? <i className="ph ph-crown mcm-role-crown" aria-hidden="true" /> : null}
+                {role.title}
+            </h2>
+
+            {(role.badges || []).length > 0 && (
+                <div className='mcm-role-badges mcm-modal-badges'>
+                    {role.badges.map((b) => <Badge key={b} type={b} />)}
+                </div>
+            )}
+
+            <p className='mcm-modal-blurb'>{role.blurb}</p>
+
+            {(role.people || []).length > 0 && (
+                <PersonChips content={toChips(role.people, true)} accent={role.accent} />
+            )}
+
+            {(role.committees || []).length > 0 && (
+                <div className='mcm-role-committees mcm-modal-committees'>
+                    <span className='mcm-role-committees-label'>Committees</span>
+                    <div className='mcm-committee-list'>
+                        {role.committees.map((c) => (
+                            <a key={c} href={committeeHref(c)} className='mcm-committee-chip'>{c}</a>
+                        ))}
+                    </div>
+                </div>
+            )}
+            {role.link ? <a href={role.link.href} className='mcm-role-link' onClick={onClose}>{role.link.label}</a> : null}
+        </div>
     </div>
 );
 
@@ -145,6 +210,9 @@ const McMinistryPage = () => {
     const { rows, isLoading } = useSupabaseTable('mcministry');
     const { rows: committees } = useSupabaseTable('committees');
     const { rows: court } = useSupabaseTable('mccourt');
+
+    const [selectedRole, setSelectedRole] = useState(null);
+    const [closingRole, setClosingRole] = useState(false);
 
     const pcRows = rows.filter((r) => r.tab === "People's Council");
     const ecRows = rows.filter((r) => r.tab !== "People's Council");
@@ -158,8 +226,29 @@ const McMinistryPage = () => {
         return acc;
     }, {});
 
+    const topCards = [
+        treasurers.length > 0 ? { ...TREASURERS, people: treasurers } : null,
+        president.length > 0
+            ? {
+                title: 'McPresident',
+                badges: ['key', 'pcard'],
+                blurb: 'Leader of the Executive Council, steering McMurtry’s yearly operations, long-term goals, and initiatives.',
+                people: president,
+                accent: true,
+                primary: true,
+            }
+            : null,
+        {
+            title: 'Chief Justice',
+            blurb: 'Critical authority on wellbeing, conduct, and alcohol policies college-wide, leading the court of Associate Justices.',
+            people: chiefJustice,
+            link: { href: '/government/court', label: 'Meet McCourt →' },
+        },
+    ].filter(Boolean);
+
     const divisionCards = DIVISION_ROLES.map((role) => ({
         ...role,
+        accent: true,
         people: ecRows.filter((r) => role.match(lc(r))),
         committees: committeesByDivision[role.committeeDivision] || [],
     }));
@@ -182,6 +271,35 @@ const McMinistryPage = () => {
     const pcOther = pcRows.filter(
         (r) => !lc(r).includes('at-large') && !PC_GROUPS.some((g) => g.match(lc(r)))
     );
+
+    // the modal is a mobile affordance: on desktop the cards already show
+    // everything, so clicks do nothing there
+    const openRole = (role) => {
+        if (window.matchMedia('(max-width: 640px)').matches) setSelectedRole(role);
+    };
+
+    // play the reverse animation, then unmount
+    const closeRole = () => {
+        if (closingRole) return;
+        setClosingRole(true);
+        setTimeout(() => {
+            setSelectedRole(null);
+            setClosingRole(false);
+        }, 220);
+    };
+
+    // lock page scroll and close on Escape while the modal is open
+    useEffect(() => {
+        if (!selectedRole) return undefined;
+        const prevOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        const onKey = (e) => { if (e.key === 'Escape') closeRole(); };
+        window.addEventListener('keydown', onKey);
+        return () => {
+            document.body.style.overflow = prevOverflow;
+            window.removeEventListener('keydown', onKey);
+        };
+    }, [selectedRole, closingRole]);
 
     return (
         <div className='page page-light page-with-staggered-menu'>
@@ -226,34 +344,18 @@ const McMinistryPage = () => {
 
                         <div className='mcm-chart'>
                             <div className='mcm-tier mcm-tier-top'>
-                                <span className='mcm-tier-label'>Leadership</span>
-                                {treasurers.length > 0 && (
-                                    <RoleCard {...TREASURERS} people={treasurers} />
-                                )}
-                                {president.length > 0 && (
-                                    <RoleCard
-                                        title='McPresident'
-                                        badges={['key', 'pcard']}
-                                        blurb={'Leader of the Executive Council, steering McMurtry’s yearly operations, long-term goals, and initiatives.'}
-                                        people={president}
-                                        accent
-                                        primary
-                                    />
-                                )}
-                                <RoleCard
-                                    title='Chief Justice'
-                                    blurb={'Critical authority on wellbeing, conduct, and alcohol policies college-wide, leading the court of Associate Justices.'}
-                                    people={chiefJustice}
-                                    link={{ href: '/government/court', label: 'Meet McCourt →' }}
-                                />
+                                <TierLabel>Legislative</TierLabel>
+                                {topCards.map((role) => (
+                                    <RoleCard key={role.title} role={role} onSelect={openRole} />
+                                ))}
                             </div>
 
                             <div className='mcm-connector' aria-hidden='true' />
 
                             <div className='mcm-tier mcm-tier-divisions'>
-                                <span className='mcm-tier-label'>Division Leads</span>
+                                <TierLabel>Vice Presidents</TierLabel>
                                 {divisionCards.map((role) => (
-                                    <RoleCard key={role.title} {...role} accent />
+                                    <RoleCard key={role.title} role={role} onSelect={openRole} />
                                 ))}
                             </div>
 
@@ -261,9 +363,9 @@ const McMinistryPage = () => {
                                 <React.Fragment>
                                     <div className='mcm-connector' aria-hidden='true' />
                                     <div className='mcm-tier mcm-tier-bottom'>
-                                        <span className='mcm-tier-label'>Support Roles</span>
+                                        <TierLabel>Administration</TierLabel>
                                         {bottomCards.map((role) => (
-                                            <RoleCard key={role.title} {...role} />
+                                            <RoleCard key={role.title} role={role} onSelect={openRole} />
                                         ))}
                                     </div>
                                 </React.Fragment>
@@ -300,6 +402,10 @@ const McMinistryPage = () => {
                         </div>
                     </div>
                 )}
+
+                {selectedRole ? (
+                    <RoleModal role={selectedRole} closing={closingRole} onClose={closeRole} />
+                ) : null}
             </div>
 
             <SiteFooter />
