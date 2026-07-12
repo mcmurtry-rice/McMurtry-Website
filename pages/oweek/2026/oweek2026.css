@@ -361,70 +361,19 @@
     text-shadow: 0 0 6px rgba(255, 255, 255, 0.85), 0 0 14px rgba(255, 255, 255, 0.6);
 }
 
-/* Soft frosted panel behind each text block so the purple type reads clearly
-   against the busy tree illustration. Drawn as a ::before pseudo-element that
-   sits BEHIND the text rather than as padding/margin on the text box itself -
-   this way the text keeps its exact position on every layout (crucially the
-   mobile in-flow footer, where padding/negative-margins would shift things and
-   collapse the gap between the two blocks). The panel is inset by a negative
-   amount so it extends out around the letters. */
-.groweek-page .mc-footer-wordmark,
-.groweek-page .mc-footer-contact {
-    z-index: 2;
-}
-
-/* Shrink the wordmark box to its text so the panel hugs the letters instead of
-   spanning the wider fixed wordmark box (which left dead space to the right of
-   the shorter "College" line and looked off-center). */
 .groweek-page .mc-footer-wordmark {
-    width: -moz-fit-content;
-    width: fit-content;
+    line-height: 0.9;
 }
 
-.groweek-page .mc-footer-wordmark::before,
-.groweek-page .mc-footer-contact::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    background: rgba(253, 246, 236, 0.42);
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-    border-radius: 18px;
-    box-shadow: 0 2px 14px rgba(94, 61, 122, 0.07);
-    pointer-events: none;
-}
-
-/* The wordmark's tight line-height crops its box inside the glyphs, so the
-   panel is pushed out further top/bottom to wrap the ascenders and the italic
-   "College" descenders. */
-.groweek-page .mc-footer-wordmark::before {
-    inset: -0.34em -0.4em -0.5em;
-}
-
-.groweek-page .mc-footer-contact::before {
-    inset: -1.1em -1.2em;
-}
-
-/* Mobile: the contact block is full-width in the stacked footer, so its panel
-   would span edge-to-edge and clash with the wordmark's text-hugging card.
-   Shrink it to its content so both blocks read as matching cards. */
-@media (max-width: 1024px) {
+/* The wordmark is a big two-line script logo, much taller than the small
+   contact block beside it. Both start at the same top offset in the base
+   Footer.css, which leaves the contact text sitting near the wordmark's top
+   line instead of reading as level with it. Push it down so its block is
+   vertically centered against the full wordmark, desktop only - the mobile
+   layout below 1024px stacks them and needs the base top:auto. */
+@media (min-width: 1025px) {
     .groweek-page .mc-footer-contact {
-        width: -moz-fit-content;
-        width: fit-content;
-    }
-    /* The wordmark's looser mobile line-height (0.85) already leaves room for
-       the glyphs, so the panel needs far less top/bottom overhang than on
-       desktop. Trimming it - plus extra space below the wordmark - stops the
-       two panels from overlapping into a dark double-layered band. */
-    .groweek-page .mc-footer-wordmark::before {
-        inset: -0.12em -0.3em -0.18em;
-    }
-    .groweek-page .mc-footer-contact::before {
-        inset: -0.8em -1em;
-    }
-    .groweek-page .mc-footer-wordmark {
-        margin-bottom: 34px;
+        top: calc(133px * var(--s));
     }
 }
 
