@@ -44,7 +44,7 @@ const OWeek2026Letter = () => (
                     <h2 className="groweek-section-title">Family Dismissal Procedures</h2>
                     <div className="groweek-mission">
                         <p>On move-in day, families of New Students will get to participate in the excitement of O-Week as they help unpack their student&apos;s bags and attend lunch at McMurtry College. Afterward, families will have time to say their final goodbyes to their New Students before leaving McMurtry. We know that leaving your New Student can be extremely difficult and emotional, but it is important to exit McMurtry when we dismiss you to be in compliance with university policies. Once you say your final goodbyes during the allotted time, you will not be allowed to re-enter Murt until after O-Week. New Students have an extremely packed schedule during these 6 days, and this ensures that your New Student can focus on making new friends, selecting classes, and transitioning to college life throughout the week!</p>
-                        <p>After you leave Murt, you will be welcomed to Rice University and be addressed by President Reginald DesRoches and Dean of Undergraduates Bridgett Gorman. You will also have a day full of informational programming from the University before you leave campus.</p>
+                        <p>After you leave Murt, you will be welcomed to Rice University and be addressed by President Reginald DesRoches and Dean of Undergraduates Bridget Gorman. You will also have a day full of informational programming from the University before you leave campus.</p>
                     </div>
                 </section>
 

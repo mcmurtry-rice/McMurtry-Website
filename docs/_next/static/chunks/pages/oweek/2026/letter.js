@@ -9835,7 +9835,7 @@ var OWeek2026Letter = function OWeek2026Letter() {
       lineNumber: 47,
       columnNumber: 25
     }
-  }, "After you leave Murt, you will be welcomed to Rice University and be addressed by President Reginald DesRoches and Dean of Undergraduates Bridgett Gorman. You will also have a day full of informational programming from the University before you leave campus."))), __jsx(_components_oweek2026_PageNav__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "After you leave Murt, you will be welcomed to Rice University and be addressed by President Reginald DesRoches and Dean of Undergraduates Bridget Gorman. You will also have a day full of informational programming from the University before you leave campus."))), __jsx(_components_oweek2026_PageNav__WEBPACK_IMPORTED_MODULE_8__["default"], {
     __self: _this,
     __source: {
       fileName: _jsxFileName,
