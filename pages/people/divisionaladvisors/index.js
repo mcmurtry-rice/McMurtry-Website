@@ -4,6 +4,9 @@ import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
+// this page reuses the associates page's card/modal styles (as-* classes);
+// import them directly so the page also works standalone in dev
+import '../associates/index.css';
 import './index.css';
 
 const DESCRIPTION =
