@@ -27,9 +27,7 @@ const navbar_headers = [
             { "name": "Associates", "to": "/people/associates" },
             { "name": "Head Caregivers", "to": "/people/headcaregivers" },
             { "name": "Affinity Groups", "to": "/people/mcmurtryaffinitygroups" },
-            { "name": "Peer Academic Advisors", "to": "/people/paas" },
-            { "name": "Academic Fellows", "to": "/people/academicfellows" },
-            { "name": "Divisional Advisors", "to": "/people/divisionaladvisors" },
+            { "name": "Academic Support", "to": "/people/academicsupport" },
             { "name": "SMR", "to": "/people/SMR" },
         ]
     },

@@ -1,0 +1,142 @@
+/* ============================================================
+ * Academic Support page - PAAs, Academic Fellows, and Divisional
+ * Advisors combined into one scrollable page with jump pills.
+ * Card/modal visuals come from the associates stylesheet (as-*);
+ * this file only adds the page's own framing.
+ * ============================================================ */
+
+.acadsup-lede {
+    font-family: var(--mc-font-body) !important;
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+    color: var(--mc-ink) !important;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto clamp(18px, 2.5vw, 28px) !important;
+    padding: 0 clamp(16px, 4vw, 48px);
+}
+
+/* ----- Jump pills ----- */
+.acadsup-jump {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 clamp(16px, 4vw, 48px);
+    margin: 0 auto clamp(28px, 4vw, 44px);
+    max-width: 1200px;
+}
+
+.acadsup-jump-pill {
+    appearance: none;
+    cursor: pointer;
+    border: 1.5px solid rgba(74, 52, 112, 0.20);
+    background: var(--mc-paper);
+    color: var(--mc-purple-700);
+    font-family: var(--mc-font-body);
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 9px 20px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 180ms ease,
+                color 180ms ease,
+                border-color 180ms ease,
+                transform 180ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.acadsup-jump-pill:hover,
+.acadsup-jump-pill:focus-visible {
+    border-color: var(--mc-purple-500);
+    color: var(--mc-purple-500);
+    transform: translateY(-1px);
+}
+
+.acadsup-jump-pill-active {
+    background: var(--mc-purple-700);
+    border-color: var(--mc-purple-700);
+    color: var(--mc-paper);
+    box-shadow: 0 10px 24px -8px rgba(74, 52, 112, 0.45);
+}
+
+.acadsup-jump-pill-active:hover,
+.acadsup-jump-pill-active:focus-visible {
+    background: var(--mc-purple-500);
+    border-color: var(--mc-purple-500);
+    color: var(--mc-paper);
+}
+
+/* tab panes swap in with the shared fade */
+.fade-in {
+    animation: acadsup-fade 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes acadsup-fade {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- Sections ----- */
+.acadsup-section {
+    scroll-margin-top: 90px; /* room for the fixed navbar on anchor jumps */
+    margin-bottom: clamp(36px, 5vw, 64px);
+}
+
+.acadsup-description {
+    font-family: var(--mc-font-body);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--mc-ink);
+    text-align: center;
+    margin-bottom: clamp(20px, 3vw, 32px);
+    padding: 0 clamp(16px, 4vw, 48px);
+}
+
+.acadsup-subtitle {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.25rem, 2.2vw, 1.7rem) !important;
+    line-height: 1.2 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: clamp(18px, 2.5vw, 30px) 0 14px !important;
+    padding: 0 !important;
+}
+
+/* section titles match the other people pages */
+.acadsup-page .division-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: clamp(1.8rem, 3.4vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: center;
+    margin: 0 0 clamp(14px, 2vw, 22px) !important;
+    padding: 0 !important;
+    letter-spacing: 0 !important;
+}
+
+/* modal body links (carried over from the old advisors page) */
+.as-modal-body a {
+    color: var(--mc-purple-700);
+    text-decoration: none;
+}
+
+.as-modal-body a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 640px) {
+    .acadsup-jump-pill {
+        font-size: 0.84rem;
+        padding: 8px 14px;
+    }
+}
