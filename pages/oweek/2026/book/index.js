@@ -72,7 +72,7 @@ const BOOK_SECTIONS = [
         label: 'Section Five: Greater Rice',
         page: 136,
         items: [
-            { label: 'Murt Speak', page: 134 },
+            { label: 'McSpeak', page: 134 },
             { label: 'Rice Speak', page: 136 },
             { label: 'On-Campus Resources', page: 148 },
             { label: 'Beyond the Hedges', page: 150 },
