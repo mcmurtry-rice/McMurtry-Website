@@ -1648,4 +1648,262 @@
     }
 }
 
+/* ---- O-Week Book: flipbook + jump-to-page rail ---- */
+.groweek-book-layout {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.groweek-book-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 0 0 210px;
+    position: sticky;
+    top: 5.5rem;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+    padding-right: 0.25rem;
+}
+
+.groweek-book-nav-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.groweek-book-nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    text-align: left;
+    padding: 0.7rem 1rem;
+    border-radius: 4px 14px 14px 4px;
+    border: none;
+    border-left: 4px solid var(--gw-purple-light);
+    background: white;
+    color: var(--gw-ink-soft);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(139, 106, 173, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    width: 100%;
+}
+
+.groweek-book-nav-btn:hover {
+    transform: translateX(3px);
+    border-left-color: var(--gw-purple);
+    box-shadow: 0 4px 16px rgba(139, 106, 173, 0.12);
+    color: var(--gw-purple-dark);
+}
+
+.groweek-book-nav-caret {
+    flex-shrink: 0;
+    color: var(--gw-purple-light);
+    font-weight: 700;
+}
+
+.groweek-book-nav-sublist {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-left: 0.85rem;
+}
+
+.groweek-book-nav-subbtn {
+    text-align: left;
+    padding: 0.45rem 0.75rem;
+    border-radius: 3px 10px 10px 3px;
+    border: none;
+    border-left: 2px solid var(--gw-pink-light);
+    background: rgba(255, 255, 255, 0.65);
+    color: var(--gw-ink-soft);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.groweek-book-nav-subbtn:hover {
+    background: white;
+    border-left-color: var(--gw-pink);
+    color: var(--gw-purple-dark);
+}
+
+/* Mobile "side tab": collapses the nav into an off-canvas drawer opened by a
+   small tab fixed to the screen edge, so it doesn't eat vertical space next
+   to the book on short phone-landscape viewports. Hidden on desktop. */
+.groweek-book-nav-tab {
+    display: none;
+}
+
+.groweek-book-nav-scrim {
+    display: none;
+}
+
+.groweek-book-rotate-notice {
+    display: none;
+}
+
+.groweek-book-download-row {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 1.25rem;
+}
+
+.groweek-book-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 999px;
+    background: var(--gw-purple);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.groweek-book-download-btn:hover {
+    background: var(--gw-purple-dark);
+}
+
+/* Heyzine renders its own "flipbook-title" chrome (white box, book title) as
+   a fixed-position overlay baked into the embedded page - cross-origin, so we
+   can't reach in and hide it. Cropping it off the top of the iframe instead:
+   the wrap clips to the visible height, the iframe renders taller and shifts
+   up by the crop amount so the hidden strip is the title bar, not the book. */
+.groweek-book-frame-wrap {
+    flex: 1;
+    min-width: 0;
+    height: 820px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 30px rgba(139, 106, 173, 0.12);
+}
+
+.groweek-book-frame {
+    width: 100%;
+    height: calc(820px + 120px);
+    margin-top: -120px;
+    border: none;
+    display: block;
+}
+
+/* Phones in portrait: the book needs spread width, so ask for landscape
+   instead of squeezing a two-page spread into a narrow column. */
+@media (max-width: 900px) and (orientation: portrait) {
+    .groweek-book-layout {
+        display: none;
+    }
+    .groweek-book-rotate-notice {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        text-align: center;
+        max-width: 420px;
+        margin: 1rem auto 2rem;
+        padding: 2.5rem 2rem;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 30px rgba(139, 106, 173, 0.1);
+        border: 1px solid rgba(139, 106, 173, 0.1);
+    }
+    .groweek-book-rotate-icon {
+        font-size: 2.5rem;
+    }
+    .groweek-book-rotate-notice p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--gw-ink-soft);
+        margin: 0;
+    }
+}
+
+/* Phones in landscape: short viewport, so the nav becomes a slide-out drawer
+   (tab on the left edge) instead of a fixed sidebar competing for width. */
+@media (max-height: 500px) and (orientation: landscape) {
+    .groweek-book-nav-tab {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 26px;
+        height: 60px;
+        background: var(--gw-purple);
+        color: white;
+        border: none;
+        border-radius: 0 12px 12px 0;
+        font-size: 1.2rem;
+        z-index: 60;
+        cursor: pointer;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .groweek-book-nav-scrim {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(61, 47, 74, 0.35);
+        z-index: 55;
+    }
+    .groweek-book-nav {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 230px;
+        max-height: none;
+        background: var(--gw-cream);
+        padding: 1rem;
+        gap: 0.4rem;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        z-index: 56;
+        overflow-y: auto;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, 0.2);
+    }
+    .groweek-book-nav-drawer-open {
+        transform: translateX(0);
+    }
+    .groweek-section-title,
+    .groweek-topnav {
+        display: none;
+    }
+    .groweek-book-layout .groweek-section,
+    .groweek-book-layout {
+        margin: 0 auto;
+    }
+    section.groweek-section {
+        padding-top: 0.5rem !important;
+        margin-bottom: 0.5rem;
+    }
+    .groweek-book-frame-wrap {
+        /* Measured against the actual chrome above it (site navbar + download
+           button, ~136px at this breakpoint) so the whole frame lands inside
+           one screen instead of running past the fold. */
+        height: calc(100vh - 8.75rem);
+    }
+    .groweek-book-frame {
+        /* Unlike the desktop rule, this viewport is too short to spare 120px
+           for hiding Heyzine's title bar - at this scale the bar itself is only
+           ~40-50px tall, so a 120px crop was eating into the actual page
+           spread instead of just the chrome. Show the title rather than crop. */
+        height: calc(100vh - 8.75rem);
+        margin-top: 0;
+    }
+}
+
 

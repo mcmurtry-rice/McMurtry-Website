@@ -70,6 +70,7 @@ const CoordsPage = () => (
             <p className="groweek-coords-contact-note">
                 Questions for any of us? Reach us at{' '}
                 <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>.
+                {' '}Click a name on the photo to jump to their bio!
             </p>
 
             <div className="groweek-coord-group-photo-wrap">
