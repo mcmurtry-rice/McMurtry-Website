@@ -3334,6 +3334,24 @@ body:has(.page-light)::before {
     display: block;
 }
 
+.mc-find-us-map-loading {
+    background: linear-gradient(110deg,
+        rgba(74, 52, 112, 0.08) 30%,
+        rgba(74, 52, 112, 0.14) 50%,
+        rgba(74, 52, 112, 0.08) 70%);
+    background-size: 200% 100%;
+    animation: mc-find-us-map-shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes mc-find-us-map-shimmer {
+    from { background-position: 200% 0; }
+    to   { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mc-find-us-map-loading { animation: none; }
+}
+
 /* Invisible overlay sitting on top of the iframe. By absorbing the user's
  * scroll/hover events, it prevents Google Maps from showing its dark
  * "Use Ctrl+Scroll to zoom" shadow overlay. A click removes the cover so

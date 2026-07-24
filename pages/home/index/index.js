@@ -5,6 +5,7 @@ import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import StripCarousel from '../../../components/StripCarousel/StripCarousel';
 import ImageFadeIn from '../../../components/ImageFadeIn/ImageFadeIn';
+import FindUsMap from '../../../components/FindUsMap/FindUsMap';
 import './index.css';
 
 const heroPills = [
@@ -63,14 +64,7 @@ const Home = () => (
                         McMurtry College &middot; 1605 Rice Blvd &middot; Houston, TX 77005
                     </p>
                     <div className='mc-find-us-map-wrap'>
-                        <iframe
-                            title='Map to McMurtry College at Rice University'
-                            className='mc-find-us-map'
-                            src='https://map.concept3d.com/?id=473#!ce/12631?m/119194?s/?sbc/'
-                            loading='lazy'
-                            referrerPolicy='no-referrer-when-downgrade'
-                            allowFullScreen=''
-                        />
+                        <FindUsMap />
                     </div>
                     <a
                         className='mc-find-us-cta'

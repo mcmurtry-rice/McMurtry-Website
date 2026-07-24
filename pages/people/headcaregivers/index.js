@@ -16,7 +16,7 @@ const HEAD_CAREGIVERS_DESCRIPTION =
 
 const HeadCaregiversPage = () => {
     const { rows, isLoading } = useSupabaseTable('head_caregivers');
-    const members = rows.map(({ name, email }) => ({ name, email }));
+    const members = rows.map(({ name, email, image }) => ({ name, email, photo: image }));
 
     return (
         <div className='page page-light page-with-staggered-menu'>
