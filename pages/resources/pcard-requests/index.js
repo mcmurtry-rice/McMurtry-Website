@@ -3,7 +3,14 @@ import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import CustomCalendar from '../../../components/CustomCalendar/CustomCalendar';
+import { useSiteLinks } from '../../../tools/database/useSiteLinks';
 import './index.css';
+
+// Fallbacks: rendered on first paint and whenever Supabase is unreachable.
+// Live values are the 'mcexpenses_form' / 'pcard_calendar_id' rows in the
+// site_links table - edit them there, not here.
+const MCEXPENSES_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSdyVzHpJYlam_E0DYWYrnGc43FwVV9RHvUvGgu65h785g7ZxQ/viewform?usp=dialog';
+const PCARD_CALENDAR_ID = 'bdd18a12e18cb6dc90287fb25f54978e20a6c6b9881d8b9300a196ecf12f5e42@group.calendar.google.com';
 
 const ACTIONS = [
     {
@@ -38,81 +45,88 @@ const ACTIONS = [
     },
 ];
 
-const PCardManagementPage = () => (
-    <div className='page page-light'>
-        <Header />
-        <SiteNavbar />
-        <div className='pcard-page'>
+const PCardManagementPage = () => {
+    const links = useSiteLinks({
+        mcexpenses_form: MCEXPENSES_FORM_URL,
+        pcard_calendar_id: PCARD_CALENDAR_ID,
+    });
 
-            <header className='ev-hero'>
-                <img src='/static/icons/about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
-                <img src='/static/icons/ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
-                <img src='/static/icons/ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
-                <h1 className='ev-hero-heading'>P-Card Requests</h1>
-                <p className='ev-hero-lede'>McMurtry College uses P-Cards to make approved, tax-exempt purchases for college events, committees, and operations.</p>
-            </header>
+    return (
+        <div className='page page-light'>
+            <Header />
+            <SiteNavbar />
+            <div className='pcard-page'>
 
-            {/* Top CTA banner */}
-            <div className='pc-banner'>
-                <div className='pc-banner-left'>
-                    <p className='pc-banner-text'>All P-Card activity is managed through the <strong>McExpenses Form</strong></p>
-                    <div className='pc-banner-deadlines'>
-                        <span className='pc-strip-label'>Submission Deadlines</span>
-                        <ul className='pc-banner-deadline-list'>
-                            <li><strong>Under $500</strong> at least 24 hours in advance</li>
-                            <li><strong>$500 or over</strong> at least 3 days in advance</li>
-                        </ul>
-                        <span className='pc-strip-note'>Late submissions may not be approved.</span>
+                <header className='ev-hero'>
+                    <img src='/static/icons/about-swoosh.svg' alt='' className='ev-hero-swoosh' aria-hidden='true' />
+                    <img src='/static/icons/ellipse-large.svg' alt='' className='ev-hero-ellipse-large' aria-hidden='true' />
+                    <img src='/static/icons/ellipse-small.svg' alt='' className='ev-hero-ellipse-small' aria-hidden='true' />
+                    <h1 className='ev-hero-heading'>P-Card Requests</h1>
+                    <p className='ev-hero-lede'>McMurtry College uses P-Cards to make approved, tax-exempt purchases for college events, committees, and operations.</p>
+                </header>
+
+                {/* Top CTA banner */}
+                <div className='pc-banner'>
+                    <div className='pc-banner-left'>
+                        <p className='pc-banner-text'>All P-Card activity is managed through the <strong>McExpenses Form</strong></p>
+                        <div className='pc-banner-deadlines'>
+                            <span className='pc-strip-label'>Submission Deadlines</span>
+                            <ul className='pc-banner-deadline-list'>
+                                <li><strong>Under $500</strong> at least 24 hours in advance</li>
+                                <li><strong>$500 or over</strong> at least 3 days in advance</li>
+                            </ul>
+                            <span className='pc-strip-note'>Late submissions may not be approved.</span>
+                        </div>
+                    </div>
+                    <a
+                        className='pc-banner-cta'
+                        href={links.mcexpenses_form}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                    >
+                        Open McExpenses Form <span aria-hidden='true' className='pc-banner-arrow'>&rarr;</span>
+                    </a>
+                </div>
+
+                {/* Action cards */}
+                <div className='pc-cards-wrap'>
+                    <div className='pc-cards'>
+                        {ACTIONS.map(({ num, title, steps, warning }) => (
+                            <div className='pc-card' key={num}>
+                                <div className='pc-card-header'>
+                                    <span className='pc-card-num'>{num}</span>
+                                    <h2 className='pc-card-title'>{title}</h2>
+                                </div>
+                                <ol className='pc-card-steps'>
+                                    {steps.map((s, i) => <li key={i}>{s}</li>)}
+                                </ol>
+                                {warning && (
+                                    <div className='pc-card-warn'>
+                                        <span className='pc-warn-label'>Important</span>
+                                        <p>{warning}</p>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
                     </div>
                 </div>
-                <a
-                    className='pc-banner-cta'
-                    href='https://docs.google.com/forms/d/e/1FAIpQLScAaMPGQ4CU2LQauBLf7mYsqlTP7tu6zuYGPNX1lAABECF1bA/viewform?usp=header'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                >
-                    Open McExpenses Form <span aria-hidden='true' className='pc-banner-arrow'>&rarr;</span>
-                </a>
-            </div>
 
-            {/* Action cards */}
-            <div className='pc-cards-wrap'>
-                <div className='pc-cards'>
-                    {ACTIONS.map(({ num, title, steps, warning }) => (
-                        <div className='pc-card' key={num}>
-                            <div className='pc-card-header'>
-                                <span className='pc-card-num'>{num}</span>
-                                <h2 className='pc-card-title'>{title}</h2>
-                            </div>
-                            <ol className='pc-card-steps'>
-                                {steps.map((s, i) => <li key={i}>{s}</li>)}
-                            </ol>
-                            {warning && (
-                                <div className='pc-card-warn'>
-                                    <span className='pc-warn-label'>Important</span>
-                                    <p>{warning}</p>
-                                </div>
-                            )}
-                        </div>
-                    ))}
+                {/* Calendar - full width */}
+                <div className='pc-calendar-section'>
+                    <h2 className='pc-calendar-heading'>P-Card Availability</h2>
+                    <div className='pc-calendar-box'>
+                        <CustomCalendar calendarId={links.pcard_calendar_id} />
+                    </div>
                 </div>
-            </div>
 
-            {/* Calendar - full width */}
-            <div className='pc-calendar-section'>
-                <h2 className='pc-calendar-heading'>P-Card Availability</h2>
-                <div className='pc-calendar-box'>
-                    <CustomCalendar calendarId='bdd18a12e18cb6dc90287fb25f54978e20a6c6b9881d8b9300a196ecf12f5e42@group.calendar.google.com' />
+                <div className='pc-contact-row'>
+                    <p>Questions? Email <a href='mailto:mcmurtrytreasurer@gmail.com'>mcmurtrytreasurer@gmail.com</a>.</p>
                 </div>
-            </div>
 
-            <div className='pc-contact-row'>
-                <p>Questions? Email <a href='mailto:mcmurtrytreasurer@gmail.com'>mcmurtrytreasurer@gmail.com</a>.</p>
             </div>
-
+            <SiteFooter />
         </div>
-        <SiteFooter />
-    </div>
-);
+    );
+};
 
 export default PCardManagementPage;

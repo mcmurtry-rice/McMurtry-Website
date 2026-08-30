@@ -4,9 +4,14 @@ import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import Cards from '../../../components/ContactCard/ContactCard';
 import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
+import { useSiteLink } from '../../../tools/database/useSiteLinks';
 import './index.css';
 
 const COMMITTEE_NAME = 'McMakerspace';
+
+// Fallback: rendered on first paint and whenever Supabase is unreachable.
+// Live value is the 'mcmakerspace_equipment_doc' row in site_links.
+const EQUIPMENT_DOC_URL = 'https://docs.google.com/document/d/1kNjTbBWRYK3Xxpgr73z7EFU3-pTms47MdRyTEex4w_E/edit?usp=sharing';
 
 const hours = [
     { day: 'Monday',    hours: '8 AM - Midnight' },
@@ -22,6 +27,7 @@ const mapToCard = (data) => data.map(({ name, email }) => ({ name, email }));
 
 const McMakerspacePage = () => {
     const { rows: members, isLoading } = useSupabaseTable('committee_members');
+    const equipmentDocUrl = useSiteLink('mcmakerspace_equipment_doc', EQUIPMENT_DOC_URL);
     const committeeMembers = members.filter(m => m.committee_name === COMMITTEE_NAME);
     const leadership = committeeMembers.filter(m => m.role === 'head');
     const personnel = committeeMembers.filter(m => m.role === 'member');
@@ -51,7 +57,7 @@ const McMakerspacePage = () => {
                         <img src='/static/icons/file.svg' alt='' className='mcmakerspace-link-icon' />
                         <span>Safety Guidelines</span>
                     </a>
-                    <a className='mcmakerspace-link-card' href='https://docs.google.com/document/d/1kNjTbBWRYK3Xxpgr73z7EFU3-pTms47MdRyTEex4w_E/edit?usp=sharing' target='_blank' rel='noopener noreferrer'>
+                    <a className='mcmakerspace-link-card' href={equipmentDocUrl} target='_blank' rel='noopener noreferrer'>
                         <img src='/static/icons/building.svg' alt='' className='mcmakerspace-link-icon' />
                         <span>Equipment Info</span>
                     </a>

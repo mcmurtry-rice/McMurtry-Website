@@ -1,6 +1,11 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import { useSiteLinks } from '../../tools/database/useSiteLinks';
 import './Navbar.css';
+
+// Fallback for the one DB-backed entry below, rendered on first paint and
+// whenever Supabase is unreachable. Live value: site_links row 'budget_sheet'.
+const BUDGET_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1imNFy7cyadxieh7JPcPRvMzB-LgMHozNkRzUX_Lwp1A/edit?usp=sharing';
 
 const navbar_headers = [
     {
@@ -40,7 +45,7 @@ const navbar_headers = [
             { "name": "McMakerspace", "to": "/resources/mcmakerspace" },
             { "name": "McLegislation", "to": "/resources/mclegislation" },
             { "name": "McFUNd Requests", "to": "/resources/mcfund-requests" },
-            { "name": "Budget Sheet", "to": "https://docs.google.com/spreadsheets/d/1imNFy7cyadxieh7JPcPRvMzB-LgMHozNkRzUX_Lwp1A/edit?usp=sharing" },
+            { "name": "Budget Sheet", "to": BUDGET_SHEET_URL, "linkKey": "budget_sheet" },
             { "name": "Financial Inclusivity", "to": "/resources/financial-inclusivity" }
         ]
     },
@@ -56,6 +61,29 @@ const navbar_headers = [
 ];
 
 const SiteNavbar = () => {
+    const links = useSiteLinks({ budget_sheet: BUDGET_SHEET_URL });
+
+    // navbar_headers is a module constant, evaluated before React renders, so
+    // DB-backed hrefs get swapped in here rather than mutated in place.
+    // Memoised on `links` (whose identity is stable unless a value actually
+    // differs from its fallback) so the desktop nav and the mobile drawer
+    // below map over the same objects.
+    const headers = useMemo(
+        () => navbar_headers.map((header) => (
+            header.subheaders
+                ? {
+                    ...header,
+                    subheaders: header.subheaders.map((sub) => (
+                        sub.linkKey && links[sub.linkKey]
+                            ? { ...sub, to: links[sub.linkKey] }
+                            : sub
+                    )),
+                }
+                : header
+        )),
+        [links]
+    );
+
     const [menuOpen, setMenuOpen] = useState(false);
     const [openDropdown, setOpenDropdown] = useState(null);   // top-level item name
     const [openMobileSection, setOpenMobileSection] = useState(null);
@@ -115,7 +143,7 @@ const SiteNavbar = () => {
                 </Link>
 
                 <nav className="mc-navbar-links" aria-label="Main">
-                    {navbar_headers.map((header) => {
+                    {headers.map((header) => {
                         const hasDropdown = header.subheaders && header.subheaders.length > 0;
                         if (!hasDropdown) {
                             return (
@@ -272,7 +300,7 @@ const SiteNavbar = () => {
                     onClick={closeAll}
                 />
                 <nav className="mc-mobile-drawer-links" aria-label="Mobile">
-                    {navbar_headers.map((header) => {
+                    {headers.map((header) => {
                         const hasDropdown = header.subheaders && header.subheaders.length > 0;
                         const isOpen = openMobileSection === header.name;
                         if (!hasDropdown) {

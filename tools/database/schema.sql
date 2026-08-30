@@ -198,6 +198,40 @@ create table if not exists public.committee_members (
     sort_order     int not null default 0
 );
 
+-- ---------- site_links ----------
+-- Every externally-hosted form, document, and calendar the site links to
+-- or embeds. These used to be hardcoded in the page components, so a new
+-- Google Form meant a code change and a redeploy.
+--
+-- Code looks rows up by `key`, never by `name` or `location` - so renaming
+-- a page or rewording a description can never break a link.
+-- DO NOT change `key` values. Everything else is safe to edit.
+--
+-- `url` holds whatever the call site needs:
+--   'form' / 'document'    -> a normal https:// link
+--   'calendar_subscribe'   -> a Google "add to my calendar" URL
+--   'calendar_id'          -> a raw calendar ID, NOT a URL
+--                             (e.g. abc123@group.calendar.google.com)
+--
+-- Each calendar has up to TWO rows (one to embed it, one to subscribe).
+-- They share a key prefix and adjacent sort_order so they sit together in
+-- the Table Editor. Changing a calendar means changing both rows.
+--
+-- Every call site also hardcodes the current value as a fallback, so a
+-- blank or broken row degrades to the last-deployed URL rather than a dead
+-- link. A typo here is recoverable; a row you DELETE will silently keep
+-- working until the next deploy.
+create table if not exists public.site_links (
+    id            bigserial primary key,
+    key           text not null unique,          -- stable lookup id used by the code. NEVER change.
+    name          text not null,                 -- human name, e.g. 'McExpenses Form'
+    description   text,                          -- what it's for, in plain English
+    url           text not null,                 -- the link (or the calendar ID, see above)
+    location      text not null,                 -- exactly where it appears on the site
+    kind          text not null default 'form',  -- 'form' | 'document' | 'calendar_subscribe' | 'calendar_id'
+    sort_order    int not null default 0
+);
+
 
 -- ============================================================
 -- Row-Level Security: read-only public access
@@ -210,7 +244,7 @@ begin
         'mcteam', 'mcministry', 'mccourt', 'affinity_groups',
         'associates', 'paas', 'rhas', 'head_caregivers', 'smr',
         'committees', 'committee_members', 'academic_fellows',
-        'divisionaladvisors'
+        'divisionaladvisors', 'site_links'
     ]
     loop
         execute format('alter table public.%I enable row level security;', t);

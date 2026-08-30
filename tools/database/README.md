@@ -31,20 +31,15 @@ already be there.
 > The service role bypasses RLS and lets the migration script insert.
 > Never commit it. Never use it in browser code. `.env.local` is gitignored.
 
-### 3. Run the migration
+### 3. Seed the data
 
-```
-node scripts/migrate-to-supabase.js
-```
+The one-time `scripts/migrate-to-supabase.js` that originally populated the
+people tables has been deleted - those tables are live and are now edited
+through the dashboard. Nothing to run here for them.
 
-This script:
-- Reads the original sources (`data/people/*.json` + the live published
-  Google Sheets).
-- Applies the exact same row-shaping logic the live components used to do.
-- Clears each Supabase table, then inserts rows preserving order.
-
-Re-runnable any time - each run truncates and replaces. No data is edited
-or normalised; values go in byte-for-byte.
+For `site_links`, paste [`seed_site_links.sql`](./seed_site_links.sql) into
+the SQL Editor. It ends in `on conflict (key) do nothing`, so re-running it
+will never overwrite an edit someone made in the dashboard.
 
 ### 4. Verify
 
@@ -88,3 +83,47 @@ to split into sections (matching the original layout).
 
 All reads use the public anon key + read-only RLS policies. The browser
 never sees the service role key.
+
+
+## Site links (forms, docs, calendars)
+
+Every externally-hosted Google Form, Doc, Sheet, and Calendar the site links
+to or embeds lives in the `site_links` table, so changing one is a dashboard
+edit rather than a code change and a redeploy.
+
+Each row records **where it is used** (`location`) in plain English, plus a
+`name` and `description`, so you can tell what you are changing without
+reading the code.
+
+**The `key` column is what the code looks a row up by. Never change it.**
+Everything else in the row is safe to edit. Renaming a page or rewording a
+description can't break a link; renaming a key silently breaks one.
+
+`url` holds whatever the call site needs, per `kind`:
+
+| kind | what `url` holds |
+|---|---|
+| `form`, `document` | a normal `https://` link |
+| `calendar_subscribe` | a Google "add to my calendar" URL |
+| `calendar_id` | a raw calendar ID, **not** a URL (`abc@group.calendar.google.com`) |
+
+A calendar has up to two rows - one `calendar_id` to embed it and one
+`calendar_subscribe` for the button. They share a key prefix and sit next to
+each other in the Table Editor. **Change a calendar, change both rows.**
+
+Pages read the table through
+[`useSiteLinks.js`](./useSiteLinks.js), which differs from
+`useSupabaseTable` in two ways:
+
+- **One fetch per page load**, not one per call site - a module-level cache
+  plus an in-flight promise collapses them. Room Reservations needs three
+  keys and still makes a single request.
+- **Every call site passes its current URL as a fallback.** That value
+  renders on first paint (including in the exported HTML, where there is no
+  DB yet) and is replaced once the table loads. So a blank, broken, or
+  deleted row degrades to the last-deployed URL instead of a dead link -
+  which also means a deleted row keeps working until the next deploy.
+
+The McFUNd form is embedded rather than linked. Store the plain `viewform`
+link; `asEmbeddedForm()` appends `?embedded=true` at render time, so pasting
+whatever Google's share dialog gives you still renders chrome-free.
