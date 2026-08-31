@@ -29,21 +29,34 @@ const SMRPage = () => {
                         <p className='loading-text'>Loading...</p>
                     </div>
                 ) : (
-                    <section className='smr-detail'>
-                        <div className='smr-portrait'>
-                            <img src={person.image} alt={person.name} className='smr-portrait-image' />
-                        </div>
-                        <div className='smr-info'>
-                            <span className='smr-role'>Student Maintenance Rep</span>
-                            <h2 className='smr-name'>{person.name}</h2>
-                            {person.email ? (
-                                <a href={mailHref(person.email)} {...MAIL_TARGET} className='smr-email'>
-                                    {person.email}
-                                </a>
-                            ) : null}
-                            <p className='smr-bio'>{person.body}</p>
-                        </div>
-                    </section>
+                    <>
+                        <section className='smr-detail'>
+                            <div className='smr-portrait'>
+                                <img src={person.image} alt={person.name} className='smr-portrait-image' />
+                            </div>
+                            <div className='smr-info'>
+                                <h2 className='smr-name'>{person.name}</h2>
+                                <div className='smr-contact'>
+                                    {person.email ? (
+                                        <a href={mailHref(person.email)} {...MAIL_TARGET} className='smr-email'>
+                                            {person.email}
+                                        </a>
+                                    ) : null}
+                                    {person.email && person.phone ? <span>-</span> : null}
+                                    {person.phone ? (
+                                        <a href={`tel:${person.phone}`} className='smr-email'>
+                                            {person.phone}
+                                        </a>
+                                    ) : null}
+                                </div>
+                                <p className='smr-bio'>{person.bio}</p>
+                            </div>
+                            <div className='smr-bio smr-description'>
+                                <p>{person.description}</p>
+                            </div>
+                        </section>
+                        
+                    </>
                 )}
             </div>
 
