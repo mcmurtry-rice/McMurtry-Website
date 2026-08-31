@@ -8,6 +8,7 @@ import { useSupabaseTable, distinctInOrder } from '../../../tools/database/useSu
 // divisional advisor cards/modal reuse the associates page's as-* styles
 import '../associates/index.css';
 import './index.css';
+import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 
 /*
  * Academic Support - one page for all of McMurtry's academic resources,
@@ -98,7 +99,7 @@ const AdvisorModal = ({ advisor, onClose }) => {
                     <div className='as-modal-section'>
                         <span className='as-modal-label'>Contact</span>
                         <p className='as-modal-text'>
-                            <a href={`mailto:${advisor.email}`}>{advisor.email}</a>
+                            <a href={mailHref(advisor.email)} {...MAIL_TARGET}>{advisor.email}</a>
                             {advisor.phone ? <><br />Ext. {advisor.phone}</> : null}
                             <br />{advisor.office}
                         </p>

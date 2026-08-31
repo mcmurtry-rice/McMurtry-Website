@@ -4,6 +4,7 @@ import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
 import './index.css';
+import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 
 const SMRPage = () => {
     const { rows: smr, isLoading } = useSupabaseTable('smr');
@@ -36,7 +37,7 @@ const SMRPage = () => {
                             <span className='smr-role'>Student Maintenance Rep</span>
                             <h2 className='smr-name'>{person.name}</h2>
                             {person.email ? (
-                                <a href={`mailto:${person.email}`} className='smr-email'>
+                                <a href={mailHref(person.email)} {...MAIL_TARGET} className='smr-email'>
                                     {person.email}
                                 </a>
                             ) : null}

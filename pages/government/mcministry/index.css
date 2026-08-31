@@ -283,15 +283,19 @@
     gap: 8px;
 }
 
-/* People's Council groups: one uniform-width pill per line */
+/* People's Council groups: chips flow across the full-width group and
+ * wrap, centred. Reps get added through the year, so a group has to grow
+ * sideways into the space it already has rather than into a longer and
+ * longer single column. */
 .mcm-pc-group .pc-row {
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .mcm-pc-group .pc-chip {
-    width: 100%;
-    justify-content: flex-start;
+    width: auto;
 }
 
 .mcm-role-card .pc-chip,
@@ -315,6 +319,55 @@
 .mcm-role-card .pc-email,
 .mcm-pc-group .pc-email {
     font-size: 0.74rem;
+}
+
+/* Portrait tiles: the chart's cards are far narrower than a full page
+ * row, so tighten the padding rather than letting one tile blow the
+ * card out. Tracks are CAPPED rather than stretched (`minmax(0, 118px)`
+ * + centred) so a card holding one person and a card holding two show
+ * the same size tile - stretching would make the lone McPresident twice
+ * the size of each Treasurer. */
+.mcm-role-card .pc-row-portrait,
+.mcm-pc-group .pc-row-portrait {
+    justify-content: center;
+    padding: 0 12px 4px;
+    gap: 10px;
+}
+
+/* Inside the chart the tracks stretch, so the cap is what actually sets
+ * the size. 180px is the largest that still fits TWO tiles across the
+ * narrowest card that holds two - which is the point: a card holding one
+ * person and a card holding two show the same size tile, and the tier
+ * reads as one row. */
+.mcm-role-card .pc-row-portrait {
+    grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
+}
+
+.mcm-role-card .pc-portrait,
+.mcm-pc-group .pc-portrait {
+    max-width: 180px;
+}
+
+/* People's Council groups run the full page width, so stretching tracks
+ * would size the tiles by how many reps a group happens to have. Fix the
+ * track instead and centre the row: every rep is the same size as every
+ * role in the chart above, and a new rep just wraps onto the next line. */
+.mcm-pc-group .pc-row-portrait {
+    grid-template-columns: repeat(auto-fit, minmax(0, 180px));
+}
+
+.mcm-pc-lead .pc-row-portrait {
+    padding-bottom: 0;
+}
+
+.mcm-role-card .pc-portrait .pc-name,
+.mcm-pc-group .pc-portrait .pc-name {
+    font-size: 0.92rem;
+}
+
+.mcm-role-card .pc-portrait .pc-email,
+.mcm-pc-group .pc-portrait .pc-email {
+    font-size: 0.7rem;
 }
 
 .mcm-role-card .pc-position,
@@ -400,10 +453,11 @@
     padding-bottom: 0;
 }
 
+/* One group per line rather than three columns side by side: each group
+ * then has the full width to wrap into as more reps join. */
 .mcm-pc-groups {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
     align-items: stretch;
     gap: clamp(12px, 1.5vw, 18px);
     max-width: 1320px;
@@ -412,8 +466,8 @@
 }
 
 .mcm-pc-group {
-    flex: 1 1 380px;
-    max-width: 560px;
+    width: 100%;
+    box-sizing: border-box;
     border: 1px solid rgba(74, 52, 112, 0.20);
     border-radius: 16px;
     padding: 16px 10px;
@@ -762,6 +816,53 @@
         gap: 6px;
     }
 
+    .mcm-chart .mcm-role-card .pc-row-portrait {
+        grid-template-columns: repeat(auto-fit, minmax(72px, 1fr));
+        padding: 0 8px 2px;
+        gap: 6px;
+    }
+
+    .mcm-chart .mcm-role-card .pc-portrait {
+        max-width: 116px;
+    }
+
+    .mcm-chart .mcm-role-card .pc-portrait-text {
+        padding: 16px 5px 6px;
+    }
+
+    /* Tiles are ~100px wide here. The pill rule above truncates long
+     * names to keep pills one line tall, but a tile has the room for a
+     * second line and centred text clips badly - so wrap instead. */
+    .mcm-chart .mcm-role-card .pc-portrait .pc-name {
+        font-size: 0.74rem;
+        white-space: normal;
+        overflow: visible;
+        overflow-wrap: anywhere;
+    }
+
+    /* People's Council tiles: same squeeze, but these sit outside
+     * .mcm-chart so the rules above don't reach them. The email does not
+     * fit in a ~100px tag without breaking mid-address. */
+    .mcm-pc-group .pc-row-portrait {
+        grid-template-columns: repeat(auto-fit, minmax(0, 116px));
+    }
+
+    .mcm-pc-group .pc-portrait .pc-email {
+        display: none;
+    }
+
+    .mcm-pc-group .pc-portrait-text {
+        padding: 16px 5px 6px;
+    }
+
+    .mcm-pc-group .pc-portrait .pc-name {
+        font-size: 0.78rem;
+    }
+
+    .mcm-pc-group .pc-portrait .pc-position {
+        font-size: 0.56rem;
+    }
+
     .mcm-chart .mcm-role-card .pc-initial {
         width: 22px;
         height: 22px;
@@ -822,13 +923,6 @@
 
     .mcm-legend-hint {
         font-size: 0.78rem;
-    }
-
-    /* People's Council: full-width chip rows stay tidy */
-    .mcm-pc-group .pc-chip,
-    .mcm-pc-lead .pc-chip {
-        width: 100%;
-        justify-content: flex-start;
     }
 
     .mcm-pc-group {

@@ -120,6 +120,7 @@ const coordinatorsData = {
   }
 };
 import './index.css';
+import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 
 const config = {
     year: 2025,
@@ -349,7 +350,7 @@ const OWeekPage = () => (
                         />
                     </div>
                     <p className='ow-prose' style={{ textAlign: 'center', marginTop: '24px' }}>
-                        If you were assigned a single, please email <a href='mailto:mcmurtryoweek@gmail.com' className='ow-link'>mcmurtryoweek@gmail.com</a> for your room video.
+                        If you were assigned a single, please email <a href={mailHref('mcmurtryoweek@gmail.com')} {...MAIL_TARGET} className='ow-link'>mcmurtryoweek@gmail.com</a> for your room video.
                     </p>
                 </div>
             </section>
@@ -409,7 +410,7 @@ const OWeekPage = () => (
                 {/* Coordinators */}
                 <h3 className='ow-subsection-title'>O-Week Coordinators</h3>
                 <p className='ow-contact-email-row'>
-                    General email: <a href={`mailto:${config.generalEmail}`} className='ow-link'>{config.generalEmail}</a>
+                    General email: <a href={mailHref(config.generalEmail)} {...MAIL_TARGET} className='ow-link'>{config.generalEmail}</a>
                 </p>
                 <div className='ow-coord-contact-grid'>
                     {coords.map((c) => (
@@ -418,7 +419,7 @@ const OWeekPage = () => (
                             <div className='ow-contact-card-body'>
                                 <p className='ow-contact-name'>{c.name}</p>
                                 <p className='ow-contact-meta'>{c.pronouns} &middot; {c.major}</p>
-                                <a href={`mailto:${c.email}`} className='ow-link ow-contact-detail'>{c.email}</a>
+                                <a href={mailHref(c.email)} {...MAIL_TARGET} className='ow-link ow-contact-detail'>{c.email}</a>
                                 <span className='ow-contact-detail'>{c.phone}</span>
                             </div>
                         </div>
@@ -429,22 +430,23 @@ const OWeekPage = () => (
                 <h3 className='ow-subsection-title' style={{ marginTop: '56px' }}>College Leadership</h3>
                 <div className='ow-leadership-grid'>
                     {[
-                        { role: president.role, name: president.name, details: [{ label: president.email, href: `mailto:${president.email}` }] },
+                        { role: president.role, name: president.name, details: [{ label: president.email, href: mailHref(president.email) }] },
                         { role: coordinator.role, name: coordinator.name, details: [
-                            { label: coordinator.email, href: `mailto:${coordinator.email}` },
+                            { label: coordinator.email, href: mailHref(coordinator.email) },
                             { label: `Office: ${coordinator.office}` },
                             { label: `Fax: ${coordinator.fax}` },
                         ]},
                         { role: magisters.role, name: magisters.name, details: [
-                            ...magisters.emails.map(e => ({ label: e, href: `mailto:${e}` })),
+                            ...magisters.emails.map(e => ({ label: e, href: mailHref(e) })),
                             { label: magisters.phone },
                         ]},
                     ].map(({ role, name, details }) => (
                         <div key={name} className='ow-leadership-card'>
                             <span className='ow-contact-role'>{role}</span>
                             <p className='ow-contact-name'>{name}</p>
+                            {/* every href in this block is an email, so they all take MAIL_TARGET */}
                             {details.map((d, i) => d.href
-                                ? <a key={i} href={d.href} className='ow-link ow-contact-detail'>{d.label}</a>
+                                ? <a key={i} href={d.href} {...MAIL_TARGET} className='ow-link ow-contact-detail'>{d.label}</a>
                                 : <span key={i} className='ow-contact-detail'>{d.label}</span>
                             )}
                         </div>

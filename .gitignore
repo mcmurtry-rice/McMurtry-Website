@@ -28,5 +28,12 @@ yarn-error.log*
 # siteimprove: local dev tool, not part of the site
 siteimprove/
 
+# straight-off-the-camera photo drops. 3-6 MB per shot. Resized copies
+# live in static/2026_mcm_people/ and ARE tracked. `next export` copies
+# ALL of static/ into docs/, so the exported path needs ignoring too -
+# or delete docs/static/goverment/ after each export.
+static/goverment/
+docs/static/goverment/
+
 # Note: deployments/ is intentionally tracked - GitHub Pages serves it
 .gstack/

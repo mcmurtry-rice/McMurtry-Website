@@ -22,7 +22,10 @@ import './index.css';
  *
  * People come from the `mcministry` table (Chief Justice from `mccourt`)
  * and committee lists from the `committees` table, so the chart stays in
- * sync with Supabase. The config below only encodes structure: which
+ * sync with Supabase. Portraits ride along in `mcministry.img_url` /
+ * `mccourt.image`. The whole chart uses PersonChips' portrait tiles so
+ * every role reads the same whether or not that person has been
+ * photographed yet - an unphotographed one shows a big initial. The config below only encodes structure: which
  * positions sit in which row, role blurbs, and key/P-Card badges.
  * Roles with no people in the table (e.g. RSA Senator) simply don't render.
  */
@@ -103,10 +106,13 @@ const Badge = ({ type }) => (
 );
 
 const toChips = (rows, showPositions) =>
-    rows.map(({ name, email, position }) => ({
+    rows.map(({ name, email, position, img_url, image }) => ({
         name,
         email,
         position: showPositions ? position : undefined,
+        // `mcministry` stores portraits in img_url; the Chief Justice comes
+        // from `mccourt`, which calls the same column `image`.
+        photo: img_url || image,
     }));
 
 const TierLabel = ({ children }) => (
@@ -138,7 +144,7 @@ const RoleCard = ({ role, onSelect }) => (
             <p className="mcm-role-blurb">{role.blurb}</p>
             {(role.people || []).length > 0 && (
                 <div onClick={(e) => e.stopPropagation()}>
-                    <PersonChips content={toChips(role.people, role.showPositions)} accent={role.accent} />
+                    <PersonChips content={toChips(role.people, role.showPositions)} accent={role.accent} portrait />
                 </div>
             )}
             {(role.committees || []).length > 0 && (
@@ -188,7 +194,7 @@ const RoleModal = ({ role, closing, onClose }) => (
             <p className='mcm-modal-blurb'>{role.blurb}</p>
 
             {(role.people || []).length > 0 && (
-                <PersonChips content={toChips(role.people, true)} accent={role.accent} />
+                <PersonChips content={toChips(role.people, true)} accent={role.accent} portrait />
             )}
 
             {(role.committees || []).length > 0 && (
@@ -382,7 +388,7 @@ const McMinistryPage = () => {
 
                         {pcLead.length > 0 && (
                             <div className='mcm-pc-lead'>
-                                <PersonChips content={toChips(pcLead, true)} accent />
+                                <PersonChips content={toChips(pcLead, true)} accent portrait />
                             </div>
                         )}
 
@@ -390,13 +396,13 @@ const McMinistryPage = () => {
                             {pcGrouped.map((g) => (
                                 <section key={g.title} className='mcm-pc-group'>
                                     <h3 className='mcm-pc-group-title'>{g.title}</h3>
-                                    <PersonChips content={toChips(g.people, true)} />
+                                    <PersonChips content={toChips(g.people, true)} portrait />
                                 </section>
                             ))}
                             {pcOther.length > 0 && (
                                 <section className='mcm-pc-group'>
-                                    <h3 className='mcm-pc-group-title'>More Representatives</h3>
-                                    <PersonChips content={toChips(pcOther, true)} />
+                                    <h3 className='mcm-pc-group-title'>More Reps</h3>
+                                    <PersonChips content={toChips(pcOther, true)} portrait />
                                 </section>
                             )}
                         </div>

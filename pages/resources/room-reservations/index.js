@@ -5,6 +5,7 @@ import SiteFooter from '../../../components/Footer/Footer';
 import CustomCalendar from '../../../components/CustomCalendar/CustomCalendar';
 import { useSiteLinks } from '../../../tools/database/useSiteLinks';
 import './index.css';
+import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 
 // Fallbacks: rendered on first paint and whenever Supabase is unreachable.
 // Live values are the 'room_reservation_form' / 'room_reservations_calendar_*'
@@ -60,7 +61,7 @@ const RoomReservationsPage = () => {
                         </div>
                         <div className='rr-callout'>
                             <span className='rr-callout-label'>Time cap</span>
-                            <p>Up to <strong>4 hours per room per day</strong>. Need a longer block? Email <a href='mailto:mcmsecretary@gmail.com'>mcmsecretary@gmail.com</a>.</p>
+                            <p>Up to <strong>4 hours per room per day</strong>. Need a longer block? Email <a href={mailHref('mcmsecretary@gmail.com')} {...MAIL_TARGET}>mcmsecretary@gmail.com</a>.</p>
                         </div>
                         <p className='rr-lede'>Online reservations open <strong>up to 3 weeks in advance</strong>.</p>
                         <div className='rr-cta-row rr-cta-row-desktop'>
@@ -90,7 +91,7 @@ const RoomReservationsPage = () => {
                         </div>
                         <div className='rr-callout'>
                             <span className='rr-callout-label'>Approval needed</span>
-                            <p>Category 2 spaces and recurring bookings require McMurtry Leadership approval. Email <a href='mailto:mcmsecretary@gmail.com'>mcmsecretary@gmail.com</a>.</p>
+                            <p>Category 2 spaces and recurring bookings require McMurtry Leadership approval. Email <a href={mailHref('mcmsecretary@gmail.com')} {...MAIL_TARGET}>mcmsecretary@gmail.com</a>.</p>
                         </div>
                     </div>
                 </section>
@@ -101,7 +102,7 @@ const RoomReservationsPage = () => {
                     <a className='ev-cta' href={links.room_reservations_calendar_subscribe} target='_blank' rel='noopener noreferrer'>
                         Add to My Calendar <span aria-hidden='true' className='ev-cta-arrow'>&rsaquo;</span>
                     </a>
-                    <p className='rr-contact-line'>Questions? Email <a href='mailto:mcmsecretary@gmail.com'>mcmsecretary@gmail.com</a>.</p>
+                    <p className='rr-contact-line'>Questions? Email <a href={mailHref('mcmsecretary@gmail.com')} {...MAIL_TARGET}>mcmsecretary@gmail.com</a>.</p>
                 </div>
             </div>
             <SiteFooter />

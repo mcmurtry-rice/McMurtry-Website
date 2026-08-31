@@ -1,5 +1,6 @@
 ﻿import React from 'react';
 import './Footer.css';
+import { mailHref, MAIL_TARGET } from '../../tools/emailLink';
 const SiteFooter = () => (
     <footer className="mc-footer" role="contentinfo">
         <img
@@ -21,7 +22,7 @@ const SiteFooter = () => (
             </p>
             <p className="mc-footer-row">
                 <span aria-hidden="true" className="mc-footer-icon">&#9993;</span>
-                <a href="mailto:mcmurtry@rice.edu">mcmurtry@rice.edu</a>
+                <a href={mailHref('mcmurtry@rice.edu')} {...MAIL_TARGET}>mcmurtry@rice.edu</a>
             </p>
         </address>
     </footer>

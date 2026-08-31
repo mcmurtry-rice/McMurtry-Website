@@ -5,6 +5,7 @@ import SiteFooter from '../../../components/Footer/Footer';
 import CustomCalendar from '../../../components/CustomCalendar/CustomCalendar';
 import { useSiteLinks } from '../../../tools/database/useSiteLinks';
 import './index.css';
+import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 
 // Fallbacks: rendered on first paint and whenever Supabase is unreachable.
 // Live values are the 'mcexpenses_form' / 'pcard_calendar_id' rows in the
@@ -120,7 +121,7 @@ const PCardManagementPage = () => {
                 </div>
 
                 <div className='pc-contact-row'>
-                    <p>Questions? Email <a href='mailto:mcmurtrytreasurer@gmail.com'>mcmurtrytreasurer@gmail.com</a>.</p>
+                    <p>Questions? Email <a href={mailHref('mcmurtrytreasurer@gmail.com')} {...MAIL_TARGET}>mcmurtrytreasurer@gmail.com</a>.</p>
                 </div>
 
             </div>

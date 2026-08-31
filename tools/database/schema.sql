@@ -34,7 +34,7 @@ create table if not exists public.mcministry (
     name          text not null,
     email         text,
     year          text,
-    img_url       text,
+    img_url       text,                                -- site path, e.g. /static/2026_mcm_people/government/x.jpg
     sort_order    int not null default 0
 );
 
@@ -49,6 +49,7 @@ create table if not exists public.mccourt (
     email         text,
     room          text,
     phone         text,
+    image         text,                                -- site path, e.g. /static/2026_mcm_people/government/x.jpg
     sort_order    int not null default 0
 );
 
@@ -118,6 +119,7 @@ create table if not exists public.head_caregivers (
     name          text not null,
     email         text,
     description   text,
+    image         text,                                -- site path, e.g. /static/2026_mcm_people/head_caregivers/0.jpeg
     sort_order    int not null default 0
 );
 
@@ -231,6 +233,38 @@ create table if not exists public.site_links (
     kind          text not null default 'form',  -- 'form' | 'document' | 'calendar_subscribe' | 'calendar_id'
     sort_order    int not null default 0
 );
+
+
+-- ============================================================
+-- Portraits
+--
+-- A person's photo is a FILE IN THE REPO plus a PATH IN THE DATABASE.
+-- The image column never holds an upload, a data URL, or an external
+-- link - just the site-absolute path the browser requests:
+--
+--     /static/2026_mcm_people/<group>/<person>.jpg
+--
+-- Photos for the current year live under static/2026_mcm_people/, one
+-- folder per group (head_caregivers/, government/, ...). Commit the
+-- file first: a path pointing at a file that was never deployed renders
+-- a broken image, whereas a NULL renders the initial-letter placeholder,
+-- which is the correct look for anyone not yet photographed.
+--
+-- Column names differ by table for historical reasons - `img_url` on
+-- mcministry, `image` everywhere else. The pages normalise both onto the
+-- `photo` prop that ContactCard and PersonChip take.
+--
+-- Resize before committing. Straight-off-the-camera JPEGs run 3-6 MB
+-- each; portraits are shipped at 900px on the long edge (~90 KB), which
+-- is already twice what the 44px chip and the card photo well need.
+-- ============================================================
+
+-- Backfill for projects created before the portrait columns existed.
+-- `create table if not exists` above is a no-op on a live table, so the
+-- columns have to be added explicitly. Safe to re-run.
+alter table public.mccourt          add column if not exists image   text;
+alter table public.head_caregivers  add column if not exists image   text;
+alter table public.mcministry       add column if not exists img_url text;
 
 
 -- ============================================================

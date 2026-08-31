@@ -6,6 +6,7 @@ import { WatercolorFilters, WatercolorBlotch } from '../../../../components/owee
 import ScrollToTop from '../../../../components/oweek2026/ScrollToTop';
 import Sidebar from '../../../../components/oweek2026/Sidebar';
 import PageNav from '../../../../components/oweek2026/PageNav';
+import { mailHref, MAIL_TARGET } from '../../../../tools/emailLink';
 
 // Content transcribed from "Move-In Day Instructions", "Important Contact
 // Info", "Directions to McMurtry", and "What to Bring" (The O-Week Book,
@@ -51,14 +52,14 @@ const OWeek2026MoveIn = () => (
                                 Collin DeSoto
                             </p>
                             <p>
-                                <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>
+                                <a href={mailHref('mcmurtryoweek@gmail.com')} {...MAIL_TARGET}>mcmurtryoweek@gmail.com</a>
                             </p>
                         </div>
                         <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-pink)' }}>
                             <h3>McMurtry College Coordinator</h3>
                             <p>
                                 Jackie Carrizales<br />
-                                <a href="mailto:jjc3@rice.edu">jjc3@rice.edu</a><br />
+                                <a href={mailHref('jjc3@rice.edu')} {...MAIL_TARGET}>jjc3@rice.edu</a><br />
                                 Office: (713) 348-4583<br />
                                 Fax: (713) 348-3135
                             </p>
@@ -67,8 +68,8 @@ const OWeek2026MoveIn = () => (
                             <h3>McMurtry College Magisters</h3>
                             <p>
                                 Elizabeth Vann &amp; Jeffrey Fleisher<br />
-                                <a href="mailto:evann@rice.edu">evann@rice.edu</a><br />
-                                <a href="mailto:jfleisher@rice.edu">jfleisher@rice.edu</a>
+                                <a href={mailHref('evann@rice.edu')} {...MAIL_TARGET}>evann@rice.edu</a><br />
+                                <a href={mailHref('jfleisher@rice.edu')} {...MAIL_TARGET}>jfleisher@rice.edu</a>
                             </p>
                         </div>
                     </div>

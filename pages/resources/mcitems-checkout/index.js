@@ -4,6 +4,7 @@ import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import { useSiteLink } from '../../../tools/database/useSiteLinks';
 import './index.css';
+import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 
 // Fallback: rendered on first paint and whenever Supabase is unreachable.
 // Live value is the 'mcitems_checkout_form' row in site_links.
@@ -116,7 +117,7 @@ const McItemsCheckoutPage = () => {
                 {/* Contact */}
                 <div className='mci-contact-row'>
                     <p>Questions? Reach out to McMurtry leadership before submitting.</p>
-                    <a href='mailto:mcmsecretary@gmail.com' className='mci-contact-email'>mcmsecretary@gmail.com</a>
+                    <a href={mailHref('mcmsecretary@gmail.com')} {...MAIL_TARGET} className='mci-contact-email'>mcmsecretary@gmail.com</a>
                 </div>
 
             </div>

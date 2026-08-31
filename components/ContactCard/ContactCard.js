@@ -1,5 +1,6 @@
 import React from 'react';
 import './ContactCard.css';
+import { mailHref, MAIL_TARGET } from '../../tools/emailLink';
 
 /*
  * Contact card - the universal "person card" used on every people page.
@@ -21,7 +22,10 @@ import './ContactCard.css';
  * grid (the photo well + name area absorbs any extra height).
  */
 
-const DetailRow = ({ icon, label, children, href }) => {
+/* `rest` carries link attributes through to the anchor - notably the
+ * target/rel pair on email rows, which would otherwise be dropped here
+ * and the Gmail tab would replace the page instead of opening beside it. */
+const DetailRow = ({ icon, label, children, href, ...rest }) => {
     const inner = (
         <React.Fragment>
             {icon ? <img src={icon} alt="" className="cc-detail-icon" /> : null}
@@ -32,7 +36,7 @@ const DetailRow = ({ icon, label, children, href }) => {
         </React.Fragment>
     );
     return href ? (
-        <a href={href} className="cc-detail cc-detail-link">{inner}</a>
+        <a href={href} className="cc-detail cc-detail-link" {...rest}>{inner}</a>
     ) : (
         <div className="cc-detail">{inner}</div>
     );
@@ -74,7 +78,7 @@ const Card = ({
                     <DetailRow icon="/static/icons/phone.svg" href={`tel:${phone}`}>{phone}</DetailRow>
                 ) : null}
                 {email ? (
-                    <DetailRow icon="/static/icons/email.svg" href={`mailto:${email}`}>{email}</DetailRow>
+                    <DetailRow icon="/static/icons/email.svg" href={mailHref(email)} {...MAIL_TARGET}>{email}</DetailRow>
                 ) : null}
                 {year ? (
                     <DetailRow>Class of {year}</DetailRow>

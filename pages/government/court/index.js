@@ -38,10 +38,10 @@ const CourtPage = () => {
                     positions.map((position) => {
                         const members = rows
                             .filter(r => r.position === position)
-                            .map(({ position: pos, name, email, room, phone }) =>
+                            .map(({ position: pos, name, email, room, phone, image }) =>
                                 pos === 'Chief Justice'
-                                    ? { position: pos, name, email, room, phone }
-                                    : { position: pos, name, email, room }
+                                    ? { position: pos, name, email, room, phone, photo: image }
+                                    : { position: pos, name, email, room, photo: image }
                             );
                         return (
                             <section className='wellbeing-section' key={position}>

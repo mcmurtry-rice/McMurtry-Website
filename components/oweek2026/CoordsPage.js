@@ -3,6 +3,7 @@ import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
 import ScrollToTop from './ScrollToTop';
 import Sidebar from './Sidebar';
 import PageNav from './PageNav';
+import { mailHref, MAIL_TARGET } from '../../tools/emailLink';
 
 // Bios transcribed from "Meet The McCoordinators" (The O-Week Book, pages 35-40) -
 // written by the other coords about each other, kept in their original voice.
@@ -69,7 +70,7 @@ const CoordsPage = () => (
             <h1 className="groweek-section-title">Meet Your Coordinators</h1>
             <p className="groweek-coords-contact-note">
                 Questions for any of us? Reach us at{' '}
-                <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a>.
+                <a href={mailHref('mcmurtryoweek@gmail.com')} {...MAIL_TARGET}>mcmurtryoweek@gmail.com</a>.
                 {' '}Click a name on the photo to jump to their bio!
             </p>
 

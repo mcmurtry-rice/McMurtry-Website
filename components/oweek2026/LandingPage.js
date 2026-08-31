@@ -4,6 +4,7 @@ import { WatercolorFilters, WatercolorBlotch } from './WatercolorFilters';
 import ScrollToTop from './ScrollToTop';
 import Sidebar from './Sidebar';
 import PageNav from './PageNav';
+import { mailHref, MAIL_TARGET } from '../../tools/emailLink';
 var countdown = require('countdown');
 
 const MOVE_IN_DATE = new Date(2026, 7, 16);
@@ -175,7 +176,7 @@ const LandingPage = () => (
                 </div>
                 <div className="groweek-info-card groweek-card-accented" style={{ '--card-accent': 'var(--gw-green)' }}>
                     <h3><i className="ph ph-chat-circle-dots" /> Questions?</h3>
-                    <p>Reach us anytime at <a href="mailto:mcmurtryoweek@gmail.com">mcmurtryoweek@gmail.com</a></p>
+                    <p>Reach us anytime at <a href={mailHref('mcmurtryoweek@gmail.com')} {...MAIL_TARGET}>mcmurtryoweek@gmail.com</a></p>
                 </div>
             </div>
         </section>
