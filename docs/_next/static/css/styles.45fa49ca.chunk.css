@@ -4643,7 +4643,7 @@ body:has(.page-light)::before {
     padding: 0 clamp(20px, 5vw, 64px);
     display: grid;
     grid-template-columns: minmax(240px, 360px) 1fr;
-    gap: clamp(28px, 5vw, 64px);
+    gap: 20px clamp(28px, 5vw, 64px);
     align-items: start;
 }
 
@@ -4705,9 +4705,17 @@ body:has(.page-light)::before {
     border-bottom: 1.5px solid var(--mc-purple-500);
     padding-bottom: 1px;
     transition: color 160ms ease, border-color 160ms ease;
-    align-self: flex-start;
     word-break: break-all;
+}
+
+.smr-contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 8px;
+    color: var(--mc-purple-500);
+    font-weight: 600;
 }
 
 .smr-email:hover,
@@ -4729,6 +4737,10 @@ body:has(.page-light)::before {
     border: none !important;
     text-align: justify;
     hyphens: auto;
+}
+
+.smr-description {
+    grid-column: 1 / -1;
 }
 
 @media (max-width: 720px) {
