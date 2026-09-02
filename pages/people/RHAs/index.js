@@ -14,14 +14,6 @@ const RHA_PAGE_DESCRIPTION =
     'Student Wellbeing Office and the residential colleges, staying up to date on ' +
     'campus-wide wellbeing programming.';
 
-const PHOTO_PLACEHOLDER =
-    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=';
-
-const processMembers = (members) => members.map(m => ({
-    ...m,
-    photo: m.photo && m.photo.trim() !== '' ? m.photo : PHOTO_PLACEHOLDER,
-}));
-
 const RHAsPage = () => {
     const { rows, isLoading } = useSupabaseTable('rhas');
     const tabNames = distinctInOrder(rows, 'tab');
@@ -57,7 +49,7 @@ const RHAsPage = () => {
                         return (
                             <section className='wellbeing-section' key={tabName}>
                                 <h2 className='division-title'>{tabName}</h2>
-                                <Cards content={processMembers(members)} />
+                                <Cards content={members} />
                             </section>
                         );
                     })
