@@ -59,15 +59,25 @@
  * follow the viewport with no breakpoint maths. */
 .mcmurtry-affinity-groups-page .ag-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    /* Every row the same height as the tallest tile anywhere in the grid, so
-     * all eight tiles are identical rectangles regardless of how many heads
-     * a group has (currently 1 to 3). */
-    grid-auto-rows: 1fr;
-    gap: clamp(14px, 1.8vw, 22px);
-    max-width: 1100px;
+    /* Fixed column counts rather than auto-fit: there are 8 groups, and 4 / 2
+     * / 1 all divide 8 exactly, so the last row is never left with a hole in
+     * it. auto-fit picked 3 and stranded two tiles on a row of their own.
+     * Revisit these counts if the number of groups changes. */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    /* No grid-auto-rows here on purpose. Tiles still stretch to match the
+     * tallest in THEIR row (grid's default), so every row is a clean band
+     * with one bottom edge - but a row of one-head groups stays short
+     * instead of inheriting the three-head group's height from another row. */
+    gap: clamp(12px, 1.4vw, 18px);
+    max-width: 1180px;
     margin: 0 auto;
-    padding: 0 clamp(16px, 4vw, 32px);
+    padding: 0 clamp(16px, 3vw, 28px);
+}
+
+@media (max-width: 1000px) {
+    .mcmurtry-affinity-groups-page .ag-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 .mcmurtry-affinity-groups-page .ag-tile {
@@ -79,7 +89,7 @@
     background: #fff;
     border: 1px solid rgba(139, 111, 199, 0.28);
     border-radius: 12px;
-    padding: 16px 16px 12px;
+    padding: 14px 15px 10px;
     box-shadow: 0 1px 3px rgba(60, 30, 90, 0.06);
     transition: box-shadow 160ms ease, transform 160ms ease;
 }
@@ -154,7 +164,7 @@
 
 @media (max-width: 520px) {
     .mcmurtry-affinity-groups-page .ag-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
