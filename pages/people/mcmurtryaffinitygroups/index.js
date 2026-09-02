@@ -3,8 +3,8 @@ import { Box } from 'rebass';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
-import ContactCards from '../../../components/ContactCard/ContactCard';
 import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
+import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 import './index.css';
 
 // Alphabetical. A title missing from this list still renders - it just
@@ -79,12 +79,32 @@ const McMurtryAffinityGroupsPage = () => {
                         <p className='loading-text'>Loading...</p>
                     </div>
                 ) : (
-                    affinityGroups.map((group) => (
-                        <section key={group.title} className='affinity-section'>
-                            <h2 className='division-title'>{group.title}</h2>
-                            <ContactCards content={group.members} />
-                        </section>
-                    ))
+                    /* One tile per group rather than a full-width band each.
+                     * Most groups have one or two heads, so a band apiece left
+                     * the page mostly empty space. */
+                    <div className='ag-grid'>
+                        {affinityGroups.map((group) => (
+                            <section key={group.title} className='ag-tile'>
+                                <h2 className='ag-tile-title'>{group.title}</h2>
+                                <ul className='ag-people'>
+                                    {group.members.map((m, i) => (
+                                        <li key={`${m.name}-${i}`} className='ag-person'>
+                                            {m.email ? (
+                                                <a className='ag-person-link' href={mailHref(m.email)} {...MAIL_TARGET}>
+                                                    <span className='ag-person-name'>{m.name}</span>
+                                                    <span className='ag-person-email'>{m.email}</span>
+                                                </a>
+                                            ) : (
+                                                <span className='ag-person-link ag-person-plain'>
+                                                    <span className='ag-person-name'>{m.name}</span>
+                                                </span>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </section>
+                        ))}
+                    </div>
                 )}
             </div>
 

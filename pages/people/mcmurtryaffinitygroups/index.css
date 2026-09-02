@@ -52,25 +52,99 @@
     margin-bottom: 0 !important;
 }
 
-.mcmurtry-affinity-groups-page .affinity-section {
-    margin: clamp(28px, 4vw, 48px) 0;
+/* ----- Group tiles -----
+ * One tile per affinity group instead of a full-width band each. Most
+ * groups have one or two heads, so a band apiece left the page mostly
+ * whitespace (~5100px tall for 11 people). auto-fit lets the row count
+ * follow the viewport with no breakpoint maths. */
+.mcmurtry-affinity-groups-page .ag-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: clamp(14px, 1.8vw, 22px);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(16px, 4vw, 32px);
+    align-items: start;
 }
 
-@media (max-width: 640px) {
-    .mcmurtry-affinity-groups-page .cc-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        padding: 0 12px 32px;
-        justify-items: center;
-    }
-    .mcmurtry-affinity-groups-page .cc-grid > .cc-card {
-        max-width: none;
-        width: 100%;
-    }
-    .mcmurtry-affinity-groups-page .cc-grid > .cc-card:last-child:nth-child(odd) {
-        grid-column: 1 / -1;
-        max-width: calc(50% - 6px);
+.mcmurtry-affinity-groups-page .ag-tile {
+    background: #fff;
+    border: 1px solid rgba(139, 111, 199, 0.28);
+    border-radius: 12px;
+    padding: 18px 18px 14px;
+    box-shadow: 0 1px 3px rgba(60, 30, 90, 0.06);
+    transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.mcmurtry-affinity-groups-page .ag-tile:hover {
+    box-shadow: 0 6px 18px rgba(60, 30, 90, 0.10);
+    transform: translateY(-2px);
+}
+
+.mcmurtry-affinity-groups-page .ag-tile-title {
+    font-family: var(--mc-font-display) !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    font-size: 1.32rem !important;
+    line-height: 1.2 !important;
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    background: none !important;
+    text-shadow: none !important;
+    text-align: left;
+    margin: 0 0 12px !important;
+    padding: 0 0 10px !important;
+    border-bottom: 1px solid rgba(139, 111, 199, 0.20);
+    letter-spacing: 0 !important;
+}
+
+.mcmurtry-affinity-groups-page .ag-people {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.mcmurtry-affinity-groups-page .ag-person + .ag-person {
+    margin-top: 4px;
+}
+
+.mcmurtry-affinity-groups-page .ag-person-link {
+    display: block;
+    padding: 7px 9px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background 140ms ease;
+}
+
+.mcmurtry-affinity-groups-page a.ag-person-link:hover,
+.mcmurtry-affinity-groups-page a.ag-person-link:focus-visible {
+    background: rgba(139, 111, 199, 0.10);
+}
+
+.mcmurtry-affinity-groups-page .ag-person-name {
+    display: block;
+    font-family: var(--mc-font-body);
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--mc-ink);
+    -webkit-text-fill-color: var(--mc-ink);
+}
+
+/* Long rice.edu addresses must wrap inside a narrow tile, not overflow it. */
+.mcmurtry-affinity-groups-page .ag-person-email {
+    display: block;
+    font-family: var(--mc-font-body);
+    font-size: 0.82rem;
+    color: var(--mc-purple-500);
+    -webkit-text-fill-color: var(--mc-purple-500);
+    overflow-wrap: anywhere;
+    margin-top: 1px;
+}
+
+@media (max-width: 520px) {
+    .mcmurtry-affinity-groups-page .ag-grid {
+        grid-template-columns: 1fr;
     }
 }
 
