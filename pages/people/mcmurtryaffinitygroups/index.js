@@ -7,9 +7,11 @@ import ContactCards from '../../../components/ContactCard/ContactCard';
 import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
 import './index.css';
 
+// Alphabetical. A title missing from this list still renders - it just
+// sorts to the end - so add new groups here when the roster gains one.
 const GROUP_DISPLAY_ORDER = [
     'Black Caucus', 'East Asian', 'First Gen / Low Income',
-    'Jewish', 'Latine', 'LGBTQ+', 'South Asian',
+    'Jewish', 'Latine', 'LGBTQ+', 'Muslim', 'South Asian',
 ];
 
 const McMurtryAffinityGroupsPage = () => {
