@@ -11,7 +11,7 @@ const navbar_headers = [
     {
         "name": "Home",
         "subheaders": [
-            { "name": "McMurtry", "to": "/home/index" },
+            { "name": "McMurtry", "to": "/" },
             { "name": "About", "to": "/home/about" },
             { "name": "Calendar", "to": "/home/calendar" },
         ]
@@ -131,7 +131,7 @@ const SiteNavbar = () => {
     return (
         <React.Fragment>
             <header className="mc-navbar" role="banner">
-                <Link href="/home/index">
+                <Link href="/">
                     <a className="mc-navbar-brand">
                         <img
                             src="/static/logos/hero-crest.png"

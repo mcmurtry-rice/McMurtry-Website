@@ -8,8 +8,7 @@ module.exports = withCSS({
   },
   async redirects() {
     return [
-      { source: '/', destination: '/home/index', permanent: false },
-      { source: '/home', destination: '/home/index', permanent: false },
+      { source: '/home', destination: '/', permanent: false },
     ];
   },
 })

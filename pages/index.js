@@ -1,9 +1,3 @@
-import { useEffect } from 'react';
-import Router from 'next/router';
-
-const Index = () => {
-    useEffect(() => { Router.replace('/home/index'); }, []);
-    return null;
-};
-
-export default Index;
+// The homepage is served at the domain root. /home/index renders the same page
+// and declares "/" as its canonical URL (SEO/pages.js ALIASES).
+export { default } from './home/index/index';
