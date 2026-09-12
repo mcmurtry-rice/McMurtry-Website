@@ -37,3 +37,6 @@ docs/static/goverment/
 
 # Note: deployments/ is intentionally tracked - GitHub Pages serves it
 .gstack/
+
+# Back up of comittee memebers
+tools/database/backups/committee_members-2026-09-06T20-16-55-153Z.json
