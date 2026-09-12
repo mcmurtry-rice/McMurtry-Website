@@ -187,6 +187,109 @@ const ALIASES = {
     '/home/index': '/',
 };
 
+// Old URLs from earlier versions of the site that may still be in search
+// results or bookmarks. generate.js writes a small page at each one that
+// forwards visitors (and Google) to the current page. Pages with no current
+// equivalent go to the homepage.
+const REDIRECTS = {
+    '/about': '/home/about',
+    '/calendar': '/home/calendar',
+    '/events': '/home/calendar',
+    '/events/calendar': '/home/calendar',
+    '/about/calendar': '/home/calendar',
+
+    '/mcministry': '/government/mcministry',
+    '/people/mcministry': '/government/mcministry',
+    '/committees': '/government/committees',
+    '/people/committees': '/government/committees',
+    '/court': '/government/court',
+    '/people/court': '/government/court',
+
+    '/mcteam': '/people/mcteam',
+    '/RHAs': '/people/RHAs',
+    '/associates': '/people/associates',
+    '/workorders': '/people/SMR',
+    '/resources/workorders': '/people/SMR',
+    '/striveliaisons': '/people/mcmurtryaffinitygroups',
+    '/people/striveliaisons': '/people/mcmurtryaffinitygroups',
+    '/resources/diversity-resources': '/people/mcmurtryaffinitygroups',
+    '/resources/diversityResources': '/people/mcmurtryaffinitygroups',
+    '/paas': '/people/academicsupport',
+    '/people/paas': '/people/academicsupport',
+    '/people/academicsupport/paas': '/people/academicsupport',
+    '/academicfellows': '/people/academicsupport',
+    '/people/academicfellows': '/people/academicsupport',
+    '/people/academicsupport/academicfellows': '/people/academicsupport',
+    '/divisionaladvisors': '/people/academicsupport',
+    '/people/divisionaladvisors': '/people/academicsupport',
+    '/people/academicsupport/divisionaladvisors': '/people/academicsupport',
+
+    '/roomreservations': '/resources/room-reservations',
+    '/resources/roomreservations': '/resources/room-reservations',
+    '/expenseforms': '/resources/pcard-requests',
+    '/resources/expenseforms': '/resources/pcard-requests',
+    '/resources/pcardmanagement': '/resources/pcard-requests',
+    '/equipment': '/resources/mcitems-checkout',
+    '/resources/mcitemscheckout': '/resources/mcitems-checkout',
+    '/mis': '/resources/mcmakerspace',
+    '/resources/mis': '/resources/mcmakerspace',
+    '/resources/mcmurtry-innovation-space': '/resources/mcmakerspace',
+    '/documents': '/resources/mclegislation',
+    '/resources/documents': '/resources/mclegislation',
+    '/initiativerequests': '/resources/mcfund-requests',
+    '/resources/initiativerequests': '/resources/mcfund-requests',
+    '/financialinclusivity': '/resources/financial-inclusivity',
+    '/about/financialinclusivity': '/resources/financial-inclusivity',
+
+    '/oweek': '/oweek/2026',
+    '/oweek/theme': '/oweek/2026',
+    '/oweek/oweekgroups': '/oweek/2026',
+    '/oweek/oweekcontact': '/oweek/2026',
+    '/oweek/coords': '/oweek/2026/coords',
+    '/oweek/movein': '/oweek/2026/movein',
+    '/oweek/oweekbook': '/oweek/2026/book',
+    '/oweek/mcmtour': '/oweek/2026/housing',
+    '/oweek/yourroom': '/oweek/2026/housing',
+    '/oweek/oweek2026': '/oweek/2026',
+    '/oweek/oweek2026/book': '/oweek/2026/book',
+    '/oweek/oweek2026/coords': '/oweek/2026/coords',
+    '/oweek/oweek2026/letter': '/oweek/2026/letter',
+    '/oweek/oweek2026/movein': '/oweek/2026/movein',
+    '/oweek/2026-2027': '/oweek/2026',
+    '/oweek/2026-2027/book': '/oweek/2026/book',
+    '/oweek/2026-2027/coords': '/oweek/2026/coords',
+    '/oweek/2026-2027/letter': '/oweek/2026/letter',
+    '/oweek/2026-2027/movein': '/oweek/2026/movein',
+    '/oweek/2025-2026': '/oweek/2025',
+    '/oweek/2025-2026/coords': '/oweek/2025',
+    '/oweek/2025-2026/mcmtour': '/oweek/2025',
+    '/oweek/2025-2026/movein': '/oweek/2025',
+    '/oweek/2025-2026/oweekbook': '/oweek/2025',
+    '/oweek/2025-2026/oweekcontact': '/oweek/2025',
+    '/oweek/2025-2026/oweekgroups': '/oweek/2025',
+    '/oweek/2025-2026/theme': '/oweek/2025',
+    '/oweek/2025-2026/yourroom': '/oweek/2025',
+    '/oweek/2024-2025': '/oweek/2024',
+    '/oweek/2023-2024': '/oweek/2023',
+
+    '/contact': '/',
+    '/mcmresources': '/',
+    '/resources/mcmresources': '/',
+    '/artevents': '/',
+    '/events/artevents': '/',
+    '/events/budget': '/',
+    '/events/budgetsheet': '/',
+    '/resources/feedbackform': '/',
+    '/resources/coronavirus': '/',
+    '/resources/coronavirus-content': '/',
+    '/10': '/',
+    '/10/faqs': '/',
+    '/10/sponsor': '/',
+    '/mcm10': '/',
+    '/mcm10/faqs': '/',
+    '/mcm10/sponsor': '/',
+};
+
 const absoluteUrl = (path) => SITE.url + path;
 
 // Nearest existing ancestors of a route, e.g. /oweek/2026/housing -> [/, /oweek/2026].
@@ -271,4 +374,4 @@ const getJsonLd = (pathname) => {
     };
 };
 
-module.exports = { SITE, PAGES, ALIASES, absoluteUrl, getPageMeta, getJsonLd };
+module.exports = { SITE, PAGES, ALIASES, REDIRECTS, absoluteUrl, getPageMeta, getJsonLd };

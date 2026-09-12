@@ -5,6 +5,7 @@
 //   docs/sitemap.xml      every indexable page in SEO/pages.js
 //   docs/robots.txt       allows all crawlers, points at the sitemap
 //   docs/social-card.jpg  the link-preview image (copied from SEO/)
+//   docs/<old url>.html   forwarding pages for REDIRECTS in SEO/pages.js
 //
 // Also warns about routes under pages/ that have no entry in SEO/pages.js, so
 // a new page can't silently ship with the generic title and description.
@@ -12,7 +13,7 @@
 const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
-const { SITE, PAGES, ALIASES, absoluteUrl } = require('./pages');
+const { SITE, PAGES, ALIASES, REDIRECTS, absoluteUrl } = require('./pages');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.resolve(ROOT, process.argv[2] || 'docs');
@@ -66,4 +67,42 @@ fs.writeFileSync(
 );
 fs.copyFileSync(path.join(__dirname, 'social-card.jpg'), path.join(OUT, SITE.image.path.slice(1)));
 
-console.log(`[seo] Wrote sitemap.xml (${entries.length} URLs), robots.txt, and social-card.jpg to ${path.relative(ROOT, OUT)}/`);
+// GitHub Pages can't send real redirects, so each old URL gets a page that
+// forwards instantly. Google treats a zero-second meta refresh as a permanent
+// redirect; the canonical link points it at the new page too. /about is served
+// from about.html, which can sit next to an about/ folder.
+const redirectPage = (target) => {
+    const url = absoluteUrl(target);
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Moved - ${SITE.name}</title>
+<link rel="canonical" href="${url}">
+<meta http-equiv="refresh" content="0; url=${url}">
+<script>location.replace(${JSON.stringify(target)} + location.search + location.hash);</script>
+</head>
+<body>
+<p>This page has moved to <a href="${url}">${url}</a>.</p>
+</body>
+</html>
+`;
+};
+
+let redirects = 0;
+Object.entries(REDIRECTS).forEach(([from, to]) => {
+    const file = path.join(OUT, `${from}.html`);
+    if (PAGES[from] || ALIASES[from]) {
+        console.warn(`[seo] Redirect ${from} skipped: it is a current page`);
+    } else if (!PAGES[to]) {
+        console.warn(`[seo] Redirect ${from} skipped: target ${to} is not in PAGES`);
+    } else if (fs.existsSync(file)) {
+        console.warn(`[seo] Redirect ${from} skipped: ${path.relative(ROOT, file)} already exists`);
+    } else {
+        fs.mkdirSync(path.dirname(file), { recursive: true });
+        fs.writeFileSync(file, redirectPage(to));
+        redirects++;
+    }
+});
+
+console.log(`[seo] Wrote sitemap.xml (${entries.length} URLs), robots.txt, social-card.jpg, and ${redirects} redirects to ${path.relative(ROOT, OUT)}/`);

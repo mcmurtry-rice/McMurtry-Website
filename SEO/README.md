@@ -5,7 +5,7 @@ Everything that controls how mcmurtry.rice.edu appears in Google (and in link pr
 | File | What it does |
 | --- | --- |
 | `pages.js` | Title, description, and structured data for every page. `components/Header` reads it on every page. |
-| `generate.js` | Runs on deploy. Writes `sitemap.xml`, `robots.txt`, and `social-card.jpg` into `docs/`. |
+| `generate.js` | Runs on deploy. Writes `sitemap.xml`, `robots.txt`, `social-card.jpg`, and old-URL redirects into `docs/`. |
 | `social-card.jpg` | 1200x630 preview image shown when a link is shared (iMessage, GroupMe, Slack, Facebook). |
 
 ## What each page gets
@@ -35,6 +35,10 @@ Everything that controls how mcmurtry.rice.edu appears in Google (and in link pr
 If you forget step 2, the page falls back to the generic homepage description. `npm run dev` logs a `[seo] No entry for ...` warning in the browser console, and `generate.js` prints one during deploy.
 
 To remove a page, delete its folder under `pages/` and its entry in `pages.js`.
+
+## Old URLs
+
+When a page moves or is renamed, add its old URL to `REDIRECTS` in `pages.js` (`'/old-url': '/new/url'`). On deploy, `generate.js` writes a small page at the old address that forwards visitors to the new one, so old Google results and bookmarks keep working. GitHub Pages can't do real server redirects, so this is the standard workaround; Google treats it as a permanent move.
 
 Optional fields: `crumb` (a shorter breadcrumb name), `image` (a page-specific preview image, same shape as `SITE.image`), and `noindex: true` (keeps the page out of Google and the sitemap).
 
