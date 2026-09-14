@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { Box } from 'rebass';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
@@ -31,9 +30,9 @@ const HeadCaregiversPage = () => {
                     <h1 className='ev-hero-heading'>Caregiving</h1>
                 </header>
 
-                <Box width={[1, 0.7, 0.6, 0.5]} ml='auto' mr='auto' className='wellbeing-description'>
+                <div className='wellbeing-description'>
                     {HEAD_CAREGIVERS_DESCRIPTION}
-                </Box>
+                </div>
 
                 {isLoading ? (
                     <div className='loading-container'>

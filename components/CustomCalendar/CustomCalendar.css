@@ -10,6 +10,20 @@
     padding: 4px;
 }
 
+/* CalendarGrid renders nothing until it has picked a view, so hold the
+ * calendar's rendered height while the wrapper is empty; otherwise the
+ * buttons and footer below jump down when it mounts. Heights are the month
+ * view (always 6 weeks) and the mobile week view, plus the 4px padding. */
+.custom-calendar-wrapper:empty {
+    min-height: 785px;
+}
+
+@media (max-width: 768px) {
+    .custom-calendar-wrapper:empty {
+        min-height: 273px;
+    }
+}
+
 /* ----- Calendar base ----- */
 
 .fc {

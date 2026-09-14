@@ -1,5 +1,4 @@
 ﻿import React from 'react';
-import { Box } from 'rebass';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
@@ -48,7 +47,7 @@ const McMurtryAffinityGroupsPage = () => {
                     <h1 className='ev-hero-heading'>Affinity Groups</h1>
                 </header>
 
-                <Box width={[0.9, 0.7, 0.6]} ml='auto' mr='auto' className='affinity-description'>
+                <div className='affinity-description'>
                     <p>
                         Affinity Groups at McMurtry, as extensions of the Diversity Council,
                         aim to foster a sense of community among certain student populations
@@ -71,10 +70,13 @@ const McMurtryAffinityGroupsPage = () => {
                         If you are interested in joining one of the affinity groups, please
                         reach out to the affinity group heads listed below.
                     </p>
-                </Box>
+                </div>
 
+                {/* Distinct keys so React swaps in a new grid node instead of
+                    restyling the spinner's div; Chrome counts a reused node
+                    that changes size as a layout shift. */}
                 {isLoading ? (
-                    <div className='loading-container'>
+                    <div className='loading-container' key='loading'>
                         <div className='loading-spinner'></div>
                         <p className='loading-text'>Loading...</p>
                     </div>
@@ -82,7 +84,7 @@ const McMurtryAffinityGroupsPage = () => {
                     /* One tile per group rather than a full-width band each.
                      * Most groups have one or two heads, so a band apiece left
                      * the page mostly empty space. */
-                    <div className='ag-grid'>
+                    <div className='ag-grid' key='grid'>
                         {affinityGroups.map((group) => (
                             <section key={group.title} className='ag-tile'>
                                 <h2 className='ag-tile-title'>{group.title}</h2>

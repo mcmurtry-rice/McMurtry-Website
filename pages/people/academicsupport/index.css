@@ -88,8 +88,20 @@
     line-height: 1.7;
     color: var(--mc-ink);
     text-align: center;
-    margin-bottom: clamp(20px, 3vw, 32px);
     padding: 0 clamp(16px, 4vw, 48px);
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Widths in plain CSS (were rebass Box props), so the text wraps the same on
+ * first paint as after JavaScript loads. Breakpoints match rebass: 40em, 52em.
+ * No bottom margin: rebass's margin reset always overrode it once loaded. */
+@media screen and (min-width: 40em) {
+    .acadsup-description { width: 80%; }
+}
+
+@media screen and (min-width: 52em) {
+    .acadsup-description { width: 70%; }
 }
 
 .acadsup-subtitle {

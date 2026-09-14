@@ -339,13 +339,16 @@ const McMinistryPage = () => {
                     </div>
                 </div>
 
+                {/* Distinct keys so React swaps in a new node instead of
+                    restyling the spinner's div; Chrome counts a reused node
+                    that changes size as a layout shift. */}
                 {isLoading ? (
-                    <div className='loading-container'>
+                    <div className='loading-container' key='loading'>
                         <div className='loading-spinner'></div>
                         <p className='loading-text'>Loading...</p>
                     </div>
                 ) : (
-                    <div className='fade-in'>
+                    <div className='fade-in' key='content'>
                         <h2 className='division-title'>Executive Council</h2>
 
                         <div className='mcm-chart'>

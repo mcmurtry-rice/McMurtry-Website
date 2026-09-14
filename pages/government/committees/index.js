@@ -117,13 +117,16 @@ const CommitteesPage = () => {
                     culture and community. Click any committee to meet its heads and members.
                 </p>
 
+                {/* Distinct keys so React swaps in a new node instead of
+                    restyling the spinner's div; Chrome counts a reused node
+                    that changes size as a layout shift. */}
                 {isLoading ? (
-                    <div className='loading-container'>
+                    <div className='loading-container' key='loading'>
                         <div className='loading-spinner'></div>
                         <p className='loading-text'>Loading...</p>
                     </div>
                 ) : (
-                    <div className='cm-diagram fade-in'>
+                    <div className='cm-diagram fade-in' key='content'>
                         {divisionNames.map((division) => (
                             <section key={division} className='cm-division'>
                                 <h2 className='cm-band'>{DIVISION_LEADS[division] || division}</h2>

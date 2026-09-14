@@ -44,6 +44,17 @@
     margin: 0 auto clamp(40px, 5vw, 64px) !important;
     padding: 0 clamp(16px, 4vw, 48px) !important;
     border: none !important;
+    width: 90%;
+}
+
+/* Widths in plain CSS (were rebass Box props), so the text wraps the same on
+ * first paint as after JavaScript loads. Breakpoints match rebass: 40em, 52em. */
+@media screen and (min-width: 40em) {
+    .associates-page .associates-mission { width: 70%; }
+}
+
+@media screen and (min-width: 52em) {
+    .associates-page .associates-mission { width: 60%; }
 }
 
 /* ----- Card grid ----- */

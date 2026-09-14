@@ -1,5 +1,4 @@
 ﻿import React, { useState, useEffect } from 'react';
-import { Box } from 'rebass';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
@@ -98,17 +97,20 @@ const AssociatesPage = () => {
                     <h1 className='ev-hero-heading'>Associates</h1>
                 </header>
 
-                <Box width={[0.9, 0.7, 0.6]} ml='auto' mr='auto' className='associates-mission'>
+                <div className='associates-mission'>
                     {ASSOCIATES_MISSION}
-                </Box>
+                </div>
 
+                {/* Distinct keys so React swaps in a new grid node instead of
+                    restyling the spinner's div; Chrome counts a reused node
+                    that changes size as a layout shift. */}
                 {isLoading ? (
-                    <div className='loading-container'>
+                    <div className='loading-container' key='loading'>
                         <div className='loading-spinner'></div>
                         <p className='loading-text'>Loading...</p>
                     </div>
                 ) : (
-                    <div className='as-grid'>
+                    <div className='as-grid' key='grid'>
                         {associates.map((associate, i) => (
                             <button
                                 key={i}

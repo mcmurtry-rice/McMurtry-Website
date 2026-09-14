@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Box } from 'rebass';
 import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
@@ -189,9 +188,9 @@ const AcademicSupportPage = () => {
                 {activeSection === 'paas' && (
                 <section id='paas' className='acadsup-section fade-in'>
                     <h2 className='division-title'>Peer Academic Advisors</h2>
-                    <Box width={[1, 0.8, 0.7]} ml='auto' mr='auto' className='acadsup-description'>
+                    <div className='acadsup-description'>
                         {PAAS_DESCRIPTION}
-                    </Box>
+                    </div>
                     {loadingPaas ? <Loading /> : (
                         <TabbedCards
                             rows={paas}
@@ -205,9 +204,9 @@ const AcademicSupportPage = () => {
                 {activeSection === 'fellows' && (
                 <section id='fellows' className='acadsup-section fade-in'>
                     <h2 className='division-title'>Academic Fellows</h2>
-                    <Box width={[1, 0.8, 0.7]} ml='auto' mr='auto' className='acadsup-description'>
+                    <div className='acadsup-description'>
                         {FELLOWS_DESCRIPTION}
-                    </Box>
+                    </div>
                     {loadingFellows ? <Loading /> : (
                         <TabbedCards
                             rows={fellows}
@@ -227,9 +226,9 @@ const AcademicSupportPage = () => {
                 {activeSection === 'advisors' && (
                 <section id='advisors' className='acadsup-section fade-in'>
                     <h2 className='division-title'>Divisional Advisors</h2>
-                    <Box width={[1, 0.8, 0.7]} ml='auto' mr='auto' className='acadsup-description'>
+                    <div className='acadsup-description'>
                         {ADVISORS_DESCRIPTION}
-                    </Box>
+                    </div>
                     {loadingAdvisors ? <Loading /> : (
                         <div className='as-grid'>
                             {advisors.map((advisor) => (

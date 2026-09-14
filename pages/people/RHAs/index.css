@@ -12,6 +12,22 @@
     color: var(--mc-purple-500);
     text-align: center;
     padding: 0 clamp(16px, 5vw, 48px) clamp(40px, 5vw, 64px);
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Widths in plain CSS (were rebass Box props), so the text wraps the same on
+ * first paint as after JavaScript loads. Breakpoints match rebass: 40em, 52em, 64em. */
+@media screen and (min-width: 40em) {
+    .wellbeing-description { width: 70%; }
+}
+
+@media screen and (min-width: 52em) {
+    .wellbeing-description { width: 60%; }
+}
+
+@media screen and (min-width: 64em) {
+    .wellbeing-description { width: 50%; }
 }
 
 .wellbeing-section {
