@@ -3,6 +3,7 @@ import Header from '../../../components/Header/Header';
 import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
+import { usePageContent } from '../../../tools/database/usePageContent';
 import { mailHref, MAIL_TARGET } from '../../../tools/emailLink';
 import './index.css';
 
@@ -13,8 +14,13 @@ const GROUP_DISPLAY_ORDER = [
     'Jewish', 'Latine', 'LGBTQ+', 'Muslim', 'South Asian',
 ];
 
+// Intro copy lives in public.page_content (key affinity_groups_intro) so it
+// can be edited without a redeploy. This is the fallback until it loads.
+const INTRO_FALLBACK = '<p><strong>Welcome to the Affinity Groups Page!!</strong></p><p>As you may know, the Affinity Groups at McMurtry are focused extensions of the Diversity Committee. Our biggest goals are to make sure that all Murts feel seen, represented, and supported while building a network of student connections within our college!</p><p>Our affinity groups include the Black Caucus, Latine Group, FGLI Group, Jewish Group, East Asian Group, South Asian Group, LGBTQIA+ Group, and Muslim Group. We’ll be hosting all kinds of events, socials, outings, and activities throughout the year to celebrate our communities, build connections, and create spaces where everyone can feel at home.</p><p>If you identify with one or more of these groups, we highly encourage you to join, come to our events, and have fun with us! Whether you’re looking to meet people with similar backgrounds and experiences or if you want to just enjoy our events, know that you’re welcome in our spaces!</p><p>Each affinity group has leader(s), aka Affinity Group Heads, who oversee the group, plan events, and organize outings. If you have any questions about a specific group, please feel free to reach out to the leaders listed below.</p><p>Interested in joining? Be on the lookout for each affinity group’s GroupMe link, or reach out to their leaders for more information. We can’t wait to see you around McMurtry! 💜🍌</p>';
+
 const McMurtryAffinityGroupsPage = () => {
     const { rows, isLoading } = useSupabaseTable('affinity_groups');
+    const intro = usePageContent('affinity_groups_intro', INTRO_FALLBACK);
 
     const byTitle = new Map();
     for (const row of rows) {
@@ -47,30 +53,10 @@ const McMurtryAffinityGroupsPage = () => {
                     <h1 className='ev-hero-heading'>Affinity Groups</h1>
                 </header>
 
-                <div className='affinity-description'>
-                    <p>
-                        Affinity Groups at McMurtry, as extensions of the Diversity Council,
-                        aim to foster a sense of community among certain student populations
-                        including LGBTQ+, Black, Latinx, Jewish, and First-Gen/Low Income.
-                        These groups will be hosting movie nights, game nights, and other
-                        events throughout the semester in order to support and encourage
-                        connections in these groups. If you identify with one or more of
-                        these groups, we highly encourage you to join the group chats, meet
-                        new Murts and participate in any upcoming events!
-                    </p>
-                    <p>
-                        Each Affinity group has a designated liaison who acts as a bridge
-                        between the group and the Diversity Council. These are some really
-                        cool Murts who will be hosting events and activities for you all to
-                        enjoy. If you have any questions about a specific group, please feel
-                        free to reach out to the associated liaison or any member in the
-                        Diversity Council.
-                    </p>
-                    <p>
-                        If you are interested in joining one of the affinity groups, please
-                        reach out to the affinity group heads listed below.
-                    </p>
-                </div>
+                <div
+                    className='affinity-description'
+                    dangerouslySetInnerHTML={{ __html: intro }}
+                />
 
                 {/* Distinct keys so React swaps in a new grid node instead of
                     restyling the spinner's div; Chrome counts a reused node

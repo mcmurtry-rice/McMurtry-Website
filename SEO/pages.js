@@ -95,7 +95,7 @@ const PAGES = {
     },
     '/people/mcmurtryaffinitygroups': {
         title: 'Affinity Groups',
-        description: "McMurtry's affinity groups, part of the Diversity Council, build community among LGBTQ+, Black, Latinx, Jewish, First-Gen/Low Income students, and more.",
+        description: "McMurtry's affinity groups, extensions of the Diversity Committee, build community for Black, Latine, FGLI, Jewish, East Asian, South Asian, LGBTQIA+, and Muslim students.",
     },
     '/people/academicsupport': {
         title: 'Academic Support',

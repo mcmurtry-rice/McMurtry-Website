@@ -47,7 +47,7 @@ const BULLETS = {
     'beer bike': ['Coordinates Beer Bike participation', 'Plans the biggest event of the year', 'Manages team, chug, and race logistics'],
     'seniors': ['Plans champagne toasts and senior events', 'Organizes Senior Gala and graduation', 'Creates memorable final-year experiences'],
     'college night': ['Hosts low-key themed hangouts with other colleges', 'Plans College Night events each semester', 'A new committee you can help shape'],
-    'culturals & diversity': ['Promotes cultural awareness through events', 'Organizes Restaurant Day with international cuisines', 'Serves as an inclusion resource for the college'],
+    'diversity': ['Oversees diversity initiatives at McMurtry', 'Supports and celebrates cultural events', 'Oversees the affinity groups'],
 };
 
 const bulletsFor = (name) => BULLETS[(name || '').toLowerCase()] || [];
