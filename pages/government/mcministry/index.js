@@ -23,9 +23,10 @@ import './index.css';
  * People come from the `mcministry` table (Chief Justice from `mccourt`)
  * and committee lists from the `committees` table, so the chart stays in
  * sync with Supabase. Portraits ride along in `mcministry.img_url` /
- * `mccourt.image`. The whole chart uses PersonChips' portrait tiles so
+ * `mccourt.image`. The Executive Council chart uses PersonChips' portrait tiles so
  * every role reads the same whether or not that person has been
- * photographed yet - an unphotographed one shows a big initial. The config below only encodes structure: which
+ * photographed yet - an unphotographed one shows a big initial. The
+ * People's Council below uses pills instead. The config only encodes structure: which
  * positions sit in which row, role blurbs, and key/P-Card badges.
  * Roles with no people in the table (e.g. RSA Senator) simply don't render.
  */
@@ -93,7 +94,11 @@ const DIVISION_ROLES = [
 
 const PC_GROUPS = [
     { title: 'Hall Reps', match: (p) => p.includes('hall rep') },
-    { title: 'Class Reps', match: (p) => p.includes('class rep') || p.includes('off campus') || p.includes('off-campus') },
+    // Class seats are titled by year alone ("First Year Rep"), so match the
+    // year itself rather than the words "class rep". Off-campus Murts are
+    // counted with the class reps. Hall seats can't collide: none of these
+    // words appear in a "3O Hall Rep", and this only ever sees PC rows.
+    { title: 'Class Reps', match: (p) => /(first year|sophomore|junior|senior|off.?campus)/.test(p) },
 ];
 
 const committeeHref = (name) => `/government/committees#${encodeURIComponent(name)}`;
@@ -114,6 +119,15 @@ const toChips = (rows, showPositions) =>
         // from `mccourt`, which calls the same column `image`.
         photo: img_url || image,
     }));
+
+/* People's Council chips carry no picture. The council turns over every
+ * fall and most of its reps are never photographed, so a tile grid there
+ * reads as a wall of big initials. Pills say the same thing - position,
+ * name, email - in a quarter of the height. Dropping `photo` matters as
+ * much as dropping `portrait`: PersonChips promotes a whole section to
+ * tiles if even one person in it has a picture on file.
+ */
+const toPills = (rows) => toChips(rows, true).map(({ photo, ...person }) => person);
 
 const TierLabel = ({ children }) => (
     <span className='mcm-tier-label'>
@@ -391,7 +405,7 @@ const McMinistryPage = () => {
 
                         {pcLead.length > 0 && (
                             <div className='mcm-pc-lead'>
-                                <PersonChips content={toChips(pcLead, true)} accent portrait />
+                                <PersonChips content={toPills(pcLead)} accent />
                             </div>
                         )}
 
@@ -399,13 +413,13 @@ const McMinistryPage = () => {
                             {pcGrouped.map((g) => (
                                 <section key={g.title} className='mcm-pc-group'>
                                     <h3 className='mcm-pc-group-title'>{g.title}</h3>
-                                    <PersonChips content={toChips(g.people, true)} portrait />
+                                    <PersonChips content={toPills(g.people)} />
                                 </section>
                             ))}
                             {pcOther.length > 0 && (
                                 <section className='mcm-pc-group'>
                                     <h3 className='mcm-pc-group-title'>More Reps</h3>
-                                    <PersonChips content={toChips(pcOther, true)} portrait />
+                                    <PersonChips content={toPills(pcOther)} />
                                 </section>
                             )}
                         </div>

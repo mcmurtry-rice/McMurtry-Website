@@ -1256,19 +1256,44 @@ body:has(.page-light)::before {
     gap: 8px;
 }
 
-/* People's Council groups: chips flow across the full-width group and
- * wrap, centred. Reps get added through the year, so a group has to grow
- * sideways into the space it already has rather than into a longer and
- * longer single column. */
+/* People's Council groups: every seat gets the same box. Chips sized to
+ * their own text made a row of reps read as a ragged list of unrelated
+ * things, when the point of the council is that a 3O rep and a Juniors
+ * rep carry equal weight. A fixed width rather than a grid track: an
+ * `auto-fit` grid left-aligns a partial last row against the columns the
+ * rows above established, which left the lone 5th Hall Rep hanging off
+ * centre. Wrapped flex items centre every row, including the last.
+ * `stretch` keeps a chip whose name ran onto a second line level with
+ * its neighbours. Reps get added through the year, so the row grows
+ * sideways into the space it already has before it wraps. */
 .mcm-pc-group .pc-row {
-    flex-direction: row;
+    display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
+    align-items: stretch;
+    gap: 10px;
 }
 
 .mcm-pc-group .pc-chip {
-    width: auto;
+    flex: 0 0 auto;
+    /* min() so the fixed width gives way on a narrow phone instead of
+     * pushing the group card sideways. */
+    width: min(252px, 100%);
+    box-sizing: border-box;
+    border-color: rgba(74, 52, 112, 0.26);
+    box-shadow: 0 6px 18px -14px rgba(74, 52, 112, 0.35);
+}
+
+.mcm-pc-group a.pc-chip:hover,
+.mcm-pc-group a.pc-chip:focus-visible {
+    border-color: var(--mc-purple-700, #4a3470);
+    box-shadow: 0 14px 28px -16px rgba(74, 52, 112, 0.48);
+}
+
+/* A name that wraps reads better ragged-right under its label than
+ * centred, now that the chip is wider than its text. */
+.mcm-pc-group .pc-text {
+    text-align: left;
 }
 
 .mcm-role-card .pc-chip,
@@ -1443,7 +1468,7 @@ body:has(.page-light)::before {
     box-sizing: border-box;
     border: 1px solid rgba(74, 52, 112, 0.20);
     border-radius: 16px;
-    padding: 16px 10px;
+    padding: 18px 12px 20px;
     background: rgba(139, 111, 199, 0.05);
 }
 
