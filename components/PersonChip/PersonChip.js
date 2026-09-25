@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { lockScroll } from '../../tools/scrollLock';
 import './PersonChip.css';
 
 /*
@@ -142,17 +144,17 @@ const PersonChips = ({ content = [], accent = false, portrait = false }) => {
         }, CLOSE_MS);
     };
 
-    // lock page scroll and close on Escape while the modal is open
+    // freeze the page while the modal is open; keyed on open/closed alone
+    // so the closing animation doesn't unlock and relock mid-exit
+    const isOpen = Boolean(selected);
+    useEffect(() => (isOpen ? lockScroll() : undefined), [isOpen]);
+
+    // close on Escape while the modal is open
     useEffect(() => {
         if (!selected) return undefined;
-        const prevOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
         const onKey = (e) => { if (e.key === 'Escape') close(); };
         window.addEventListener('keydown', onKey);
-        return () => {
-            document.body.style.overflow = prevOverflow;
-            window.removeEventListener('keydown', onKey);
-        };
+        return () => window.removeEventListener('keydown', onKey);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selected, closing]);
 
@@ -187,9 +189,15 @@ const PersonChips = ({ content = [], accent = false, portrait = false }) => {
                     />
                 ))}
             </div>
-            {selected ? (
-                <PersonModal person={selected} closing={closing} onClose={close} />
-            ) : null}
+            {/* Portaled to <body>: rendered in place, the modal is trapped
+                in whatever stacking context the tile sits in (on mobile each
+                McMinistry node is one), and later nodes paint over it. */}
+            {selected
+                ? createPortal(
+                    <PersonModal person={selected} closing={closing} onClose={close} />,
+                    document.body
+                )
+                : null}
         </React.Fragment>
     );
 };

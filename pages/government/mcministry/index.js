@@ -4,6 +4,7 @@ import SiteNavbar from '../../../components/navbar/Navbar';
 import SiteFooter from '../../../components/Footer/Footer';
 import PersonChips from '../../../components/PersonChip/PersonChip';
 import { useSupabaseTable } from '../../../tools/database/useSupabaseTable';
+import { lockScroll } from '../../../tools/scrollLock';
 import './index.css';
 
 /*
@@ -308,17 +309,17 @@ const McMinistryPage = () => {
         }, 220);
     };
 
-    // lock page scroll and close on Escape while the modal is open
+    // freeze the page while the modal is open (keyed on open/closed alone,
+    // so the closing animation doesn't unlock and relock mid-exit)
+    const roleOpen = Boolean(selectedRole);
+    useEffect(() => (roleOpen ? lockScroll() : undefined), [roleOpen]);
+
+    // close on Escape while the modal is open
     useEffect(() => {
         if (!selectedRole) return undefined;
-        const prevOverflow = document.body.style.overflow;
-        document.body.style.overflow = 'hidden';
         const onKey = (e) => { if (e.key === 'Escape') closeRole(); };
         window.addEventListener('keydown', onKey);
-        return () => {
-            document.body.style.overflow = prevOverflow;
-            window.removeEventListener('keydown', onKey);
-        };
+        return () => window.removeEventListener('keydown', onKey);
     }, [selectedRole, closingRole]);
 
     return (
