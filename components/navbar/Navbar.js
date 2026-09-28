@@ -42,6 +42,7 @@ const navbar_headers = [
             { "name": "Room Reservations", "to": "/resources/room-reservations" },
             { "name": "P-Card Requests", "to": "/resources/pcard-requests" },
             { "name": "McItems Check Out", "to": "/resources/mcitems-checkout" },
+            { "name": "Committee Closet", "to": "/resources/committee-closet" },
             { "name": "McMakerspace", "to": "/resources/mcmakerspace" },
             { "name": "McLegislation", "to": "/resources/mclegislation" },
             { "name": "McFUNd Requests", "to": "/resources/mcfund-requests" },

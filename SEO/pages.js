@@ -118,6 +118,10 @@ const PAGES = {
         title: 'McItems Checkout',
         description: 'Borrow shared McMurtry College items for personal, academic, creative, or event-related use.',
     },
+    '/resources/committee-closet': {
+        title: 'Committee Closet',
+        description: "Live inventory of everything stored in McMurtry College's committee closet, by committee, category, and condition.",
+    },
     '/resources/mcmakerspace': {
         title: 'McMakerspace',
         description: 'McMakerspace is an interdisciplinary design space at McMurtry open to all Rice students: woodworking, 3D printing, CAD, electronics, and more.',
