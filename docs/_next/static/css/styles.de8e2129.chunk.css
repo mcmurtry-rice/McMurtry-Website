@@ -4345,6 +4345,334 @@ body:has(.page-light)::before {
 }
 
 /* ============================================================
+ * Committee Closet page - scoped under .closet-page
+ * Live view of the committee closet inventory sheet.
+ * ============================================================ */
+
+.closet-page {
+    background: var(--mc-paper);
+    color: var(--mc-ink);
+    font-family: var(--mc-font-body);
+}
+
+/* ----- Hero ----- */
+.closet-page .ev-hero {
+    background: var(--mc-paper);
+    position: relative;
+    overflow: hidden;
+}
+
+.closet-page .ev-hero-swoosh {
+    left: auto;
+    right: calc(-200px * var(--s));
+    transform: scaleX(-1);
+}
+
+.closet-page .ev-hero-ellipse-small {
+    left: 50%;
+    bottom: calc(-20px * var(--s));
+    transform: translateX(calc(-50% - 120px * var(--s)));
+}
+
+/* ----- Loading / error ----- */
+.closet-page .cc-status {
+    text-align: center;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 24px 96px;
+    /* Reserve roughly the height of the loaded content so the footer
+       doesn't jump when the feed arrives. */
+    min-height: 40vh;
+}
+
+.closet-page .cc-status-error {
+    color: #a2400c;
+}
+
+/* ----- Sections ----- */
+.closet-page .cc-section {
+    position: relative;
+    z-index: 10;
+    padding: 0 clamp(24px, 6vw, 96px);
+    margin-bottom: 72px;
+}
+
+.closet-page .cc-section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.closet-page .cc-heading {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    color: var(--mc-purple-700);
+    margin: 0;
+    letter-spacing: 0;
+}
+
+.closet-page .cc-updated {
+    font-size: 0.9rem;
+    color: rgba(0, 0, 0, 0.55);
+}
+
+/* ----- Tables ----- */
+.closet-page table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.95rem;
+}
+
+.closet-page th {
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+    padding: 12px 14px;
+    border-bottom: 2px solid rgba(74, 52, 112, 0.25);
+    white-space: nowrap;
+}
+
+.closet-page td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(74, 52, 112, 0.12);
+    vertical-align: top;
+    line-height: 1.45;
+}
+
+.closet-page .cc-table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(74, 52, 112, 0.14);
+    border-radius: 16px;
+}
+
+.closet-page .cc-table tbody tr:hover {
+    background: rgba(139, 111, 199, 0.05);
+}
+
+.closet-page .cc-col-name {
+    font-weight: 700;
+}
+
+.closet-page .cc-col-qty,
+.closet-page .cc-th-qty {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.closet-page .cc-col-description,
+.closet-page .cc-col-notes {
+    min-width: 200px;
+    white-space: pre-line;
+}
+
+.closet-page .cc-col-lastInventoried {
+    white-space: nowrap;
+}
+
+.closet-page .cc-stale {
+    background: #ffe0cc;
+    color: #a2400c;
+}
+
+.closet-page .cc-blank {
+    color: rgba(0, 0, 0, 0.3);
+}
+
+/* Condition pills */
+.closet-page .cc-cond {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    white-space: nowrap;
+    background: rgba(74, 52, 112, 0.08);
+    color: var(--mc-ink);
+}
+
+.closet-page .cc-cond-good {
+    background: #e3f2e6;
+    color: #1f6a33;
+}
+
+.closet-page .cc-cond-warn {
+    background: #fff1cc;
+    color: #7a5600;
+}
+
+.closet-page .cc-cond-bad {
+    background: #fde2e2;
+    color: #a12626;
+}
+
+/* ----- Filters ----- */
+.closet-page .cc-filters {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.closet-page .cc-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 180px;
+}
+
+.closet-page .cc-filter-search {
+    flex: 1;
+    min-width: 220px;
+}
+
+.closet-page .cc-filter span {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mc-purple-700);
+}
+
+.closet-page .cc-filter input,
+.closet-page .cc-filter select {
+    font: inherit;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border: 1px solid rgba(74, 52, 112, 0.3);
+    border-radius: 10px;
+    background: #fff;
+    color: var(--mc-ink);
+}
+
+.closet-page .cc-filter select {
+    -webkit-appearance: none;
+    appearance: none;
+    padding-right: 40px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%234a3470' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 12px 8px;
+    cursor: pointer;
+}
+
+.closet-page .cc-filter input:focus-visible,
+.closet-page .cc-filter select:focus-visible {
+    outline: 2px solid var(--mc-purple-500);
+    outline-offset: 1px;
+}
+
+.closet-page .cc-empty {
+    padding: 32px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.55);
+    border: 1px dashed rgba(74, 52, 112, 0.3);
+    border-radius: 16px;
+    margin: 0;
+}
+
+/* ----- Contact row ----- */
+.closet-page .cc-contact-row {
+    text-align: center;
+    padding: 0 24px 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.closet-page .cc-contact-row p {
+    font-size: 0.92rem;
+    color: rgba(0, 0, 0, 0.55);
+    margin: 0;
+}
+
+.closet-page .cc-inline-link {
+    color: var(--mc-purple-700);
+    text-decoration: underline;
+}
+
+.closet-page .cc-contact-email {
+    font-family: var(--mc-font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.3rem, 2.4vw, 1.9rem);
+    color: var(--mc-purple-700) !important;
+    -webkit-text-fill-color: var(--mc-purple-700);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+/* ----- Mobile: inventory rows become cards ----- */
+@media (max-width: 760px) {
+    .closet-page .cc-table-wrap {
+        border: none;
+        overflow: visible;
+    }
+
+    .closet-page .cc-table thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+
+    .closet-page .cc-table,
+    .closet-page .cc-table tbody,
+    .closet-page .cc-table tr,
+    .closet-page .cc-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .closet-page .cc-table tr {
+        border: 1px solid rgba(74, 52, 112, 0.14);
+        border-radius: 14px;
+        margin-bottom: 14px;
+        padding: 6px 0;
+        background: #fff;
+    }
+
+    .closet-page .cc-table td {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: none;
+        padding: 6px 16px;
+        text-align: right;
+        min-width: 0;
+    }
+
+    .closet-page .cc-table td::before {
+        content: attr(data-label);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--mc-purple-700);
+        text-align: left;
+        flex-shrink: 0;
+        padding-top: 2px;
+    }
+
+    .closet-page .cc-table td.cc-col-name {
+        font-size: 1.05rem;
+    }
+
+    .closet-page .cc-filter {
+        flex: 1 1 100%;
+    }
+}
+
+/* ============================================================
  * Financial Inclusivity page - scoped under .fin-inc-page
  * Design language matches the mclegislation
  * card-based pages rather than a one-off layout.
