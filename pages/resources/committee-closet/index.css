@@ -140,6 +140,21 @@
     color: rgba(0, 0, 0, 0.3);
 }
 
+/* Pastel chips for dropdown-style columns; the color comes from index.js */
+.closet-page .cc-chip {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: var(--mc-ink);
+}
+
+.closet-page .cc-filter select option {
+    color: var(--mc-ink);
+}
+
 /* ----- Filters ----- */
 .closet-page .cc-filters {
     display: flex;

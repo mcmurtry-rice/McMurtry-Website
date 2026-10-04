@@ -88,6 +88,41 @@ const fetchTab = (gid) => fetch(csvUrl(gid)).then((res) => {
 const uniqueSorted = (items, key) =>
     Array.from(new Set(items.map((i) => i[key]).filter(Boolean))).sort((a, b) => a.localeCompare(b));
 
+// Dropdown-style columns (Category, Unit, Committee) render as pastel chips.
+// Colors are picked automatically: each value hashes to a slot in this list,
+// so a value keeps its color between visits and new values need no setup.
+const PASTELS = [
+    '#fde2e4', '#fad2e1', '#f8d7e8', '#f3d9f4', '#ead9f7', '#e2dcf9', '#dbe0fb', '#d6e6fc',
+    '#d2ecfb', '#cfeff5', '#cdf2ec', '#cff3e0', '#d5f3d4', '#dff3c9', '#eaf2c3', '#f4f0c0',
+    '#fbecc1', '#fde5c5', '#fddccb', '#fdd5d0', '#f9c9cf', '#f5c6dc', '#edc8ea', '#e0caf2',
+    '#d3cdf6', '#c8d3f8', '#c0dbf8', '#bbe3f5', '#b9eaee', '#b9eee2', '#beefd3', '#c8efc3',
+    '#d6eeb6', '#e4ecae', '#f1e8ab', '#f9e1ad', '#fcd8b3', '#fccebb', '#fbc6c4', '#f1d4d4',
+    '#ecd9cf', '#e8dfcb', '#e3e5cc', '#dbe8d3', '#d3e8dc', '#d0e6e6', '#d3e1ee', '#dbdcf0',
+    '#e4d9ee', '#ecd7e7', '#e9e2f4', '#e0eef6', '#e1f4ee', '#eaf5e0', '#f6f3dc', '#f9eadf',
+];
+
+const hashText = (text) => {
+    let h = 0;
+    for (let i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+    return h;
+};
+
+// value -> pastel. On a hash clash the later value (alphabetically) moves to
+// the next free slot, so two values only share a color once the list runs out.
+const assignPastels = (values) => {
+    const used = new Set();
+    const colors = {};
+    values.forEach((value) => {
+        let slot = hashText(value) % PASTELS.length;
+        for (let n = 0; used.has(slot) && n < PASTELS.length; n++) slot = (slot + 1) % PASTELS.length;
+        used.add(slot);
+        colors[value] = PASTELS[slot];
+    });
+    return colors;
+};
+
+const CHIP_KEYS = ['category', 'unit', 'committee'];
+
 const CommitteeClosetPage = () => {
     const [inventory, setInventory] = useState([]);
     const [status, setStatus] = useState('loading'); // loading | ready | error
@@ -113,6 +148,11 @@ const CommitteeClosetPage = () => {
 
     const committees = useMemo(() => uniqueSorted(inventory, 'committee'), [inventory]);
     const categories = useMemo(() => uniqueSorted(inventory, 'category'), [inventory]);
+    const chipColors = useMemo(() => {
+        const byKey = {};
+        CHIP_KEYS.forEach((key) => { byKey[key] = assignPastels(uniqueSorted(inventory, key)); });
+        return byKey;
+    }, [inventory]);
 
     const filtered = useMemo(() => {
         const q = query.trim().toLowerCase();
@@ -169,16 +209,28 @@ const CommitteeClosetPage = () => {
                             </label>
                             <label className='cc-filter'>
                                 <span>Committee</span>
-                                <select value={committee} onChange={(e) => setCommittee(e.target.value)}>
+                                <select
+                                    value={committee}
+                                    onChange={(e) => setCommittee(e.target.value)}
+                                    style={{ backgroundColor: chipColors.committee[committee] }}
+                                >
                                     <option value=''>All committees</option>
-                                    {committees.map((c) => <option key={c} value={c}>{c}</option>)}
+                                    {committees.map((c) => (
+                                        <option key={c} value={c} style={{ backgroundColor: chipColors.committee[c] }}>{c}</option>
+                                    ))}
                                 </select>
                             </label>
                             <label className='cc-filter'>
                                 <span>Category</span>
-                                <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                                <select
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                    style={{ backgroundColor: chipColors.category[category] }}
+                                >
                                     <option value=''>All categories</option>
-                                    {categories.map((c) => <option key={c} value={c}>{c}</option>)}
+                                    {categories.map((c) => (
+                                        <option key={c} value={c} style={{ backgroundColor: chipColors.category[c] }}>{c}</option>
+                                    ))}
                                 </select>
                             </label>
                         </div>
@@ -200,6 +252,9 @@ const CommitteeClosetPage = () => {
                                                     const value = item[key] || '';
                                                     let content = value;
                                                     let cls = `cc-col-${key}`;
+                                                    if (CHIP_KEYS.includes(key) && value) {
+                                                        content = <span className='cc-chip' style={{ backgroundColor: chipColors[key][value] }}>{value}</span>;
+                                                    }
                                                     if (key === 'lastInventoried' && isStale(item.lastInventoried)) {
                                                         cls += ' cc-stale';
                                                         content = <span title={`Not counted in ${STALE_AFTER_DAYS}+ days`}>{value}</span>;
