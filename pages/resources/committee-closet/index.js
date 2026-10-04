@@ -20,27 +20,17 @@ const csvUrl = (gid) => `https://docs.google.com/spreadsheets/d/${SHEET_ID}/expo
 const STALE_AFTER_DAYS = 180;
 
 // Inventory columns shown on the page, matched to the sheet by header text so
-// reordering columns there doesn't break anything. Location and Photo Link
-// are intentionally not shown.
+// reordering columns there doesn't break anything.
 const COLUMNS = [
     { key: 'name', label: 'Item Name' },
     { key: 'description', label: 'Description' },
     { key: 'category', label: 'Category' },
     { key: 'qty', label: 'Qty' },
     { key: 'unit', label: 'Unit' },
-    { key: 'condition', label: 'Condition' },
     { key: 'committee', label: 'Committee' },
     { key: 'lastInventoried', label: 'Last Inventoried' },
     { key: 'notes', label: 'Notes' },
 ];
-
-const conditionClass = (condition) => {
-    const c = (condition || '').toLowerCase();
-    if (c === 'missing' || c === 'broken') return 'cc-cond-bad';
-    if (c === 'needs repair') return 'cc-cond-warn';
-    if (c === 'new' || c === 'good') return 'cc-cond-good';
-    return '';
-};
 
 // Sheet dates display as M/D/YYYY.
 const isStale = (display) => {
@@ -210,9 +200,6 @@ const CommitteeClosetPage = () => {
                                                     const value = item[key] || '';
                                                     let content = value;
                                                     let cls = `cc-col-${key}`;
-                                                    if (key === 'condition' && value) {
-                                                        content = <span className={`cc-cond ${conditionClass(value)}`}>{value}</span>;
-                                                    }
                                                     if (key === 'lastInventoried' && isStale(item.lastInventoried)) {
                                                         cls += ' cc-stale';
                                                         content = <span title={`Not counted in ${STALE_AFTER_DAYS}+ days`}>{value}</span>;
