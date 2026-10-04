@@ -4486,31 +4486,19 @@ body:has(.page-light)::before {
     color: rgba(0, 0, 0, 0.3);
 }
 
-/* Condition pills */
-.closet-page .cc-cond {
+/* Pastel chips for dropdown-style columns; the color comes from index.js */
+.closet-page .cc-chip {
     display: inline-block;
     padding: 3px 10px;
     border-radius: 999px;
-    font-size: 0.82rem;
+    font-size: 0.85rem;
     font-weight: 600;
     white-space: nowrap;
-    background: rgba(74, 52, 112, 0.08);
     color: var(--mc-ink);
 }
 
-.closet-page .cc-cond-good {
-    background: #e3f2e6;
-    color: #1f6a33;
-}
-
-.closet-page .cc-cond-warn {
-    background: #fff1cc;
-    color: #7a5600;
-}
-
-.closet-page .cc-cond-bad {
-    background: #fde2e2;
-    color: #a12626;
+.closet-page .cc-filter select option {
+    color: var(--mc-ink);
 }
 
 /* ----- Filters ----- */
